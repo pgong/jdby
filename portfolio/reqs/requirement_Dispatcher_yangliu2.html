@@ -1,0 +1,271 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>requirement_Dispatcher</title>
+  </head>
+  <body>
+    <h2>11. Dispatcher </h2>
+    <h3> Replication: </h3>
+    <ul>
+      <li>There is one Dispatcher in the system, corresponding with the
+        Car. </li>
+    </ul>
+    <h3> Instantiation: </h3>
+    <ul>
+      <li>The Dispatcher is initialized to send the car to the Lobby,
+        have the Lobby as the desired destination, and have a preferred
+        direction of "Stopped" (i.e., no preferred direction). </li>
+    </ul>
+    <h3> Assumptions: </h3>
+    <ul>
+      <li>Dispatcher never sets DesiredFloor.f to be above MaxFloor or
+        below Lobby (1). </li>
+    </ul>
+    <h3> Input Interface: </h3>
+    <ul>
+      <li>mAtFloor[f, b] </li>
+      <li>mDoorClosed[b, r]&nbsp; </li>
+      <li>mHallCall[f, b, d]&nbsp;&nbsp; </li>
+      <li>mCarCall[f, b]&nbsp;&nbsp;&nbsp; </li>
+      <li>mCarPositionIndicator</li>
+    </ul>
+    <h3> Output Interface: </h3>
+    <ul>
+      <li>mDesiredFloor </li>
+      <li>mDesiredDwell </li>
+    </ul>
+    <h3> State: </h3>
+    <ul>
+      <li>Target: an integer Floor number for desired Floor, initialized
+        to Lobby = 1. </li>
+      <li>nextTarget: an Integer Floor number for nextTarget after
+        servicing the desired Floor, initialized t Lobby = 1.</li>
+      <li>DesiredDirection = {Up, Down, Stop} computed desired direction
+        based on comparing current floor position with Floor desired by
+        Dispatcher.&nbsp; This is implicitly computed and used as a
+        macro in the behavior descriptions.</li>
+      <li>CommitPoint: a distance between the floor position and the
+        point where elevator has enough time to stop at that floor. <br>
+      </li>
+    </ul>
+    <h3> CONSTRAINTS: </h3>
+    11.1&nbsp;&nbsp;&nbsp; Target shall be a valid Floor number from 1
+    .. MaxFloor inclusive.<br>
+    11.2&nbsp;&nbsp;&nbsp; The desired direction d of mDesiredFloor(f,
+    b, d) shall not be Up when f = MaxFloor .<br>
+    11.3&nbsp;&nbsp;&nbsp; The desired direction d of mDesiredFloor(f,
+    b, d) shall not be Down when f = 1.
+    <h3> TIME-TRIGGERED BEHAVIORS: </h3>
+    11.4&nbsp;&nbsp;&nbsp; mDesiredFloor.f shall always be set to
+    Target.<br>
+    11.5&nbsp;&nbsp;&nbsp; mDesiredFloor.d shall be set to direction
+    compared between Target and nextTarget.<br>
+    11.6&nbsp;&nbsp;&nbsp; Whenever any mDoorClosed [b, r] is False,
+    then mDesiredFloor shall remain the same.<br>
+    11.7&nbsp;&nbsp;&nbsp; If all mAtFloor[f, b] are False AND any
+    mDoorClosed [b, r] is False (which means doors are not closed
+    between floors!); then<br>
+    &nbsp;&nbsp;&nbsp; 11.7.1&nbsp;&nbsp; Target shall be set to 1.<br>
+    &nbsp;&nbsp;&nbsp; 11.7.2&nbsp;&nbsp; mDesiredFloor.b shall be set
+    to Both .<br>
+    11.8 &nbsp;&nbsp; mDesiredFloor.b shall be set to b where b is
+    whichever mHallCall[Target,b,d] or mCarCall[Target,b] is true.<br>
+    11.9 &nbsp;&nbsp; mDesiredDwell shall always be set to a constant
+    appropriate value for door open dwell. &nbsp; &nbsp; <br>
+    11.10&nbsp; Target shall be set to nearest possible floor f to
+    current floor where mCarCall[f,b] or mHallCall[f,b,d] is true and
+    not beyond the CommitPoint in DesiredDirection.<br>
+    11.11&nbsp; nextTarget shall be set to nearest floor to Target where
+    mCarCall[f,b] or mHallCall[f,b,d] is ture in DesiredDirection.<br>
+    <br>
+    <br>
+    <br>
+    <p>&nbsp; <a
+href="file:///C:/Users/emily/Documents/GitHub/GRP22_18649/portfolio/reqs/Dispatcher_state_diargram.png"><img
+          alt=""
+src="file:///C:/Users/emily/Documents/GitHub/GRP22_18649/portfolio/reqs/Dispatcher_state_diargram.png"
+          height="468" border="0" width="554"></a><br>
+    </p>
+    <table style="text-align: left; width: 525px; height: 172px;"
+      border="1" cellpadding="2" cellspacing="2">
+      <tbody>
+        <tr>
+          <td style="vertical-align: top; font-weight: bold;
+            background-color: rgb(204, 204, 204);">Transition<br>
+          </td>
+          <td style="vertical-align: top; background-color: rgb(204,
+            204, 204);"><span style="font-weight: bold;">Condition</span><br>
+          </td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top;">11.T.1<br>
+          </td>
+          <td style="vertical-align: top;">mDoorClosed[b, r] == False
+            &amp;&amp; mAtFloor[*,*] == False<br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top">11.T.2<br>
+          </td>
+          <td valign="top">mDoorClosed[b,r] == False &amp;&amp;
+            mAtFloor[f,b] == True </td>
+        </tr>
+      </tbody>
+    </table>
+    <p><br>
+    </p>
+    <h3>Requirements to Statechart Traceability</h3>
+    <p>completed by Yang Liu (yangliu2)<br>
+    </p>
+    <table "text-align:="" left;="" width:="" 409px;="" height:=""
+      312px;"="" border="1" cellpadding="2" cellspacing="2">
+      <tbody>
+        <tr style="font-weight: bold;">
+          <td style="vertical-align: top; background-color: rgb(204,
+            204, 204);"><br>
+          </td>
+          <td colspan="8" rowspan="1" style="vertical-align: top;
+            background-color: rgb(204, 204, 204);">Requirements<br>
+          </td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; background-color: rgb(204,
+            204, 204);"><span style="font-weight: bold;">States</span><br>
+          </td>
+          <td style="vertical-align: top; background-color: rgb(204,
+            204, 204);">11.4<br>
+          </td>
+          <td style="vertical-align: top; background-color: rgb(204,
+            204, 204);">11.5<br>
+          </td>
+          <td style="vertical-align: top; background-color: rgb(204,
+            204, 204);">11.6.1<br>
+          </td>
+          <td bgcolor="#cccccc" valign="top">11.6.2<br>
+          </td>
+          <td bgcolor="#cccccc" valign="top">11.7.1<br>
+          </td>
+          <td bgcolor="#cccccc" valign="top">11.7.2<br>
+          </td>
+          <td bgcolor="#cccccc" valign="top">11.8<br>
+          </td>
+          <td bgcolor="#cccccc" valign="top">11.9<br>
+          </td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; background-color: rgb(204,
+            204, 204);">State 1:&nbsp; <br>
+            At Floor<br>
+          </td>
+          <td style="vertical-align: top;">X<br>
+          </td>
+          <td style="vertical-align: top;">X<br>
+          </td>
+          <td style="vertical-align: top;">X<br>
+          </td>
+          <td valign="top">X<br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top">X<br>
+          </td>
+          <td valign="top">X<br>
+          </td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; background-color: rgb(204,
+            204, 204);" bgcolor="#cccccc">State 2:&nbsp; <br>
+            Between Floors<br>
+          </td>
+          <td style="vertical-align: top;">X<br>
+          </td>
+          <td style="vertical-align: top;">X<br>
+          </td>
+          <td style="vertical-align: top;"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top">X<br>
+          </td>
+          <td valign="top">X<br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top">X<br>
+          </td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; background-color: rgb(204,
+            204, 204);" bgcolor="#cccccc"><span style="font-weight:
+              bold;">Transitions</span><br>
+          </td>
+          <td style="vertical-align: top;" bgcolor="#cccccc"><br>
+          </td>
+          <td style="vertical-align: top;" bgcolor="#cccccc"><br>
+          </td>
+          <td style="vertical-align: top;" bgcolor="#cccccc"><br>
+          </td>
+          <td bgcolor="#cccccc" valign="top"><br>
+          </td>
+          <td bgcolor="#cccccc" valign="top"><br>
+          </td>
+          <td bgcolor="#cccccc" valign="top"><br>
+          </td>
+          <td bgcolor="#cccccc" valign="top"><br>
+          </td>
+          <td bgcolor="#cccccc" valign="top"><br>
+          </td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; background-color: rgb(204,
+            204, 204);" bgcolor="#cccccc">11.T.1<br>
+          </td>
+          <td style="vertical-align: top;"><br>
+          </td>
+          <td style="vertical-align: top;"><br>
+          </td>
+          <td style="vertical-align: top;">X<br>
+          </td>
+          <td valign="top">X<br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; background-color: rgb(204,
+            204, 204);" bgcolor="#cccccc">11.T.2</td>
+          <td style="vertical-align: top;"><br>
+          </td>
+          <td style="vertical-align: top;"><br>
+          </td>
+          <td style="vertical-align: top;"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top">X<br>
+          </td>
+          <td valign="top">X<br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p> &nbsp;<br>
+      &nbsp;<br>
+      &nbsp;<br>
+      &nbsp;<br>
+      &nbsp; </p>
+  </body>
+</html>
