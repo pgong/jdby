@@ -1969,7 +1969,7 @@
     False AND DriveSpeed is Stop,<br>
     &nbsp;&nbsp;&nbsp; 6.10.1 mDrive shall be set to {LEVEL, Up}.<br>
     &nbsp;&nbsp;&nbsp; 6.10.2 Drive shall be set to {LEVEL, Up}.<br>
-    6.11 Current floor shall be set to mCarLevelPosition/5<br>
+    6.11 Current floor shall be set to mCarLevelPosition/5000<br>
     6.12 DesiredDirection,<br>
     &nbsp;&nbsp;&nbsp; 6.12.1 shall be set to UP if mDesiredFloor.f -
     CurrentFloor is greater than zero.<br>
@@ -3070,11 +3070,10 @@
     10.4 &nbsp;&nbsp;&nbsp; Whenever any mAtFloor[f, b] is True,
     CarPositionIndicator shall be commanded to display
     CurrentFloor.&nbsp;<br>
-    10.5 &nbsp;&nbsp;&nbsp;If mAtFloor[f,b] is True, CurrentFloor shall
-    be set to f. <br>
-    10.6 &nbsp;&nbsp;&nbsp;If mAtFloor[f,b] is False,
-    CarPositionIndicator shall display the floor for which mAtFloor[f,b]
-    was last True. <br>
+    10.5 &nbsp;&nbsp;&nbsp;If mAtFloor[f,b] is True and mDriveSpeed
+	is {0.25, DesiredDIrection}, CurrentFloor shall be set to f. <br>
+    10.6 &nbsp;&nbsp;&nbsp;If mDriveSpeed is not {0.25, DesiredDirection},
+	CurrentFloor shall be set to mCarLevelPosition / 5000<br>
     <br>
     <div style="text-align: center;"><a
         href="carposcontrol_state_diagram.png"><img
