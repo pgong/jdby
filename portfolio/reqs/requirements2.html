@@ -1957,10 +1957,10 @@
     DriveSpeed is Level,<br>
     &nbsp;&nbsp;&nbsp; 6.7.1 mDrive shall be set to {Stop, Stop}.<br>
     &nbsp;&nbsp;&nbsp; 6.7.2 Drive shall be set to {Stop, Stop}.<br>
-    6.8 If DesiredDirection is UP or DOWN AND DriveSpeed is {0, STOP},<br>
-    &nbsp;&nbsp;&nbsp; 6.8.1 mDrive shall be set to {FAST,
+    6.8 If DesiredDirection is UP or DOWN and DriveSpeed is {0, STOP},<br>
+    &nbsp;&nbsp;&nbsp; 6.8.1 mDrive shall be set to {SLOW,
     DesiredDirection}.<br>
-    &nbsp;&nbsp;&nbsp; 6.8.2 Drive shall be set to {FAST,
+    &nbsp;&nbsp;&nbsp; 6.8.2 Drive shall be set to {SLOW,
     DesiredDirection}.<br>
     6.9 If DesiredDirection is STOP AND DriveSpeed is {SLOW, d},<br>
     &nbsp;&nbsp;&nbsp; 6.9.1 Drive shall be set to {LEVEL, d}.<br>
@@ -1982,6 +1982,12 @@
     &nbsp;&nbsp;&nbsp; 6.13.1 mDrive shall be set to {SLOW,
     DesiredDirection}.<br>
     &nbsp;&nbsp;&nbsp; 6.13.2 Drive shall be set to {SLOW,
+    DesiredDirection}.<br>
+	6.14 If If DesiredDirection is UP or DOWN, Drive is {SLOW, STOP},
+	and CommitPoint(mDesiredFloor.f) is NotReached, <br>
+	&nbsp;&nbsp;&nbsp; 6.14.1 mDrive shall be set to {FAST,
+    DesiredDirection}.<br>
+    &nbsp;&nbsp;&nbsp; 6.14.2 Drive shall be set to {FAST,
     DesiredDirection}.<br>
     <br>
     <img alt="Drive Control State Diagram"
