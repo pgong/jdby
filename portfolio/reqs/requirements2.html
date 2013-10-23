@@ -952,7 +952,9 @@
     4.6&nbsp;&nbsp;&nbsp; D_position shall be kept updated by a physical
     model to indicate current positions of simulated doors.<br>
     <br>
-    <h2><a name="doorcontrol"></a> 5. DoorControl[b, r] </h2>
+    <h2><a name="doorcontrol"></a><br>
+    </h2>
+    <h2>5. DoorControl[b, r] </h2>
     <h4> Replication: </h4>
     <ul>
       <li>Each Car has four DoorControllers[b, r].&nbsp;&nbsp; </li>
@@ -994,6 +996,13 @@
       <li>CountDown: a count-down timer for Door Dwell[b] (implemented
         in simulation by scheduling a future task execution at time of
         expiration) </li>
+      <li>MaxReversals: a constant integer that is the max number of
+        door reversals a door can have before it starts nudging.<br>
+      </li>
+      <li>ReversalCount: an integer that counts down every time
+        mDoorReversal is received and resets to MaxReversals whenever
+        the door closes.<br>
+      </li>
     </ul>
     <h3> CONSTRAINTS: </h3>
     5.1&nbsp;&nbsp;&nbsp; DoorClosed[b, *] shall be True when there is
@@ -1019,16 +1028,23 @@
     &nbsp;&nbsp;&nbsp; 5.7.1&nbsp; DoorMotor[b,r] shall be commanded to
     Stop.<br>
     &nbsp;&nbsp;&nbsp; 5.7.2&nbsp; CountDown shall be decremented.<br>
-    5.8&nbsp; If mDoorClosed[b, r] is True, then DoorMotor[b,r] should
-    be commanded to Stop.<br>
-    5.9&nbsp; When CountDown &lt;= 0, DoorMotor[b,r] should be commanded
-    to Nudge.<br>
+    5.8&nbsp; If mDoorClosed[b, r] is True, <br>
+    &nbsp;&nbsp;&nbsp; 5.8.1 then DoorMotor[b,r] shall be commanded to
+    Stop.<br>
+    &nbsp;&nbsp;&nbsp; 5.8.2 then ReversalCount shall be set to 0.<br>
+    5.9&nbsp; When CountDown &lt;= 0<br>
+    &nbsp;&nbsp;&nbsp; 5.9.1 and ReversalCount &gt;= MaxReversals,
+    DoorMotor[b,r] shall be commanded to Nudge.<br>
+    &nbsp;&nbsp;&nbsp; 5.9.2 and ReversalCount &lt; MaxReversals,
+    DoorMotor[b,r] shall be commanded to Close.<br>
     5.10 If mCarWeight(g) &gt;= MaxCarCapacity, and mDoorOpened[b, r] is
     False, DoorMotor[b, r] shall be commanded to Open.<br>
     5.11 Dwell shall be set to an appropriate value based on
     mDesiredDwell[b].<br>
     5.12 mDoorMotor[b,r] shall be set to the current value of
-    DoorMotor[b,r]<br>
+    DoorMotor[b,r].<br>
+    5.13 If DoorMotor[b,r] is set to Close and mDoorReversal[b,r] is set
+    to true, DoorMotor[b,r] shall be commanded to Open.<br>
     <br>
     <img alt="Door Control State Diagram"
       src="DoorControlStateDiagram.png" width="423" height="365"><br>
@@ -1061,7 +1077,9 @@
         </tr>
         <tr>
           <td valign="top">5.T.4</td>
-          <td valign="top">CountDown reaches 0 </td>
+          <td valign="top">CountDown reaches 0 and ReversalCount &lt;
+            MaxReversals<br>
+          </td>
         </tr>
         <tr>
           <td valign="top">5.T.5<br>
@@ -1075,6 +1093,24 @@
             mCarCall[f,b] is True<br>
           </td>
         </tr>
+        <tr>
+          <td valign="top">5.T.7<br>
+          </td>
+          <td valign="top">DoorClosed is true.<br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top">5.T.8<br>
+          </td>
+          <td valign="top">CountDown reaches 0 and ReversalCount &gt;=
+            MaxReversals</td>
+        </tr>
+        <tr>
+          <td valign="top">5.T.9<br>
+          </td>
+          <td valign="top">mCarWeight(g) &gt;= MaxCarCapacity<br>
+          </td>
+        </tr>
       </tbody>
     </table>
     <h3 style="color: rgb(0, 0, 0); font-family: 'Times New Roman';
@@ -1082,6 +1118,7 @@
       line-height: normal; orphans: auto; text-align: start;
       text-indent: 0px; text-transform: none; white-space: normal;
       widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px;">Requirements
+
 
 
 
@@ -1122,9 +1159,13 @@
           </td>
           <td valign="top" width="25" bgcolor="#cccccc">5.7.2<br>
           </td>
-          <td valign="top" width="25" bgcolor="#cccccc">5.8<br>
+          <td valign="top" width="25" bgcolor="#cccccc">5.8.1<br>
           </td>
-          <td valign="top" width="25" bgcolor="#cccccc">5.9<br>
+          <td valign="top" bgcolor="#cccccc">5.8.2<br>
+          </td>
+          <td valign="top" width="25" bgcolor="#cccccc">5.9.1<br>
+          </td>
+          <td valign="top" bgcolor="#cccccc">5.9.2<br>
           </td>
           <td valign="top" width="25" bgcolor="#cccccc">5.10<br>
           </td>
@@ -1132,9 +1173,17 @@
           </td>
           <td valign="top" width="25" bgcolor="#cccccc">5.12<br>
           </td>
+          <td valign="top" bgcolor="#cccccc">5.13<br>
+          </td>
         </tr>
         <tr>
           <td valign="top" bgcolor="#cccccc"><b>States</b>:<br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
           </td>
           <td valign="top"><br>
           </td>
@@ -1168,6 +1217,10 @@
           </td>
           <td valign="top">X<br>
           </td>
+          <td valign="top">X<br>
+          </td>
+          <td valign="top"><br>
+          </td>
           <td valign="top"><br>
           </td>
           <td valign="top"><br>
@@ -1175,6 +1228,8 @@
           <td valign="top">X<br>
           </td>
           <td valign="top">X<br>
+          </td>
+          <td valign="top"><br>
           </td>
         </tr>
         <tr>
@@ -1193,6 +1248,12 @@
           <td valign="top"><br>
           </td>
           <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top">X<br>
           </td>
           <td valign="top">X<br>
           </td>
@@ -1214,11 +1275,17 @@
           </td>
           <td valign="top"><br>
           </td>
-          <td valign="top">X<br>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
           </td>
           <td valign="top">X<br>
           </td>
           <td valign="top">X<br>
+          </td>
+          <td valign="top">X<br>
+          </td>
+          <td valign="top"><br>
           </td>
         </tr>
         <tr>
@@ -1234,6 +1301,10 @@
           </td>
           <td valign="top"><br>
           </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
           <td valign="top">X<br>
           </td>
           <td valign="top"><br>
@@ -1242,9 +1313,44 @@
           </td>
           <td valign="top">X<br>
           </td>
+          <td valign="top"><br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top" bgcolor="#cccccc">5.S5</td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top">X<br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top">X<br>
+          </td>
+          <td valign="top">X<br>
+          </td>
+          <td valign="top"><br>
+          </td>
         </tr>
         <tr>
           <td valign="top" bgcolor="#cccccc"><b>Transitions</b><br>
+          </td>
+          <td valign="top" bgcolor="#cccccc"><br>
+          </td>
+          <td valign="top" bgcolor="#cccccc"><br>
+          </td>
+          <td valign="top" bgcolor="#cccccc"><br>
           </td>
           <td valign="top" bgcolor="#cccccc"><br>
           </td>
@@ -1286,6 +1392,12 @@
           </td>
           <td valign="top"><br>
           </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
         </tr>
         <tr>
           <td valign="top" bgcolor="#cccccc">5.T2<br>
@@ -1297,6 +1409,12 @@
           <td valign="top">X<br>
           </td>
           <td valign="top">X<br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
           </td>
           <td valign="top"><br>
           </td>
@@ -1330,6 +1448,12 @@
           </td>
           <td valign="top"><br>
           </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
         </tr>
         <tr>
           <td valign="top" bgcolor="#cccccc">5.T4<br>
@@ -1344,7 +1468,13 @@
           </td>
           <td valign="top"><br>
           </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
           <td valign="top">X<br>
+          </td>
+          <td valign="top"><br>
           </td>
           <td valign="top"><br>
           </td>
@@ -1365,6 +1495,12 @@
           <td valign="top"><br>
           </td>
           <td valign="top">X<br>
+          </td>
+          <td valign="top">X<br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
           </td>
           <td valign="top"><br>
           </td>
@@ -1390,7 +1526,97 @@
           </td>
           <td valign="top"><br>
           </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
           <td valign="top">X<br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top">X<br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top">5.T7<br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top">X<br>
+          </td>
+          <td valign="top">X<br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top">5.T8<br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top">X<br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top">5.T9<br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top">X<br>
+          </td>
+          <td valign="top"><br>
           </td>
           <td valign="top"><br>
           </td>
@@ -1399,7 +1625,9 @@
         </tr>
       </tbody>
     </table>
-    <h2><a name="drivecontrol"></a>6. DriveControl </h2>
+    <h2><a name="drivecontrol"></a><br>
+    </h2>
+    <h2>6. DriveControl </h2>
     <h3> Replication: </h3>
     <ul>
       <li>There is one DriveControl, which controls the elevator Drive
@@ -1461,7 +1689,8 @@
     the same as or "adjacent to" the value of DriveSpeed.<br>
     6.3.1&nbsp;&nbsp;&nbsp; In the following table, any entry with an
     'X' means that that Drive command is considered adjacent to the
-    corresponding value of {DriveSpeed}:<br>
+    corresponding value of {DriveSpeed}:
+    <h2> </h2>
     <table style="text-align: left; width: 100%; height: 376px;"
       border="1" cellpadding="2" cellspacing="2">
       <tbody>
@@ -1652,9 +1881,9 @@
     &nbsp;&nbsp;&nbsp; 6.7.1 mDrive shall be set to {Stop, Stop}.<br>
     &nbsp;&nbsp;&nbsp; 6.7.2 Drive shall be set to {Stop, Stop}.<br>
     6.8 If DesiredDirection is UP or DOWN AND DriveSpeed is {0, STOP},<br>
-    &nbsp;&nbsp;&nbsp; 6.8.1 mDrive shall be set to {SLOW,
+    &nbsp;&nbsp;&nbsp; 6.8.1 mDrive shall be set to {FAST,
     DesiredDirection}.<br>
-    &nbsp;&nbsp;&nbsp; 6.8.2 Drive shall be set to {SLOW,
+    &nbsp;&nbsp;&nbsp; 6.8.2 Drive shall be set to {FAST,
     DesiredDirection}.<br>
     6.9 If DesiredDirection is STOP AND DriveSpeed is {SLOW, d},<br>
     &nbsp;&nbsp;&nbsp; 6.9.1 Drive shall be set to {LEVEL, d}.<br>
@@ -1663,6 +1892,20 @@
     False AND DriveSpeed is Stop,<br>
     &nbsp;&nbsp;&nbsp; 6.10.1 mDrive shall be set to {LEVEL, Up}.<br>
     &nbsp;&nbsp;&nbsp; 6.10.2 Drive shall be set to {LEVEL, Up}.<br>
+    6.11 Current floor shall be set to mCarLevelPosition/5<br>
+    6.12 DesiredDirection,<br>
+    &nbsp;&nbsp;&nbsp; 6.12.1 shall be set to UP if mDesiredFloor.f -
+    CurrentFloor is greater than zero.<br>
+    &nbsp;&nbsp;&nbsp; 6.12.2 shall be set to DOWN if mDesiredFloor.f -
+    CurrentFloor is less than zero. <br>
+    &nbsp;&nbsp;&nbsp; 6.12.3 shall be set to STOP if mDesiredFloor.f -
+    CurrentFloor is equal to zero. <br>
+    6.13 If DriveSpeed is {1.0, DesiredDirection} and CommitPoint =
+    Reached, <br>
+    &nbsp;&nbsp;&nbsp; 6.13.1 mDrive shall be set to {SLOW,
+    DesiredDirection}.<br>
+    &nbsp;&nbsp;&nbsp; 6.13.2 Drive shall be set to {SLOW,
+    DesiredDirection}.<br>
     <br>
     <img alt="Drive Control State Diagram"
       src="DriveControlStateDiagram.png" width="644" height="362"><br>
@@ -2052,10 +2295,10 @@
     7.1&nbsp;&nbsp;&nbsp; Both CarLanterns[d] shall not be On at the
     same time.
     <h3> TIME-TRIGGERED BEHAVIORS: </h3>
-    7.2&nbsp;&nbsp; If mDoorClosed[b, r] is false, and DesiredDirection
+    7.2&nbsp;&nbsp; If mDoorClosed[b, r] is false, and mDesiredFloor.d
     is Up or Down, CarLantern[d] of the desired direction shall be
     commanded to On.<br>
-    7.3&nbsp;&nbsp; If mDoorClosed[b, r] is false, and DesiredDirection
+    7.3&nbsp;&nbsp; If mDoorClosed[b, r] is false, and mDesiredFloor.d
     is Stop, both CarLantern[d] shall be commanded to Off.<br>
     7.4&nbsp;&nbsp; If all mDoorClosed[*, *] is true, both CarLantern[d]
     shall be commanded to Off.<br>
@@ -2078,12 +2321,12 @@
           <td style="vertical-align: top;">7.T.1<br>
           </td>
           <td style="vertical-align: top;">mDoorClosed[b, r] == False
-            &amp;&amp; DesiredDirection == Up/Down</td>
+            &amp;&amp; mDesiredFloor.d == Up/Down</td>
         </tr>
         <tr>
           <td style="vertical-align: top;">7.T.2</td>
           <td style="vertical-align: top;">mDoorClosed[b,r] == False
-            &amp;&amp; DesiredDirection == Stop<br>
+            &amp;&amp; mDesiredFloor.d == Stop<br>
           </td>
         </tr>
         <tr>
