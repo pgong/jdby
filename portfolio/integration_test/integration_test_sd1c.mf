@@ -1,0 +1,55 @@
+; 18649 <Fall 2013>
+; Group 22
+; David Chow (davidcho)
+; Brody Anderson (bcanders)
+; Yang Liu (yangliu2)
+; Jeff Lau (jalau)
+;
+; @Author: David Chow
+; Integration test: SD1C - DoorControl and HallButtonControl Integration 
+#INCLUDE defines.mf
+
+;Initialize:
+0s I DISPATCHER_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 4 UP FRONT
++0s I HALL_BUTTON_CONTROL_PERIOD F HallCall 4 FRONT DOWN  = false
++0s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[FRONT][LEFT]_CAN_ID DoorOpened FRONT LEFT = true
++0s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[FRONT][RIGHT]_CAN_ID DoorOpened FRONT RIGHT = true
++0s I DOOR_CONTROL_PERIOD N DESIRED_DWELL_[FRONT]_CAN_ID DesiredDwell FRONT = 2s
++0s I AT_FLOOR_PERIOD N AT_FLOOR_[4][FRONT]_CAN_ID AtFloor 4 FRONT = true 
+
+;Check doors are waiting for dwell
++0.41s A S DoorControl[FRONT][LEFT] : STATE == WAIT_FOR_DWELL
++0s A S DoorControl[FRONT][RIGHT] : STATE == WAIT_FOR_DWELL
++0s A F DoorMotor FRONT LEFT : command == STOP
++0s A F DoorMotor FRONT RIGHT : command == STOP
+
+;Wait 2s to check if doors are closing
+;Check to see if door closing
++2.52s A S DoorControl[FRONT][LEFT] : STATE == CLOSING_DOOR
++0s A S DoorControl[FRONT][RIGHT] : STATE == CLOSING_DOOR
++0s A F DoorMotor FRONT LEFT : command == NUDGE
++0s A F DoorMotor FRONT RIGHT : command == NUDGE
+
+;Doors haven't fully closed
++0.21s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = false
++0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = false
+
+;Passenger Presses HallCall (and lets go)
++0.21s I HALL_BUTTON_CONTROL_PERIOD F HallCall 4 FRONT DOWN = true
++0.2s I HALL_BUTTON_CONTROL_PERIOD F HallCall 4 FRONT DOWN = false
+
+;Check if lights are on
++0.21s A S HallButtonControl[4][FRONT][DOWN] : STATE == STATE_LIGHT_ON
++0s A F HallLight 4 FRONT DOWN : lighted == true
++0s A N HALL_LIGHT_[4][FRONT][DOWN]_CAN_ID Boolean : getValue == true
++0s A N HALL_CALL_[4][FRONT][DOWN]_CAN_ID Boolean : getValue == true
+
+;door is closed
++0.63s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = true
++0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = true
+
+;Check if lights are still on
++0.41s A S HallButtonControl[4][FRONT][DOWN] : STATE == STATE_LIGHT_ON
++0s A F HallLight 4 FRONT DOWN : lighted == true
++0s A N HALL_LIGHT_[4][FRONT][DOWN]_CAN_ID Boolean : getValue == true
++0s A N HALL_CALL_[4][FRONT][DOWN]_CAN_ID Boolean : getValue == true

@@ -1,0 +1,34 @@
+Project 5 Assignments
+Finish coding by Monday Night
+Peer Reviews Tuesday 6pm ECE Lab
+
+
+Implementation Of:
+	DoorControl (Brody)
+	DriveControl (Jeff)
+	HallBallControl (Yang)
+	CarButtonControl (David)
+	
+Traceability
+	DoorControl (Brody)
+	DriveControl (Jeff)
+	HallBallControl (Yang)
+	CarButtonControl (David)
+	
+Unit Tests
+	DoorControl (Brody)
+	DriveControl (Jeff)
+	HallBallControl (Yang)
+	CarButtonControl (David)
+	
+Peer Reviews
+	DoorControl (Brody)
+	DriveControl (Jeff)
+	HallBallControl (Yang)
+	CarButtonControl (David)
+	
+Integration Tests
+	First (David)
+	Second (Yang)
+
+	

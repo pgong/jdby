@@ -1,0 +1,54 @@
+; 18649 <Fall 2013>
+; Group 22
+; David Chow (davidcho)
+; Brody Anderson (bcanders)
+; Yang Liu (yangliu2)
+; Jeff Lau (jalau)
+;
+; @Author: Brody Anderson
+; Integration test: SD5c
+
+#INCLUDE defines.mf ;include CAN id and period definitions
+
+
+; Initialize doors close, at floor 3 while desired floor is 3
+0s I AT_FLOOR_PERIOD N AT_FLOOR_[3][FRONT]_CAN_ID AtFloor 3 FRONT = true
++0s I DISPATCHER_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 3 STOP FRONT
++0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = true
++0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = true
++0s I DOOR_CONTROL_PERIOD N DESIRED_DWELL_[FRONT]_CAN_ID DesiredDwell FRONT = 2s
++0s I DRIVE_CONTROL_PERIOD N DRIVE_SPEED_CAN_ID DriveSpeed = 0 STOP
+
+; Let the Door Control switch states to opening door and open it all the way
++0.5s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = false
++0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = false
++0.5s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[FRONT][LEFT]_CAN_ID DoorOpened FRONT LEFT = true
++0s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[FRONT][RIGHT]_CAN_ID DoorOpened FRONT RIGHT = true
+
+; wait 2 seconds for desired_dwell time to pass
+; then doors will start to close (check)
++2.5s A S DoorControl[FRONT][LEFT] : STATE == CLOSING_DOOR
++0s A S DoorControl[FRONT][RIGHT] : STATE == CLOSING_DOOR
++0s A F DoorMotor FRONT LEFT : command == NUDGE
++0s A F DoorMotor FRONT RIGHT : command == NUDGE
++0.5s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[FRONT][LEFT]_CAN_ID DoorOpened FRONT LEFT = false
++0s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[FRONT][RIGHT]_CAN_ID DoorOpened FRONT RIGHT = false
+
+; Passenger walks in the door at this time.
+
+; Check that door continues to close until DOOR_ClOSED is sent
++2s A S DoorControl[FRONT][LEFT] : STATE == CLOSING_DOOR
++0s A S DoorControl[FRONT][RIGHT] : STATE == CLOSING_DOOR
++0s A F DoorMotor FRONT LEFT : command == NUDGE
++0s A F DoorMotor FRONT RIGHT : command == NUDGE
+
+; Send door closed sensor message
++0.3s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = true
++0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = true
++0s I DISPATCHER_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 4 STOP FRONT
+
+;At state s1
++0.5s A S DoorControl[FRONT][LEFT] : STATE == CAR_MOVING
++0s A S DoorControl[FRONT][RIGHT] : STATE == CAR_MOVING
++0s A F DoorMotor FRONT LEFT : command == STOP
++0s A F DoorMotor FRONT RIGHT : command == STOP

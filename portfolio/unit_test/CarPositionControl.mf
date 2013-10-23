@@ -1,0 +1,27 @@
+; 18649 Fall 2013
+; group #22
+; Brody Anderson (bcanders), Jeff Lau (jalau), David Chow (davidcho), Yang Liu (yangliu2)
+; carpositioncontrol_test1.mf
+
+#INCLUDE defines.mf ;include CAN id and period definitions
+
+;Initializations, Start with the car at floor 1
+0s I AT_FLOOR_PERIOD N AT_FLOOR_[1][FRONT]_CAN_ID AtFloor 1 FRONT = true
+
+;At state POSITION and floor 1
++0.110s A S CarPositionControl : STATE == POSITION
++0s A N CAR_POSITION_CAN_ID CarPosition : getValue == 1
+
+; move away from floor
++0.110s I AT_FLOOR_PERIOD N AT_FLOOR_[1][FRONT]_CAN_ID AtFloor 1 FRONT = false
+
+; check that car position is still floor 1
++0.110s A S CarPositionControl : STATE == POSITION
++0s A N CAR_POSITION_CAN_ID CarPosition : getValue == 1
+
+; get to floor 2
++0.110s I AT_FLOOR_PERIOD N AT_FLOOR_[2][BACK]_CAN_ID AtFloor 2 BACK = true
+
+; Check that car position is now on floor 2;
++0.110s A S CarPositionControl : STATE == POSITION
++0s A N CAR_POSITION_CAN_ID CarPosition : getValue == 2

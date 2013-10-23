@@ -1,0 +1,80 @@
+; 18649 <Fall 2013>
+; Group 22
+; David Chow (davidcho)
+; Brody Anderson (bcanders)
+; Yang Liu (yangliu2)
+; Jeff Lau (jalau)
+;
+; @Author: David Chow
+; Integration test: SD3A
+
+#INCLUDE defines.mf
+
+;intialize
+0s I AT_FLOOR_PERIOD N AT_FLOOR_[1][FRONT]_CAN_ID AtFloor 1 FRONT = true
++0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = true
++0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = true
++0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][RIGHT]_CAN_ID DoorClosed BACK RIGHT = true
++0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][LEFT]_CAN_ID DoorClosed BACK LEFT = true
++0s  I  HALL_BUTTON_CONTROL_PERIOD F HallCall 2 BACK UP  = true
++0.1s I  HALL_BUTTON_CONTROL_PERIOD F HallCall 2 BACK UP  = false
+
+
+;CHECKS
++0.21s A S DoorControl[FRONT][LEFT] : STATE == CAR_MOVING
++0s A F DoorMotor FRONT LEFT : command == STOP
+
++0s  A S Dispatcher : STATE == STATE_BETWEEN
++0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getFloor == 2
++0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getDirection == STOP
++0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getHallway == BACK
+
++0.21s  A S DriveControl : STATE == STATE_SLOW
++0s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getSpeed == SLOW
++0s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getDirection == UP
++0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getFloor == 2
+
+;Left floor
++0.2s  I  AT_FLOOR_PERIOD N AT_FLOOR_[1][FRONT]_CAN_ID AtFloor 1 FRONT = false
+
+;In between
++0.21s A S DoorControl[FRONT][LEFT] : STATE == CAR_MOVING
++0s A F DoorMotor FRONT LEFT : command == STOP
+
++0s  A S Dispatcher : STATE == STATE_BETWEEN
++0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getFloor == 2
++0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getDirection == STOP
++0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getHallway == BACK
+
++0s  A S DriveControl : STATE == STATE_SLOW
++0s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getSpeed == SLOW
++0s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getDirection == UP
++0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getFloor == 2
+
+;Reached second floor
++0.2s  I  AT_FLOOR_PERIOD N AT_FLOOR_[2][BACK]_CAN_ID AtFloor 2 BACK = true
+
+;CHECKS
++0.21s  A S DriveControl : STATE == STATE_LEVEL
++0s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getSpeed == LEVEL
++0s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getDirection == UP
++0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getFloor == 2
+
+;Leveling
++0.21s  I  DRIVE_CONTROL_PERIOD N LEVEL_SENSOR_[UP]_CAN_ID Leveling UP = true
++0s  I  DRIVE_CONTROL_PERIOD F DriveSpeed = STOP 0.0
++0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][RIGHT]_CAN_ID DoorClosed BACK RIGHT = false
++0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][LEFT]_CAN_ID DoorClosed BACK LEFT = false
+
+;CHECKS
++0.21s A S DoorControl[BACK][LEFT] : STATE == OPENING_DOOR
++0s A S DoorControl[BACK][RIGHT] : STATE == OPENING_DOOR
++0s A F DoorMotor BACK LEFT : command == OPEN
++0s A F DoorMotor BACK RIGHT : command == OPEN
+
+;Check if lights are off
++0.21s A S HallButtonControl[2][BACK][UP] : STATE == STATE_LIGHT_OFF
++0s A F HallLight 2 BACK UP : lighted == false
++0s A N HALL_LIGHT_[2][BACK][UP]_CAN_ID Boolean : getValue == false
++0s A N HALL_CALL_[2][BACK][UP]_CAN_ID Boolean : getValue == false
+

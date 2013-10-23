@@ -1,0 +1,150 @@
+ <h2> <a name="usecase6" id="usecase6"></a>Use Case 6: Determine
+        Car Position </h2>
+      <h3> Scenario 6B: Car moves past hallway b on floor f. </h3>
+      <h3> Author name: Jeff Lau (jalau)<br>
+      </h3>
+      <h3> Pre-Conditions: </h3>
+      <ul type="disc">
+        <li>Car is moving {FAST, UP} [<b>f</b>, <b>b</b>]. </li>
+        <li>All elevator doors are closed. </li>
+        <li>Car is moving in hoistway. </li>
+      </ul>
+      <h3> Scenario: </h3>
+      <ol start="1" type="1">
+        <li>The car nears floor <b>f</b> </li>
+        <li>and the car position indicator changes to <b>f</b> </li>
+      </ol>
+      <h3> Post-Conditions: </h3>
+      <ul type="disc">
+        <li>All elevator doors are closed. </li>
+        <li>Drivespeed is {1.0, UP}</li>
+        <li>Car position indicator is at <b>f</b></li>
+      </ul>
+      <h3> Sequence Diagram: </h3>
+      <p> </p>
+      <p> <a href="sd6b.png"><img src="sd6b.png" alt="6A"
+            name="_x0000_i1027" style="border: 0px solid;" border="0"
+            height="328" width="835"></a> </p>
+      <p> &nbsp; </p>
+	  
+	  
+	  	  
+	<h3> Scenario 8A: Elevator moves away from {floor f, hallway b}
+		in direction d. </h3>
+      <h3>Author name: Jeff Lau (jalau)</h3>
+      <h3> Pre-Conditions: </h3>
+      <ul type="disc">
+        <li>Elevator is at floor <b>f</b>, with at least one Door[<b>b</b>,<b>r</b>]
+          open. </li>
+        <li>Drive is stopped. </li>
+      </ul>
+      <h3> Scenario: </h3>
+      <ol start="1" type="1">
+        <li>Door[<b>b</b>,<b>r</b>] closes.</li>
+        <li>The Drive operates at <b>Fast</b> in direction <b>d</b>.</li>
+      </ol>
+      <h3> Post-Conditions: </h3>
+      <h3> </h3>
+      <ul type"disc"="">
+        <li>Elevator is moving in the hoistway</li>
+        <li>Drive is Fast.</li>
+		<li>All doors are closed</li>
+      </ul>
+      <h3>Sequence Diagram: </h3>
+      <p> <a href="sd8a.png"><img src="sd8a.png" alt="8A"
+            name="_x0000_i1027" style="border: 0px solid;" border="0"
+            height="381" width="968"></a> </p>
+      <div align="center">
+        <hr size="2" width="100%" align="center"> </div>
+      <p> &nbsp; </p>
+	  
+	<h3> Scenario 8B: Elevator arrives at {floor f, hallway b}
+		in direction d. </h3>
+      <h3>Author name: Jeff Lau (jalau)</h3>
+      <h3> Pre-Conditions: </h3>
+      <ul type="disc">
+        <li>Elevator moving in the hoistway</li>
+        <li>Drive is fast. </li>
+		<li> Car position indicator is at g</li>
+      </ul>
+      <h3> Scenario: </h3>
+      <ol start="1" type="1">
+        <li>Car Position reaches commit point.</li>
+        <li>The Drive transitions to <b>Slow</b> in direction <b>d</b>.</li>
+		<li>The car nears level <b>f</b> and the drive 
+			transitions to <b>Level</b>.</li>
+		<li>The car position indicator changes to f.</li>
+      </ol>
+      <h3> Post-Conditions: </h3>
+      <h3> </h3>
+      <ul type"disc"="">
+        <li>Elevator is stopped in the hoistway</li>
+        <li>Drive is Stopped.</li>
+		<li>All doors are closed</li>
+		<li>Car position indicator is at <b>f</b>.
+      </ul>
+      <h3>Sequence Diagram: </h3>
+      <p> <a href="sd8b.png"><img src="sd8b.png" alt="8B"
+            name="_x0000_i1027" style="border: 0px solid;" border="0"
+            height="381" width="968"></a> </p>
+      <div align="center">
+        <hr size="2" width="100%" align="center"> </div>
+      <p> &nbsp; </p>
+	  
+	  <h3> Scenario 8C: A passenger performs a car call to a floor the 
+		elevator cannot stop at.</h3>
+      <h3>Author name: Jeff Lau (jalau)</h3>
+      <h3> Pre-Conditions: </h3>
+      <ul type="disc">
+        <li>Elevator is moving Fast </li>
+      </ul>
+      <h3> Scenario: </h3>
+      <ol start="1" type="1">
+        <li>Passenger pushes button to stop at floor <b>f</b></li>
+        <li>The Dispatcher decides that it is not possible to stop 
+		at that floor.</li>
+		<li>The elevator moves past floor <b>f</b>.</li>
+      </ol>
+      <h3> Post-Conditions: </h3>
+      <h3> </h3>
+      <ul type"disc"="">
+        <li>Elevator is moving in the hoistway</li>
+        <li>Drive is Fast.</li>
+		<li>All doors are closed</li>
+      </ul>
+      <h3>Sequence Diagram: </h3>
+      <p> <a href="sd8c.png"><img src="sd8c.png" alt="8C"
+            name="_x0000_i1027" style="border: 0px solid;" border="0"
+            height="381" width="968"></a> </p>
+      <div align="center">
+        <hr size="2" width="100%" align="center"> </div>
+      <p> &nbsp; </p>
+	  
+	  <h3> Scenario 8D: A passenger performs a hall call at a floor the 
+		elevator cannot stop at.</h3>
+      <h3>Author name: Jeff Lau (jalau)</h3>
+      <h3> Pre-Conditions: </h3>
+      <ul type="disc">
+        <li>Elevator is moving Fast </li>
+      </ul>
+      <h3> Scenario: </h3>
+      <ol start="1" type="1">
+        <li>Passenger pushes button at floor <b>f</b></li>
+        <li>The Dispatcher decides that it is not possible to stop 
+		at that floor.</li>
+		<li>The elevator moves past floor <b>f</b>.</li>
+      </ol>
+      <h3> Post-Conditions: </h3>
+      <h3> </h3>
+      <ul type"disc"="">
+        <li>Elevator is moving in the hoistway</li>
+        <li>Drive is Fast.</li>
+		<li>All doors are closed</li>
+      </ul>
+      <h3>Sequence Diagram: </h3>
+      <p> <a href="sd8d.png"><img src="sd8d.png" alt="8D"
+            name="_x0000_i1027" style="border: 0px solid;" border="0"
+            height="381" width="968"></a> </p>
+      <div align="center">
+        <hr size="2" width="100%" align="center"> </div>
+      <p> &nbsp; </p>

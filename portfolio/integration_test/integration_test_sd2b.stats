@@ -1,0 +1,40 @@
+; 18649 <Fall 2013>
+; Group 22
+; David Chow (davidcho)
+; Brody Anderson (bcanders)
+; Yang Liu (yangliu2)
+; Jeff Lau (jalau)
+;
+
+Simulator Parameters:
+Command line = -cf integration_test/integration_test_sd2b.cf -mf integration_test/integration_test_sd2b.mf
+RandomSeed = 1381877085342
+CanNetworkBitTime = 0 ns
+Effective Can Bitrate = Infinity
+Run Time = null
+Real time rate = null
+Message File = integration_test/integration_test_sd2b.mf
+Controller File = integration_test/integration_test_sd2b.cf
+
+Assertion Results:
+@0.55s:  PASSED DoorControl[FRONT][LEFT]::checkState(STATE) ?== WAIT_FOR_DWELL PASSED
+@0.55s:  PASSED DoorControl[FRONT][RIGHT]::checkState(STATE) ?== WAIT_FOR_DWELL PASSED
+@0.55s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@5f095c81 :: command ?== STOP PASSED
+@0.55s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@71b8a6b :: command ?== STOP PASSED
+@3.07s:  PASSED DoorControl[FRONT][LEFT]::checkState(STATE) ?== CLOSING_DOOR PASSED
+@3.07s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@1f34137c :: command ?== NUDGE PASSED
+@3.42s:  PASSED DoorControl[FRONT][LEFT]::checkState(STATE) ?== OPENING_DOOR PASSED
+@3.52s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@7573a94f :: command ?== OPEN PASSED
+@3.83s:  PASSED simulator.payloads.CarLightPayload$ReadableCarLightPayload@4503e0e9 :: lighted ?== true PASSED
+@3.83s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@757583b9 :: getValue ?== true PASSED
+@3.83s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@6f92322e :: getValue ?== true PASSED
+@4.28s:  PASSED simulator.payloads.CarLightPayload$ReadableCarLightPayload@920ab60 :: lighted ?== false PASSED
+@4.28s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@4208719e :: getValue ?== false PASSED
+@4.28s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@76745477 :: getValue ?== false PASSED
+
+
+******************Summary******************
+Passed:  14
+Failed:  0
+Total :  14
+

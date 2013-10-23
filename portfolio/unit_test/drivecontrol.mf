@@ -1,0 +1,160 @@
+;18-649 Fall 2013
+;Unit test for DriveControl
+;Group 22 - Brody Anderson (bcanders), 
+;Jeff Lau (jalau), 
+;David Chow (davidcho),
+;Yang Liu (yangliu2)
+
+#INCLUDE defines.mf ;include CAN id and period definitions
+
+;initialize
+0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = true
+0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = true
+0s  I  AT_FLOOR_PERIOD N AT_FLOOR_[1][FRONT]_CAN_ID AtFloor 1 FRONT = true
+0s  I  DISPATCHER_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 1 STOP BOTH
+0s  I  DRIVE_CONTROL_PERIOD N LEVEL_SENSOR_[UP]_CAN_ID Leveling UP = true
+
+;check initial state
+;#state 'STATE_STOP'
+0.201s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0.0
+0.201s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == STOP
+0.201s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getSpeed == STOP
+0.201s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getDirection == STOP
+0.201s  A F Drive : speed == STOP
+0.201s  A F Drive : direction == STOP
+
+;Set conditions for 6.T.1
+;#transition '6.T.1'
+;Check that elevator stays in state based on state of emergency
+0.222s  I  DRIVE_CONTROL_PERIOD N EMERGENCY_BRAKE_CAN_ID Boolean = true
+
+;Check state outputs
+0.263s  A F Drive : speed == STOP
+0.263s  A F Drive : direction == STOP
+0.263s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0.0
+0.263s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == STOP
+0.263s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getSpeed == STOP
+0.263s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getDirection == STOP
+
+;Set conditions for 6.T.1 (part 2)
+;#transition '6.T.1'
+;Turn off Emergency
+0.284s  I  DRIVE_CONTROL_PERIOD N EMERGENCY_BRAKE_CAN_ID Boolean = false
+
+;Set car to be overweight.
+0.305s  I  DRIVE_CONTROL_PERIOD N CAR_WEIGHT_CAN_ID CarWeight = 20000
+
+;Check state outputs
+0.705s  A F Drive : speed == STOP
+0.705s  A F Drive : direction == STOP
+0.705s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0.0
+0.705s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == STOP
+0.705s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getSpeed == STOP
+0.705s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getDirection == STOP
+
+;Set car weight back to "normal"
+0.726s  I DRIVE_CONTROL_PERIOD N CAR_WEIGHT_CAN_ID CarWeight = 100
+
+;Set conditions for 6.T.2
+;#transition '6.T.2'
+0.900s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = true
+0.900s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = true
+0.900s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][RIGHT]_CAN_ID DoorClosed BACK RIGHT = true
+0.900s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][LEFT]_CAN_ID DoorClosed BACK LEFT = true
+0.900s  I AT_FLOOR_PERIOD N AT_FLOOR_[1][FRONT]_CAN_ID AtFloor 1 FRONT = false
+0.900s  I DISPATCHER_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 2 STOP BACK
+0.980s  I DRIVE_CONTROL_PERIOD F DriveSpeed = UP 0.25
+0.980s  I  DRIVE_CONTROL_PERIOD N LEVEL_SENSOR_[UP]_CAN_ID Leveling UP = false
+
+;Check that elevator moves to slow_state based on new DesiredFloor
+;#state 'STATE_SLOW'
+1.20s  A F Drive : speed == SLOW
+1.20s  A F Drive : direction == UP
+1.20s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getSpeed == SLOW
+1.20s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getDirection == UP
+1.20s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0.25
+1.20s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == UP
+1.20s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getFloor == 2
+
+;Set conditions for 6.T.3
+;#transition '6.T.3'
+1.221s  I DRIVE_CONTROL_PERIOD N EMERGENCY_BRAKE_CAN_ID Boolean = true
+1.221s  I DRIVE_CONTROL_PERIOD F DriveSpeed = STOP 0.0
+
+;Check state outputs
+1.253s  A F Drive : speed == STOP
+1.253s  A F Drive : direction == STOP
+1.253s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0.0
+1.253s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == STOP
+1.253s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getSpeed == STOP
+1.253s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getDirection == STOP
+
+;Revert back to normal state
+1.263s  I  DRIVE_CONTROL_PERIOD N EMERGENCY_BRAKE_CAN_ID Boolean = false
+1.300s  I DRIVE_CONTROL_PERIOD F DriveSpeed = UP 0.25
+
+;Reverting conditions back for 6.T.2 and checking state
+;Check that elevator moves to slow_state based on new DesiredFloor
+1.400s  A F Drive : speed == SLOW
+1.400s  A F Drive : direction == UP
+1.400s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getSpeed == SLOW
+1.400s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getDirection == UP
+1.400s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0.25
+1.400s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == UP
+1.400s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getFloor == 2
+
+;Set conditions for 6.T.4
+;#transition '6.T.4'
+1.421s  I AT_FLOOR_PERIOD N AT_FLOOR_[2][BACK]_CAN_ID AtFloor 2 BACK = true
+1.421s  I DRIVE_CONTROL_PERIOD F DriveSpeed = UP 0.05
+
+;Check State for Leveling outputs
+;#state 'STATE_LEVEL'
+1.621s  A F Drive : speed == LEVEL
+1.621s  A F Drive : direction == UP
+1.621s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == UP
+1.621s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getSpeed == LEVEL
+1.621s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getDirection == UP
+1.621s	A N AT_FLOOR_[2][BACK]_CAN_ID AtFloor 2 BACK : getValue == true
+
+;Set conditions for 6.T.5
+;#transition '6.T.5'
+1.642s  I  DRIVE_CONTROL_PERIOD N LEVEL_SENSOR_[UP]_CAN_ID Leveling UP = true
+1.642s  I  DRIVE_CONTROL_PERIOD F DriveSpeed = STOP 0.0
+
+;Check state for STOP
+1.805s  A F Drive : speed == STOP
+1.805s  A F Drive : direction == STOP
+1.805s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0.0
+1.805s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == STOP
+1.805s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getSpeed == STOP
+1.805s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getDirection == STOP
+
+;Set car to be overweight and slips on the cable.
+;#transition '6.T.6'
+1.905s I  DRIVE_CONTROL_PERIOD N CAR_WEIGHT_CAN_ID CarWeight = 30000
+1.905s I  DRIVE_CONTROL_PERIOD N LEVEL_SENSOR_[UP]_CAN_ID Leveling UP = false
+2.500s I DRIVE_CONTROL_PERIOD F DriveSpeed = UP 0.05
+
+;Check State for Leveling outputs
+;#state 'STATE_LEVEL'
+2.550s  A F Drive : speed == LEVEL
+2.550s  A F Drive : direction == UP
+2.550s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == UP
+2.550s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getSpeed == LEVEL
+2.550s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getDirection == UP
+2.550s	A N AT_FLOOR_[2][BACK]_CAN_ID AtFloor 2 BACK : getValue == true
+
+;Set conditions for 6.T.5
+;#transition '6.T.5'
+2.700s I  DRIVE_CONTROL_PERIOD N CAR_WEIGHT_CAN_ID CarWeight = 5000
+2.700s  I  DRIVE_CONTROL_PERIOD N LEVEL_SENSOR_[UP]_CAN_ID Leveling UP = true
+2.700s  I  DRIVE_CONTROL_PERIOD F DriveSpeed = STOP 0.0
+
+;Check state for STOP
+3s  A F Drive : speed == STOP
+3s  A F Drive : direction == STOP
+3s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0.0
+3s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == STOP
+3s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getSpeed == STOP
+3s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getDirection == STOP

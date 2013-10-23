@@ -1,0 +1,13 @@
+; 18649 <Fall 2013>
+; Group 22
+; David Chow (davidcho)
+; Brody Anderson (bcanders)
+; Yang Liu (yangliu2)
+; Jeff Lau (jalau)
+;
+; @Author: Yang Liu
+; Integration test: SD7C - DoorControl and LanternControl Integration
+
+DoorControl FRONT LEFT 100ms true
+DoorControl FRONT RIGHT 100ms true
+LanternControl UP 200.0ms true

@@ -1,0 +1,36 @@
+Project 5 Assignments
+Finish coding by Monday Night
+Peer Reviews Tuesday 6pm ECE Lab
+
+
+Implementation Of:
+	CarPositionControl (Brody)
+	Dispatcher (Jeff)
+	LanternControl (Yang)
+	
+Traceability
+	CarPositionControl (Brody)
+	Dispatcher (Jeff)
+	LanternControl (Yang)
+	
+Unit Tests
+	CarPositionControl (Brody)
+	Dispatcher (Jeff)
+	LanternControl (Yang)
+	
+Integration Tests (8 to create other than 1A ad 2A)
+	4A + 9A (David)
+	5B + other (Yang)
+	6A + other (Brody)
+	2 others (Jeff)
+	
+Peer Reviews (and fill out traceability log)
+	CarPositionControl (Jeff review Brody)
+	Dispatcher (Yang review Jeff)
+	LanternControl (David review Yang)
+	Integration Tests (Brody revew David)
+	
+Additional Tasks
+- Peer Review Log
+- Improvements Log
+- Minimum Requirements

@@ -1,0 +1,10 @@
+; 18649 Fall 2013
+; group # 22
+; David Chow (davidcho)
+; Author: Brody Anderson (bcanders)
+; Yang Liu (yangliu2)
+; Jeff Lau (jalau)
+; doorcontrol_test.cf
+
+
+DoorControl FRONT LEFT 100ms true 

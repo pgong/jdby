@@ -1,0 +1,38 @@
+; 18649 <Fall 2013>
+; Group 22
+; David Chow (davidcho)
+; Brody Anderson (bcanders)
+; Yang Liu (yangliu2)
+; Jeff Lau (jalau)
+;
+
+Simulator Parameters:
+Command line = -cf integration_test_sd5b.cf -mf integration_test_sd5b.mf
+RandomSeed = 1381972568402
+CanNetworkBitTime = 0 ns
+Effective Can Bitrate = Infinity
+Run Time = null
+Real time rate = null
+Message File = integration_test_sd5b.mf
+Controller File = integration_test_sd5b.cf
+
+Assertion Results:
+@3.5s:  PASSED DoorControl[FRONT][LEFT]::checkState(STATE) ?== CLOSING_DOOR PASSED
+@3.5s:  PASSED DoorControl[FRONT][RIGHT]::checkState(STATE) ?== CLOSING_DOOR PASSED
+@3.5s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@16360771 :: command ?== NUDGE PASSED
+@3.5s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@71ee88dd :: command ?== NUDGE PASSED
+@6.0s:  PASSED DoorControl[FRONT][LEFT]::checkState(STATE) ?== CLOSING_DOOR PASSED
+@6.0s:  PASSED DoorControl[FRONT][RIGHT]::checkState(STATE) ?== CLOSING_DOOR PASSED
+@6.0s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@6a0f0c67 :: command ?== NUDGE PASSED
+@6.0s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@1d076683 :: command ?== NUDGE PASSED
+@6.8s:  PASSED DoorControl[FRONT][LEFT]::checkState(STATE) ?== CAR_MOVING PASSED
+@6.8s:  PASSED DoorControl[FRONT][RIGHT]::checkState(STATE) ?== CAR_MOVING PASSED
+@6.8s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@51f45f2a :: command ?== STOP PASSED
+@6.8s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@3c80d0bb :: command ?== STOP PASSED
+
+
+******************Summary******************
+Passed:  12
+Failed:  0
+Total :  12
+

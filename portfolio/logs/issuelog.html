@@ -1,0 +1,347 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="Content-Type">
+    <title>18649 - Issue Log</title>
+  </head>
+  <body>
+    <h1 style="text-align: center;">18649 - Issue Log<br>
+    </h1>
+    <br>
+    <hr style="width: 100%; height: 2px;">18649 &lt;Fall 2013&gt;<br>
+    Group 22 - Brody Anderson (bcanders), Jeff Lau (jalau), David Chow
+    (davidcho), Yang Liu (yangliu2)
+    <hr style="width: 100%; height: 2px;">This table has an entry for
+    each design issue during the semester.&nbsp; Add new entries to the
+    bottom of the table (you may need to add new rows).&nbsp; Leave all
+    the previous entries in place so that at the end of the project you
+    have a complete list of the design changes that you have made
+    throughout the project.&nbsp; The meaning of the table entries is as
+    follows:<br>
+    <ul>
+      <li>Issue number - unique identifier for each entry</li>
+      <li>Date found - the date the issue was found</li>
+      <li>Date fixed - the date the issue was fixed</li>
+      <li>Change made by - andrewID of the person or persons responsible
+        for the change</li>
+      <li>Origin - the earliest artifact where the issue was
+        present.&nbsp; For example, if the a bug in the code is
+        ultimately the result of an incorrect sequence diagram, then the
+        origin would be that particular sequence diargam</li>
+      <li>Description - brief description of the issue</li>
+      <li>Resolution - brief description of the changes made to resolve
+        the issue.&nbsp; If the entry is not resolved, put a note like
+        "Pending" here.<br>
+      </li>
+      <li>Artifact(s) chagned - a list of the artifacts that were
+        modified to resolve the issue.&nbsp; This should be a specific
+        list, such as "doorcontrol requirements", "SD 1.4A",
+        "DriveControl statechart", "doorcontrol.java"<br>
+      </li>
+    </ul>
+    <br>
+    <table style="text-align: left; width: 100%;" border="1"
+      cellpadding="2" cellspacing="2">
+      <tbody>
+        <tr>
+          <td style="vertical-align: top;">Issue #<br>
+          </td>
+          <td style="vertical-align: top;">Date Found<br>
+          </td>
+          <td style="vertical-align: top;">Date Fixed<br>
+          </td>
+          <td style="vertical-align: top;">Change Made By<br>
+          </td>
+          <td style="vertical-align: top;">Origin<br>
+          </td>
+          <td style="vertical-align: top;">Description<br>
+          </td>
+          <td style="vertical-align: top;">Resolution<br>
+          </td>
+          <td style="vertical-align: top;">Artifact(s) Changed<br>
+          </td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top;">1<br>
+          </td>
+          <td style="vertical-align: top;">9/19/2013<br>
+          </td>
+          <td style="vertical-align: top;">9/19/2013<br>
+          </td>
+          <td style="vertical-align: top;">Jeff Lau<br>
+          </td>
+          <td style="vertical-align: top;">Sequence Diagram<br>
+          </td>
+          <td style="vertical-align: top;">Sequence 9 was inaccurate in
+            that the dispatcher is supposed to update the desiredfloor
+            BEFORE doors open. The messages sent when opening and
+            closing the doors was also off.<br>
+          </td>
+          <td style="vertical-align: top;">Added DoorOpen and shifted
+            position of sequence diagram.<br>
+          </td>
+          <td style="vertical-align: top;">sc_sd<br>
+          </td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top;">2<br>
+          </td>
+          <td style="vertical-align: top;">9/19/2013<br>
+          </td>
+          <td style="vertical-align: top;">9/19/2013<br>
+          </td>
+          <td style="vertical-align: top;">David Chow<br>
+          </td>
+          <td style="vertical-align: top;">SD-&gt;Req Trace<br>
+          </td>
+          <td style="vertical-align: top;">We eventually need to add
+            scenario/use case for the Dispatcher:<br>
+            1. If doors open when not at a floor, mDesiredFloor.b = None<br>
+            2. If carCall/hallCall for both hallways in a given floor,
+            mDesiredFloor.b = Both<br>
+            <br>
+            We need to look into where mCarCall is being sent to from
+            CarButtonControl. We'll need to change a sequence diagram.<br>
+          </td>
+          <td style="vertical-align: top;">Added arrows on Sequence
+            Diagrams<br>
+          </td>
+          <td style="vertical-align: top;">sd2a, sd2b, sd3<br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top">3<br>
+          </td>
+          <td valign="top">9/19/2013<br>
+          </td>
+          <td valign="top">9/19/2013<br>
+          </td>
+          <td valign="top">Yang Liu<br>
+          </td>
+          <td valign="top">Sequence Diagram<br>
+          </td>
+          <td valign="top"><span style="color: rgb(34, 34, 34);
+              font-family: arial, sans-serif; font-size: 13px;
+              font-style: normal; font-variant: normal; font-weight:
+              normal; letter-spacing: normal; line-height: normal;
+              orphans: auto; text-align: start; text-indent: 0px;
+              text-transform: none; white-space: normal; widows: auto;
+              word-spacing: 0px; -webkit-text-stroke-width: 0px;
+              background-color: rgb(255, 255, 255); display: inline
+              !important; float: none;"></span>No DoorClosed is sent to
+            LanternControl.<br>
+          </td>
+          <td valign="top">Add DoorClosed to LanternControl.<br>
+          </td>
+          <td valign="top">sd7a<br>
+            sd7b<br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top">4<br>
+          </td>
+          <td valign="top">9/19/2013<br>
+          </td>
+          <td valign="top">9/19/2013<br>
+          </td>
+          <td valign="top">Yang Liu<br>
+          </td>
+          <td valign="top">Sequence Diagram<br>
+          </td>
+          <td valign="top">The sequence of DoorClosed and CarLantern
+            extinguished violates that of sequence diagram.<br>
+          </td>
+          <td valign="top">Changed the sequence diagram according to
+            requirements.<br>
+          </td>
+          <td valign="top">sd7c<br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top">5<br>
+          </td>
+          <td valign="top">9/26/2013<br>
+          </td>
+          <td valign="top">9/26/2013<br>
+          </td>
+          <td valign="top">Jeff Lau<br>
+          </td>
+          <td valign="top">Requirements<br>
+          </td>
+          <td valign="top">1. HallCall requirements 8.2 will turn off
+            lights as it passes floors<br>
+            without stopping because it may not be the desired floor.<br>
+            2. HallLight turns off before the doors open, prompting the
+            passenger to<br>
+            press the hallcall button more than once.<br>
+          </td>
+          <td valign="top">Added mDesiredFloor.d and mDesiredFloor.f<br>
+            into the condition.</td>
+          <td valign="top">HallButton Control<br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top">6<br>
+          </td>
+          <td valign="top">10/3/2013<br>
+          </td>
+          <td valign="top">10/10/2013<br>
+          </td>
+          <td valign="top">Brody Anderson<br>
+          </td>
+          <td valign="top">DoorControl.java<br>
+          </td>
+          <td valign="top">mDesiredDwell can't get the correct value and
+            always returns null. For now I have it set CountDown to 2s
+            to avoid it crashing.<br>
+          </td>
+          <td valign="top">Added the bitset operations to store and get
+            mDesiredDwell.<br>
+          </td>
+          <td valign="top">DesiredDwellCanPayloadTranslator.java<br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top">7<br>
+          </td>
+          <td valign="top">10/1/2013<br>
+          </td>
+          <td valign="top">10/2/2013<br>
+          </td>
+          <td valign="top">Yang You<br>
+          </td>
+          <td valign="top">Requirements 2<br>
+          </td>
+          <td valign="top">No need to mark change in "currentfloor"
+            within the state.<br>
+          </td>
+          <td valign="top">Removed from state chart<br>
+          </td>
+          <td valign="top">Requirements 2<br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top">8<br>
+          </td>
+          <td valign="top">10/9/2013<br>
+          </td>
+          <td valign="top">10/10/2013<br>
+          </td>
+          <td valign="top">Jeff Lau<br>
+          </td>
+          <td valign="top">Requirements 2<br>
+          </td>
+          <td valign="top">CarPositionControl should only have 1 state
+            instead of 2.<br>
+          </td>
+          <td valign="top">Removed second state, updated traceability
+            table.<br>
+          </td>
+          <td valign="top">Requirements 2<br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top">9<br>
+          </td>
+          <td valign="top">10/11/2013<br>
+          </td>
+          <td valign="top">10/11/2013<br>
+          </td>
+          <td valign="top">Jeff Lau<br>
+          </td>
+          <td valign="top">Sequence and Diagrams<br>
+          </td>
+          <td valign="top">Scenario 5a and 5b should nudge and not
+            activate DoorReversal<br>
+          </td>
+          <td valign="top">Saved diagrams for later use, changed
+            scenario.<br>
+          </td>
+          <td valign="top">Sequence and Diagrams;<br>
+            SD -&gt; Req traceability. </td>
+        </tr>
+        <tr>
+          <td valign="top">10<br>
+          </td>
+          <td valign="top">10/16/2013<br>
+          </td>
+          <td valign="top">10/16/2013<br>
+          </td>
+          <td valign="top">Jeff Lau<br>
+          </td>
+          <td valign="top">State Charts<br>
+          </td>
+          <td valign="top">DriveControl needs to be able to level when
+            past max weight. <br>
+          </td>
+          <td valign="top">Added transition between Stopped and level
+            state.<br>
+          </td>
+          <td valign="top">State Charts/Traceability;<br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top">11<br>
+          </td>
+          <td valign="top">10/17/2013<br>
+          </td>
+          <td valign="top">10/17/2013<br>
+          </td>
+          <td valign="top">David Chow<br>
+          </td>
+          <td valign="top">CarButtonControl.java<br>
+          </td>
+          <td valign="top">There is an array constructor that slows down
+            the simulator heavily.<br>
+          </td>
+          <td valign="top">Moved the line to the constructor.<br>
+          </td>
+          <td valign="top">CarButtonControl.java<br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top">12<br>
+          </td>
+          <td valign="top">10/17/2013<br>
+          </td>
+          <td valign="top">10/17/2013<br>
+          </td>
+          <td valign="top">Brody Anderson and David Chow<br>
+          </td>
+          <td valign="top">DriveControl.java<br>
+          </td>
+          <td valign="top">When the car becomes overweight, the floor
+            gets set to mDesiredFloor and causes the state to get stuck
+            at state STOP.<br>
+          </td>
+          <td valign="top">Added a weight_flag to not edit floor when
+            the car was overweight.<br>
+          </td>
+          <td valign="top">DriveControl.java<br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top">13<br>
+          </td>
+          <td valign="top">10/17/2013<br>
+          </td>
+          <td valign="top">10/17/2013<br>
+          </td>
+          <td valign="top">David Chow<br>
+          </td>
+          <td valign="top">Scen_sd.html<br>
+          </td>
+          <td valign="top">Colors are switch in diagram 4b.<br>
+          </td>
+          <td valign="top">Fixed the colors.<br>
+          </td>
+          <td valign="top">scen_sd.html<br>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+    <br>
+  </body>
+</html>

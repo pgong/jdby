@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <title>18649 Elevatorcontrol Package</title>
+  </head>
+  <body>
+    <h1 style="text-align: center;">18649 - Elevator Control Package<br>
+    </h1>
+    <hr style="width: 100%; height: 2px;">
+    <meta charset="utf-8">
+    <div style="color: rgb(0, 0, 0); font-family: Times; font-size:
+      medium; font-style: normal; font-variant: normal; font-weight:
+      normal; letter-spacing: normal; line-height: normal; orphans:
+      auto; text-indent: 0px; text-transform: none; white-space: normal;
+      widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px;"
+      align="left">18649 &lt;Fall 2013&gt;<br>
+    </div>
+    <div style="color: rgb(0, 0, 0); font-family: Times; font-size:
+      medium; font-style: normal; font-variant: normal; font-weight:
+      normal; letter-spacing: normal; line-height: normal; orphans:
+      auto; text-indent: 0px; text-transform: none; white-space: normal;
+      widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px;"
+      align="left">Group 22 - Brody Anderson (bcanders), Jeff Lau
+      (jalau), David Chow (davidcho), Yang Liu (yangliu2)</div>
+    <hr style="width: 100%; height: 2px;">This page lists and describes
+    the java files in your elevatorcontrol package.&nbsp; Update this
+    document to reflect your implementation and add your java files to
+    the elevatorcontrol folder.<br>
+    <span style="font-weight: bold;"><br>
+      Note:&nbsp; In order for your portfolio to be complete, the code
+      files in the elevatorcontrol folder must compiled and run if
+      copied into the elevatorcontrol package (overwriting any
+      duplicates) of a clean version of the latest required simulator
+      release.</span><br>
+    <h2>Controller files</h2>
+    <ul>
+      <li><a href="CarButtonControl.java">CarButtonControl.java</a> -
+        Controller that handles CarCalls and CarLight<br>
+      </li>
+      <li><a href="DoorControl.java">DoorControl.java</a> - Controller
+        that manages the DoorMotors and opens and closes the doors<br>
+      </li>
+      <li><a href="DriveControl.java">DriveControl.java</a> - Controller
+        for the Drive that handles the movement of the elevator<br>
+      </li>
+      <li><a href="HallButtonControl.java">HallButtonControl.java</a> -
+        Controller that handles hall button presses</li>
+      <li><a href="LanternControl.java"><font color="blue"><u>LanternControl.java</u></font></a>
+        - Controller that manages CarLanern<br>
+      </li>
+      <li><a href="CarPositionControl.java">CarPositionControl.java</a>
+        - Controller that handles the car position indicator</li>
+      <li><a href="Dispatcher.java">Dispatcher.java</a> - Controller
+        that handles desired floors</li>
+    </ul>
+    <h2>Translator files</h2>
+    Links and descriptions to all message translators used by the
+    controllers.<br>
+    <ul>
+      <li><a href="DesiredDwellCanPayloadTranslator.java">DesiredDwellCanTranslator.java</a>
+        - Translator for the mDesiredDwell network message from the
+        Dispatcher<br>
+      </li>
+      <li><a href="DesiredFloorCanPayloadTranslator.java">DesiredFloorCanPayloadTranslator.java</a>
+        - Translator for mDesiredFloor network message from the
+        Dispatcher</li>
+      <li><a href="DriveSpeedCanPayloadTranslator.java">DriveSpeedCanPayloadTranslator.java</a>
+        - Translator for the mDriveSpeed message that comes from the
+        driveSpeed sensor<br>
+      </li>
+      <li><a href="CarPositionCanPayloadTranslator.java">CarPositionCanPayloadTranslator.java</a>
+        - Translator for the mCarPosition message that comes from the
+        car position sensor<br>
+      </li>
+    </ul>
+    <h2>Utility files</h2>
+    <ul>
+      <li>None<br>
+      </li>
+    </ul>
+    <br>
+  </body>
+</html>

@@ -1,0 +1,58 @@
+; 18649 <Fall 2013>
+; Group 22
+; David Chow (davidcho)
+; Brody Anderson (bcanders)
+; Yang Liu (yangliu2)
+; Jeff Lau (jalau)
+;
+
+Simulator Parameters:
+Command line = -cf integration_test/integration_test_sd3a.cf -mf integration_test/integration_test_sd3a.mf
+RandomSeed = 1381943086143
+CanNetworkBitTime = 0 ns
+Effective Can Bitrate = Infinity
+Run Time = null
+Real time rate = null
+Message File = integration_test/integration_test_sd3a.mf
+Controller File = integration_test/integration_test_sd3a.cf
+
+Assertion Results:
+@0.31s:  PASSED DoorControl[FRONT][LEFT]::checkState(STATE) ?== CAR_MOVING PASSED
+@0.31s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@6326d235 :: command ?== STOP PASSED
+@0.31s:  PASSED Dispatcher::checkState(STATE) ?== STATE_BETWEEN PASSED
+@0.31s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@ff22ffa :: getFloor ?== 2 PASSED
+@0.31s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@1ef2c499 :: getDirection ?== STOP PASSED
+@0.31s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@f0de2bd :: getHallway ?== BACK PASSED
+@0.52s:  PASSED DriveControl::checkState(STATE) ?== STATE_SLOW PASSED
+@0.52s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@17973271 :: getSpeed ?== SLOW PASSED
+@0.52s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@34547854 :: getDirection ?== UP PASSED
+@0.52s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@43e27370 :: getFloor ?== 2 PASSED
+@0.93s:  PASSED DoorControl[FRONT][LEFT]::checkState(STATE) ?== CAR_MOVING PASSED
+@0.93s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@68de59f0 :: command ?== STOP PASSED
+@0.93s:  PASSED Dispatcher::checkState(STATE) ?== STATE_BETWEEN PASSED
+@0.93s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@62b4bb65 :: getFloor ?== 2 PASSED
+@0.93s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@6203171e :: getDirection ?== STOP PASSED
+@0.93s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@381dfc6e :: getHallway ?== BACK PASSED
+@0.93s:  PASSED DriveControl::checkState(STATE) ?== STATE_SLOW PASSED
+@0.93s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@140de537 :: getSpeed ?== SLOW PASSED
+@0.93s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@15a08be5 :: getDirection ?== UP PASSED
+@0.93s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@1bd871 :: getFloor ?== 2 PASSED
+@1.34s:  PASSED DriveControl::checkState(STATE) ?== STATE_LEVEL PASSED
+@1.34s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@65e26e12 :: getSpeed ?== LEVEL PASSED
+@1.34s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@678c862e :: getDirection ?== UP PASSED
+@1.34s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@69c39cb2 :: getFloor ?== 2 PASSED
+@1.76s:  PASSED DoorControl[BACK][LEFT]::checkState(STATE) ?== OPENING_DOOR PASSED
+@1.76s:  PASSED DoorControl[BACK][RIGHT]::checkState(STATE) ?== OPENING_DOOR PASSED
+@1.76s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@53cc48dd :: command ?== OPEN PASSED
+@1.76s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@6f967348 :: command ?== OPEN PASSED
+@1.97s:  PASSED HallButtonControl[2][BACK][UP]::checkState(STATE) ?== STATE_LIGHT_OFF PASSED
+@1.97s:  PASSED simulator.payloads.HallLightPayload$ReadableHallLightPayload@68c50e46 :: lighted ?== false PASSED
+@1.97s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@230a4761 :: getValue ?== false PASSED
+@1.97s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@108b1a8f :: getValue ?== false PASSED
+
+
+******************Summary******************
+Passed:  32
+Failed:  0
+Total :  32
+

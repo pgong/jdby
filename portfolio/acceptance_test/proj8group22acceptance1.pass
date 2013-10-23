@@ -1,0 +1,40 @@
+; 18649 <Fall 2013>
+; Group 22
+; David Chow (davidcho)
+; Brody Anderson (bcanders)
+; Yang Liu (yangliu2)
+; Jeff Lau (jalau)
+;
+;Project 8 acceptance test 1  
+; Anti-Crime Protection (ACP) mode
+
+;Time	Start Floor	Start Hallway	End Floor	End Hallway
+;1F 1B 2B 3F 4F 5F 6F 7F 7B 8F
+6s	8	FRONT	1	FRONT
+9s	7	BACK	1	BACK
+9s	7	FRONT	2	BACK
+10s	6	FRONT	3	FRONT
+20s	5	FRONT	4	FRONT
+22s	4	FRONT	5	FRONT
+28s	3	FRONT	6	FRONT
+32s	2	BACK	7	FRONT
+37s	1	BACK	7	BACK
+42s	1	FRONT	8	FRONT
+
+43s	1	BACK	1   FRONT
+43s	1	FRONT	1   BACK
+44s 7   FRONT   7   BACK
+44s	7	BACK	7   FRONT
+
+50s 1   FRONT   2   BACK
+51s 1   BACK    2   BACK
+52s 2   BACK    3   FRONT
+53s 3   FRONT   4   FRONT
+54s 4   FRONT   5   FRONT
+55s 5   FRONT   6   FRONT
+56s 6   FRONT   7   FRONT
+56s 6   FRONT   7   BACK
+57s 7   FRONT   8   FRONT
+57s 7   BACK    8   FRONT
+58s 8   FRONT   1   FRONT
+59s 8   FRONT   1   BACK

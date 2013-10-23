@@ -1,0 +1,42 @@
+; 18649 <Fall 2013>
+; Group 22
+; David Chow (davidcho)
+; Brody Anderson (bcanders)
+; Yang Liu (yangliu2)
+; Jeff Lau (jalau)
+;
+
+Simulator Parameters:
+Command line = -cf integration_test_sd1c.cf -mf integration_test_sd1c.mf
+RandomSeed = 1381471730696
+CanNetworkBitTime = 0 ns
+Effective Can Bitrate = Infinity
+Run Time = null
+Real time rate = null
+Message File = integration_test_sd1c.mf
+Controller File = integration_test_sd1c.cf
+
+Assertion Results:
+@0.41s:  PASSED DoorControl[FRONT][LEFT]::checkState(STATE) ?== WAIT_FOR_DWELL PASSED
+@0.41s:  PASSED DoorControl[FRONT][RIGHT]::checkState(STATE) ?== WAIT_FOR_DWELL PASSED
+@0.41s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@18ad8e84 :: command ?== STOP PASSED
+@0.41s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@7344119b :: command ?== STOP PASSED
+@2.93s:  PASSED DoorControl[FRONT][LEFT]::checkState(STATE) ?== CLOSING_DOOR PASSED
+@2.93s:  PASSED DoorControl[FRONT][RIGHT]::checkState(STATE) ?== CLOSING_DOOR PASSED
+@2.93s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@5f73089d :: command ?== NUDGE PASSED
+@2.93s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@7b0acf26 :: command ?== NUDGE PASSED
+@3.76s:  PASSED HallButtonControl[4][FRONT][DOWN]::checkState(STATE) ?== STATE_LIGHT_ON PASSED
+@3.76s:  PASSED simulator.payloads.HallLightPayload$ReadableHallLightPayload@4079ca2e :: lighted ?== true PASSED
+@3.76s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@3564e3e2 :: getValue ?== true PASSED
+@3.76s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@458db581 :: getValue ?== true PASSED
+@4.8s:  PASSED HallButtonControl[4][FRONT][DOWN]::checkState(STATE) ?== STATE_LIGHT_ON PASSED
+@4.8s:  PASSED simulator.payloads.HallLightPayload$ReadableHallLightPayload@7ed69cff :: lighted ?== true PASSED
+@4.8s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@4574aee5 :: getValue ?== true PASSED
+@4.8s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@5f095c81 :: getValue ?== true PASSED
+
+
+******************Summary******************
+Passed:  16
+Failed:  0
+Total :  16
+

@@ -1,0 +1,85 @@
+; 18649 <Fall 2013>
+; Group 22
+; David Chow (davidcho)
+; Brody Anderson (bcanders)
+; Yang Liu (yangliu2)
+; Jeff Lau (jalau)
+;
+; @Author: Brody Anderson
+; Integration test: SC4B - DriveControl and DoorControl Integration
+#INCLUDE defines.mf
+
+;initialize
+0s I AT_FLOOR_PERIOD N AT_FLOOR_[7][FRONT]_CAN_ID AtFloor 7 FRONT = false
++0s I AT_FLOOR_PERIOD N AT_FLOOR_[7][BACK]_CAN_ID AtFloor 7 BACK = false
++0s I DISPATCHER_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 7 STOP BOTH
++0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = true
++0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = true
++0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][LEFT]_CAN_ID DoorClosed BACK LEFT = true
++0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][RIGHT]_CAN_ID DoorClosed BACK RIGHT = true
++0s I DOOR_CONTROL_PERIOD N DESIRED_DWELL_[FRONT]_CAN_ID DesiredDwell FRONT = 2s
++0s I DOOR_CONTROL_PERIOD N DESIRED_DWELL_[BACK]_CAN_ID DesiredDwell BACK = 2s
++0.21s I DRIVE_CONTROL_PERIOD F DriveSpeed = UP 0.25
+
+;Check that Car is moving to 7rd floor
++0.21s A S DoorControl[FRONT][LEFT] : STATE == CAR_MOVING
++0s A S DoorControl[FRONT][RIGHT] : STATE == CAR_MOVING
++0s A S DriveControl : STATE == STATE_SLOW
++0s A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0.25
++0s A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == UP
+
+;Car arrives to 7rd floor
++0.1s I AT_FLOOR_PERIOD N AT_FLOOR_[7][FRONT]_CAN_ID AtFloor 7 FRONT = true
++0s I AT_FLOOR_PERIOD N AT_FLOOR_[7][BACK]_CAN_ID AtFloor 7 BACK = true
+
+;Check if Drive switch to level
++0.41s A S DriveControl : STATE == STATE_LEVEL
++0s A F Drive : speed == LEVEL
++0s A F Drive : direction == UP
++0s A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == UP
++0s A N DRIVE_COMMAND_CAN_ID DriveCommand : getSpeed == LEVEL
++0s A N DRIVE_COMMAND_CAN_ID DriveCommand : getDirection == UP
+
+;Level is true
++0.21s I  DRIVE_CONTROL_PERIOD N LEVEL_SENSOR_[UP]_CAN_ID Leveling UP = true
++0s I DRIVE_CONTROL_PERIOD F DriveSpeed = STOP 0
+
+;Check that Elevator has stopped and doors have started opening
++0.41s A S DriveControl : STATE == STATE_STOP
++0s A F Drive : speed == STOP
++0s A F Drive : direction == STOP
++0s A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0.0
++0s A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == STOP
++0s A N DRIVE_COMMAND_CAN_ID DriveCommand : getSpeed == STOP
++0s A N DRIVE_COMMAND_CAN_ID DriveCommand : getDirection == STOP
+
++0.3s A S DoorControl[FRONT][LEFT] : STATE == OPENING_DOOR
++0s A S DoorControl[FRONT][RIGHT] : STATE == OPENING_DOOR
++0s A S DoorControl[BACK][LEFT] : STATE == OPENING_DOOR
++0s A S DoorControl[BACK][RIGHT] : STATE == OPENING_DOOR
++0.1s A F DoorMotor FRONT LEFT : command == OPEN
++0s A F DoorMotor FRONT RIGHT : command == OPEN
++0s A F DoorMotor BACK LEFT : command == OPEN
++0s A F DoorMotor BACK RIGHT : command == OPEN
+
+
+;#Transition '5.T.2'
++0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = false
++0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = false
++0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][LEFT]_CAN_ID DoorClosed BACK LEFT = false
++0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][RIGHT]_CAN_ID DoorClosed BACK RIGHT = false
++0.1s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[FRONT][LEFT]_CAN_ID DoorOpened FRONT LEFT = true
++0s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[FRONT][RIGHT]_CAN_ID DoorOpened FRONT RIGHT = true
++0s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[BACK][LEFT]_CAN_ID DoorOpened BACK LEFT = true
++0s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[BACK][RIGHT]_CAN_ID DoorOpened BACK RIGHT = true
+
+;Check to see if in dwell
++0.31s A S DoorControl[FRONT][LEFT] : STATE == WAIT_FOR_DWELL
++0s A S DoorControl[FRONT][RIGHT] : STATE == WAIT_FOR_DWELL
++0s A F DoorMotor FRONT LEFT : command == STOP
++0s A F DoorMotor FRONT RIGHT : command == STOP
++0s A S DoorControl[BACK][LEFT] : STATE == WAIT_FOR_DWELL
++0s A S DoorControl[BACK][RIGHT] : STATE == WAIT_FOR_DWELL
++0s A F DoorMotor BACK LEFT : command == STOP
++0s A F DoorMotor BACK RIGHT : command == STOP
+

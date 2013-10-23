@@ -1,0 +1,30 @@
+; 18649 <Fall 2013>
+; Group 22
+; David Chow (davidcho)
+; Brody Anderson (bcanders)
+; Yang Liu (yangliu2)
+; Jeff Lau (jalau)
+;
+; @Author: Yang Liu
+; Integration test: SD1A
+
+#INCLUDE defines.mf
+
+;intialize
+0s  I  HALL_BUTTON_CONTROL_PERIOD F HallCall 4 FRONT DOWN  = false
+
+;check that the light is off initially
+1.21s  A F HallLight 4 FRONT DOWN : lighted == false
+1.21s  A N HALL_LIGHT_[4][FRONT][DOWN]_CAN_ID Boolean : getValue == false
+1.21s  A N HALL_CALL_[4][FRONT][DOWN]_CAN_ID Boolean : getValue == false
+  
+;arc 1a and 1b
+1.80s  I  HALL_BUTTON_CONTROL_PERIOD F HallCall 4 FRONT DOWN  = true
+
+;cancel the button press
+2.00s  I  HALL_BUTTON_CONTROL_PERIOD F HallCall 4 FRONT DOWN  = false
+
+;arc 2 and 2b
+;check that the light is on
+2.11s  A S HallButtonControl[4][FRONT][DOWN] : STATE == STATE_LIGHT_ON
+2.11s  A F HallLight 4 FRONT DOWN : lighted == true

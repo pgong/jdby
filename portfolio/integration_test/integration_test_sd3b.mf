@@ -1,0 +1,90 @@
+; 18649 <Fall 2013>
+; Group 22
+; David Chow (davidcho)
+; Brody Anderson (bcanders)
+; Yang Liu (yangliu2)
+; Jeff Lau (jalau)
+;
+; @Author: Brody Anderson
+; Integration test: SD3B
+
+#INCLUDE defines.mf
+
+;initialize
+; Doors open, doormotors off, mCarWeight very large, Drive stopped
+
+; Start from default settings at State and move to State WAIT_FOR_DWELL
+;Initializations, Start with the door closed and the door is front, left
++0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = true
++0s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[FRONT][LEFT]_CAN_ID DoorOpened FRONT LEFT = false
++0s I WEIGHT_PERIOD N CAR_WEIGHT_CAN_ID CarWeight = 0
++0s I AT_FLOOR_PERIOD N AT_FLOOR_[3][FRONT]_CAN_ID AtFloor 3 FRONT = true
++0s I DISPATCHER_PERIOD N DESIRED_DWELL_[FRONT]_CAN_ID DesiredDwell FRONT = 2s
++0s I DRIVE_CONTROL_PERIOD F DriveSpeed = STOP 0
++0s I DISPATCHER_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 5 STOP FRONT
++0s  I  DRIVE_CONTROL_PERIOD N LEVEL_SENSOR_[UP]_CAN_ID Leveling UP = true
+
+;Transition through T1
++0.3s I DISPATCHER_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 5 STOP FRONT
++0s I AT_FLOOR_PERIOD N AT_FLOOR_[3][FRONT]_CAN_ID AtFloor 3 FRONT = false
++0s I AT_FLOOR_PERIOD N AT_FLOOR_[5][FRONT]_CAN_ID AtFloor 5 FRONT = true
+
+;Transition through T2
++0.3s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = false
++0s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[FRONT][LEFT]_CAN_ID DoorOpened FRONT LEFT = true
+
+
+; Check initial states for integration test:
++0.5s A S DoorControl[FRONT][LEFT] : STATE == WAIT_FOR_DWELL
++0s A F DoorMotor FRONT LEFT : command == STOP
+
+; Passenger enters Car: SD 1a-1c
++0s I WEIGHT_PERIOD N CAR_WEIGHT_CAN_ID CarWeight = 16000
++0s I DISPATCHER_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 6 STOP FRONT
+
+; Neither door control nor drive control change their outputs
++0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0.0
++0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == STOP
++0s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getSpeed == STOP
++0s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getDirection == STOP
++0s  A F Drive : speed == STOP
++0s  A F Drive : direction == STOP
++0s  A S DoorControl[FRONT][LEFT] : STATE == WAIT_FOR_DWELL
++0s  A F DoorMotor FRONT LEFT : command == STOP
+
+; Check again after dwell countdown should have reached 0
++3s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0.0
++0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == STOP
++0s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getSpeed == STOP
++0s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getDirection == STOP
++0s  A F Drive : speed == STOP
++0s  A F Drive : direction == STOP
++0s  A S DoorControl[FRONT][LEFT] : STATE == WAIT_FOR_DWELL
++0s  A F DoorMotor FRONT LEFT : command == STOP
+
+; passenger exits car
++0.5s I WEIGHT_PERIOD N CAR_WEIGHT_CAN_ID CarWeight = 160
+
+; Check again after dwell countdown should have reached 0
++3s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0.0
++0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == STOP
++0s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getSpeed == STOP
++0s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getDirection == STOP
++0s  A F Drive : speed == STOP
++0s  A F Drive : direction == STOP
++0s  A S DoorControl[FRONT][LEFT] : STATE == CLOSING_DOOR
++0s  A F DoorMotor FRONT LEFT : command == NUDGE
+
+; Close all doors
++0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = true
++0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = true
++0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][RIGHT]_CAN_ID DoorClosed BACK RIGHT = true
++0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][LEFT]_CAN_ID DoorClosed BACK LEFT = true
+
+; Check that drive should be moving up, and doors should be closed
++0.5s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getSpeed == SLOW
++0s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getDirection == UP
++0s  A F Drive : speed == SLOW
++0s  A F Drive : direction == UP
++0s  A S DoorControl[FRONT][LEFT] : STATE == CAR_MOVING
++0s  A F DoorMotor FRONT LEFT : command == STOP

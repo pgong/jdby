@@ -1,0 +1,45 @@
+18-649
+Project 4
+
+
+Assignments
+
+1) Create time-triggered requirements for:
+	-DriveControl (Brody)
+	-LanternControl (Yang)
+	-CarButtonControl (David)
+	-HallButtonControl (Jeff)
+
+2) Create state charts for each non-environmental control:
+	-CarButtonControl (David)
+	-CarPositionControl (Jeff)
+	-Dispatcher (Yang)
+	-DoorControl (Brody)
+	-DriveControl (Brody)
+	-HallButtonControl (Jeff)
+	-LanternControl (Yang)
+	
+3) Create more use cases or scenarios as needed.
+
+4) Behavior->state Traceability Tests
+	-CarButtonControl (David)
+	-CarPositionControl (Jeff)
+	-Dispatcher (David)
+	-DoorControl (Brody)
+	-DriveControl (Brody)
+	-HallButtonControl (Jeff)
+	-LanternControl (Yang)
+
+5) Peer Reviews:
+	-CarButtonControl (Brody)
+	-CarPositionControl (Yang)
+	-Dispatcher (Jeff)
+	-DoorControl (David)
+	-DriveControl (David)
+	-HallButtonControl (Yang)
+	-LanternControl (Jeff)
+	
+REmember:
+Table of Contents
+Improvements Log
+Minimum Assignments

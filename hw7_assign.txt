@@ -1,0 +1,22 @@
+Project 7 Assignments
+
+Runtime Monitoring - Jeff
+
+Integration Tests (10 total to create other)
+	2B + 3A + 10B (David)
+	7A + 7B + 10A(Yang)
+	3B + 4B + 5C (Brody)
+	8A (Jeff)
+
+Acceptance Test - Do together..?
+	
+Peer Reviews 
+	jeff -> david
+	david -> brody
+	brody -> yang
+	yang -> jeff
+	
+Additional Tasks
+- Peer Review Log
+- Improvements Log
+- Minimum Requirements

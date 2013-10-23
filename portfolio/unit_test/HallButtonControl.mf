@@ -1,0 +1,46 @@
+; 18649 Fall 2013
+; group 22
+; David Chow davidcho
+; Brody Anderson bcanders
+; Yang Liu yangliu2
+; Jeffrey Lau jalau
+; hallbuttoncontrol_test.mf
+
+#INCLUDE defines.mf
+
+;intialize
+0s  I  0s F HallCall 4 FRONT DOWN  = false
+0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = true
+0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = true
+0s  I  AT_FLOOR_PERIOD N AT_FLOOR_[4][FRONT]_CAN_ID AtFloor 4 FRONT = false
+0s  I  DISPATCHER_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 4 DOWN FRONT
+
+;check that the light is off initially
+1.21s  A F HallLight 4 FRONT DOWN : lighted == false
+1.21s  A N HALL_LIGHT_[4][FRONT][DOWN]_CAN_ID Boolean : getValue == false
+1.21s  A N HALL_CALL_[4][FRONT][DOWN]_CAN_ID Boolean : getValue == false
+  
+;#transition '8.T.1'
+1.80s  I  0s F HallCall 4 FRONT DOWN  = true
+
+;cancel the button press
+2.00s  I  0s F HallCall 4 FRONT DOWN  = false
+
+
+;#state 'S8.2 LIGHT ON'
+2.11s  A S HallButtonControl[4][FRONT][DOWN] : STATE == STATE_LIGHT_ON
+2.11s  A F HallLight 4 FRONT DOWN : lighted == true
+2.11s  A N HALL_LIGHT_[4][FRONT][DOWN]_CAN_ID Boolean : getValue == true
+2.11s  A N HALL_CALL_[4][FRONT][DOWN]_CAN_ID Boolean : getValue == true
+
+;#transition '8.T.2'
+2.80s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = false
+2.80s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = false
+2.80s  I  AT_FLOOR_PERIOD N AT_FLOOR_[4][FRONT]_CAN_ID AtFloor 4 FRONT = true
+2.80s  I  DISPATCHER_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 3 DOWN FRONT
+
+;#state 'S8.1 LIGHT OFF'
+3.21s  A S HallButtonControl[4][FRONT][DOWN] : STATE == STATE_LIGHT_OFF
+3.21s  A F HallLight 4 FRONT DOWN : lighted == false
+3.21s  A N HALL_LIGHT_[4][FRONT][DOWN]_CAN_ID Boolean : getValue == false
+3.21s  A N HALL_CALL_[4][FRONT][DOWN]_CAN_ID Boolean : getValue == false

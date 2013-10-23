@@ -1,0 +1,47 @@
+; 18649 <Fall 2013>
+; Group 22
+; David Chow (davidcho)
+; Brody Anderson (bcanders)
+; Yang Liu (yangliu2)
+; Jeff Lau (jalau)
+;
+; @Author: David Chow
+; Integration test: SC6A - DriveControl and CarPositionControl Integration
+#INCLUDE defines.mf
+
+;Initialize Drive control jumps from Stopped state to slow state after one period.
+0s I AT_FLOOR_PERIOD N AT_FLOOR_[3][FRONT]_CAN_ID AtFloor 3 FRONT = true
++0s I DISPATCHER_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 3 STOP FRONT
++0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = true
++0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = true
++0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][RIGHT]_CAN_ID DoorClosed BACK RIGHT = true
++0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][LEFT]_CAN_ID DoorClosed BACK LEFT = true
++0s  I DOOR_CONTROL_PERIOD N DESIRED_DWELL_[FRONT]_CAN_ID DesiredDwell FRONT = 2s
+
+;because mAtFloor is true, drive control jumps to level state after another period.
++0.41s I DRIVE_CONTROL_PERIOD F DriveSpeed = UP 0.05
+
+;Check CarPositionControl
++0.21s A S CarPositionControl : STATE == POSITION
++0s A N CAR_POSITION_CAN_ID Integer : getValue == 3
+
+;Check DriveControl State
++0.51s A S DriveControl : STATE == STATE_LEVEL
++0s A F Drive : speed == LEVEL
++0s A F Drive : direction == UP
++0s A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == UP
++0s A N DRIVE_COMMAND_CAN_ID DriveCommand : getSpeed == LEVEL
++0s A N DRIVE_COMMAND_CAN_ID DriveCommand : getDirection == UP
+
+;Level is true
++0.21s I  DRIVE_CONTROL_PERIOD N LEVEL_SENSOR_[UP]_CAN_ID Leveling UP = true
++0s I DRIVE_CONTROL_PERIOD F DriveSpeed = STOP 0.0
+
+;Check that Elevator has stopped 
++0.41s A S DriveControl : STATE == STATE_STOP
++0s A F Drive : speed == STOP
++0s A F Drive : direction == STOP
++0s A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0.0
++0s A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == STOP
++0s A N DRIVE_COMMAND_CAN_ID DriveCommand : getSpeed == STOP
++0s A N DRIVE_COMMAND_CAN_ID DriveCommand : getDirection == STOP

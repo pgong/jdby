@@ -1,0 +1,57 @@
+; 18649 <Fall 2013>
+; Group 22
+; David Chow (davidcho)
+; Brody Anderson (bcanders)
+; Yang Liu (yangliu2)
+; Jeff Lau (jalau)
+;
+; @Author: David Chow
+; Integration test: SC10B - Dispatcher, DriveControl, Safety Integration
+#INCLUDE defines.mf
+
+;intialize
+0s I AT_FLOOR_PERIOD N AT_FLOOR_[1][FRONT]_CAN_ID AtFloor 1 FRONT = true
++0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = true
++0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = true
++0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][RIGHT]_CAN_ID DoorClosed BACK RIGHT = true
++0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][LEFT]_CAN_ID DoorClosed BACK LEFT = true
+
+;CHECKS
++0.21s  A S Dispatcher : STATE == STATE_BETWEEN
++0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getFloor == 2
++0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getDirection == STOP
++0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getHallway == BACK
+
++0.21s  A S DriveControl : STATE == STATE_SLOW
++0s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getSpeed == SLOW
++0s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getDirection == UP
++0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getFloor == 2
+
+;Left floor
++0.2s  I  AT_FLOOR_PERIOD N AT_FLOOR_[1][FRONT]_CAN_ID AtFloor 1 FRONT = false
+
+;In between
++0.21s  A S Dispatcher : STATE == STATE_BETWEEN
++0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getFloor == 2
++0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getDirection == STOP
++0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getHallway == BACK
+
++0s  A S DriveControl : STATE == STATE_SLOW
++0s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getSpeed == SLOW
++0s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getDirection == UP
++0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getFloor == 2
+
+;Open Doors!
++0.21s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[FRONT][LEFT]_CAN_ID DoorOpened FRONT LEFT = true
++0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = false
++0s I DRIVE_PERIOD N EMERGENCY_BRAKE_CAN_ID Boolean = true
+
+;In between
++0.51s  A S Dispatcher : STATE == STATE_EMERGENCY
++0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getFloor == 1 
++0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getDirection == STOP
++0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getHallway == BOTH
+
++0.21s  A S DriveControl : STATE == STATE_STOP
++0s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getSpeed == STOP
++0s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getDirection == STOP 

@@ -1,0 +1,113 @@
+;18-649 Fall 2013
+;Unit test for DriveControl
+;Group 22 - Brody Anderson (bcanders), 
+;Jeff Lau (jalau), 
+;David Chow (davidcho),
+;Yang Liu (yangliu2)
+
+#INCLUDE defines.mf ;include CAN id and period definitions
+
+;initialize
+0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = false
+0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = false
+0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][RIGHT]_CAN_ID DoorClosed BACK RIGHT = false
+0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][LEFT]_CAN_ID DoorClosed BACK LEFT = false
+0s  I  AT_FLOOR_PERIOD N AT_FLOOR_[1][FRONT]_CAN_ID AtFloor 1 FRONT = true
+
+;check that state 1 updated the desired floor:
+;#state 'STATE_ATFLOOR
+0.201s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getFloor == 2
+0.201s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getDirection == STOP
+0.201s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getHallway == BACK
+;0.201s  A N DESIRED_DWELL_[FRONT]_CAN_ID DesiredDwell FRONT : getDwell == 2s
+
+;Set conditions to get to the next floor
+;#transition 11.T.1
+0.251s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = true
+0.251s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = true
+0.251s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][RIGHT]_CAN_ID DoorClosed BACK RIGHT = true
+0.251s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][LEFT]_CAN_ID DoorClosed BACK LEFT = true
+0.351s  I  AT_FLOOR_PERIOD N AT_FLOOR_[1][FRONT]_CAN_ID AtFloor 1 FRONT = false
+0.351s  I  AT_FLOOR_PERIOD N AT_FLOOR_[2][BACK]_CAN_ID AtFloor 2 BACK = false
+
+;check state 2
+;#state 'STATE_BETWEEN
+0.452s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getFloor == 2
+0.452s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getDirection == STOP
+0.452s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getHallway == BACK
+;0.452s  A N DESIRED_DWELL_[FRONT]_CAN_ID DesiredDwell FRONT : getDwell == 2s
+
+;Set conditions to arrive at floor
+;#transition '11.T.3'
+0.503s  I  AT_FLOOR_PERIOD N AT_FLOOR_[2][BACK]_CAN_ID AtFloor 2 BACK = true
+0.503s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][RIGHT]_CAN_ID DoorClosed BACK RIGHT = false
+0.503s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][LEFT]_CAN_ID DoorClosed BACK LEFT = false
+
+;check state 1
+;#state 'STATE_ATFLOOR'
+0.704s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getFloor == 3
+0.704s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getDirection == STOP
+0.704s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getHallway == FRONT
+;0.704s  A N DESIRED_DWELL_[FRONT]_CAN_ID DesiredDwell FRONT : getDwell == 2s
+
+;Set conditions to get to the next floor
+;#transition 11.T.1
+0.755s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][RIGHT]_CAN_ID DoorClosed BACK RIGHT = true
+0.755s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][LEFT]_CAN_ID DoorClosed BACK LEFT = true
+0.800s  I  AT_FLOOR_PERIOD N AT_FLOOR_[2][BACK]_CAN_ID AtFloor 2 BACK = false
+
+;check state 2
+;#state 'STATE_BETWEEN
+0.956s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getFloor == 3
+0.956s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getDirection == STOP
+0.956s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getHallway == FRONT
+;0.956s  A N DESIRED_DWELL_[FRONT]_CAN_ID DesiredDwell FRONT : getDwell == 2s
+
+;Set conditions to get to an emergency state
+;#transition 11.T.4
+0.970s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][RIGHT]_CAN_ID DoorClosed BACK RIGHT = false
+0.970s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][LEFT]_CAN_ID DoorClosed BACK LEFT = false
+
+;check state 3
+;#state 'STATE_EMERGENCY
+1.208s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getFloor == 1
+1.208s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getDirection == STOP
+1.208s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getHallway == BOTH
+;1.208s  A N DESIRED_DWELL_[FRONT]_CAN_ID DesiredDwell FRONT : getDwell == 2s
+
+;Set conditions to arrive at floor
+;#transition '11.T.5'
+1.259s  I  AT_FLOOR_PERIOD N AT_FLOOR_[1][FRONT]_CAN_ID AtFloor 1 FRONT = true
+1.259s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][RIGHT]_CAN_ID DoorClosed BACK RIGHT = false
+1.259s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][LEFT]_CAN_ID DoorClosed BACK LEFT = false
+1.259s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = false
+1.259s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = false
+
+;check state 1
+;#state 'STATE_ATFLOOR
+1.460s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getFloor == 2
+1.460s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getDirection == STOP
+1.460s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getHallway == BACK
+;1.460s  A N DESIRED_DWELL_[FRONT]_CAN_ID DesiredDwell FRONT : getDwell == 2s
+
+;Set conditions to get to an emergency state
+;#transition 11.T.2
+1.511s  I  AT_FLOOR_PERIOD N AT_FLOOR_[1][FRONT]_CAN_ID AtFloor 1 FRONT = false
+
+;check state 3
+;#state 'STATE_EMERGENCY
+1.712s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getFloor == 1
+1.712s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getDirection == STOP
+1.712s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getHallway == BOTH
+;1.712s  A N DESIRED_DWELL_[FRONT]_CAN_ID DesiredDwell FRONT : getDwell == 2s
+
+;Set conditions to arrive at floor
+;#transition '11.T.5'
+1.763s  I  AT_FLOOR_PERIOD N AT_FLOOR_[1][FRONT]_CAN_ID AtFloor 1 FRONT = true
+
+;check state 1
+;#state 'STATE_ATFLOOR
+1.964s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getFloor == 2
+1.964s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getDirection == STOP
+1.964s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getHallway == BACK
+;1.964s  A N DESIRED_DWELL_[FRONT]_CAN_ID DesiredDwell FRONT : getDwell == 2s

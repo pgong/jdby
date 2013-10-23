@@ -1,0 +1,13 @@
+; 18649 <Fall 2013>
+; Group 22
+; David Chow (davidcho)
+; Brody Anderson (bcanders)
+; Yang Liu (yangliu2)
+; Jeff Lau (jalau)
+;
+; @Author: David Chow
+; Integration test: SD1B - DoorControl and HallButtonControl Integration
+
+DoorControl FRONT LEFT 100ms true
+DoorControl FRONT RIGHT 100ms true
+HallButtonControl 4 FRONT DOWN 100ms true

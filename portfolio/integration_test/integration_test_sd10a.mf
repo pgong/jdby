@@ -1,0 +1,32 @@
+; 18649 <Fall 2013>
+; Group 22
+; David Chow (davidcho)
+; Brody Anderson (bcanders)
+; Yang Liu (yangliu2)
+; Jeff Lau (jalau)
+;
+; @Author: Yang Liu
+; Integration test: SC10A - DriveControl Integration
+#INCLUDE defines.mf
+
+;Initialize to be traveling up the hoistway.
+0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = true
+0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = true
+0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][RIGHT]_CAN_ID DoorClosed BACK RIGHT = true
+0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][LEFT]_CAN_ID DoorClosed BACK LEFT = true
+0s  I AT_FLOOR_PERIOD N AT_FLOOR_[1][FRONT]_CAN_ID AtFloor 1 FRONT = false
+0s  I DISPATCHER_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 5 STOP FRONT
+0s  I  DRIVE_CONTROL_PERIOD N LEVEL_SENSOR_[UP]_CAN_ID Leveling UP = false
++0.51s  I DRIVE_CONTROL_PERIOD F DriveSpeed = UP 0.25
+
+;Set conditions for emergency brake
++0.21s  I DRIVE_CONTROL_PERIOD N EMERGENCY_BRAKE_CAN_ID Boolean = true
++0s  I DRIVE_CONTROL_PERIOD F DriveSpeed = STOP 0.0
+
+;Check state outputs
++0.5s  A F Drive : speed == STOP
++0s  A F Drive : direction == STOP
++0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0.0
++0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == STOP
++0s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getSpeed == STOP
++0s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getDirection == STOP

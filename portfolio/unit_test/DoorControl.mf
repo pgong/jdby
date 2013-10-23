@@ -1,0 +1,97 @@
+; 18649 Fall 2013
+; group #22
+; Brody Anderson (bcanders), Jeff Lau (jalau), David Chow (davidcho), Yang Liu (yangliu2)
+; doorcontrol_test1.mf
+
+#INCLUDE defines.mf ;include CAN id and period definitions
+
+;Initializations, Start with the door closed and the door is front, left
+0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = true
+0s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[FRONT][LEFT]_CAN_ID DoorOpened FRONT LEFT = false
+0s I WEIGHT_PERIOD N CAR_WEIGHT_CAN_ID CarWeight = 0
+0s I AT_FLOOR_PERIOD N AT_FLOOR_[3][FRONT]_CAN_ID AtFloor 3 FRONT = true
+0s I DISPATCHER_PERIOD N DESIRED_DWELL_[FRONT]_CAN_ID DesiredDwell FRONT = 2s
+0s I DRIVE_CONTROL_PERIOD N DRIVE_SPEED_CAN_ID DriveSpeed = 1.2 UP
+0s I DISPATCHER_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 5 STOP FRONT
+
+
+;At state S1 
++0.4s A S DoorControl[FRONT][LEFT] : STATE == CAR_MOVING
++0s A F DoorMotor FRONT LEFT : command == STOP
+
+;Transition through T1
++0.2s I DISPATCHER_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 5 STOP FRONT
++0s I AT_FLOOR_PERIOD N AT_FLOOR_[3][FRONT]_CAN_ID AtFloor 3 FRONT = false
++0s I AT_FLOOR_PERIOD N AT_FLOOR_[5][FRONT]_CAN_ID AtFloor 5 FRONT = true
++0s I DRIVE_CONTROL_PERIOD N DRIVE_SPEED_CAN_ID DriveSpeed = 0 STOP
+
+;At state s2
++0.4s A S DoorControl[FRONT][LEFT] : STATE == OPENING_DOOR
++0s A F DoorMotor FRONT LEFT : command == OPEN
+
+;Transition through T2
++0.3s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = false
++0s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[FRONT][LEFT]_CAN_ID DoorOpened FRONT LEFT = true
++0s I DISPATCHER_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 5 STOP FRONT
++0s I AT_FLOOR_PERIOD N AT_FLOOR_[5][FRONT]_CAN_ID AtFloor 5 FRONT = true
++0s I DRIVE_CONTROL_PERIOD N DRIVE_SPEED_CAN_ID DriveSpeed = 0 STOP
+
+;At state s3
++0.5s A S DoorControl[FRONT][LEFT] : STATE == WAIT_FOR_DWELL
++0s A F DoorMotor FRONT LEFT : command == STOP
+
+;Transition through T3
+;Wait about .5 seconds.
+
+;At state s3
++0.5s A S DoorControl[FRONT][LEFT] : STATE == WAIT_FOR_DWELL
++0s A F DoorMotor FRONT LEFT : command == STOP
+
+;Transition through T4
+;CountDown hits 0
+
+;At state s4
++1.6s A S DoorControl[FRONT][LEFT] : STATE == CLOSING_DOOR
++0s A F DoorMotor FRONT LEFT : command == NUDGE
+
+;Transition through T6
++0.3s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = false
++0s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[FRONT][LEFT]_CAN_ID DoorOpened FRONT LEFT = false
++0s I WEIGHT_PERIOD N CAR_WEIGHT_CAN_ID CarWeight = 16000
+
+;At state s2
++0.4s A S DoorControl[FRONT][LEFT] : STATE == OPENING_DOOR
++0s A F DoorMotor FRONT LEFT : command == OPEN
+
+;Transition through T2
++0.3s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[FRONT][LEFT]_CAN_ID DoorOpened FRONT LEFT = true
++0s I WEIGHT_PERIOD N CAR_WEIGHT_CAN_ID CarWeight = 12000
++0s I DISPATCHER_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 3 STOP FRONT
++0s I AT_FLOOR_PERIOD N AT_FLOOR_[5][FRONT]_CAN_ID AtFloor 5 FRONT = true
++0s I DRIVE_CONTROL_PERIOD N DRIVE_SPEED_CAN_ID DriveSpeed = 0 STOP
+
+;At state s3
++0.5s A S DoorControl[FRONT][LEFT] : STATE == WAIT_FOR_DWELL
++0s A F DoorMotor FRONT LEFT : command == STOP
+
+;Transition through T3
+;Wait.
+
+;At state s3
++0.5s A S DoorControl[FRONT][LEFT] : STATE == WAIT_FOR_DWELL
++0s A F DoorMotor FRONT LEFT : command == STOP
+
+;Transition through T4
+;CountDown hits 0
+
+;At state s4
++1.7s A S DoorControl[FRONT][LEFT] : STATE == CLOSING_DOOR
++0s A F DoorMotor FRONT LEFT : command == NUDGE
+
+;Transition through T5
++0.3s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[FRONT][LEFT]_CAN_ID DoorOpened FRONT LEFT = false
++0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = true
+
+;At state s1
++0.4s A S DoorControl[FRONT][LEFT] : STATE == CAR_MOVING
++0s A F DoorMotor FRONT LEFT : command == STOP
