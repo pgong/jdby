@@ -98,6 +98,8 @@ public class DriveControl extends Controller{
 	//Store the period for the controller
     private SimTime period;
     private boolean door_open;
+    //Store variable to tell when overweight alarm goes off
+    private boolean weight_flag;
     
     //Additional internal state variables
     private SimTime counter = SimTime.ZERO;
@@ -124,6 +126,7 @@ public class DriveControl extends Controller{
         this.index_desired = 0;
         this.index_direction = 0;
         this.door_open = true;
+        this.weight_flag = false;
         //Initialize physical state and create payload objects
         //while also registering the payload with the physical
         //interface.
@@ -257,6 +260,8 @@ public class DriveControl extends Controller{
 			//#transition 6.T.6
 			if(mCarWeight.getValue() >= (Elevator.MaxCarCapacity) &&
 				!mLevel[ReplicationComputer.computeReplicationId(Direction.UP)].getValue()){
+				//Set weight_flag
+				weight_flag = true;
 				//Cable slips require the elevator to come back UP
 				direction = Direction.UP;
 				index_direction = ReplicationComputer.computeReplicationId(Direction.UP);
@@ -318,7 +323,13 @@ public class DriveControl extends Controller{
 			//transitions:
 			//#transition 6.T.5
 			if(mLevel[index_direction].getValue()){
-				floor = mDesiredFloor.getFloor();
+				// If overweight, don't change the floor, and reset weight_flag
+				if (weight_flag) {
+					weight_flag = false;
+				}
+				else if (!weight_flag) {
+					floor = mDesiredFloor.getFloor();
+				}
 				hallway = mDesiredFloor.getHallway();
 				direction = mDesiredFloor.getDirection();
 				newState = State.STATE_STOP;
