@@ -1,0 +1,29 @@
+PowerPoint Assignments
+
+Brody
+Door Control
+	1. Scenarios and SD
+	3. Coding and Testing
+
+Jeff
+	1. Statistics
+	
+Yang
+	Door Control
+		1.Requirements and Statecharts
+
+David
+	Lessons Learned
+		-Bugs
+		-Strategies
+		-Suggestions
+		
+		
+Overall Layout:
+
+Statistics
+DoorControl
+	1. Scen and SD
+	2. Req. and Statecharts
+	3. Coding and Testing
+Lessons Learned
