@@ -8,3 +8,6 @@ hall calls in direction d'.
 If no calls are found, then look for car calls in direction d' and
 then hall calls in direction d' that are for direction d' before looking for
 hall calls in direction d.
+
+
+carpostion to indicator = x mod 5000 + 1
