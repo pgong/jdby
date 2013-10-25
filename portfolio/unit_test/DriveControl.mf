@@ -78,19 +78,19 @@
 
 ;Set conditions for 6.T.3
 ;#transition '6.T.3'
-1.221s  I DRIVE_CONTROL_PERIOD N EMERGENCY_BRAKE_CAN_ID Boolean = true
-1.221s  I DRIVE_CONTROL_PERIOD F DriveSpeed = STOP 0.0
+1.201s  I DRIVE_CONTROL_PERIOD N EMERGENCY_BRAKE_CAN_ID Boolean = true
+1.201s  I DRIVE_CONTROL_PERIOD F DriveSpeed = STOP 0.0
 
 ;Check state outputs
-1.253s  A F Drive : speed == STOP
-1.253s  A F Drive : direction == STOP
-1.253s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0.0
-1.253s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == STOP
-1.253s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getSpeed == STOP
-1.253s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getDirection == STOP
+1.283s  A F Drive : speed == STOP
+1.283s  A F Drive : direction == STOP
+1.283s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0.0
+1.283s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == STOP
+1.283s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getSpeed == STOP
+1.283s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getDirection == STOP
 
 ;Revert back to normal state
-1.263s  I  DRIVE_CONTROL_PERIOD N EMERGENCY_BRAKE_CAN_ID Boolean = false
+1.284s  I  DRIVE_CONTROL_PERIOD N EMERGENCY_BRAKE_CAN_ID Boolean = false
 1.300s  I DRIVE_CONTROL_PERIOD F DriveSpeed = UP 0.25
 
 ;Reverting conditions back for 6.T.2 and checking state

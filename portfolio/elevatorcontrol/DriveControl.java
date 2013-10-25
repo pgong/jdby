@@ -267,6 +267,10 @@ public class DriveControl extends Controller{
 				index_direction = ReplicationComputer.computeReplicationId(Direction.UP);
 				newState = State.STATE_LEVEL;
 			}
+			else if(mEmergencyBrake.getValue()) {
+					newState = state;
+					door_open = false;
+			}
 			//#transition 6.T.2
 			else if (!door_open && mDesiredFloor.hasReadablePayload()){
 				if (mDesiredFloor.getFloor() - floor == 0){
@@ -290,6 +294,12 @@ public class DriveControl extends Controller{
 					newState=State.STATE_SLOW;
 				}
 			}
+			else{
+				direction = Direction.STOP;
+				newState = state;
+				//reset door_open
+				door_open = false;
+				}
 			break;
 		case STATE_SLOW:
 			//State actions for 'SpeedSlow'
