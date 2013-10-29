@@ -39,6 +39,7 @@ public class DoorControl extends Controller {
         OPENING_DOOR,
         WAIT_FOR_DWELL,
         CLOSING_DOOR,
+        NUDGING_DOOR,
     }
     
     // Initialize state to CAR_MOVING
@@ -54,6 +55,8 @@ public class DoorControl extends Controller {
     // Which hallway and side is this DoorControl for?
     private Hallway h;
     private Side s;
+    private int maxReversals = 2;
+    private int reversalCount;
     
     //store the period for the controller
     private SimTime period;
@@ -67,6 +70,9 @@ public class DoorControl extends Controller {
     
     ReadableCanMailbox networkDoorOpen;
     DoorOpenedCanPayloadTranslator mDoorOpen;
+    
+    ReadableCanMailbox networkDoorReversal;
+    DoorReversalCanPayloadTranslator mDoorReversal;
     
     ReadableCanMailbox networkCarWeight;
     CarWeightCanPayloadTranslator mCarWeight;
@@ -121,6 +127,11 @@ public class DoorControl extends Controller {
 		networkDoorOpen = CanMailbox.getReadableCanMailbox(MessageDictionary.DOOR_OPEN_SENSOR_BASE_CAN_ID + ReplicationComputer.computeReplicationId(h, s));
 		mDoorOpen = new DoorOpenedCanPayloadTranslator(networkDoorOpen, h, s);
 		canInterface.registerTimeTriggered(networkDoorOpen);
+		
+		networkDoorReversal = CanMailbox.getReadableCanMailbox(MessageDictionary.DOOR_REVERSAL_SENSOR_BASE_CAN_ID + ReplicationComputer.computeReplicationId(h, s));
+		mDoorReversal = new DoorReversalCanPayloadTranslator(networkDoorReversal, h, s);
+		canInterface.registerTimeTriggered(networkDoorReversal);
+		
 		
 		networkCarWeight = CanMailbox.getReadableCanMailbox(MessageDictionary.CAR_WEIGHT_CAN_ID);
 		mCarWeight = new CarWeightCanPayloadTranslator(networkCarWeight);
@@ -212,6 +223,7 @@ public class DoorControl extends Controller {
             	this.Dwell = mDesiredDwell.getValue();
             	if (this.Dwell == null) this.CountDown = new SimTime("2s");
             	else this.CountDown = this.Dwell;
+            	this.reversalCount = 0;
 
             	// State 1 transitions
             	// #transition 5.T.1
@@ -251,43 +263,74 @@ public class DoorControl extends Controller {
             	// decrement Countdown by the period
             	this.CountDown = SimTime.subtract(this.CountDown, this.period);
             	
+            	// Increase the countdown whenver the elevator is over weight
             	if (mCarWeight.getValue() >= Elevator.MaxCarCapacity) {
             		this.CountDown = this.mDesiredDwell.getValue();
             	}
             	
             	// State 3 transitions
-				// #transition 5.T.3
                 if (this.CountDown.isPositive()) { // Countdown has reached 0
-                	newState = State.WAIT_FOR_DWELL; // T3
+                	newState = state; 
                 }
-				// #transition 5.T.4
+				// #transition 5.T.3
                 else { // Countdown still greater than 0
-                	newState = State.CLOSING_DOOR; // T4
+                	newState = State.CLOSING_DOOR; // T3
                 }
                 break;
             case CLOSING_DOOR: // S4
             	// State 4 actions:
-            	DoorMotor.set(DoorCommand.NUDGE);
-            	//mDoorMotor.set(DoorCommand.NUDGE);
+            	DoorMotor.set(DoorCommand.CLOSE);
+            	//mDoorMotor.set(DoorCommand.CLOSE);
             	this.Dwell = mDesiredDwell.getValue();
             	if (this.Dwell == null) this.CountDown = new SimTime("2s");
             	else this.CountDown = this.Dwell;
             	
             	// State 4 transitions
-				// #transition 5.T.6
+				// #transition 5.T.5 and 5.T.6
                 if ((mCarWeight.getValue() >= Elevator.MaxCarCapacity) ||
                 (mCarCall[ReplicationComputer.computeReplicationId(
                  this.currentFloor, this.h)].getValue() == true)) {
-                  		newState = State.OPENING_DOOR; // T6
+                  		newState = State.OPENING_DOOR; // T5
             	}
-				// #transition 5.T.5
+                else if (mDoorReversal.getValue()) { // Check for door reversal
+                	if (this.reversalCount < this.maxReversals){
+	                	newState = State.OPENING_DOOR; // T5
+	                	reversalCount++;
+                	}
+                	else { // Too many reversals have been done
+                		newState = State.NUDGING_DOOR; // T6
+                	}
+                }
+				// #transition 5.T.4
             	else if (mDoorClosed.getValue()) {
-            		newState = State.CAR_MOVING; //T5
+            		newState = State.CAR_MOVING; //T4
                 }
             	else {
             		newState = state;
             	}
                 
+                break;
+            case NUDGING_DOOR: // S5
+            	DoorMotor.set(DoorCommand.NUDGE);
+            	//mDoorMotor.set(DoorCommand.NUDGE);          
+            	this.Dwell = mDesiredDwell.getValue();
+            	if (this.Dwell == null) this.CountDown = new SimTime("2s");
+            	else this.CountDown = this.Dwell;
+            	
+            	// State 5 transitions
+				// #transition 5.T.8
+                if ((mCarWeight.getValue() >= Elevator.MaxCarCapacity) ||
+                (mCarCall[ReplicationComputer.computeReplicationId(
+                 this.currentFloor, this.h)].getValue() == true)) {
+                  		newState = State.OPENING_DOOR; // T8
+            	}
+				// #transition 5.T.7
+            	else if (mDoorClosed.getValue()) {
+            		newState = State.CAR_MOVING; //T7
+                }
+            	else {
+            		newState = state;
+            	}
                 break;
             default:
                 throw new RuntimeException("State " + state + " was not recognized.");
@@ -310,7 +353,6 @@ public class DoorControl extends Controller {
         //you must do this at the end of the timer callback in order to restart
         //the timer
         timer.start(period);
-
 	}
 
 }
