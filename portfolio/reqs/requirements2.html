@@ -1143,6 +1143,7 @@
 
 
 
+
       to Statechart Traceability</h3>
     <span style="color: rgb(0, 0, 0); font-family: 'Times New Roman';
       font-size: medium; font-style: normal; font-variant: normal;
@@ -2002,6 +2003,7 @@
     <br>
     <img alt="Drive Control State Diagram"
       src="DriveControlStateDiagram.png" height="362" width="644"><br>
+    <br>
     <table border="1" cellpadding="2" cellspacing="2" width="100%">
       <tbody>
         <tr>
@@ -2048,6 +2050,23 @@
           </td>
           <td valign="top">Car weight is greater than max car capacity
             and mLevel is False.</td>
+        </tr>
+        <tr>
+          <td valign="top">T7<br>
+          </td>
+          <td valign="top">DriveSpeed==SlowSpeed and
+            CommitPoint(mDesiredFloor.f) == NotReached</td>
+        </tr>
+        <tr>
+          <td valign="top">T8<br>
+          </td>
+          <td valign="top">DriveSpeed&gt;=SlowSpeed and
+            CommitPoint(mDesiredFloor.f) == Reached</td>
+        </tr>
+        <tr>
+          <td valign="top">T9<br>
+          </td>
+          <td valign="top">Emergency Brake is set to True</td>
         </tr>
       </tbody>
     </table>
