@@ -1,0 +1,29 @@
+Project 9 Assignments:
+Update Statecharts
+- Dispatcher (yang)
+- Lantern (?) (David)
+- Drive (Jeff)
+- Door (Brody)
+
+Update Unit Tests
+- Dispatcher (Yang)
+- Lantern (?) (David)
+- Drive (Jeff)
+- Door (Brody)
+
+Update Implementation and Statechart->code trace
+- Dispatcher (Jeff)
+- Lantern (?) (David)
+- Drive (?) (Yang)
+- Door (Brody)
+
+Update Traceability (Req->Statechart ) 
+- Dispatcher (David)
+- Lantern (David)
+- Drive (Brody)
+- Door (Brody)
+
+Peer Reviews
+Yang -> David -> Brody -> Jeff -> Yang
+
+Minimum Requirements - David
