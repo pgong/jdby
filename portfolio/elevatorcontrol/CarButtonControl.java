@@ -198,10 +198,7 @@ public class CarButtonControl extends Controller {
                 mCarCall.set(true);
                 
                 //#transition '9.T.2'
-                if (((mAtFloor.getValue() == true) ||
-                	((mDesiredFloor.getDirection() == Direction.UP) && (floorArray.getCurrentFloor() > floor)) || 
-                	((mDesiredFloor.getDirection() == Direction.DOWN) && (floorArray.getCurrentFloor() < floor))) &&
-                	localCarCall.pressed() == false) {
+                if (mAtFloor.getValue() == true) {
                 	// AND BUTTON NOT PRESSED
                     newState = State.STATE_LIGHT_OFF;
                     break;
