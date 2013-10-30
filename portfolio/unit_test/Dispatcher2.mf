@@ -14,8 +14,8 @@
 0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][LEFT]_CAN_ID DoorClosed BACK LEFT = false
 0s  I  AT_FLOOR_PERIOD N AT_FLOOR_[1][FRONT]_CAN_ID AtFloor 1 FRONT = true
 
-;check that state 2 updated the desired floor:
-;#state 'STATE_DOORSOPEN
+;check that state 1 updated the desired floor:
+;#state 'STATE_ATFLOOR
 0.201s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getFloor == 2
 0.201s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getDirection == STOP
 0.201s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getHallway == BACK
