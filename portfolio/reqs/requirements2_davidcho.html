@@ -1145,6 +1145,8 @@
 
 
 
+
+
       to Statechart Traceability</h3>
     <span style="color: rgb(0, 0, 0); font-family: 'Times New Roman';
       font-size: medium; font-style: normal; font-variant: normal;
@@ -3026,11 +3028,10 @@
     CarPositionIndicator shall be commanded to display
     CurrentFloor.&nbsp;<br>
     10.5 &nbsp;&nbsp;&nbsp;If mAtFloor[f,b] is True and mDriveSpeed is
-    {s, DesiredDirection}, where s &gt;= 0.25, CurrentFloor shall be set
-    to f. <br>
-    10.6 &nbsp;&nbsp;&nbsp;If mDriveSpeed is not {s, DesiredDirection},
-    s &lt; 0.25, CurrentFloor shall be set to mCarLevelPosition / 5000 +
-    1<br>
+    {s, DesiredDirection}, where s &lt;= 0.25, CurrentFloor shall be set
+    to f.<br>
+    10.6 &nbsp;&nbsp;&nbsp;If mDriveSpeed is {s, DesiredDirection}, s
+    &gt; 0.5, CurrentFloor shall be set to mCarLevelPosition / 5000 + 1<br>
     <br>
     <div style="text-align: center;"><a
         href="carposcontrol_state_diagram.png"><img
