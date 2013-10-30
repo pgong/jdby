@@ -115,7 +115,11 @@ public class LanternControl extends Controller {
             		
             	}
                 //#transition '7.T.1'
-            	if(DesiredDirection == direction && (mDoorClosedFrontLeft.getValue() == false || mDoorClosedFrontRight.getValue() == false || mDoorClosedBackLeft.getValue() == false || mDoorClosedBackRight.getValue() == false)) {
+            	if(mDesiredFloor.getDirection() == direction && 
+            		(mDoorClosedFrontLeft.getValue() == false || 
+            		mDoorClosedFrontRight.getValue() == false || 
+            		mDoorClosedBackLeft.getValue() == false || 
+            		mDoorClosedBackRight.getValue() == false)) {
             		newState = State.STATE_LANTERN_ON;
                 } 
                 //#transition '7.T.2'
@@ -126,7 +130,10 @@ public class LanternControl extends Controller {
             case STATE_LANTERN_ON:	
             	carLantern.set(true);
                 //#transition '7.T.3'
-            	if(mDoorClosedFrontLeft.getValue() == true && mDoorClosedFrontRight.getValue() == true && mDoorClosedBackLeft.getValue() == true && mDoorClosedBackRight.getValue() == true) {
+            	if(mDoorClosedFrontLeft.getValue() == true && 
+            		mDoorClosedFrontRight.getValue() == true &&
+            		mDoorClosedBackLeft.getValue() == true &&
+            		mDoorClosedBackRight.getValue() == true) {
             		newState = State.STATE_LANTERN_OFF;
             	} else {
             		newState = state;
@@ -135,13 +142,7 @@ public class LanternControl extends Controller {
             default:
                 throw new RuntimeException("State " + state + " was not recognized.");
         }
-       /* 
-        if (state == newState) {
-            log("remains in state: ",state);
-        } else {
-            log("Transition:",state,"->",newState);
-        }
-		*/
+
         //update the state variable
         state = newState;
 
