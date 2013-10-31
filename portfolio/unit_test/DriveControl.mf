@@ -120,7 +120,7 @@
 1.480s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getDirection == UP
 
 ;Set conditions for 6.T.8
-1.500s  I DRIVE_CONTROL_PERIOD F DriveSpeed = UP 0.20
+1.500s  I DRIVE_CONTROL_PERIOD F DriveSpeed = UP 0.90
 1.500s  I DISPATCHER_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 2 STOP BACK
 1.500s  I CAR_POSITION_CONTROL_PERIOD N CAR_LEVEL_POSITION_CAN_ID CarLevelPosition = 4500
 
@@ -128,7 +128,7 @@
 1.580s  A S DriveControl : STATE == STATE_SLOW
 1.580s  A F Drive : speed == SLOW
 1.580s  A F Drive : direction == UP
-1.580s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0.20
+1.580s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0.90
 1.580s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == UP
 1.580s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getSpeed == SLOW
 1.580s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getDirection == UP

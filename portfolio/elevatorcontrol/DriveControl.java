@@ -9,6 +9,7 @@
  */
 package simulator.elevatorcontrol;
  
+import simulator.elevatorcontrol.Utility.AtFloorArray;
 import simulator.elevatormodules.AtFloorCanPayloadTranslator;
 import simulator.elevatormodules.CarLevelPositionCanPayloadTranslator;
 import simulator.elevatormodules.CarWeightCanPayloadTranslator;
@@ -319,7 +320,7 @@ public class DriveControl extends Controller{
 					(localDriveSpeed.speed() * localDriveSpeed.speed() / 2 + 0.2)) * 1000 < 
 					mCarLevelPosition.getPosition();
 			}
-			else if(direction == Direciton.DOWN){
+			else if(direction == Direction.DOWN){
 				commitPointReached = ((mDesiredFloor.getFloor() -1) * 5 + 
 					(localDriveSpeed.speed() * localDriveSpeed.speed() / 2 + 0.2)) * 1000 > 
 					mCarLevelPosition.getPosition();
@@ -341,7 +342,7 @@ public class DriveControl extends Controller{
 					mDesiredFloor.getHallway())].getValue())
 				newState = State.STATE_LEVEL;
 			//#transition 6.T.7
-			else if(commitPointReached == false && localDriveSpeed.speed() == Speed.SLOW){
+			else if(commitPointReached == false && localDriveSpeed.speed() == 0.25){
 				newState = State.STATE_FAST;
 			}
 			else
@@ -391,7 +392,7 @@ public class DriveControl extends Controller{
 
 			//transitions:
 			//#transition 6.T.8
-			if(commitPointReached == true && localDriveSpeed.speed() > Speed.SLOW){
+			if(commitPointReached == true && localDriveSpeed.speed() > 0.25){
 				newState = State.STATE_SLOW;
 			}
 			//#transition 6.T.9
