@@ -620,14 +620,14 @@
     <h3> State: </h3>
     None
     <h3>BEHAVIORS: </h3>
-    2.1&nbsp;&nbsp;&nbsp; If all AtFloor[f, b]s are False and any
+    2.1&nbsp;&nbsp;&nbsp; If all AtFloor[f, b]s are False AND any
     DoorClosed[b, r] is False, set EmergencyBrake to on.<br>
     2.2&nbsp;&nbsp;&nbsp; If any DoorClosed[b,r] is false when there is
     no landing at hallway b, set EmergencyBrake to on.<br>
-    2.3&nbsp;&nbsp;&nbsp; If DriveSpeed.speed exceeds LevelSpeed and
-    DriveSpeed.direction is not equal to Stop and any DoorClosed[b,r] is
-    false, set the Emergency Brake to on.<br>
-    2.3&nbsp;&nbsp;&nbsp; If any DoorReversal[b, r] is True and any
+    2.3&nbsp;&nbsp;&nbsp; If DriveSpeed.speed exceeds LevelSpeed
+    AND&nbsp; DriveSpeed.direction is not equal to Stop AND any
+    DoorClosed[b,r] is false, set the Emergency Brake to on.<br>
+    2.3&nbsp;&nbsp;&nbsp; If any DoorReversal[b, r] is True AND any
     DoorMotor[b, r] is anything other than Open or Nudge for greater
     than 200msec (accumulated while DoorReversal[b, r] remains True),
     set EmergencyBrake to on.&nbsp;<br>
@@ -816,7 +816,7 @@
     <br>
     <ul>
     </ul>
-    2.6 &nbsp;&nbsp;&nbsp; If DriveSpeed.speed exceeds LevelSpeed and
+    2.6 &nbsp;&nbsp;&nbsp; If DriveSpeed.speed exceeds LevelSpeed AND
     DriveSpeed.direction is not equal to Stop and CarWeight
     MaxCarCapacity, set the EmergencyBrake to on.
     <h2><a name="drive"></a> 3. Drive&nbsp; (environmental object) </h2>
@@ -860,7 +860,7 @@
     3.2&nbsp;&nbsp;&nbsp; Car movement caused by cable slip shall not
     exceed 1cm.<br>
     <h3> BEHAVIORS: </h3>
-    3.2&nbsp;&nbsp;&nbsp; Drive(Stop,d) and Drive(s,Stop) shall stop the
+    3.2&nbsp;&nbsp;&nbsp; Drive(Stop,d) AND Drive(s,Stop) shall stop the
     Car regardless of values for s or d.<br>
     3.2.1&nbsp;&nbsp;&nbsp; The time to Stop the Car from Fast speed
     depends on the Car speed before Stop is commanded and is determined
@@ -940,13 +940,13 @@
     <h3> BEHAVIORS: </h3>
     4.4&nbsp;&nbsp;&nbsp; DoorMotor[b, r](Stop) shall stop changes in
     door position within 100 msec.<br>
-    4.5&nbsp;&nbsp;&nbsp; DoorMotor[b, r](Open) and DoorMotor[b,
+    4.5&nbsp;&nbsp;&nbsp; DoorMotor[b, r](Open) AND DoorMotor[b,
     r](Close) shall cause door[b, r] to Open and Close respectively
     according to a velocity profile.<br>
     4.6&nbsp;&nbsp;&nbsp; DoorMotor[b,r](Nudge) shall cause the door to
     close at a speed that is slow enough to avoid injuring passengers
     according to a velocity profile.<br>
-    4.7&nbsp;&nbsp;&nbsp; If the door is blocked by a passenger and the
+    4.7&nbsp;&nbsp;&nbsp; If the door is blocked by a passenger AND the
     DoorMotor[b,r] is commanded to Nudge, the door shall stop when it
     makes contact with the passenger.<br>
     4.6&nbsp;&nbsp;&nbsp; D_position shall be kept updated by a physical
@@ -1018,8 +1018,8 @@
     5.5&nbsp;&nbsp;&nbsp; If CarWeight(x) &gt;= MaxCarCapacity, the
     doors shall open completely until the car is no longer overloaded.
     <h3> TIME-TRIGGERED BEHAVIORS: </h3>
-    5.6 &nbsp;&nbsp; If any mAtFloor[f, b] is True and f equals
-    mDesiredFloor.f, and mDriveSpeed = (0, d) or mDriveSpeed = (s, Stop)
+    5.6 &nbsp;&nbsp; If any mAtFloor[f, b] is True AND f equals
+    mDesiredFloor.f, AND mDriveSpeed = (0, d) OR mDriveSpeed = (s, Stop)
     then: <br>
     &nbsp;&nbsp;&nbsp; 5.6.1&nbsp; DoorMotor[b, r] shall be commanded to
     Open; <br>
@@ -1044,7 +1044,7 @@
     mDesiredDwell[b].<br>
     5.12 mDoorMotor[b,r] shall be set to the current value of
     DoorMotor[b,r].<br>
-    5.13 If DoorMotor[b,r] is set to Close and mDoorReversal[b,r] is set
+    5.13 If DoorMotor[b,r] is set to Close AND mDoorReversal[b,r] is set
     to true, <br>
     &nbsp;&nbsp;&nbsp; 5.13.1 DoorMotor[b,r] shall be commanded to Open.<br>
     &nbsp;&nbsp;&nbsp; 5.13.2 ReversalCount shall be incremented.<br>
@@ -1052,7 +1052,7 @@
     <img alt="Door Control State Diagram"
       src="DoorControlStateDiagram.png" width="423" height="365"><br>
     <br>
-    <table border="1" width="100%" cellpadding="2" cellspacing="2">
+    <table width="100%" border="1" cellpadding="2" cellspacing="2">
       <tbody>
         <tr>
           <td style="vertical-align: top; font-weight: bold;
@@ -1065,7 +1065,7 @@
         <tr>
           <td valign="top">5.T.1<br>
           </td>
-          <td valign="top"> any mAtFloor[f, b] is True and f equals
+          <td valign="top"> any mAtFloor[f, b] is True AND f equals
             mDesiredFloor.f, AND mDriveSpeed is 0 or STOP </td>
         </tr>
         <tr>
@@ -1075,7 +1075,7 @@
         </tr>
         <tr>
           <td valign="top">5.T.3</td>
-          <td valign="top">CountDown reaches 0 and ReversalCount &lt;
+          <td valign="top">CountDown reaches 0 AND ReversalCount &lt;
             MaxReversals<br>
           </td>
         </tr>
@@ -1094,7 +1094,7 @@
         <tr>
           <td valign="top">5.T.6<br>
           </td>
-          <td valign="top">CountDown reaches 0 and ReversalCount &gt;=
+          <td valign="top">CountDown reaches 0 AND ReversalCount &gt;=
             MaxReversals </td>
         </tr>
         <tr>
@@ -1143,6 +1143,7 @@
 
 
 
+
       to Statechart Traceability</h3>
     <span style="color: rgb(0, 0, 0); font-family: 'Times New Roman';
       font-size: medium; font-style: normal; font-variant: normal;
@@ -1157,272 +1158,49 @@
       orphans: auto; text-align: start; text-indent: 0px;
       text-transform: none; white-space: normal; widows: auto;
       word-spacing: 0px; -webkit-text-stroke-width: 0px;">
-    <table border="1" width="531" cellpadding="2" cellspacing="2"
+    <table width="531" border="1" cellpadding="2" cellspacing="2"
       height="358">
       <tbody>
         <tr>
-          <td bgcolor="#cccccc" valign="top"><b>Reqs</b>:<br>
+          <td valign="top" bgcolor="#cccccc"><b>Reqs</b>:<br>
           </td>
-          <td bgcolor="#cccccc" valign="top" width="25">5.6.1<br>
+          <td valign="top" width="25" bgcolor="#cccccc">5.6.1<br>
           </td>
-          <td bgcolor="#cccccc" valign="top" width="25">5.6.2<br>
+          <td valign="top" width="25" bgcolor="#cccccc">5.6.2<br>
           </td>
-          <td bgcolor="#cccccc" valign="top">5.6.3<br>
+          <td valign="top" bgcolor="#cccccc">5.6.3<br>
           </td>
-          <td bgcolor="#cccccc" valign="top" width="25">5.7.1<br>
+          <td valign="top" width="25" bgcolor="#cccccc">5.7.1<br>
           </td>
-          <td bgcolor="#cccccc" valign="top" width="25">5.7.2<br>
+          <td valign="top" width="25" bgcolor="#cccccc">5.7.2<br>
           </td>
-          <td bgcolor="#cccccc" valign="top" width="25">5.8.1<br>
+          <td valign="top" width="25" bgcolor="#cccccc">5.8.1<br>
           </td>
-          <td bgcolor="#cccccc" valign="top">5.8.2<br>
+          <td valign="top" bgcolor="#cccccc">5.8.2<br>
           </td>
-          <td bgcolor="#cccccc" valign="top" width="25">5.9.1<br>
+          <td valign="top" width="25" bgcolor="#cccccc">5.9.1<br>
           </td>
-          <td bgcolor="#cccccc" valign="top">5.9.2<br>
+          <td valign="top" bgcolor="#cccccc">5.9.2<br>
           </td>
-          <td bgcolor="#cccccc" valign="top" width="25">5.10<br>
+          <td valign="top" width="25" bgcolor="#cccccc">5.10<br>
           </td>
-          <td bgcolor="#cccccc" valign="top" width="25">5.11<br>
+          <td valign="top" width="25" bgcolor="#cccccc">5.11<br>
           </td>
-          <td bgcolor="#cccccc" valign="top" width="25">5.12<br>
+          <td valign="top" width="25" bgcolor="#cccccc">5.12<br>
           </td>
-          <td bgcolor="#cccccc" valign="top">5.13.1<br>
+          <td valign="top" bgcolor="#cccccc">5.13.1<br>
           </td>
-          <td bgcolor="#cccccc" valign="top">5.13.2<br>
-          </td>
-        </tr>
-        <tr>
-          <td bgcolor="#cccccc" valign="top"><b>States</b>:<br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
+          <td valign="top" bgcolor="#cccccc">5.13.2<br>
           </td>
         </tr>
         <tr>
-          <td bgcolor="#cccccc" valign="top">5.S1<br>
+          <td valign="top" bgcolor="#cccccc"><b>States</b>:<br>
           </td>
           <td valign="top"><br>
           </td>
           <td valign="top"><br>
           </td>
           <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top">X<br>
-          </td>
-          <td valign="top">X<br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top">X<br>
-          </td>
-          <td valign="top">X<br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-        </tr>
-        <tr>
-          <td bgcolor="#cccccc" valign="top">5.S2<br>
-          </td>
-          <td valign="top">X<br>
-          </td>
-          <td valign="top">X<br>
-          </td>
-          <td valign="top">X<br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top">X<br>
-          </td>
-          <td valign="top">X<br>
-          </td>
-          <td valign="top">X<br>
-          </td>
-          <td valign="top">X<br>
-          </td>
-        </tr>
-        <tr>
-          <td bgcolor="#cccccc" valign="top">5.S3<br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top">X<br>
-          </td>
-          <td valign="top">X<br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top">X<br>
-          </td>
-          <td valign="top">X<br>
-          </td>
-          <td valign="top">X<br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-        </tr>
-        <tr>
-          <td bgcolor="#cccccc" valign="top">5.S4<br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top">X<br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top">X<br>
-          </td>
-          <td valign="top">X<br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-        </tr>
-        <tr>
-          <td bgcolor="#cccccc" valign="top">5.S5</td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top">X<br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top">X<br>
-          </td>
-          <td valign="top">X<br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-        </tr>
-        <tr>
-          <td bgcolor="#cccccc" valign="top"><b>Transitions</b><br>
-          </td>
-          <td bgcolor="#cccccc" valign="top"><br>
-          </td>
-          <td bgcolor="#cccccc" valign="top"><br>
-          </td>
-          <td bgcolor="#cccccc" valign="top"><br>
-          </td>
-          <td bgcolor="#cccccc" valign="top"><br>
-          </td>
-          <td bgcolor="#cccccc" valign="top"><br>
-          </td>
-          <td bgcolor="#cccccc" valign="top"><br>
-          </td>
-          <td bgcolor="#cccccc" valign="top"><br>
-          </td>
-          <td bgcolor="#cccccc" valign="top"><br>
-          </td>
-          <td bgcolor="#cccccc" valign="top"><br>
-          </td>
-          <td bgcolor="#cccccc" valign="top"><br>
-          </td>
-          <td bgcolor="#cccccc" valign="top"><br>
-          </td>
-          <td bgcolor="#cccccc" valign="top"><br>
-          </td>
-          <td bgcolor="#cccccc" valign="top"><br>
-          </td>
-          <td bgcolor="#cccccc" valign="top"><br>
-          </td>
-        </tr>
-        <tr>
-          <td bgcolor="#cccccc" valign="top">5.T1<br>
-          </td>
-          <td valign="top">X<br>
-          </td>
-          <td valign="top">X<br>
-          </td>
-          <td valign="top">X<br>
           </td>
           <td valign="top"><br>
           </td>
@@ -1448,7 +1226,230 @@
           </td>
         </tr>
         <tr>
-          <td bgcolor="#cccccc" valign="top">5.T2<br>
+          <td valign="top" bgcolor="#cccccc">5.S1<br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top">X<br>
+          </td>
+          <td valign="top">X<br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top">X<br>
+          </td>
+          <td valign="top">X<br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top" bgcolor="#cccccc">5.S2<br>
+          </td>
+          <td valign="top">X<br>
+          </td>
+          <td valign="top">X<br>
+          </td>
+          <td valign="top">X<br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top">X<br>
+          </td>
+          <td valign="top">X<br>
+          </td>
+          <td valign="top">X<br>
+          </td>
+          <td valign="top">X<br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top" bgcolor="#cccccc">5.S3<br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top">X<br>
+          </td>
+          <td valign="top">X<br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top">X<br>
+          </td>
+          <td valign="top">X<br>
+          </td>
+          <td valign="top">X<br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top" bgcolor="#cccccc">5.S4<br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top">X<br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top">X<br>
+          </td>
+          <td valign="top">X<br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top" bgcolor="#cccccc">5.S5</td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top">X<br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top">X<br>
+          </td>
+          <td valign="top">X<br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top" bgcolor="#cccccc"><b>Transitions</b><br>
+          </td>
+          <td valign="top" bgcolor="#cccccc"><br>
+          </td>
+          <td valign="top" bgcolor="#cccccc"><br>
+          </td>
+          <td valign="top" bgcolor="#cccccc"><br>
+          </td>
+          <td valign="top" bgcolor="#cccccc"><br>
+          </td>
+          <td valign="top" bgcolor="#cccccc"><br>
+          </td>
+          <td valign="top" bgcolor="#cccccc"><br>
+          </td>
+          <td valign="top" bgcolor="#cccccc"><br>
+          </td>
+          <td valign="top" bgcolor="#cccccc"><br>
+          </td>
+          <td valign="top" bgcolor="#cccccc"><br>
+          </td>
+          <td valign="top" bgcolor="#cccccc"><br>
+          </td>
+          <td valign="top" bgcolor="#cccccc"><br>
+          </td>
+          <td valign="top" bgcolor="#cccccc"><br>
+          </td>
+          <td valign="top" bgcolor="#cccccc"><br>
+          </td>
+          <td valign="top" bgcolor="#cccccc"><br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top" bgcolor="#cccccc">5.T1<br>
+          </td>
+          <td valign="top">X<br>
+          </td>
+          <td valign="top">X<br>
+          </td>
+          <td valign="top">X<br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top" bgcolor="#cccccc">5.T2<br>
           </td>
           <td valign="top"><br>
           </td>
@@ -1480,7 +1481,7 @@
           </td>
         </tr>
         <tr>
-          <td bgcolor="#cccccc" valign="top">5.T3<br>
+          <td valign="top" bgcolor="#cccccc">5.T3<br>
           </td>
           <td valign="top"><br>
           </td>
@@ -1512,103 +1513,7 @@
           </td>
         </tr>
         <tr>
-          <td bgcolor="#cccccc" valign="top">5.T4<br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top">X<br>
-          </td>
-          <td valign="top">X<br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-        </tr>
-        <tr>
-          <td bgcolor="#cccccc" valign="top">5.T5<br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top">X<br>
-          </td>
-          <td valign="top">X<br>
-          </td>
-        </tr>
-        <tr>
-          <td bgcolor="#cccccc" valign="top">5.T6<br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top">X<br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-        </tr>
-        <tr>
-          <td bgcolor="#cccccc" valign="top">5.T7<br>
+          <td valign="top" bgcolor="#cccccc">5.T4<br>
           </td>
           <td valign="top"><br>
           </td>
@@ -1640,7 +1545,103 @@
           </td>
         </tr>
         <tr>
-          <td bgcolor="#cccccc" valign="top">5.T8<br>
+          <td valign="top" bgcolor="#cccccc">5.T5<br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top">X<br>
+          </td>
+          <td valign="top">X<br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top" bgcolor="#cccccc">5.T6<br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top">X<br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top" bgcolor="#cccccc">5.T7<br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top">X<br>
+          </td>
+          <td valign="top">X<br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top" bgcolor="#cccccc">5.T8<br>
           </td>
           <td valign="top"><br>
           </td>
@@ -1935,7 +1936,7 @@
     DriveSpeed is Level,<br>
     &nbsp;&nbsp;&nbsp; 6.7.1 mDrive shall be set to {Stop, Stop}.<br>
     &nbsp;&nbsp;&nbsp; 6.7.2 Drive shall be set to {Stop, Stop}.<br>
-    6.8 If DesiredDirection is UP or DOWN and DriveSpeed is {0, STOP},<br>
+    6.8 If DesiredDirection is UP OR DOWN and DriveSpeed is {0, STOP},<br>
     &nbsp;&nbsp;&nbsp; 6.8.1 mDrive shall be set to {SLOW,
     DesiredDirection}.<br>
     &nbsp;&nbsp;&nbsp; 6.8.2 Drive shall be set to {SLOW,
@@ -1961,7 +1962,7 @@
     DesiredDirection}.<br>
     &nbsp;&nbsp;&nbsp; 6.13.2 Drive shall be set to {SLOW,
     DesiredDirection}.<br>
-    6.14 If DriveSpeed==SlowSpeed, and CommitPoint(mDesiredFloor.f) ==
+    6.14 If DriveSpeed==SlowSpeed, AND CommitPoint(mDesiredFloor.f) ==
     NotReached, <br>
     &nbsp;&nbsp;&nbsp; 6.14.1 mDrive shall be set to {FAST,
     DesiredDirection}.<br>
@@ -1971,7 +1972,7 @@
     <img alt="Drive Control State Diagram"
       src="DriveControlStateDiagram.png" width="644" height="362"><br>
     <br>
-    <table border="1" width="100%" cellpadding="2" cellspacing="2">
+    <table width="100%" border="1" cellpadding="2" cellspacing="2">
       <tbody>
         <tr>
           <td style="vertical-align: top; font-weight: bold;
@@ -1991,7 +1992,7 @@
         <tr>
           <td valign="top">T2<br>
           </td>
-          <td valign="top">Desired direction is set to UP or DOWN<br>
+          <td valign="top">Desired direction is set to UP OR DOWN<br>
           </td>
         </tr>
         <tr>
@@ -2002,32 +2003,32 @@
         <tr>
           <td valign="top">T4<br>
           </td>
-          <td valign="top">DesiredDirection is STOP and DriveSpeed is
+          <td valign="top">DesiredDirection is STOP AND DriveSpeed is
             {SLOW, DesiredDirection}<br>
           </td>
         </tr>
         <tr>
           <td valign="top">T5<br>
           </td>
-          <td valign="top">DesiredDirection is Stop and mLevel is set to
-            True and DriveSpeed is Level.</td>
+          <td valign="top">DesiredDirection is Stop AND mLevel is set to
+            True AND DriveSpeed is Level.</td>
         </tr>
         <tr>
           <td valign="top">T6<br>
           </td>
-          <td valign="top">Car weight is greater than max car capacity
-            and mLevel is False.</td>
+          <td valign="top">Car weight is greater than max cANDar
+            capacity&nbsp; mLevel is False.</td>
         </tr>
         <tr>
           <td valign="top">T7<br>
           </td>
-          <td valign="top">DriveSpeed==SlowSpeed and
+          <td valign="top">DriveSpeed==SlowSpeed AND
             CommitPoint(mDesiredFloor.f) == NotReached</td>
         </tr>
         <tr>
           <td valign="top">T8<br>
           </td>
-          <td valign="top">DriveSpeed &gt; SlowSpeed and
+          <td valign="top">DriveSpeed &gt; SlowSpeed AND
             CommitPoint(mDesiredFloor.f) == Reached</td>
         </tr>
         <tr>
@@ -2374,15 +2375,15 @@
     7.1&nbsp;&nbsp;&nbsp; Both CarLanterns[d] shall not be On at the
     same time.
     <h3> TIME-TRIGGERED BEHAVIORS: </h3>
-    7.2&nbsp;&nbsp; If mDoorClosed[b, r] is false, and mDesiredFloor.d
-    is Up or Down, CarLantern[d] of the desired direction shall be
+    7.2&nbsp;&nbsp; If mDoorClosed[b, r] is false, AND mDesiredFloor.d
+    is Up OR Down, CarLantern[d] of the desired direction shall be
     commanded to On.<br>
-    7.3&nbsp;&nbsp; If mDoorClosed[b, r] is false, and mDesiredFloor.d
+    7.3&nbsp;&nbsp; If mDoorClosed[b, r] is false, AND mDesiredFloor.d
     is Stop, both CarLantern[d] shall be commanded to Off.<br>
     7.4&nbsp;&nbsp; If all mDoorClosed[*, *] is true, both CarLantern[d]
     shall be commanded to Off.<br>
     <a href="LanternControl_state_diagram.png"><img alt=""
-        src="LanternControl_state_diagram.png" border="0" width="515"
+        src="LanternControl_state_diagram.png" width="515" border="0"
         height="213"></a><br>
     <br>
     <table style="text-align: left; width: 525px; height: 172px;"
@@ -2500,7 +2501,7 @@
           </td>
         </tr>
         <tr>
-          <td bgcolor="#cccccc" valign="top">7.T.3</td>
+          <td valign="top" bgcolor="#cccccc">7.T.3</td>
           <td valign="top"><br>
           </td>
           <td valign="top"><br>
@@ -2562,7 +2563,7 @@
     be set to true.<br>
     <br>
     8.2 &nbsp;&nbsp; For some DesiredDirection d, if mAtFloor[f,b] is
-    true and mDoorClosed[b,*] is false:<br>
+    true AND mDoorClosed[b,*] is false:<br>
     &nbsp;&nbsp;&nbsp; 8.2.1&nbsp;&nbsp;&nbsp; HallLight[f,b,d] <b>shall</b>
     be set to Off.<br>
     &nbsp;&nbsp;&nbsp; 8.2.2&nbsp;&nbsp;&nbsp; mHallLight[f,b,d] <b>shall</b>
@@ -2777,7 +2778,11 @@
     be set to true.<br>
     &nbsp;&nbsp;&nbsp; 9.1.3&nbsp;&nbsp;&nbsp; mCarCall[f,b] <b>shall</b>
     be set to true.<br>
-    9.2&nbsp;&nbsp;&nbsp; If mAtFloor[f,b] = True, then:<br>
+    9.2&nbsp;&nbsp;&nbsp; If CarCall[f,b] = False AND mAtFloor[f,b] =
+    True AND mDoorClosed[b,*] = False OR<br>
+    &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; CarCall[g,c] = True for g &gt;
+    currentFloor when direction is DOWN or g &lt; currentFloor when
+    direction is UP, then<br>
     &nbsp;&nbsp;&nbsp; 9.2.1&nbsp;&nbsp;&nbsp; CarLight[f,b] <b>shall</b>
     be set to Off.<br>
     &nbsp;&nbsp;&nbsp; 9.2.2&nbsp;&nbsp;&nbsp; mCarLight[f,b] <b>shall</b>
@@ -2786,11 +2791,11 @@
     be set to false.<br>
     <br>
     <a href="CarButtonControl_state_diagram.png"><img alt=""
-        src="CarButtonControl_state_diagram.png" border="0" width="883"
+        src="CarButtonControl_state_diagram.png" width="883" border="0"
         height="221"></a><br>
     <br>
     <br>
-    <table border="1" width="1033" cellpadding="2" cellspacing="2"
+    <table width="1033" border="1" cellpadding="2" cellspacing="2"
       height="131">
       <tbody>
         <tr>
@@ -2811,9 +2816,9 @@
           <td style="vertical-align: top;" width="150">9.T.2<br>
           </td>
           <td style="vertical-align: top;" width="2000">CarCall[f,b] is
-            not Pressed and (mAtFloor[f,b] == True and mDoorClosed[b,*]
-            == False or either going up and pressed CarCall for floor
-            below or going down and pressed CarCall for floor above)<br>
+            not Pressed AND (mAtFloor[f,b] == True AND mDoorClosed[b,*]
+            == False OR either going up AND pressed CarCall for floor
+            below or going down AND pressed CarCall for floor above)<br>
           </td>
         </tr>
       </tbody>
@@ -2822,7 +2827,7 @@
     <h3>Requirements to Statechart Traceability</h3>
     <p>Completed by David Chow (davidcho)<br>
     </p>
-    <table border="1" width="708" cellpadding="2" cellspacing="2"
+    <table width="708" border="1" cellpadding="2" cellspacing="2"
       height="132">
       <tbody>
         <tr style="font-weight: bold;">
@@ -2834,99 +2839,99 @@
           </td>
         </tr>
         <tr>
-          <td bgcolor="#cccccc" valign="top" width="100"><b>States</b><br>
+          <td valign="top" width="100" bgcolor="#cccccc"><b>States</b><br>
           </td>
-          <td bgcolor="#cccccc" valign="top" width="25">9.1.1<br>
+          <td valign="top" width="25" bgcolor="#cccccc">9.1.1<br>
           </td>
-          <td bgcolor="#cccccc" valign="top" width="25">9.1.2<br>
+          <td valign="top" width="25" bgcolor="#cccccc">9.1.2<br>
           </td>
-          <td bgcolor="#cccccc" valign="top" width="25">9.1.3<br>
+          <td valign="top" width="25" bgcolor="#cccccc">9.1.3<br>
           </td>
-          <td bgcolor="#cccccc" valign="top" width="25">9.2.1<br>
+          <td valign="top" width="25" bgcolor="#cccccc">9.2.1<br>
           </td>
-          <td bgcolor="#cccccc" valign="top" width="25">9.2.2<br>
+          <td valign="top" width="25" bgcolor="#cccccc">9.2.2<br>
           </td>
-          <td bgcolor="#cccccc" valign="top" width="25">9.2.3<br>
-          </td>
-        </tr>
-        <tr>
-          <td bgcolor="#cccccc" valign="top">State 1: LIGHT OFF<br>
-          </td>
-          <td align="center" valign="top">X<br>
-          </td>
-          <td align="center" valign="top">X<br>
-          </td>
-          <td align="center" valign="top">X<br>
-          </td>
-          <td align="center" valign="top"><br>
-          </td>
-          <td align="center" valign="top"><br>
-          </td>
-          <td align="center" valign="top"><br>
+          <td valign="top" width="25" bgcolor="#cccccc">9.2.3<br>
           </td>
         </tr>
         <tr>
-          <td bgcolor="#cccccc" valign="top">State 2: LIGHT ON<br>
+          <td valign="top" bgcolor="#cccccc">State 1: LIGHT OFF<br>
           </td>
-          <td align="center" valign="top"><br>
+          <td valign="top" align="center">X<br>
           </td>
-          <td align="center" valign="top"><br>
+          <td valign="top" align="center">X<br>
           </td>
-          <td align="center" valign="top"><br>
+          <td valign="top" align="center">X<br>
           </td>
-          <td align="center" valign="top">X<br>
+          <td valign="top" align="center"><br>
           </td>
-          <td align="center" valign="top">X<br>
+          <td valign="top" align="center"><br>
           </td>
-          <td align="center" valign="top">X<br>
-          </td>
-        </tr>
-        <tr>
-          <td bgcolor="#cccccc" valign="top" width="150"><b>Transitions</b><br>
-          </td>
-          <td align="center" bgcolor="#cccccc" valign="top"><br>
-          </td>
-          <td align="center" bgcolor="#cccccc" valign="top"><br>
-          </td>
-          <td align="center" bgcolor="#cccccc" valign="top"><br>
-          </td>
-          <td align="center" bgcolor="#cccccc" valign="top"><br>
-          </td>
-          <td align="center" bgcolor="#cccccc" valign="top"><br>
-          </td>
-          <td align="center" bgcolor="#cccccc" valign="top"><br>
+          <td valign="top" align="center"><br>
           </td>
         </tr>
         <tr>
-          <td bgcolor="#cccccc" valign="top">9.T.1<br>
+          <td valign="top" bgcolor="#cccccc">State 2: LIGHT ON<br>
           </td>
-          <td align="center" valign="top">X<br>
+          <td valign="top" align="center"><br>
           </td>
-          <td align="center" valign="top">X<br>
+          <td valign="top" align="center"><br>
           </td>
-          <td align="center" valign="top">X<br>
+          <td valign="top" align="center"><br>
           </td>
-          <td align="center" valign="top"><br>
+          <td valign="top" align="center">X<br>
           </td>
-          <td align="center" valign="top"><br>
+          <td valign="top" align="center">X<br>
           </td>
-          <td align="center" valign="top"><br>
+          <td valign="top" align="center">X<br>
           </td>
         </tr>
         <tr>
-          <td bgcolor="#cccccc" valign="top">9.T.2<br>
+          <td valign="top" width="150" bgcolor="#cccccc"><b>Transitions</b><br>
           </td>
-          <td align="center" valign="top"><br>
+          <td valign="top" align="center" bgcolor="#cccccc"><br>
           </td>
-          <td align="center" valign="top"><br>
+          <td valign="top" align="center" bgcolor="#cccccc"><br>
           </td>
-          <td align="center" valign="top"><br>
+          <td valign="top" align="center" bgcolor="#cccccc"><br>
           </td>
-          <td align="center" valign="top">X<br>
+          <td valign="top" align="center" bgcolor="#cccccc"><br>
           </td>
-          <td align="center" valign="top">X<br>
+          <td valign="top" align="center" bgcolor="#cccccc"><br>
           </td>
-          <td align="center" valign="top">X<br>
+          <td valign="top" align="center" bgcolor="#cccccc"><br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top" bgcolor="#cccccc">9.T.1<br>
+          </td>
+          <td valign="top" align="center">X<br>
+          </td>
+          <td valign="top" align="center">X<br>
+          </td>
+          <td valign="top" align="center">X<br>
+          </td>
+          <td valign="top" align="center"><br>
+          </td>
+          <td valign="top" align="center"><br>
+          </td>
+          <td valign="top" align="center"><br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top" bgcolor="#cccccc">9.T.2<br>
+          </td>
+          <td valign="top" align="center"><br>
+          </td>
+          <td valign="top" align="center"><br>
+          </td>
+          <td valign="top" align="center"><br>
+          </td>
+          <td valign="top" align="center">X<br>
+          </td>
+          <td valign="top" align="center">X<br>
+          </td>
+          <td valign="top" align="center">X<br>
           </td>
         </tr>
       </tbody>
@@ -2981,7 +2986,7 @@
     10.4 &nbsp;&nbsp;&nbsp; Whenever any mAtFloor[f, b] is True,
     CarPositionIndicator shall be commanded to display
     CurrentFloor.&nbsp;<br>
-    10.5 &nbsp;&nbsp;&nbsp;If mAtFloor[f,b] is True and mDriveSpeed is
+    10.5 &nbsp;&nbsp;&nbsp;If mAtFloor[f,b] is True AND mDriveSpeed is
     {s, DesiredDirection} for s &lt;= 0.25, CurrentFloor shall be set to
     f. <br>
     10.6 &nbsp;&nbsp;&nbsp;If mDriveSpeed is {s, DesiredDirection} for s
@@ -3101,18 +3106,18 @@
     &nbsp;&nbsp;&nbsp; 11.7.2&nbsp;&nbsp; mDesiredFloor.b shall be set
     to Both .<br>
     11.8 &nbsp;&nbsp; mDesiredFloor.b shall be set to b where b is
-    whichever mHallCall[Target,b,d] or mCarCall[Target,b] is true.<br>
+    whichever mHallCall[Target,b,d] OR mCarCall[Target,b] is true.<br>
     11.9 &nbsp;&nbsp; mDesiredDwell shall always be set to a constant
     appropriate value for door open dwell. &nbsp; &nbsp; <br>
     11.10&nbsp; Target shall be set to nearest possible floor f to
-    current floor where mCarCall[f,b] or mHallCall[f,b,d] is true and
+    current floor where mCarCall[f,b] OR mHallCall[f,b,d] is true and
     not beyond the CommitPoint in DesiredDirection.<br>
     11.11&nbsp; NextTarget shall be set to nearest floor to Target where
-    mCarCall[f,b] or mHallCall[f,b,d] is true in DesiredDirection.<br>
+    mCarCall[f,b] OR mHallCall[f,b,d] is true in DesiredDirection.<br>
     <br>
     <h2> </h2>
     <p>&nbsp; <a href="Dispatcher_state_diargram.png"><img alt=""
-          src="Dispatcher_state_diargram.png" border="0" width="554"
+          src="Dispatcher_state_diargram.png" width="554" border="0"
           height="468"></a><br>
     </p>
     <table style="text-align: left; width: 525px; height: 172px;"
@@ -3189,19 +3194,19 @@
           <td style="vertical-align: top; background-color: rgb(204,
             204, 204);">11.6.1<br>
           </td>
-          <td bgcolor="#cccccc" valign="top">11.6.2<br>
+          <td valign="top" bgcolor="#cccccc">11.6.2<br>
           </td>
-          <td bgcolor="#cccccc" valign="top">11.7.1<br>
+          <td valign="top" bgcolor="#cccccc">11.7.1<br>
           </td>
-          <td bgcolor="#cccccc" valign="top">11.7.2<br>
+          <td valign="top" bgcolor="#cccccc">11.7.2<br>
           </td>
-          <td bgcolor="#cccccc" valign="top">11.8<br>
+          <td valign="top" bgcolor="#cccccc">11.8<br>
           </td>
-          <td bgcolor="#cccccc" valign="top">11.9<br>
+          <td valign="top" bgcolor="#cccccc">11.9<br>
           </td>
-          <td bgcolor="#cccccc" valign="top">11.10<br>
+          <td valign="top" bgcolor="#cccccc">11.10<br>
           </td>
-          <td bgcolor="#cccccc" valign="top">11.11<br>
+          <td valign="top" bgcolor="#cccccc">11.11<br>
           </td>
         </tr>
         <tr>
@@ -3293,19 +3298,19 @@
           </td>
           <td style="vertical-align: top;" bgcolor="#cccccc"><br>
           </td>
-          <td bgcolor="#cccccc" valign="top"><br>
+          <td valign="top" bgcolor="#cccccc"><br>
           </td>
-          <td bgcolor="#cccccc" valign="top"><br>
+          <td valign="top" bgcolor="#cccccc"><br>
           </td>
-          <td bgcolor="#cccccc" valign="top"><br>
+          <td valign="top" bgcolor="#cccccc"><br>
           </td>
-          <td bgcolor="#cccccc" valign="top"><br>
+          <td valign="top" bgcolor="#cccccc"><br>
           </td>
-          <td bgcolor="#cccccc" valign="top"><br>
+          <td valign="top" bgcolor="#cccccc"><br>
           </td>
-          <td bgcolor="#cccccc" valign="top"><br>
+          <td valign="top" bgcolor="#cccccc"><br>
           </td>
-          <td bgcolor="#cccccc" valign="top"><br>
+          <td valign="top" bgcolor="#cccccc"><br>
           </td>
         </tr>
         <tr>
