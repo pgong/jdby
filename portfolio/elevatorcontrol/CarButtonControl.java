@@ -76,7 +76,6 @@ public class CarButtonControl extends Controller {
     private SimTime period;
     
     //additional internal state variables
-    private int CurrentFloor;
     private AtFloorArray floorArray;
 
     //enumerate states
@@ -181,7 +180,6 @@ public class CarButtonControl extends Controller {
                 localCarLight.set(false);
                 mCarLight.set(false);
                 mCarCall.set(false);
-                CurrentFloor = floorArray.getCurrentFloor();
                 
                 //#transition '9.T.1'
                   if (localCarCall.pressed() == true) {
