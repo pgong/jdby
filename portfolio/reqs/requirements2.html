@@ -1050,9 +1050,9 @@
     &nbsp;&nbsp;&nbsp; 5.13.2 ReversalCount shall be incremented.<br>
     <br>
     <img alt="Door Control State Diagram"
-      src="DoorControlStateDiagram.png" height="365" width="423"><br>
+      src="DoorControlStateDiagram.png" width="423" height="365"><br>
     <br>
-    <table border="1" cellpadding="2" cellspacing="2" width="100%">
+    <table border="1" width="100%" cellpadding="2" cellspacing="2">
       <tbody>
         <tr>
           <td style="vertical-align: top; font-weight: bold;
@@ -1140,6 +1140,9 @@
 
 
 
+
+
+
       to Statechart Traceability</h3>
     <span style="color: rgb(0, 0, 0); font-family: 'Times New Roman';
       font-size: medium; font-style: normal; font-variant: normal;
@@ -1154,8 +1157,8 @@
       orphans: auto; text-align: start; text-indent: 0px;
       text-transform: none; white-space: normal; widows: auto;
       word-spacing: 0px; -webkit-text-stroke-width: 0px;">
-    <table border="1" cellpadding="2" cellspacing="2" height="358"
-      width="531">
+    <table border="1" width="531" cellpadding="2" cellspacing="2"
+      height="358">
       <tbody>
         <tr>
           <td bgcolor="#cccccc" valign="top"><b>Reqs</b>:<br>
@@ -1966,9 +1969,9 @@
     DesiredDirection}.<br>
     <br>
     <img alt="Drive Control State Diagram"
-      src="DriveControlStateDiagram.png" height="362" width="644"><br>
+      src="DriveControlStateDiagram.png" width="644" height="362"><br>
     <br>
-    <table border="1" cellpadding="2" cellspacing="2" width="100%">
+    <table border="1" width="100%" cellpadding="2" cellspacing="2">
       <tbody>
         <tr>
           <td style="vertical-align: top; font-weight: bold;
@@ -2379,8 +2382,8 @@
     7.4&nbsp;&nbsp; If all mDoorClosed[*, *] is true, both CarLantern[d]
     shall be commanded to Off.<br>
     <a href="LanternControl_state_diagram.png"><img alt=""
-        src="LanternControl_state_diagram.png" border="0" height="213"
-        width="515"></a><br>
+        src="LanternControl_state_diagram.png" border="0" width="515"
+        height="213"></a><br>
     <br>
     <table style="text-align: left; width: 525px; height: 172px;"
       border="1" cellpadding="2" cellspacing="2">
@@ -2781,16 +2784,14 @@
     be set to false.<br>
     &nbsp;&nbsp;&nbsp; 9.2.3&nbsp;&nbsp;&nbsp; mCarCall[f,b] <b>shall</b>
     be set to false.<br>
-    &nbsp;&nbsp;&nbsp; 9.2.4&nbsp;&nbsp;&nbsp; CurrentFloor <b>shall</b>
-    be set to f.<br>
     <br>
     <a href="CarButtonControl_state_diagram.png"><img alt=""
-        src="CarButtonControl_state_diagram.png" border="0" height="221"
-        width="883"></a><br>
+        src="CarButtonControl_state_diagram.png" border="0" width="883"
+        height="221"></a><br>
     <br>
     <br>
-    <table border="1" cellpadding="2" cellspacing="2" height="131"
-      width="680">
+    <table border="1" width="1033" cellpadding="2" cellspacing="2"
+      height="131">
       <tbody>
         <tr>
           <td style="vertical-align: top; font-weight: bold;
@@ -2803,12 +2804,16 @@
         <tr>
           <td style="vertical-align: top;">9.T.1<br>
           </td>
-          <td style="vertical-align: top;"> CarCall[f,b] == True</td>
+          <td style="vertical-align: top;"> CarCall[f,b] is Pressed<br>
+          </td>
         </tr>
         <tr>
-          <td style="vertical-align: top;">9.T.2<br>
+          <td style="vertical-align: top;" width="150">9.T.2<br>
           </td>
-          <td style="vertical-align: top;"> mAtFloor[f,b] == True <br>
+          <td style="vertical-align: top;" width="2000">CarCall[f,b] is
+            not Pressed and (mAtFloor[f,b] == True and mDoorClosed[b,*]
+            == False or either going up and pressed CarCall for floor
+            below or going down and pressed CarCall for floor above)<br>
           </td>
         </tr>
       </tbody>
@@ -2817,14 +2822,14 @@
     <h3>Requirements to Statechart Traceability</h3>
     <p>Completed by David Chow (davidcho)<br>
     </p>
-    <table border="1" cellpadding="2" cellspacing="2" height="132"
-      width="708">
+    <table border="1" width="708" cellpadding="2" cellspacing="2"
+      height="132">
       <tbody>
         <tr style="font-weight: bold;">
           <td style="vertical-align: top; background-color: rgb(204,
             204, 204);"><br>
           </td>
-          <td colspan="8" rowspan="1" style="vertical-align: top;
+          <td colspan="7" rowspan="1" style="vertical-align: top;
             background-color: rgb(204, 204, 204);">Requirements<br>
           </td>
         </tr>
@@ -2843,8 +2848,6 @@
           </td>
           <td bgcolor="#cccccc" valign="top" width="25">9.2.3<br>
           </td>
-          <td bgcolor="#cccccc" valign="top" width="25">9.2.4<br>
-          </td>
         </tr>
         <tr>
           <td bgcolor="#cccccc" valign="top">State 1: LIGHT OFF<br>
@@ -2854,8 +2857,6 @@
           <td align="center" valign="top">X<br>
           </td>
           <td align="center" valign="top">X<br>
-          </td>
-          <td align="center" valign="top"><br>
           </td>
           <td align="center" valign="top"><br>
           </td>
@@ -2879,13 +2880,9 @@
           </td>
           <td align="center" valign="top">X<br>
           </td>
-          <td align="center" valign="top"><br>
-          </td>
         </tr>
         <tr>
           <td bgcolor="#cccccc" valign="top" width="150"><b>Transitions</b><br>
-          </td>
-          <td align="center" bgcolor="#cccccc" valign="top"><br>
           </td>
           <td align="center" bgcolor="#cccccc" valign="top"><br>
           </td>
@@ -2915,8 +2912,6 @@
           </td>
           <td align="center" valign="top"><br>
           </td>
-          <td align="center" valign="top">X<br>
-          </td>
         </tr>
         <tr>
           <td bgcolor="#cccccc" valign="top">9.T.2<br>
@@ -2926,8 +2921,6 @@
           <td align="center" valign="top"><br>
           </td>
           <td align="center" valign="top"><br>
-          </td>
-          <td align="center" valign="top">X<br>
           </td>
           <td align="center" valign="top">X<br>
           </td>
@@ -2989,10 +2982,10 @@
     CarPositionIndicator shall be commanded to display
     CurrentFloor.&nbsp;<br>
     10.5 &nbsp;&nbsp;&nbsp;If mAtFloor[f,b] is True and mDriveSpeed is
-    {0.25, DesiredDIrection}, CurrentFloor shall be set to f. <br>
-    10.6 &nbsp;&nbsp;&nbsp;If mDriveSpeed is not {0.25,
-    DesiredDirection}, CurrentFloor shall be set to mCarLevelPosition /
-    5000 + 1<br>
+    {s, DesiredDirection} for s &lt;= 0.25, CurrentFloor shall be set to
+    f. <br>
+    10.6 &nbsp;&nbsp;&nbsp;If mDriveSpeed is {s, DesiredDirection} for s
+    &gt; 0.25, CurrentFloor shall be set to mCarLevelPosition / 5000 + 1<br>
     <br>
     <div style="text-align: center;"><a
         href="carposcontrol_state_diagram.png"><img
@@ -3119,8 +3112,8 @@
     <br>
     <h2> </h2>
     <p>&nbsp; <a href="Dispatcher_state_diargram.png"><img alt=""
-          src="Dispatcher_state_diargram.png" border="0" height="468"
-          width="554"></a><br>
+          src="Dispatcher_state_diargram.png" border="0" width="554"
+          height="468"></a><br>
     </p>
     <table style="text-align: left; width: 525px; height: 172px;"
       border="1" cellpadding="2" cellspacing="2">
