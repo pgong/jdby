@@ -230,9 +230,6 @@ public class Dispatcher extends Controller{
 		case STATE_DOORSOPEN:
 			//State actions for 'DOORSOPEN'
 			
-			//Set current direction as next direction
-			curr_d = direction;
-			
 			if(hallway == Hallway.BOTH) {
 				//If either side of doors open and we're not at the floor, emergency!
 				//#transition 11.T.2
@@ -258,6 +255,8 @@ public class Dispatcher extends Controller{
 			else if((mDoorClosed[ReplicationComputer.computeReplicationId(Hallway.FRONT, Side.LEFT)].getValue() &&
 					mDoorClosed[ReplicationComputer.computeReplicationId(Hallway.BACK, Side.LEFT)].getValue()))
 				newState = State.STATE_DOORSCLOSED;
+			else
+				newState = state;
 			break;
 
 			//State actions for 'Doors Closed'
@@ -284,8 +283,10 @@ public class Dispatcher extends Controller{
 				if(hallway == Hallway.BOTH) {
 					//If we're at the next target floor AND doors are opening, jump to DOORSOPEN
 					//#transition 11.T.1
-					if(mAtFloor[ReplicationComputer.computeReplicationId(floor,Hallway.FRONT)].getValue())
+					if(mAtFloor[ReplicationComputer.computeReplicationId(floor,Hallway.FRONT)].getValue()){
 						newState = State.STATE_DOORSOPEN;
+						curr_d = direction;
+					}
 					//If either side of doors open and we're not at any floor, emergency!
 					//#transition 11.T.4
 					else if ((!mDoorClosed[ReplicationComputer.computeReplicationId(Hallway.FRONT, Side.LEFT)].getValue() ||
@@ -299,8 +300,10 @@ public class Dispatcher extends Controller{
 				}
 				//If we're at the next target floor AND doors are opening, jump to DOORSOPEN
 				//#transition 11.T.3
-				else if(mAtFloor[ReplicationComputer.computeReplicationId(floor,hallway)].getValue())
+				else if(mAtFloor[ReplicationComputer.computeReplicationId(floor,hallway)].getValue()){
 					newState = State.STATE_DOORSOPEN;
+					curr_d = direction;
+				}
 
 				//If either side of doors open and we're not at any floor, emergency!
 				//#transition 11.T.4
@@ -605,6 +608,7 @@ public class Dispatcher extends Controller{
 						}
 				}
 		}
+		log("target: ", target, "nextTarget: ", nextTarget, "hall call: ", nextHallCall );
 		//If target was found, change desired floor.
 		if(targetFound){
 			floor = target;
@@ -636,10 +640,10 @@ public class Dispatcher extends Controller{
 	 */
 	private boolean commitPoint(int f, Direction d, int car_position, double speed) {
 		if(d == Direction.UP){
-			return ((f - 1) * 5 - ((speed * speed) / 2 + 0.2))*1000 < car_position;
+			return ((f - 1) * 5 - ((speed * speed) / 2 + 0.2))*1000 > car_position;
 		}
 		else if(d == Direction.DOWN){
-			return ((f - 1) * 5 + ((speed * speed) / 2 + 0.2))*1000 > car_position;
+			return ((f - 1) * 5 + ((speed * speed) / 2 + 0.2))*1000 < car_position;
 		}
 		//If stopped, then we've definitely not reached the commit point.
 		else
