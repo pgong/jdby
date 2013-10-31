@@ -215,29 +215,30 @@ public class Dispatcher extends Controller{
 	@Override
 	public void timerExpired(Object callbackData) {
 		State newState = state;
-
+		curr_f = (mCarLevelPosition.getPosition() % 5000) + 1;
+		if(Elevator.hasLanding(curr_f, Hallway.FRONT)){
+			if(Elevator.hasLanding(curr_f, Hallway.BACK))
+				curr_h = Hallway.BOTH;
+			else
+				curr_h = Hallway.FRONT;
+		}
+		else
+			curr_h = Hallway.BACK;
 		//State Machine
 		switch(state){
 		//#state State 2: Doors Open
 		case STATE_DOORSOPEN:
 			//State actions for 'DOORSOPEN'
 			
-			//Check both sides for closed doors if that is the case.
-			curr_f = floor;
-			if(hallway == Hallway.BOTH)
-				curr_h = Hallway.FRONT;
-			else
-				curr_h = hallway;
-			
 			//Set current direction as next direction
 			curr_d = direction;
 			
-			if(curr_h == Hallway.BOTH) {
+			if(hallway == Hallway.BOTH) {
 				//If either side of doors open and we're not at the floor, emergency!
 				//#transition 11.T.2
 				if ((!mDoorClosed[ReplicationComputer.computeReplicationId(Hallway.FRONT, Side.LEFT)].getValue() ||
 						!mDoorClosed[ReplicationComputer.computeReplicationId(Hallway.BACK, Side.LEFT)].getValue()) && 
-						!mAtFloor[ReplicationComputer.computeReplicationId(curr_f,Hallway.FRONT)].getValue()) {
+						!mAtFloor[ReplicationComputer.computeReplicationId(floor,Hallway.FRONT)].getValue()) {
 					newState = State.STATE_EMERGENCY;
 				}
 				//#transition 11.T.3 when doors closed.
@@ -249,7 +250,7 @@ public class Dispatcher extends Controller{
 			//#transition 11.T.2
 			else if ((!mDoorClosed[ReplicationComputer.computeReplicationId(Hallway.FRONT, Side.LEFT)].getValue() ||
 					!mDoorClosed[ReplicationComputer.computeReplicationId(Hallway.BACK, Side.LEFT)].getValue()) && 
-					!mAtFloor[ReplicationComputer.computeReplicationId(curr_f,curr_h)].getValue()) {
+					!mAtFloor[ReplicationComputer.computeReplicationId(floor,hallway)].getValue()) {
 				newState = State.STATE_EMERGENCY;
 			}
 			//if no issues, move to the next state when doors closed
@@ -275,7 +276,7 @@ public class Dispatcher extends Controller{
 				}
 				else 
 					hallway = Hallway.BACK;
-
+				log("floor is ", floor, "direction is ", direction);
 				//Now set the next target.
 				mDesiredFloor.set(floor, direction, hallway);
 				
@@ -283,8 +284,7 @@ public class Dispatcher extends Controller{
 				if(hallway == Hallway.BOTH) {
 					//If we're at the next target floor AND doors are opening, jump to DOORSOPEN
 					//#transition 11.T.1
-					if(mAtFloor[ReplicationComputer.computeReplicationId(floor,Hallway.FRONT)].getValue() &&
-					   !mDoorClosed[ReplicationComputer.computeReplicationId(Hallway.FRONT, Side.LEFT)].getValue())
+					if(mAtFloor[ReplicationComputer.computeReplicationId(floor,Hallway.FRONT)].getValue())
 						newState = State.STATE_DOORSOPEN;
 					//If either side of doors open and we're not at any floor, emergency!
 					//#transition 11.T.4
@@ -299,8 +299,7 @@ public class Dispatcher extends Controller{
 				}
 				//If we're at the next target floor AND doors are opening, jump to DOORSOPEN
 				//#transition 11.T.3
-				else if(mAtFloor[ReplicationComputer.computeReplicationId(floor,hallway)].getValue() &&
-						!mDoorClosed[ReplicationComputer.computeReplicationId(hallway, Side.LEFT)].getValue())
+				else if(mAtFloor[ReplicationComputer.computeReplicationId(floor,hallway)].getValue())
 					newState = State.STATE_DOORSOPEN;
 
 				//If either side of doors open and we're not at any floor, emergency!
@@ -320,6 +319,7 @@ public class Dispatcher extends Controller{
 			case STATE_EMERGENCY:
 				floor = 1;
 				hallway = Hallway.BOTH;
+				direction = Direction.STOP;
 				//Set the desired floor back down to the lobby!
 				mDesiredFloor.set(floor, hallway, direction);
 				
@@ -327,7 +327,7 @@ public class Dispatcher extends Controller{
 				//#transition 11.T.5
 				if(!mDoorClosed[ReplicationComputer.computeReplicationId(Hallway.FRONT,Side.LEFT)].getValue() &&
 					mAtFloor[ReplicationComputer.computeReplicationId(1,Hallway.FRONT)].getValue())
-					newState = State.STATE_DOORSCLOSED;
+					newState = State.STATE_DOORSOPEN;
 				else
 					newState = state;
 				break;
@@ -403,10 +403,13 @@ public class Dispatcher extends Controller{
 							if(mCarCall[index].getValue() || mHallCall[hallIndex].getValue()){
 								//Make sure target hasn't already been set!
 								if(!targetFound && commitPoint(f, curr_d, car_position, speed)){
-									if(mHallCall[hallIndex].getValue())
-										nextHallCall = Direction.UP;
 									target = f;
 									targetFound = true;
+									if(mHallCall[hallIndex].getValue()){
+										nextHallCall = Direction.UP;
+										nextTargetFound = true;
+										break outerloop;
+									}
 									break innerloop;
 								}
 								//If the next target has been set as well, break out of both loops.
@@ -419,7 +422,7 @@ public class Dispatcher extends Controller{
 						}	
 				}
 		//Step THREE: Checking hall calls in desired direction, going in opposite direction.
-		if(!targetFound && !nextTargetFound){
+		if((nextHallCall == Direction.STOP) && (!targetFound || !nextTargetFound)){
 			outerloop:
 				for(int f = curr_floor; f <= Elevator.numFloors; f++){
 					innerloop:
@@ -432,7 +435,8 @@ public class Dispatcher extends Controller{
 									nextHallCall = Direction.DOWN;
 									target = f;
 									targetFound = true;
-									break innerloop;
+									nextTargetFound = true;
+									break outerloop;
 								}
 								//If the next target has been set as well, break out of both loops.
 								else if (!nextTargetFound){
@@ -445,7 +449,7 @@ public class Dispatcher extends Controller{
 				}
 		}
 		//Step FOUR and FIVE: Checking car and hall calls opposite of desired direction.
-		if(!targetFound && !nextTargetFound){
+		if((nextHallCall == Direction.STOP) && (!targetFound || !nextTargetFound)){
 			outerloop:
 				for(int f = curr_floor; f >= 1; f--){
 					innerloop:
@@ -456,10 +460,13 @@ public class Dispatcher extends Controller{
 							if(mCarCall[index].getValue() || mHallCall[hallIndex].getValue()){
 								//Make sure target hasn't already been set!
 								if(!targetFound && commitPoint(f, curr_d, car_position, speed)){
-									if(mHallCall[hallIndex].getValue())
-										nextHallCall = Direction.DOWN;
 									target = f;
 									targetFound = true;
+									if(mHallCall[hallIndex].getValue()){
+										nextHallCall = Direction.DOWN;
+										nextTargetFound = true;
+										break outerloop;
+									}
 									break innerloop;
 								}
 								//If the next target has been set as well, break out of both loops.
@@ -474,7 +481,7 @@ public class Dispatcher extends Controller{
 			}
 		//Step SIX: Checking hall calls opposite of desired direction, 
 		// going in current desired direction.
-				if(!targetFound && !nextTargetFound){
+				if((nextHallCall == Direction.STOP) && (!targetFound || !nextTargetFound)){
 					outerloop:
 						for(int f = curr_floor; f >= 1; f--){
 								for (Hallway h : Hallway.replicationValues) {
@@ -486,6 +493,7 @@ public class Dispatcher extends Controller{
 											nextHallCall = Direction.UP;
 											target = f;
 											targetFound = true;
+											nextTargetFound = true;
 											break outerloop;
 										}
 									}
@@ -510,6 +518,7 @@ public class Dispatcher extends Controller{
 									targetFound = true;
 									if(mHallCall[hallIndex].getValue()){
 										nextHallCall = Direction.DOWN;
+										nextTargetFound = true;
 										break outerloop;
 									}
 									break innerloop;
@@ -524,7 +533,7 @@ public class Dispatcher extends Controller{
 						}	
 				}
 		//Step THREE: Checking hall calls in desired direction, going in opposite direction.
-		if(!targetFound && !nextTargetFound){
+		if((nextHallCall == Direction.STOP) && (!targetFound || !nextTargetFound)){
 			outerloop:
 				for(int f = curr_floor; f >= 1; f--){
 						for (Hallway h : Hallway.replicationValues) {
@@ -536,6 +545,7 @@ public class Dispatcher extends Controller{
 									nextHallCall = Direction.UP;
 									target = f;
 									targetFound = true;
+									nextTargetFound = true;
 									break outerloop;
 								}
 							}
@@ -543,7 +553,7 @@ public class Dispatcher extends Controller{
 				}
 		}
 		//Step FOUR and FIVE: Checking car and hall calls opposite of desired direction.
-		if(!targetFound && !nextTargetFound){
+		if((nextHallCall == Direction.STOP) && (!targetFound || !nextTargetFound)){
 			outerloop:
 				for(int f = curr_floor; f <= Elevator.numFloors; f++){
 					innerloop:
@@ -558,6 +568,7 @@ public class Dispatcher extends Controller{
 									targetFound = true;
 									if(mHallCall[hallIndex].getValue()){
 										nextHallCall = Direction.UP;
+										nextTargetFound = true;
 										break outerloop;
 									}
 									break innerloop;
@@ -574,7 +585,7 @@ public class Dispatcher extends Controller{
 			}
 		//Step SIX: Checking hall calls opposite of desired direction, 
 		// going in current desired direction.
-				if(!targetFound && !nextTargetFound){
+				if((nextHallCall == Direction.STOP) && (!targetFound || !nextTargetFound)){
 					outerloop:
 						for(int f = curr_floor; f <= Elevator.numFloors; f++){
 								for (Hallway h : Hallway.replicationValues) {
@@ -586,6 +597,7 @@ public class Dispatcher extends Controller{
 											nextHallCall = Direction.DOWN;
 											target = f;
 											targetFound = true;
+											nextTargetFound = true;
 											break outerloop;
 										}
 									}
