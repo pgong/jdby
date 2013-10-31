@@ -52,7 +52,6 @@ public class LanternControl extends Controller {
     private BooleanCanPayloadTranslator mCarLantern;
 
     private int CurrentFloor;
-    private Direction DesiredDirection;
     private AtFloorArray floorArray;
 
     private final Direction direction;
@@ -111,8 +110,6 @@ public class LanternControl extends Controller {
         
 
         floorArray = new AtFloorArray(canInterface);
-        DesiredDirection = Direction.STOP;
-
         timer.start(period);
 
     }
@@ -125,16 +122,6 @@ public class LanternControl extends Controller {
             	mCarLantern.set(false);
             	CurrentFloor = floorArray.getCurrentFloor();
 
-            	if(CurrentFloor != MessageDictionary.NONE) {
-            		if(mDesiredFloor.getFloor() > CurrentFloor) {
-            			DesiredDirection = Direction.UP;
-            		}else if(mDesiredFloor.getFloor() < CurrentFloor) {
-            			DesiredDirection = Direction.DOWN;
-            		}else{
-            			DesiredDirection = Direction.STOP;
-            		}
-            		
-            	}
                 //#transition '7.T.1'
             	if(mDesiredFloor.getDirection() == direction && 
             		(mDoorClosedFrontLeft.getValue() == false || 
