@@ -41,7 +41,7 @@ import jSimPack.SimTime;
 
 /**
  * 
- * @author Jeff Lau
+ * @author Yang Liu
  *
  */
 public class DriveControl extends Controller{
@@ -100,15 +100,19 @@ public class DriveControl extends Controller{
     private boolean door_open;
     //Store variable to tell when overweight alarm goes off
     private boolean weight_flag;
-    
+    //To tell Commit Point reached or not
+    private boolean commitPointReached;
     //Additional internal state variables
     private SimTime counter = SimTime.ZERO;
+    private int CurrentFloor;
+    private AtFloorArray floorArray;
 
     //enumerate states
     private enum State {
     	STATE_STOP,
     	STATE_SLOW,
     	STATE_LEVEL,
+    	STATE_FAST
     }
     
     //state variable initialized at STOP
@@ -136,6 +140,8 @@ public class DriveControl extends Controller{
         physicalInterface.registerTimeTriggered(localDriveSpeed);
         physicalInterface.sendTimeTriggered(localDrive, period);
         
+        //Initialize commit point reached to be false.
+        commitPointReached = false;
         //Initialize network interface
         //Outputted network messages
         networkDrive = CanMailbox.getWriteableCanMailbox(
@@ -307,6 +313,19 @@ public class DriveControl extends Controller{
 			mDrive.set(Speed.SLOW, direction);
 			mDriveSpeed.set(localDriveSpeed.speed(),localDriveSpeed.direction());
 			
+			
+			if(direction == Direction.UP){
+				commitPointReached = ((mDesiredFloor.getFloor() -1) * 5 - 
+					(localDriveSpeed.speed() * localDriveSpeed.speed() / 2 + 0.2)) * 1000 < 
+					mCarLevelPosition.getPosition();
+			}
+			else if(direction == Direciton.DOWN){
+				commitPointReached = ((mDesiredFloor.getFloor() -1) * 5 + 
+					(localDriveSpeed.speed() * localDriveSpeed.speed() / 2 + 0.2)) * 1000 > 
+					mCarLevelPosition.getPosition();
+			}
+			else;
+
 			//transitions:
 			//#transition 6.T.3
 			if(mEmergencyBrake.getValue())
@@ -321,6 +340,10 @@ public class DriveControl extends Controller{
 					mDesiredFloor.getFloor(),
 					mDesiredFloor.getHallway())].getValue())
 				newState = State.STATE_LEVEL;
+			//#transition 6.T.7
+			else if(commitPointReached == false && localDriveSpeed.speed() == Speed.SLOW){
+				newState = State.STATE_FAST;
+			}
 			else
 				newState = state;
 			break;
@@ -347,6 +370,37 @@ public class DriveControl extends Controller{
 			}else
 				newState = state;
 			break;
+		case STATE_FAST:
+			//State action for 'SpeedFast'
+			localDrive.set(Speed.FAST, direction);
+			mDrive.set(Speed.FAST, direction);
+			mDriveSpeed.set(localDriveSpeed.speed(),localDriveSpeed.direction());
+
+	
+			if(direction == Direction.UP){
+				commitPointReached = ((mDesiredFloor.getFloor() -1) * 5 - 
+					(localDriveSpeed.speed() * localDriveSpeed.speed() / 2 + 0.2)) * 1000 < 
+					mCarLevelPosition.getPosition();
+			}
+			else if(direction == Direction.DOWN){
+				commitPointReached = ((mDesiredFloor.getFloor() -1) * 5000 + 
+					(localDriveSpeed.speed() * localDriveSpeed.speed() / 2 + 0.2)) * 1000 > 
+					mCarLevelPosition.getPosition();
+			}
+			else;
+
+			//transitions:
+			//#transition 6.T.8
+			if(commitPointReached == true && localDriveSpeed.speed() > Speed.SLOW){
+				newState = State.STATE_SLOW;
+			}
+			//#transition 6.T.9
+			else if(mEmergencyBrake.getValue())
+				newState = State.STATE_STOP;
+			else
+				newState = state;
+			break;
+
 		default:
 			throw new RuntimeException("State " + state + " was not recognized.");
 		}
