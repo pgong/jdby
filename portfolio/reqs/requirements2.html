@@ -1075,41 +1075,35 @@
         </tr>
         <tr>
           <td valign="top">5.T.3</td>
-          <td valign="top">Scheduled execution tick<br>
-          </td>
-        </tr>
-        <tr>
-          <td valign="top">5.T.4</td>
           <td valign="top">CountDown reaches 0 and ReversalCount &lt;
             MaxReversals<br>
           </td>
         </tr>
         <tr>
-          <td valign="top">5.T.5<br>
+          <td valign="top">5.T.4<br>
           </td>
           <td valign="top">DoorClosed is true.</td>
         </tr>
         <tr>
-          <td valign="top">5.T.6<br>
+          <td valign="top">5.T.5<br>
           </td>
           <td valign="top">mCarWeight(g) &gt;= MaxCarCapacity OR
-            mCarCall[f,b] is True<br>
+            mCarCall[f,b] is True OR mDoorReversal is true<br>
           </td>
+        </tr>
+        <tr>
+          <td valign="top">5.T.6<br>
+          </td>
+          <td valign="top">CountDown reaches 0 and ReversalCount &gt;=
+            MaxReversals </td>
         </tr>
         <tr>
           <td valign="top">5.T.7<br>
           </td>
-          <td valign="top">DoorClosed is true.<br>
-          </td>
+          <td valign="top">DoorClosed is true.</td>
         </tr>
         <tr>
           <td valign="top">5.T.8<br>
-          </td>
-          <td valign="top">CountDown reaches 0 and ReversalCount &gt;=
-            MaxReversals</td>
-        </tr>
-        <tr>
-          <td valign="top">5.T.9<br>
           </td>
           <td valign="top">mCarWeight(g) &gt;= MaxCarCapacity<br>
           </td>
@@ -1121,6 +1115,7 @@
       line-height: normal; orphans: auto; text-align: start;
       text-indent: 0px; text-transform: none; white-space: normal;
       widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px;">Requirements
+
 
 
 
@@ -1492,15 +1487,15 @@
           </td>
           <td valign="top"><br>
           </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
           <td valign="top">X<br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
           </td>
           <td valign="top"><br>
           </td>
@@ -1526,13 +1521,13 @@
           </td>
           <td valign="top"><br>
           </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
+          <td valign="top">X<br>
           </td>
           <td valign="top">X<br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
           </td>
           <td valign="top"><br>
           </td>
@@ -1558,23 +1553,23 @@
           </td>
           <td valign="top"><br>
           </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
           <td valign="top">X<br>
           </td>
           <td valign="top">X<br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
           </td>
         </tr>
         <tr>
@@ -1594,19 +1589,19 @@
           </td>
           <td valign="top"><br>
           </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
           <td valign="top">X<br>
           </td>
           <td valign="top"><br>
           </td>
           <td valign="top"><br>
           </td>
-          <td valign="top">X<br>
+          <td valign="top"><br>
           </td>
-          <td valign="top">X<br>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
           </td>
         </tr>
         <tr>
@@ -1643,38 +1638,6 @@
         </tr>
         <tr>
           <td bgcolor="#cccccc" valign="top">5.T8<br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top">X<br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-        </tr>
-        <tr>
-          <td bgcolor="#cccccc" valign="top">5.T9<br>
           </td>
           <td valign="top"><br>
           </td>
@@ -3102,8 +3065,8 @@
       <li>mHallCall[f, b, d]&nbsp;&nbsp; </li>
       <li>mCarCall[f, b]&nbsp;&nbsp;&nbsp; </li>
       <li>mCarPositionIndicator</li>
-	  <li>mCarPositionLevel</li>
-	  <li>mDriveSpeed</li>
+      <li>mCarPositionLevel</li>
+      <li>mDriveSpeed</li>
     </ul>
     <h3> Output Interface: </h3>
     <ul>
@@ -3183,20 +3146,19 @@
           <td valign="top">mDoorClosed[b,r] == False &amp;&amp;
             mAtFloor[f,b] == False </td>
         </tr>
-		<tr>
+        <tr>
           <td style="vertical-align: top;">11.T.3<br>
           </td>
-          <td style="vertical-align: top;">mDoorClosed[b, r] == True
-          </td>
+          <td style="vertical-align: top;">mDoorClosed[b, r] == True </td>
         </tr>
-		<tr>
+        <tr>
           <td style="vertical-align: top;">11.T.4<br>
           </td>
           <td style="vertical-align: top;">mDoorClosed[b, r] == False
             &amp;&amp; mAtFloor[*,*] == False<br>
           </td>
         </tr>
-		<tr>
+        <tr>
           <td style="vertical-align: top;">11.T.5<br>
           </td>
           <td style="vertical-align: top;">mDoorClosed[b, r] == False
@@ -3244,9 +3206,9 @@
           </td>
           <td bgcolor="#cccccc" valign="top">11.9<br>
           </td>
-		  <td bgcolor="#cccccc" valign="top">11.10<br>
+          <td bgcolor="#cccccc" valign="top">11.10<br>
           </td>
-		  <td bgcolor="#cccccc" valign="top">11.11<br>
+          <td bgcolor="#cccccc" valign="top">11.11<br>
           </td>
         </tr>
         <tr>
@@ -3270,7 +3232,7 @@
           </td>
           <td valign="top">X<br>
           </td>
-		  <td valign="top">X<br>
+          <td valign="top">X<br>
           </td>
           <td valign="top">X<br>
           </td>
@@ -3296,12 +3258,12 @@
           </td>
           <td valign="top">X<br>
           </td>
-		  <td valign="top">X<br>
+          <td valign="top">X<br>
           </td>
           <td valign="top">X<br>
           </td>
         </tr>
-		<tr>
+        <tr>
           <td style="vertical-align: top; background-color: rgb(204,
             204, 204);" bgcolor="#cccccc">State 3:&nbsp; <br>
             Emergency<br>
@@ -3322,7 +3284,7 @@
           </td>
           <td valign="top">X<br>
           </td>
-		  <td valign="top"><br>
+          <td valign="top"><br>
           </td>
           <td valign="top"><br>
           </td>
@@ -3348,7 +3310,7 @@
           </td>
           <td bgcolor="#cccccc" valign="top"><br>
           </td>
-		  <td bgcolor="#cccccc" valign="top"><br>
+          <td bgcolor="#cccccc" valign="top"><br>
           </td>
           <td bgcolor="#cccccc" valign="top"><br>
           </td>
@@ -3373,7 +3335,7 @@
           </td>
           <td valign="top"><br>
           </td>
-		  <td valign="top"><br>
+          <td valign="top"><br>
           </td>
           <td valign="top"><br>
           </td>
@@ -3397,12 +3359,12 @@
           </td>
           <td valign="top"><br>
           </td>
-		  <td valign="top"><br>
+          <td valign="top"><br>
           </td>
           <td valign="top"><br>
           </td>
         </tr>
-		<tr>
+        <tr>
           <td style="vertical-align: top; background-color: rgb(204,
             204, 204);" bgcolor="#cccccc">11.T.3</td>
           <td style="vertical-align: top;"><br>
@@ -3421,12 +3383,12 @@
           </td>
           <td valign="top"><br>
           </td>
-		  <td valign="top">x<br>
+          <td valign="top">x<br>
           </td>
           <td valign="top">x<br>
           </td>
         </tr>
-		<tr>
+        <tr>
           <td style="vertical-align: top; background-color: rgb(204,
             204, 204);" bgcolor="#cccccc">11.T.4</td>
           <td style="vertical-align: top;"><br>
@@ -3445,12 +3407,12 @@
           </td>
           <td valign="top"><br>
           </td>
-		  <td valign="top"><br>
+          <td valign="top"><br>
           </td>
           <td valign="top"><br>
           </td>
         </tr>
-		<tr>
+        <tr>
           <td style="vertical-align: top; background-color: rgb(204,
             204, 204);" bgcolor="#cccccc">11.T.5</td>
           <td style="vertical-align: top;"><br>
@@ -3469,7 +3431,7 @@
           </td>
           <td valign="top"><br>
           </td>
-		  <td valign="top"><br>
+          <td valign="top"><br>
           </td>
           <td valign="top"><br>
           </td>
