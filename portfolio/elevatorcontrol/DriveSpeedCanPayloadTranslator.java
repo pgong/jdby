@@ -166,12 +166,12 @@ public class DriveSpeedCanPayloadTranslator extends CanPayloadTranslator{
     
     public void setSpeed(double speed) {
         BitSet b = getMessagePayload();
-        addDoubleToBitset(b, speed, 0, 32);
+        addDoubleToBitset(b, speed*1000, 0, 32);
         setMessagePayload(b, getByteSize());
     }
 
     public double getSpeed() {
-        return getDoubleFromBitset(getMessagePayload(), 0, 32);
+        return getDoubleFromBitset(getMessagePayload(), 0, 32)/1000;
     }
 
     public void setDirection(Direction dir) {
