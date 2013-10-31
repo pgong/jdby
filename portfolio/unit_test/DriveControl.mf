@@ -63,7 +63,7 @@
 0.900s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][LEFT]_CAN_ID DoorClosed BACK LEFT = true
 0.900s  I AT_FLOOR_PERIOD N AT_FLOOR_[1][FRONT]_CAN_ID AtFloor 1 FRONT = false
 0.900s  I DISPATCHER_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 2 STOP BACK
-0.980s  I DRIVE_CONTROL_PERIOD F DriveSpeed = UP 0.20
+0.980s  I DRIVE_CONTROL_PERIOD F DriveSpeed = UP 0.25
 0.980s  I  DRIVE_CONTROL_PERIOD N LEVEL_SENSOR_[UP]_CAN_ID Leveling UP = false
 
 ;Check that elevator moves to slow_state based on new DesiredFloor
@@ -73,7 +73,7 @@
 1.20s  A F Drive : direction == UP
 1.20s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getSpeed == SLOW
 1.20s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getDirection == UP
-1.20s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0.20
+1.20s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0.25
 1.20s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == UP
 1.20s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getFloor == 2
 
@@ -92,7 +92,7 @@
 
 ;Revert back to normal state
 1.263s  I  DRIVE_CONTROL_PERIOD N EMERGENCY_BRAKE_CAN_ID Boolean = false
-1.300s  I DRIVE_CONTROL_PERIOD F DriveSpeed = UP 0.20
+1.300s  I DRIVE_CONTROL_PERIOD F DriveSpeed = UP 0.25
 
 ;Reverting conditions back for 6.T.2 and checking state
 ;Check that elevator moves to slow_state based on new DesiredFloor
@@ -100,12 +100,12 @@
 1.400s  A F Drive : direction == UP
 1.400s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getSpeed == SLOW
 1.400s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getDirection == UP
-1.400s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0.20
+1.400s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0.25
 1.400s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == UP
 1.400s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getFloor == 2
 
 ;Set conditions for 6.T.7
-1.420s  I DRIVE_CONTROL_PERIOD F DriveSpeed = UP 0.25
+1.420s  I DRIVE_CONTROL_PERIOD F DriveSpeed = UP 1.0
 1.420s  I DISPATCHER_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 2 STOP BACK
 1.420s  I CAR_POSITION_CONTROL_PERIOD N CAR_LEVEL_POSITION_CAN_ID CarLevelPosition = 3000
 
@@ -113,13 +113,13 @@
 1.480s  A S DriveControl : STATE == STATE_FAST
 1.480s  A F Drive : speed == FAST
 1.480s  A F Drive : direction == UP
-1.480s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0.25
+1.480s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 1.0
 1.480s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == UP
 1.480s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getSpeed == FAST
 1.480s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getDirection == UP
 
 ;Set conditions for 6.T.8
-1.500s  I DRIVE_CONTROL_PERIOD F DriveSpeed = UP 0.90
+1.500s  I DRIVE_CONTROL_PERIOD F DriveSpeed = UP 0.25
 1.500s  I DISPATCHER_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 2 STOP BACK
 1.500s  I CAR_POSITION_CONTROL_PERIOD N CAR_LEVEL_POSITION_CAN_ID CarLevelPosition = 4500
 
@@ -127,13 +127,13 @@
 1.580s  A S DriveControl : STATE == STATE_SLOW
 1.580s  A F Drive : speed == SLOW
 1.580s  A F Drive : direction == UP
-1.580s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0.90
+1.580s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0.25
 1.580s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == UP
 1.580s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getSpeed == SLOW
 1.580s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getDirection == UP
 
 ;Set conditions for 6.T.7
-1.600s  I DRIVE_CONTROL_PERIOD F DriveSpeed = UP 0.25
+1.600s  I DRIVE_CONTROL_PERIOD F DriveSpeed = UP 1.0
 1.600s  I DISPATCHER_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 2 STOP BACK
 1.600s  I CAR_POSITION_CONTROL_PERIOD N CAR_LEVEL_POSITION_CAN_ID CarLevelPosition = 3000
 
@@ -141,7 +141,7 @@
 1.680s  A S DriveControl : STATE == STATE_FAST
 1.680s  A F Drive : speed == FAST
 1.680s  A F Drive : direction == UP
-1.680s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0.25
+1.680s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 1.0
 1.680s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == UP
 1.680s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getSpeed == FAST
 1.680s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getDirection == UP
@@ -170,7 +170,7 @@
 1.900s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][LEFT]_CAN_ID DoorClosed BACK LEFT = true
 1.900s  I AT_FLOOR_PERIOD N AT_FLOOR_[1][FRONT]_CAN_ID AtFloor 1 FRONT = false
 1.900s  I DISPATCHER_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 2 STOP BACK
-1.980s  I DRIVE_CONTROL_PERIOD F DriveSpeed = UP 0.20
+1.980s  I DRIVE_CONTROL_PERIOD F DriveSpeed = UP 0.25
 1.980s  I  DRIVE_CONTROL_PERIOD N LEVEL_SENSOR_[UP]_CAN_ID Leveling UP = false
 
 ;#state 'STATE_SLOW'
@@ -178,7 +178,7 @@
 2.60s  A F Drive : direction == UP
 2.60s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getSpeed == SLOW
 2.60s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getDirection == UP
-2.60s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0.20
+2.60s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0.25
 2.60s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == UP
 2.60s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getFloor == 2
 
