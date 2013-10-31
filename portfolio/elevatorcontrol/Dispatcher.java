@@ -424,85 +424,85 @@ public class Dispatcher extends Controller{
 							}
 						}	
 				}
-		//Step THREE: Checking hall calls in desired direction, going in opposite direction.
-		if((nextHallCall == Direction.STOP) && (!targetFound || !nextTargetFound)){
-			outerloop:
-				for(int f = curr_floor; f <= Elevator.numFloors; f++){
-					innerloop:
-						for (Hallway h : Hallway.replicationValues) {
-							int hallIndex = ReplicationComputer.computeReplicationId(f,h,Direction.DOWN);
-							//If there is a car call or hall call at the given floor, try and set as target.
-							if(mHallCall[hallIndex].getValue()){
-								//Make sure target hasn't already been set!
-								if(!targetFound && commitPoint(f, curr_d, car_position, speed)){
-									nextHallCall = Direction.DOWN;
-									target = f;
-									targetFound = true;
-									nextTargetFound = true;
-									break outerloop;
-								}
-								//If the next target has been set as well, break out of both loops.
-								else if (!nextTargetFound){
-									nextTargetFound = true;
-									nextTarget = f;
-									break outerloop;
-								}
-							}
-						}	
-				}
-		}
-		//Step FOUR and FIVE: Checking car and hall calls opposite of desired direction.
-		if((nextHallCall == Direction.STOP) && (!targetFound || !nextTargetFound)){
-			outerloop:
-				for(int f = curr_floor; f >= 1; f--){
-					innerloop:
-						for (Hallway h : Hallway.replicationValues) {
-							int index = ReplicationComputer.computeReplicationId(f,h);
-							int hallIndex = ReplicationComputer.computeReplicationId(f,h,Direction.DOWN);
-							//If there is a car call or hall call at the given floor, try and set as target.
-							if(mCarCall[index].getValue() || mHallCall[hallIndex].getValue()){
-								//Make sure target hasn't already been set!
-								if(!targetFound && commitPoint(f, curr_d, car_position, speed)){
-									target = f;
-									targetFound = true;
-									if(mHallCall[hallIndex].getValue()){
+			//Step THREE: Checking hall calls in desired direction, going in opposite direction.
+			if((nextHallCall == Direction.STOP) && (!targetFound || !nextTargetFound)){
+				outerloop:
+					for(int f = curr_floor; f <= Elevator.numFloors; f++){
+						innerloop:
+							for (Hallway h : Hallway.replicationValues) {
+								int hallIndex = ReplicationComputer.computeReplicationId(f,h,Direction.DOWN);
+								//If there is a car call or hall call at the given floor, try and set as target.
+								if(mHallCall[hallIndex].getValue()){
+									//Make sure target hasn't already been set!
+									if(!targetFound && commitPoint(f, curr_d, car_position, speed)){
 										nextHallCall = Direction.DOWN;
+										target = f;
+										targetFound = true;
 										nextTargetFound = true;
 										break outerloop;
 									}
-									break innerloop;
+									//If the next target has been set as well, break out of both loops.
+									else if (!nextTargetFound){
+										nextTargetFound = true;
+										nextTarget = f;
+										break outerloop;
+									}
 								}
-								//If the next target has been set as well, break out of both loops.
-								else if (!nextTargetFound){
-									nextTargetFound = true;
-									nextTarget = f;
-									break outerloop;
-								}
-							}
-						}	
-				}
+							}	
+					}
 			}
-		//Step SIX: Checking hall calls opposite of desired direction, 
-		// going in current desired direction.
-				if((nextHallCall == Direction.STOP) && (!targetFound || !nextTargetFound)){
-					outerloop:
-						for(int f = curr_floor; f >= 1; f--){
-								for (Hallway h : Hallway.replicationValues) {
-									int hallIndex = ReplicationComputer.computeReplicationId(f,h,Direction.UP);
-									//If there is a car call or hall call at the given floor, try and set as target.
-									if(mHallCall[hallIndex].getValue()){
-										//Make sure target hasn't already been set!
-										if(!targetFound && commitPoint(f, curr_d, car_position, speed)){
-											nextHallCall = Direction.UP;
-											target = f;
-											targetFound = true;
+			//Step FOUR and FIVE: Checking car and hall calls opposite of desired direction.
+			if((nextHallCall == Direction.STOP) && (!targetFound || !nextTargetFound)){
+				outerloop:
+					for(int f = curr_floor; f >= 1; f--){
+						innerloop:
+							for (Hallway h : Hallway.replicationValues) {
+								int index = ReplicationComputer.computeReplicationId(f,h);
+								int hallIndex = ReplicationComputer.computeReplicationId(f,h,Direction.DOWN);
+								//If there is a car call or hall call at the given floor, try and set as target.
+								if(mCarCall[index].getValue() || mHallCall[hallIndex].getValue()){
+									//Make sure target hasn't already been set!
+									if(!targetFound && commitPoint(f, curr_d, car_position, speed)){
+										target = f;
+										targetFound = true;
+										if(mHallCall[hallIndex].getValue()){
+											nextHallCall = Direction.DOWN;
 											nextTargetFound = true;
 											break outerloop;
 										}
+										break innerloop;
 									}
-								}	
-						}
-				}
+									//If the next target has been set as well, break out of both loops.
+									else if (!nextTargetFound){
+										nextTargetFound = true;
+										nextTarget = f;
+										break outerloop;
+									}
+								}
+							}	
+					}
+			}
+			//Step SIX: Checking hall calls opposite of desired direction, 
+			// going in current desired direction.
+			if((nextHallCall == Direction.STOP) && (!targetFound || !nextTargetFound)){
+				outerloop:
+					for(int f = curr_floor; f >= 1; f--){
+							for (Hallway h : Hallway.replicationValues) {
+								int hallIndex = ReplicationComputer.computeReplicationId(f,h,Direction.UP);
+								//If there is a car call or hall call at the given floor, try and set as target.
+								if(mHallCall[hallIndex].getValue()){
+									//Make sure target hasn't already been set!
+									if(!targetFound && commitPoint(f, curr_d, car_position, speed)){
+										nextHallCall = Direction.UP;
+										target = f;
+										targetFound = true;
+										nextTargetFound = true;
+										break outerloop;
+									}
+								}
+							}	
+					}
+			}
 		}
 		//Otherwise, if DOWN or STOP, assume DOWN
 		else{
@@ -535,78 +535,78 @@ public class Dispatcher extends Controller{
 							}
 						}	
 				}
-		//Step THREE: Checking hall calls in desired direction, going in opposite direction.
-		if((nextHallCall == Direction.STOP) && (!targetFound || !nextTargetFound)){
-			outerloop:
-				for(int f = curr_floor; f >= 1; f--){
-						for (Hallway h : Hallway.replicationValues) {
-							int hallIndex = ReplicationComputer.computeReplicationId(f,h,Direction.UP);
-							//If there is a car call or hall call at the given floor, try and set as target.
-							if(mHallCall[hallIndex].getValue()){
-								//Make sure target hasn't already been set!
-								if(!targetFound && commitPoint(f, curr_d, car_position, speed)){
-									nextHallCall = Direction.UP;
-									target = f;
-									targetFound = true;
-									nextTargetFound = true;
-									break outerloop;
-								}
-							}
-						}	
-				}
-		}
-		//Step FOUR and FIVE: Checking car and hall calls opposite of desired direction.
-		if((nextHallCall == Direction.STOP) && (!targetFound || !nextTargetFound)){
-			outerloop:
-				for(int f = curr_floor; f <= Elevator.numFloors; f++){
-					innerloop:
-						for (Hallway h : Hallway.replicationValues) {
-							int index = ReplicationComputer.computeReplicationId(f,h);
-							int hallIndex = ReplicationComputer.computeReplicationId(f,h,Direction.UP);
-							//If there is a car call or hall call at the given floor, try and set as target.
-							if(mCarCall[index].getValue() || mHallCall[hallIndex].getValue()){
-								//Make sure target hasn't already been set!
-								if(!targetFound && commitPoint(f, curr_d, car_position, speed)){
-									target = f;
-									targetFound = true;
-									if(mHallCall[hallIndex].getValue()){
+			//Step THREE: Checking hall calls in desired direction, going in opposite direction.
+			if((nextHallCall == Direction.STOP) && (!targetFound || !nextTargetFound)){
+				outerloop:
+					for(int f = curr_floor; f >= 1; f--){
+							for (Hallway h : Hallway.replicationValues) {
+								int hallIndex = ReplicationComputer.computeReplicationId(f,h,Direction.UP);
+								//If there is a car call or hall call at the given floor, try and set as target.
+								if(mHallCall[hallIndex].getValue()){
+									//Make sure target hasn't already been set!
+									if(!targetFound && commitPoint(f, curr_d, car_position, speed)){
 										nextHallCall = Direction.UP;
+										target = f;
+										targetFound = true;
 										nextTargetFound = true;
 										break outerloop;
 									}
-									break innerloop;
 								}
-								//If the next target has been set as well, break out of both loops.
-								else if (!nextTargetFound){
-									nextTargetFound = true;
-									nextTarget = f;
-									break outerloop;
-								}
-							}
-						}	
-				}
+							}	
+					}
 			}
-		//Step SIX: Checking hall calls opposite of desired direction, 
-		// going in current desired direction.
-				if((nextHallCall == Direction.STOP) && (!targetFound || !nextTargetFound)){
-					outerloop:
-						for(int f = curr_floor; f <= Elevator.numFloors; f++){
-								for (Hallway h : Hallway.replicationValues) {
-									int hallIndex = ReplicationComputer.computeReplicationId(f,h,Direction.DOWN);
-									//If there is a car call or hall call at the given floor, try and set as target.
-									if(mHallCall[hallIndex].getValue()){
-										//Make sure target hasn't already been set!
-										if(!targetFound && commitPoint(f, curr_d, car_position, speed)){
-											nextHallCall = Direction.DOWN;
-											target = f;
-											targetFound = true;
+			//Step FOUR and FIVE: Checking car and hall calls opposite of desired direction.
+			if((nextHallCall == Direction.STOP) && (!targetFound || !nextTargetFound)){
+				outerloop:
+					for(int f = curr_floor; f <= Elevator.numFloors; f++){
+						innerloop:
+							for (Hallway h : Hallway.replicationValues) {
+								int index = ReplicationComputer.computeReplicationId(f,h);
+								int hallIndex = ReplicationComputer.computeReplicationId(f,h,Direction.UP);
+								//If there is a car call or hall call at the given floor, try and set as target.
+								if(mCarCall[index].getValue() || mHallCall[hallIndex].getValue()){
+									//Make sure target hasn't already been set!
+									if(!targetFound && commitPoint(f, curr_d, car_position, speed)){
+										target = f;
+										targetFound = true;
+										if(mHallCall[hallIndex].getValue()){
+											nextHallCall = Direction.UP;
 											nextTargetFound = true;
 											break outerloop;
 										}
+										break innerloop;
 									}
-								}	
-						}
-				}
+									//If the next target has been set as well, break out of both loops.
+									else if (!nextTargetFound){
+										nextTargetFound = true;
+										nextTarget = f;
+										break outerloop;
+									}
+								}
+							}	
+					}
+			}
+			//Step SIX: Checking hall calls opposite of desired direction, 
+			// going in current desired direction.
+			if((nextHallCall == Direction.STOP) && (!targetFound || !nextTargetFound)){
+				outerloop:
+					for(int f = curr_floor; f <= Elevator.numFloors; f++){
+							for (Hallway h : Hallway.replicationValues) {
+								int hallIndex = ReplicationComputer.computeReplicationId(f,h,Direction.DOWN);
+								//If there is a car call or hall call at the given floor, try and set as target.
+								if(mHallCall[hallIndex].getValue()){
+									//Make sure target hasn't already been set!
+									if(!targetFound && commitPoint(f, curr_d, car_position, speed)){
+										nextHallCall = Direction.DOWN;
+										target = f;
+										targetFound = true;
+										nextTargetFound = true;
+										break outerloop;
+									}
+								}
+							}	
+					}
+			}
 		}
 		log("target: ", target, "nextTarget: ", nextTarget, "hall call: ", nextHallCall );
 		//If target was found, change desired floor.
