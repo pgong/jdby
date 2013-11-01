@@ -1144,6 +1144,7 @@
 
 
 
+
       to Statechart Traceability</h3>
     <span style="color: rgb(0, 0, 0); font-family: 'Times New Roman';
       font-size: medium; font-style: normal; font-variant: normal;
@@ -1948,25 +1949,17 @@
     False AND DriveSpeed is Stop,<br>
     &nbsp;&nbsp;&nbsp; 6.10.1 mDrive shall be set to {LEVEL, Up}.<br>
     &nbsp;&nbsp;&nbsp; 6.10.2 Drive shall be set to {LEVEL, Up}.<br>
-    6.11 Current floor shall be set to mCarLevelPosition/5000<br>
-    6.12 DesiredDirection,<br>
-    &nbsp;&nbsp;&nbsp; 6.12.1 shall be set to UP if mDesiredFloor.f -
-    CurrentFloor is greater than zero.<br>
-    &nbsp;&nbsp;&nbsp; 6.12.2 shall be set to DOWN if mDesiredFloor.f -
-    CurrentFloor is less than zero. <br>
-    &nbsp;&nbsp;&nbsp; 6.12.3 shall be set to STOP if mDesiredFloor.f -
-    CurrentFloor is equal to zero. <br>
-    6.13 If DriveSpeed&gt;=SlowSpeed and CommitPoint(mDesiredFloor.f) ==
+    6.11 If DriveSpeed&gt;=SlowSpeed and CommitPoint(mDesiredFloor.f) ==
     Reached, <br>
-    &nbsp;&nbsp;&nbsp; 6.13.1 mDrive shall be set to {SLOW,
+    &nbsp;&nbsp;&nbsp; 6.11.1 mDrive shall be set to {SLOW,
     DesiredDirection}.<br>
-    &nbsp;&nbsp;&nbsp; 6.13.2 Drive shall be set to {SLOW,
+    &nbsp;&nbsp;&nbsp; 6.11.2 Drive shall be set to {SLOW,
     DesiredDirection}.<br>
-    6.14 If DriveSpeed==SlowSpeed, AND CommitPoint(mDesiredFloor.f) ==
+    6.12 If DriveSpeed==SlowSpeed, AND CommitPoint(mDesiredFloor.f) ==
     NotReached, <br>
-    &nbsp;&nbsp;&nbsp; 6.14.1 mDrive shall be set to {FAST,
+    &nbsp;&nbsp;&nbsp; 6.12.1 mDrive shall be set to {FAST,
     DesiredDirection}.<br>
-    &nbsp;&nbsp;&nbsp; 6.14.2 Drive shall be set to {FAST,
+    &nbsp;&nbsp;&nbsp; 6.12.2 Drive shall be set to {FAST,
     DesiredDirection}.<br>
     <br>
     <img alt="Drive Control State Diagram"
@@ -2041,50 +2034,58 @@
     <br>
     <h3>Requirements to Statechart Traceability</h3>
     completed by Brody Anderson(bcanders)<br>
-    <table style="text-align: left; width: 409px; height: 312px;"
-      border="1" cellpadding="2" cellspacing="2">
+    <table style="text-align: left;" width="788" border="1"
+      cellpadding="2" cellspacing="2" height="470">
       <tbody>
         <tr style="font-weight: bold;">
           <td style="vertical-align: top; background-color: rgb(204,
             204, 204);"><br>
           </td>
-          <td colspan="4" rowspan="1" style="vertical-align: top;
-            background-color: rgb(204, 204, 204);">Requirements<br>
-          </td>
+          <td colspan="14" rowspan="1" style="vertical-align: top;
+            background-color: rgb(204, 204, 204);" bgcolor="#cccccc"
+            height="25">Requirements </td>
         </tr>
         <tr>
           <td style="vertical-align: top; background-color: rgb(204,
             204, 204);"><span style="font-weight: bold;">States</span><br>
           </td>
           <td style="vertical-align: top; background-color: rgb(204,
-            204, 204);">6.6.1<br>
+            204, 204);" bgcolor="#cccccc">6.6.1<br>
           </td>
           <td style="vertical-align: top; background-color: rgb(204,
-            204, 204);">6.6.2<br>
+            204, 204);" bgcolor="#cccccc">6.6.2<br>
           </td>
           <td style="vertical-align: top; background-color: rgb(204,
-            204, 204);">6.7.1<br>
+            204, 204);" bgcolor="#cccccc">6.7.1<br>
           </td>
           <td style="vertical-align: top; background-color: rgb(204,
-            204, 204);">6.7.2<br>
+            204, 204);" bgcolor="#cccccc">6.7.2<br>
           </td>
           <td style="vertical-align: top; background-color: rgb(204,
-            204, 204);">6.8.1<br>
+            204, 204);" bgcolor="#cccccc">6.8.1<br>
           </td>
           <td style="vertical-align: top; background-color: rgb(204,
-            204, 204);">6.8.2<br>
+            204, 204);" bgcolor="#cccccc">6.8.2<br>
           </td>
           <td style="vertical-align: top; background-color: rgb(204,
-            204, 204);">6.9.1<br>
+            204, 204);" bgcolor="#cccccc">6.9.1<br>
           </td>
           <td style="vertical-align: top; background-color: rgb(204,
-            204, 204);">6.9.2<br>
+            204, 204);" bgcolor="#cccccc">6.9.2<br>
           </td>
           <td style="vertical-align: top; background-color: rgb(204,
-            204, 204);">6.10.1<br>
+            204, 204);" bgcolor="#cccccc">6.10.1<br>
           </td>
           <td style="vertical-align: top; background-color: rgb(204,
-            204, 204);">6.10.2<br>
+            204, 204);" bgcolor="#cccccc">6.10.2<br>
+          </td>
+          <td valign="top" bgcolor="#cccccc">6.11.1<br>
+          </td>
+          <td valign="top" bgcolor="#cccccc">6.11.2<br>
+          </td>
+          <td valign="top" bgcolor="#cccccc">6.12.1<br>
+          </td>
+          <td valign="top" bgcolor="#cccccc">6.12.2<br>
           </td>
         </tr>
         <tr>
@@ -2111,6 +2112,14 @@
           </td>
           <td style="vertical-align: top;"><br>
           </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
         </tr>
         <tr>
           <td style="vertical-align: top; background-color: rgb(204,
@@ -2136,6 +2145,14 @@
           </td>
           <td style="vertical-align: top;"><br>
           </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
         </tr>
         <tr>
           <td style="vertical-align: top; background-color: rgb(204,
@@ -2160,6 +2177,14 @@
           <td style="vertical-align: top;"><br>
           </td>
           <td style="vertical-align: top;"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
           </td>
         </tr>
         <tr>
@@ -2187,6 +2212,14 @@
           </td>
           <td style="vertical-align: top;" bgcolor="#cccccc"><br>
           </td>
+          <td valign="top" bgcolor="#cccccc"><br>
+          </td>
+          <td valign="top" bgcolor="#cccccc"><br>
+          </td>
+          <td valign="top" bgcolor="#cccccc"><br>
+          </td>
+          <td valign="top" bgcolor="#cccccc"><br>
+          </td>
         </tr>
         <tr>
           <td style="vertical-align: top; background-color: rgb(204,
@@ -2212,6 +2245,14 @@
           </td>
           <td style="vertical-align: top;"><br>
           </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
         </tr>
         <tr>
           <td style="vertical-align: top; background-color: rgb(204,
@@ -2235,6 +2276,14 @@
           <td style="vertical-align: top;"><br>
           </td>
           <td style="vertical-align: top;"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
           </td>
         </tr>
         <tr>
@@ -2260,6 +2309,14 @@
           </td>
           <td style="vertical-align: top;"><br>
           </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
         </tr>
         <tr>
           <td style="vertical-align: top; background-color: rgb(204,
@@ -2283,6 +2340,14 @@
           <td style="vertical-align: top;"><br>
           </td>
           <td style="vertical-align: top;"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
           </td>
         </tr>
         <tr>
@@ -2308,6 +2373,14 @@
           </td>
           <td style="vertical-align: top;"><br>
           </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
         </tr>
         <tr>
           <td style="vertical-align: top; background-color: rgb(204,
@@ -2331,6 +2404,110 @@
           <td style="vertical-align: top;">X<br>
           </td>
           <td style="vertical-align: top;">X<br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top" bgcolor="#cccccc">6.T.7<br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top">X<br>
+          </td>
+          <td valign="top">X<br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top" bgcolor="#cccccc">6.T.8<br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top">X<br>
+          </td>
+          <td valign="top">X<br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top" bgcolor="#cccccc">6.T.9<br>
+          </td>
+          <td valign="top">X<br>
+          </td>
+          <td valign="top">X<br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
           </td>
         </tr>
       </tbody>
@@ -3381,9 +3558,9 @@
           </td>
           <td valign="top"><br>
           </td>
-          <td valign="top">x<br>
+          <td valign="top">X<br>
           </td>
-          <td valign="top">x<br>
+          <td valign="top">X<br>
           </td>
         </tr>
         <tr>

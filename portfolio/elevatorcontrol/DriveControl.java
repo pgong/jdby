@@ -9,7 +9,6 @@
  */
 package simulator.elevatorcontrol;
  
-import simulator.elevatorcontrol.Utility.AtFloorArray;
 import simulator.elevatormodules.AtFloorCanPayloadTranslator;
 import simulator.elevatormodules.CarLevelPositionCanPayloadTranslator;
 import simulator.elevatormodules.CarWeightCanPayloadTranslator;
@@ -105,8 +104,6 @@ public class DriveControl extends Controller{
     private boolean commitPointReached;
     //Additional internal state variables
     private SimTime counter = SimTime.ZERO;
-    private int CurrentFloor;
-    private AtFloorArray floorArray;
 
     //enumerate states
     private enum State {
