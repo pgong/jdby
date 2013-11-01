@@ -608,6 +608,35 @@ public class Dispatcher extends Controller{
 					}
 			}
 		}
+		
+		// Brody added this as a test:
+		if (nextTargetFound && targetFound) {
+			if (nextTarget==0){
+				nextHallCall = Direction.STOP;
+			}
+			else if (target==0){
+				target = nextTarget;
+				nextTarget = 0;
+				nextHallCall = Direction.STOP;
+			}
+			else if (nextTarget < target){
+				nextHallCall = Direction.DOWN;
+			}
+			else if (nextTarget > target){
+				nextHallCall = Direction.UP;
+			}
+			else {
+				nextHallCall = Direction.STOP;
+			}
+		}
+		else if (nextTargetFound && !targetFound){
+			target = nextTarget;
+			nextTarget = 0;
+			nextHallCall = Direction.STOP;
+			targetFound = true;
+		}
+		
+		
 		log("target: ", target, "nextTarget: ", nextTarget, "hall call: ", nextHallCall );
 		//If target was found, change desired floor.
 		if(targetFound){
