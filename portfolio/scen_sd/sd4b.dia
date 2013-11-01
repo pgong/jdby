@@ -364,7 +364,7 @@
         <dia:point val="28.75,14.7"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="28.7,13.85;37.635,15.1"/>
+        <dia:rectangle val="28.7,13.85;37.6412,15.1"/>
       </dia:attribute>
       <dia:attribute name="meta">
         <dia:composite type="dict"/>
@@ -380,7 +380,7 @@
         <dia:color val="#0000ff"/>
       </dia:attribute>
       <dia:attribute name="text">
-        <dia:string>#2e. DoorMotor[b,*] = OPEN#</dia:string>
+        <dia:string>#2d. DoorMotor[b,*] = OPEN#</dia:string>
       </dia:attribute>
       <dia:attribute name="type">
         <dia:enum val="0"/>
@@ -530,37 +530,7 @@
         <dia:connection handle="0" to="O7" connection="6"/>
       </dia:connections>
     </dia:object>
-    <dia:object type="UML - Message" version="0" id="O17">
-      <dia:attribute name="obj_pos">
-        <dia:point val="3.9625,7.18"/>
-      </dia:attribute>
-      <dia:attribute name="obj_bb">
-        <dia:rectangle val="3.9125,6.2;16.8125,7.58"/>
-      </dia:attribute>
-      <dia:attribute name="meta">
-        <dia:composite type="dict"/>
-      </dia:attribute>
-      <dia:attribute name="conn_endpoints">
-        <dia:point val="3.9625,7.18"/>
-        <dia:point val="16.7625,7.18"/>
-      </dia:attribute>
-      <dia:attribute name="text_colour">
-        <dia:color val="#000000"/>
-      </dia:attribute>
-      <dia:attribute name="line_colour">
-        <dia:color val="#000000"/>
-      </dia:attribute>
-      <dia:attribute name="text">
-        <dia:string>#1b. mAtFloor[f,c]#</dia:string>
-      </dia:attribute>
-      <dia:attribute name="type">
-        <dia:enum val="0"/>
-      </dia:attribute>
-      <dia:attribute name="text_pos">
-        <dia:point val="6.8625,6.8"/>
-      </dia:attribute>
-    </dia:object>
-    <dia:object type="Standard - Box" version="0" id="O18">
+    <dia:object type="Standard - Box" version="0" id="O17">
       <dia:attribute name="obj_pos">
         <dia:point val="7.0025,1.98"/>
       </dia:attribute>
@@ -586,7 +556,7 @@
         <dia:boolean val="true"/>
       </dia:attribute>
     </dia:object>
-    <dia:object type="Standard - Text" version="1" id="O19">
+    <dia:object type="Standard - Text" version="1" id="O18">
       <dia:attribute name="obj_pos">
         <dia:point val="7.4025,3.28"/>
       </dia:attribute>
@@ -619,7 +589,7 @@
         <dia:enum val="3"/>
       </dia:attribute>
     </dia:object>
-    <dia:object type="Standard - Line" version="0" id="O20">
+    <dia:object type="Standard - Line" version="0" id="O19">
       <dia:attribute name="obj_pos">
         <dia:point val="10.0025,3.98"/>
       </dia:attribute>
@@ -637,10 +607,10 @@
         <dia:color val="#0000ff"/>
       </dia:attribute>
       <dia:connections>
-        <dia:connection handle="0" to="O18" connection="6"/>
+        <dia:connection handle="0" to="O17" connection="6"/>
       </dia:connections>
     </dia:object>
-    <dia:object type="UML - Message" version="0" id="O21">
+    <dia:object type="UML - Message" version="0" id="O20">
       <dia:attribute name="obj_pos">
         <dia:point val="10.0525,8.23"/>
       </dia:attribute>
@@ -661,7 +631,7 @@
         <dia:color val="#000000"/>
       </dia:attribute>
       <dia:attribute name="text">
-        <dia:string>#1c. mLevel[d] = true#</dia:string>
+        <dia:string>#1b. mLevel[d] = true#</dia:string>
       </dia:attribute>
       <dia:attribute name="type">
         <dia:enum val="0"/>
@@ -670,7 +640,7 @@
         <dia:point val="13.5125,7.95"/>
       </dia:attribute>
     </dia:object>
-    <dia:object type="UML - Message" version="0" id="O22">
+    <dia:object type="UML - Message" version="0" id="O21">
       <dia:attribute name="obj_pos">
         <dia:point val="3.9625,12.92"/>
       </dia:attribute>
@@ -700,7 +670,7 @@
         <dia:point val="6.9125,12.6"/>
       </dia:attribute>
     </dia:object>
-    <dia:object type="Standard - Box" version="0" id="O23">
+    <dia:object type="Standard - Box" version="0" id="O22">
       <dia:attribute name="obj_pos">
         <dia:point val="32.2425,2.07"/>
       </dia:attribute>
@@ -726,7 +696,7 @@
         <dia:boolean val="true"/>
       </dia:attribute>
     </dia:object>
-    <dia:object type="Standard - Text" version="1" id="O24">
+    <dia:object type="Standard - Text" version="1" id="O23">
       <dia:attribute name="obj_pos">
         <dia:point val="32.8425,3.37"/>
       </dia:attribute>
@@ -759,7 +729,7 @@
         <dia:enum val="3"/>
       </dia:attribute>
     </dia:object>
-    <dia:object type="Standard - Line" version="0" id="O25">
+    <dia:object type="Standard - Line" version="0" id="O24">
       <dia:attribute name="obj_pos">
         <dia:point val="34.3025,4.07"/>
       </dia:attribute>
@@ -777,10 +747,10 @@
         <dia:color val="#0000ff"/>
       </dia:attribute>
       <dia:connections>
-        <dia:connection handle="0" to="O23" connection="6"/>
+        <dia:connection handle="0" to="O22" connection="6"/>
       </dia:connections>
     </dia:object>
-    <dia:object type="Standard - Box" version="0" id="O26">
+    <dia:object type="Standard - Box" version="0" id="O25">
       <dia:attribute name="obj_pos">
         <dia:point val="37.6225,2.09"/>
       </dia:attribute>
@@ -806,7 +776,7 @@
         <dia:boolean val="true"/>
       </dia:attribute>
     </dia:object>
-    <dia:object type="Standard - Text" version="1" id="O27">
+    <dia:object type="Standard - Text" version="1" id="O26">
       <dia:attribute name="obj_pos">
         <dia:point val="38.0225,3.39"/>
       </dia:attribute>
@@ -839,7 +809,7 @@
         <dia:enum val="3"/>
       </dia:attribute>
     </dia:object>
-    <dia:object type="Standard - Line" version="0" id="O28">
+    <dia:object type="Standard - Line" version="0" id="O27">
       <dia:attribute name="obj_pos">
         <dia:point val="40.6225,4.09"/>
       </dia:attribute>
@@ -857,15 +827,15 @@
         <dia:color val="#0000ff"/>
       </dia:attribute>
       <dia:connections>
-        <dia:connection handle="0" to="O26" connection="6"/>
+        <dia:connection handle="0" to="O25" connection="6"/>
       </dia:connections>
     </dia:object>
-    <dia:object type="UML - Message" version="0" id="O29">
+    <dia:object type="UML - Message" version="0" id="O28">
       <dia:attribute name="obj_pos">
         <dia:point val="40.6225,16.6525"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="34.2312,15.7;44.2037,17.0327"/>
+        <dia:rectangle val="34.2312,15.7;44.1975,17.0327"/>
       </dia:attribute>
       <dia:attribute name="meta">
         <dia:composite type="dict"/>
@@ -881,7 +851,7 @@
         <dia:color val="#000000"/>
       </dia:attribute>
       <dia:attribute name="text">
-        <dia:string>#2g. mDoorOpened[b,*] = true#</dia:string>
+        <dia:string>#2e. mDoorOpened[b,*] = true#</dia:string>
       </dia:attribute>
       <dia:attribute name="type">
         <dia:enum val="0"/>
@@ -890,101 +860,11 @@
         <dia:point val="39.4125,16.3"/>
       </dia:attribute>
       <dia:connections>
-        <dia:connection handle="0" to="O28" connection="0"/>
-        <dia:connection handle="1" to="O25" connection="0"/>
+        <dia:connection handle="0" to="O27" connection="0"/>
+        <dia:connection handle="1" to="O24" connection="0"/>
       </dia:connections>
     </dia:object>
-    <dia:object type="UML - Message" version="0" id="O30">
-      <dia:attribute name="obj_pos">
-        <dia:point val="28.83,15.82"/>
-      </dia:attribute>
-      <dia:attribute name="obj_bb">
-        <dia:rectangle val="28.78,14.97;37.5787,16.22"/>
-      </dia:attribute>
-      <dia:attribute name="meta">
-        <dia:composite type="dict"/>
-      </dia:attribute>
-      <dia:attribute name="conn_endpoints">
-        <dia:point val="28.83,15.82"/>
-        <dia:point val="34.2925,15.82"/>
-      </dia:attribute>
-      <dia:attribute name="text_colour">
-        <dia:color val="#0000ff"/>
-      </dia:attribute>
-      <dia:attribute name="line_colour">
-        <dia:color val="#0000ff"/>
-      </dia:attribute>
-      <dia:attribute name="text">
-        <dia:string>#2f. DoorMotor[c,*] = OPEN#</dia:string>
-      </dia:attribute>
-      <dia:attribute name="type">
-        <dia:enum val="0"/>
-      </dia:attribute>
-      <dia:attribute name="text_pos">
-        <dia:point val="33.3425,15.57"/>
-      </dia:attribute>
-    </dia:object>
-    <dia:object type="UML - Message" version="0" id="O31">
-      <dia:attribute name="obj_pos">
-        <dia:point val="4.0425,14.04"/>
-      </dia:attribute>
-      <dia:attribute name="obj_bb">
-        <dia:rectangle val="3.9925,13.12;28.8425,14.44"/>
-      </dia:attribute>
-      <dia:attribute name="meta">
-        <dia:composite type="dict"/>
-      </dia:attribute>
-      <dia:attribute name="conn_endpoints">
-        <dia:point val="4.0425,14.04"/>
-        <dia:point val="28.7925,14.04"/>
-      </dia:attribute>
-      <dia:attribute name="text_colour">
-        <dia:color val="#000000"/>
-      </dia:attribute>
-      <dia:attribute name="line_colour">
-        <dia:color val="#000000"/>
-      </dia:attribute>
-      <dia:attribute name="text">
-        <dia:string>#2d. mAtFloor[f,c]#</dia:string>
-      </dia:attribute>
-      <dia:attribute name="type">
-        <dia:enum val="0"/>
-      </dia:attribute>
-      <dia:attribute name="text_pos">
-        <dia:point val="6.9925,13.72"/>
-      </dia:attribute>
-    </dia:object>
-    <dia:object type="UML - Message" version="0" id="O32">
-      <dia:attribute name="obj_pos">
-        <dia:point val="40.7025,17.8225"/>
-      </dia:attribute>
-      <dia:attribute name="obj_bb">
-        <dia:rectangle val="34.3112,16.87;44.255,18.2027"/>
-      </dia:attribute>
-      <dia:attribute name="meta">
-        <dia:composite type="dict"/>
-      </dia:attribute>
-      <dia:attribute name="conn_endpoints">
-        <dia:point val="40.7025,17.8225"/>
-        <dia:point val="34.3625,17.8025"/>
-      </dia:attribute>
-      <dia:attribute name="text_colour">
-        <dia:color val="#000000"/>
-      </dia:attribute>
-      <dia:attribute name="line_colour">
-        <dia:color val="#000000"/>
-      </dia:attribute>
-      <dia:attribute name="text">
-        <dia:string>#2h. mDoorOpened[c,*] = true#</dia:string>
-      </dia:attribute>
-      <dia:attribute name="type">
-        <dia:enum val="0"/>
-      </dia:attribute>
-      <dia:attribute name="text_pos">
-        <dia:point val="39.4925,17.47"/>
-      </dia:attribute>
-    </dia:object>
-    <dia:object type="Standard - Text" version="1" id="O33">
+    <dia:object type="Standard - Text" version="1" id="O29">
       <dia:attribute name="obj_pos">
         <dia:point val="4.1625,18.8"/>
       </dia:attribute>
@@ -1017,12 +897,12 @@
         <dia:enum val="3"/>
       </dia:attribute>
     </dia:object>
-    <dia:object type="UML - Message" version="0" id="O34">
+    <dia:object type="UML - Message" version="0" id="O30">
       <dia:attribute name="obj_pos">
         <dia:point val="16.9244,9.52"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="16.874,8.6;25.4754,9.8704"/>
+        <dia:rectangle val="16.874,8.6;25.448,9.8704"/>
       </dia:attribute>
       <dia:attribute name="meta">
         <dia:composite type="dict"/>
@@ -1038,7 +918,7 @@
         <dia:color val="#0000ff"/>
       </dia:attribute>
       <dia:attribute name="text">
-        <dia:string>#1d. Drive = {STOP,STOP}#</dia:string>
+        <dia:string>#1c. Drive = {STOP,STOP}#</dia:string>
       </dia:attribute>
       <dia:attribute name="type">
         <dia:enum val="0"/>
@@ -1047,7 +927,7 @@
         <dia:point val="21.3442,9.2"/>
       </dia:attribute>
     </dia:object>
-    <dia:object type="Standard - Box" version="0" id="O35">
+    <dia:object type="Standard - Box" version="0" id="O31">
       <dia:attribute name="obj_pos">
         <dia:point val="44.4742,2.07"/>
       </dia:attribute>
@@ -1070,7 +950,7 @@
         <dia:boolean val="true"/>
       </dia:attribute>
     </dia:object>
-    <dia:object type="Standard - Text" version="1" id="O36">
+    <dia:object type="Standard - Text" version="1" id="O32">
       <dia:attribute name="obj_pos">
         <dia:point val="45.2867,3.37"/>
       </dia:attribute>
@@ -1103,7 +983,7 @@
         <dia:enum val="3"/>
       </dia:attribute>
     </dia:object>
-    <dia:object type="Standard - Line" version="0" id="O37">
+    <dia:object type="Standard - Line" version="0" id="O33">
       <dia:attribute name="obj_pos">
         <dia:point val="47.0617,4.12"/>
       </dia:attribute>
@@ -1118,10 +998,10 @@
         <dia:int val="1"/>
       </dia:attribute>
       <dia:connections>
-        <dia:connection handle="0" to="O35" connection="6"/>
+        <dia:connection handle="0" to="O31" connection="6"/>
       </dia:connections>
     </dia:object>
-    <dia:object type="UML - Message" version="0" id="O38">
+    <dia:object type="UML - Message" version="0" id="O34">
       <dia:attribute name="obj_pos">
         <dia:point val="47.0442,11.69"/>
       </dia:attribute>
