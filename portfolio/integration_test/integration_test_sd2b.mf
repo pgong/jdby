@@ -24,7 +24,7 @@
 
 ;Check to see if door closing (0.35)
 +2.52s A S DoorControl[FRONT][LEFT] : STATE == CLOSING_DOOR
-+0s A F DoorMotor FRONT LEFT : command == NUDGE
++0s A F DoorMotor FRONT LEFT : command == CLOSE
 
 ;Button pressed for current floor (2.87)
 +0.1s I CAR_BUTTON_CONTROL_PERIOD F CarCall 3 FRONT = true 
