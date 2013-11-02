@@ -27,8 +27,8 @@
 ;Check to see if door closing
 +2.52s A S DoorControl[FRONT][LEFT] : STATE == CLOSING_DOOR
 +0s A S DoorControl[FRONT][RIGHT] : STATE == CLOSING_DOOR
-+0s A F DoorMotor FRONT LEFT : command == NUDGE
-+0s A F DoorMotor FRONT RIGHT : command == NUDGE
++0s A F DoorMotor FRONT LEFT : command == CLOSE
++0s A F DoorMotor FRONT RIGHT : command == CLOSE
 
 ;Doors haven't fully closed
 +0.21s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = false
