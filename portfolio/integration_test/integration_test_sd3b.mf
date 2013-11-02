@@ -73,7 +73,7 @@
 +0s  A F Drive : speed == STOP
 +0s  A F Drive : direction == STOP
 +0s  A S DoorControl[FRONT][LEFT] : STATE == CLOSING_DOOR
-+0s  A F DoorMotor FRONT LEFT : command == NUDGE
++0s  A F DoorMotor FRONT LEFT : command == CLOSE
 
 ; Close all doors
 +0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = true
