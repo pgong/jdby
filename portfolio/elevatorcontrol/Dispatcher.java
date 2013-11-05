@@ -219,7 +219,7 @@ public class Dispatcher extends Controller{
 		State newState = state;
 		curr_pos = mCarLevelPosition.getPosition();
 		curr_f = curr_pos/5000 + 1;
-		log("curr_pos is ", curr_pos, " and curr_f is ", curr_f);
+		//log("curr_pos is ", curr_pos, " and curr_f is ", curr_f);
 		if(Elevator.hasLanding(curr_f, Hallway.FRONT)){
 			if(Elevator.hasLanding(curr_f, Hallway.BACK))
 				curr_h = Hallway.BOTH;
@@ -279,7 +279,7 @@ public class Dispatcher extends Controller{
 				}
 				else 
 					hallway = Hallway.BACK;
-				log("floor is ", floor, " next direction is ", direction, " current direction is", curr_d);
+				//log("floor is ", floor, " next direction is ", direction, " current direction is", curr_d);
 				//Now set the next target.
 				mDesiredFloor.set(floor, direction, hallway);
 				
@@ -636,7 +636,7 @@ public class Dispatcher extends Controller{
 			}
 		}
 		
-		log("target: ", target, "nextTarget: ", nextTarget, "hall call: ", nextHallCall , "current floor ", curr_f);
+		//log("target: ", target, "nextTarget: ", nextTarget, "hall call: ", nextHallCall , "current floor ", curr_f);
 		//If target was found, change desired floor.
 		if(targetFound){
 			floor = target;			
