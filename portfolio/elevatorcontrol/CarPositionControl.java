@@ -81,18 +81,19 @@ public class CarPositionControl extends Controller {
             }
         }
 		
-		// initialize mCarLevelPosition
-    	networkCarLevelPosition = CanMailbox.getReadableCanMailbox(
-				MessageDictionary.CAR_LEVEL_POSITION_CAN_ID);
-    	mCarLevelPosition = new CarLevelPositionCanPayloadTranslator(networkCarLevelPosition);
-    	canInterface.registerTimeTriggered(networkCarLevelPosition);
-		
 	    // initialize mDesiredFloor
 		
-	    // initialize mDriveSpeed
-        networkDriveSpeed = CanMailbox.getReadableCanMailbox(MessageDictionary.DRIVE_SPEED_CAN_ID);
-		mDriveSpeed = new DriveSpeedCanPayloadTranslator(networkDriveSpeed);
-		canInterface.registerTimeTriggered(networkDriveSpeed);
+		//Car Level Position
+    	networkCarLevelPosition = CanMailbox.getReadableCanMailbox(
+    								MessageDictionary.CAR_LEVEL_POSITION_CAN_ID);
+    	mCarLevelPosition = new CarLevelPositionCanPayloadTranslator(networkCarLevelPosition);
+    	canInterface.registerTimeTriggered(networkCarLevelPosition);
+    	
+    	//Drive Speed
+    	networkDriveSpeed = CanMailbox.getReadableCanMailbox(
+    								MessageDictionary.DRIVE_SPEED_CAN_ID);
+    	mDriveSpeed = new DriveSpeedCanPayloadTranslator(networkDriveSpeed);
+    	canInterface.registerTimeTriggered(networkDriveSpeed);
 		
 		// Initialize carPositionIndicator (output)
 		carPositionIndicator = CarPositionIndicatorPayload.getWriteablePayload();
@@ -116,45 +117,36 @@ public class CarPositionControl extends Controller {
 	private int CurrentMAtFloor() {
 		int f;
 		int cFloor = -1;
-		/* Requirement 10.5 */
-		if (mDriveSpeed.getSpeed() <= 0.25) { 
-			for (int floor = 1; floor <= Elevator.numFloors; floor++) {
-	            for (Hallway hall : Hallway.replicationValues) {
-	                f = ReplicationComputer.computeReplicationId(floor,hall);
-	                if (mAtFloor[f].getValue()){
-	                	if (cFloor != -1) { // This should never happen!
-	                		// Errormessage
-	                	}
-	                	else {
-	                    	cFloor = floor;
-	                	}
-	                }
-	            }
-	        }
-		}
-		/* Requirement 10.6 */
-		else if (mDriveSpeed.getSpeed() > 0.25) {
-			cFloor = (mCarLevelPosition.getPosition()/5000) + 1;
-		}
+		for (int floor = 1; floor <= Elevator.numFloors; floor++) {
+            for (Hallway hall : Hallway.replicationValues) {
+                f = ReplicationComputer.computeReplicationId(floor,hall);
+                if (mAtFloor[f].getValue()){
+                	if (cFloor != -1) { // This should never happen!
+                		// Errormessage
+                	}
+                	else {
+                    	cFloor = floor;
+                	}
+                }
+            }
+        }
 		return cFloor;
 	}
 
 	@Override
 	public void timerExpired(Object callbackData) {
-		if (CurrentMAtFloor() != -1) {
-    		this.lastValidFloor = CurrentMAtFloor();
-    	}
-		/* Requirement 10.4 */
-		this.currentFloor = this.lastValidFloor;
-    	this.mCarPositionIndicator.set(this.currentFloor);
-    	this.carPositionIndicator.set(this.currentFloor);
-        
-    	State newState = State.POSITION;
-		//update the state variable
-		state = newState;
-		
-		//report the current state
-		setState(STATE_KEY,newState.toString());
+		//If the drive is fast, then check car level position instead
+		if(mDriveSpeed.getSpeed() > 0.25){
+			currentFloor = mCarLevelPosition.getPosition()/5000 + 1;
+		}
+		//Otherwise, just check mAtFloor
+		else {
+			if (CurrentMAtFloor() != -1)
+				currentFloor = CurrentMAtFloor();
+		}
+		//Set the position indicator the its new value.
+		mCarPositionIndicator.set(currentFloor);
+		carPositionIndicator.set(currentFloor);
 		
 		//schedule the next iteration of the controller
 		//you must do this at the end of the timer callback in order to restart
