@@ -20,11 +20,11 @@ public class CarPositionCanPayloadTranslator extends CanPayloadTranslator {
 
 	
 	public CarPositionCanPayloadTranslator(WriteableCanMailbox p) {
-        super(p, 8, MessageDictionary.CAR_POSITION_CAN_ID);
+        super(p, 4, MessageDictionary.CAR_POSITION_CAN_ID);
     }
     
     public CarPositionCanPayloadTranslator(ReadableCanMailbox p) {
-        super(p, 8, MessageDictionary.CAR_POSITION_CAN_ID);
+        super(p, 4, MessageDictionary.CAR_POSITION_CAN_ID);
     }
 	
 	@Override

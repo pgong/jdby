@@ -26,11 +26,11 @@ import simulator.payloads.translators.CanPayloadTranslator;
 public class DriveSpeedCanPayloadTranslator extends CanPayloadTranslator{
 
     public DriveSpeedCanPayloadTranslator(WriteableCanMailbox p) {
-        super(p, 8, MessageDictionary.DRIVE_SPEED_CAN_ID);
+        super(p, 6, MessageDictionary.DRIVE_SPEED_CAN_ID);
     }
     
     public DriveSpeedCanPayloadTranslator(ReadableCanMailbox p) {
-        super(p, 8, MessageDictionary.DRIVE_SPEED_CAN_ID);
+        super(p, 6, MessageDictionary.DRIVE_SPEED_CAN_ID);
     }
     
     /**
@@ -176,12 +176,12 @@ public class DriveSpeedCanPayloadTranslator extends CanPayloadTranslator{
 
     public void setDirection(Direction dir) {
         BitSet b = getMessagePayload();
-        addIntToBitset(b, dir.ordinal(), 32, 32);
+        addIntToBitset(b, dir.ordinal(), 32, 16);
         setMessagePayload(b, getByteSize());
     }
 
     public Direction getDirection() {
-        int val = getIntFromBitset(getMessagePayload(), 32, 32);
+        int val = getIntFromBitset(getMessagePayload(), 32, 16);
         for (Direction d : Direction.values()) {
             if (d.ordinal() == val) {
                 return d;
