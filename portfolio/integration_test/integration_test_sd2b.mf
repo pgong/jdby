@@ -37,7 +37,6 @@
 
 ;Check that the 3 FRONT light is on
 +0.31s A F CarLight 3 FRONT : lighted == true
-+0s A N CAR_LIGHT_[3][FRONT]_CAN_ID Boolean : getValue == true
 +0s A N CAR_CALL_[3][FRONT]_CAN_ID Boolean : getValue == true
 
 ;unpress
@@ -45,7 +44,6 @@
 
 ;Check that the 3 FRONT light is off 
 +0.35s A F CarLight 3 FRONT : lighted == false
-+0s A N CAR_LIGHT_[3][FRONT]_CAN_ID Boolean : getValue == false
 +0s A N CAR_CALL_[3][FRONT]_CAN_ID Boolean : getValue == false
 
 ;Dispatcher sends desiredFloor 
@@ -55,7 +53,6 @@
 
 +0.5s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = true
 +0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = true
-
 
 ;#Transition '5.T.2'
 +0.1s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[FRONT][LEFT]_CAN_ID DoorOpened FRONT LEFT = true

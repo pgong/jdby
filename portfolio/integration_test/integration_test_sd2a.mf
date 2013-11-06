@@ -21,7 +21,6 @@
 
 ;Check that the 3 FRONT light is on
 +0.21s A F CarLight 3 FRONT : lighted == true
-+0s A N CAR_LIGHT_[3][FRONT]_CAN_ID Boolean : getValue == true
 +0s A N CAR_CALL_[3][FRONT]_CAN_ID Boolean : getValue == true
 
 ;#Transition '5.T.1'
@@ -46,7 +45,6 @@
 
 ;Check to see if light is still on
 +0.21s A F CarLight 5 FRONT : lighted == true
-+0s A N CAR_LIGHT_[5][FRONT]_CAN_ID Boolean : getValue == true
 +0s A N CAR_CALL_[5][FRONT]_CAN_ID Boolean : getValue == true
 
 ;Check to see if door closing
@@ -58,5 +56,4 @@
 
 ;Check to see if light is still on
 +0.2s A F CarLight 5 FRONT : lighted == true
-+0s A N CAR_LIGHT_[5][FRONT]_CAN_ID Boolean : getValue == true
 +0s A N CAR_CALL_[5][FRONT]_CAN_ID Boolean : getValue == true

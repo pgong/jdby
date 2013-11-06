@@ -36,8 +36,6 @@
 +0s A F Drive : speed == SLOW
 +0s A F Drive : direction == UP
 +0s A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == UP
-+0s A N DRIVE_COMMAND_CAN_ID DriveCommand : getSpeed == SLOW
-+0s A N DRIVE_COMMAND_CAN_ID DriveCommand : getDirection == UP
 
 ;Car arrives to 3rd floor
 +0.1s I AT_FLOOR_PERIOD N AT_FLOOR_[3][FRONT]_CAN_ID AtFloor 3 FRONT = true
@@ -47,8 +45,6 @@
 +0s A F Drive : speed == LEVEL
 +0s A F Drive : direction == UP
 +0s A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == UP
-+0s A N DRIVE_COMMAND_CAN_ID DriveCommand : getSpeed == LEVEL
-+0s A N DRIVE_COMMAND_CAN_ID DriveCommand : getDirection == UP
 
 ;Level is true
 +0.21s I  DRIVE_CONTROL_PERIOD N LEVEL_SENSOR_[UP]_CAN_ID Leveling UP = true
@@ -60,8 +56,6 @@
 +0s A F Drive : direction == STOP
 +0s A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0.0
 +0s A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == STOP
-+0s A N DRIVE_COMMAND_CAN_ID DriveCommand : getSpeed == STOP
-+0s A N DRIVE_COMMAND_CAN_ID DriveCommand : getDirection == STOP
 
 +0.21s A S DoorControl[FRONT][LEFT] : STATE == OPENING_DOOR
 +0s A S DoorControl[FRONT][RIGHT] : STATE == OPENING_DOOR
