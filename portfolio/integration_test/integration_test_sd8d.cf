@@ -9,9 +9,6 @@
 ; Integration test: SC4A
 
 DriveControl 100ms true
-DoorControl FRONT LEFT 100ms true
-DoorControl FRONT RIGHT 100ms true
-DoorControl BACK LEFT 100ms true
-DoorControl BACK RIGHT 100ms true
-CarPositionControl 50ms true
+Dispatcher 8 50ms true
+CarButtonControl 3 FRONT 100ms true
  
