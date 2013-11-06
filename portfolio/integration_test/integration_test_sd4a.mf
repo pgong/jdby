@@ -22,9 +22,22 @@
 ;Check that Car is moving to 3rd floor
 +0.21s A S DoorControl[FRONT][LEFT] : STATE == CAR_MOVING
 +0s A S DoorControl[FRONT][RIGHT] : STATE == CAR_MOVING
-+0s A S DriveControl : STATE == STATE_SLOW
++0s A S DriveControl : STATE == STATE_FAST
 +0s A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0.25
 +0s A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == UP
+
+;Reaches commit point
+;Reach commit point and slow down
++0.1s  I  DRIVE_CONTROL_PERIOD F DriveSpeed = UP 1.0
++0s  I  CAR_LEVEL_POSITION_PERIOD N CAR_LEVEL_POSITION_CAN_ID CarLevelPosition = 9400
+
+;Check if Drive switch to SLOW
++0.41s A S DriveControl : STATE == STATE_SLOW
++0s A F Drive : speed == SLOW
++0s A F Drive : direction == UP
++0s A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == UP
++0s A N DRIVE_COMMAND_CAN_ID DriveCommand : getSpeed == SLOW
++0s A N DRIVE_COMMAND_CAN_ID DriveCommand : getDirection == UP
 
 ;Car arrives to 3rd floor
 +0.1s I AT_FLOOR_PERIOD N AT_FLOOR_[3][FRONT]_CAN_ID AtFloor 3 FRONT = true

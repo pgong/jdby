@@ -1,0 +1,32 @@
+
+Simulator Parameters:
+Command line = -cf integration_test_sd8d.cf -mf integration_test_sd8d.mf
+RandomSeed = 1383697806021
+CanNetworkBitTime = 0 ns
+Effective Can Bitrate = Infinity
+Run Time = null
+Real time rate = null
+Message File = integration_test_sd8d.mf
+Controller File = integration_test_sd8d.cf
+
+Assertion Results:
+@0.91s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@bf1d3b :: command ?== STOP PASSED
+@0.91s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@cc0e01 :: getFloor ?== 5 PASSED
+@0.91s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@1a1c42f :: getDirection ?== STOP PASSED
+@0.91s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@121b59a :: getHallway ?== FRONT PASSED
+@1.12s:  PASSED DriveControl::checkState(STATE) ?== STATE_FAST PASSED
+@1.12s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@1381960 :: getSpeed ?== FAST PASSED
+@1.12s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@120dbf3 :: getDirection ?== UP PASSED
+@2.12s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@1786286 :: getFloor ?== 5 PASSED
+@2.12s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@198defc :: getDirection ?== DOWN PASSED
+@2.12s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@4bfe6b :: getHallway ?== FRONT PASSED
+@2.12s:  PASSED DriveControl::checkState(STATE) ?== STATE_FAST PASSED
+@2.12s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@9aba32 :: getSpeed ?== FAST PASSED
+@2.12s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@13e75a5 :: getDirection ?== UP PASSED
+
+
+******************Summary******************
+Passed:  13
+Failed:  0
+Total :  13
+
