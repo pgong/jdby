@@ -33,11 +33,8 @@ public class HallButtonControl extends Controller {
     private ReadableHallCallPayload localHallCall;
     private WriteableHallLightPayload localHallLight;
 
-    private WriteableCanMailbox networkHallLightOut;
-    private BooleanCanPayloadTranslator mHallLight;
-
     private WriteableCanMailbox networkHallCallOut;
-    private BooleanCanPayloadTranslator mHallCall;
+    private HallCallCanPayloadTranslator mHallCall;
 
     private ReadableCanMailbox networkDoorClosedLeft;
     private DoorClosedCanPayloadTranslator mDoorClosedLeft;
@@ -79,17 +76,11 @@ public class HallButtonControl extends Controller {
         localHallCall = HallCallPayload.getReadablePayload(floor, hallway, direction);
         physicalInterface.registerTimeTriggered(localHallCall);
 
-
         localHallLight = HallLightPayload.getWriteablePayload(floor, hallway, direction);
         physicalInterface.sendTimeTriggered(localHallLight, period);
-        
-
-        networkHallLightOut = CanMailbox.getWriteableCanMailbox(MessageDictionary.HALL_LIGHT_BASE_CAN_ID + ReplicationComputer.computeReplicationId(floor, hallway, direction));
-        mHallLight = new BooleanCanPayloadTranslator(networkHallLightOut);
-        canInterface.sendTimeTriggered(networkHallLightOut, period);
 
         networkHallCallOut = CanMailbox.getWriteableCanMailbox(MessageDictionary.HALL_CALL_BASE_CAN_ID + ReplicationComputer.computeReplicationId(floor, hallway, direction));
-        mHallCall = new BooleanCanPayloadTranslator(networkHallCallOut);
+        mHallCall = new HallCallCanPayloadTranslator(networkHallCallOut, floor, hallway, direction);
         canInterface.sendTimeTriggered(networkHallCallOut, period);
 
         networkDoorClosedLeft = CanMailbox.getReadableCanMailbox(MessageDictionary.DOOR_CLOSED_SENSOR_BASE_CAN_ID + ReplicationComputer.computeReplicationId(hallway, Side.LEFT));
@@ -117,7 +108,6 @@ public class HallButtonControl extends Controller {
         switch (state) {
             case STATE_LIGHT_OFF:
                 localHallLight.set(false);
-                mHallLight.set(false);
                 mHallCall.set(false);
 
                 //#transition '8.T.1'
@@ -129,7 +119,6 @@ public class HallButtonControl extends Controller {
                 break;
             case STATE_LIGHT_ON:
                 localHallLight.set(true);
-                mHallLight.set(true);
                 mHallCall.set(true);
 
                 //#transition '8.T.2'
@@ -149,13 +138,7 @@ public class HallButtonControl extends Controller {
                 throw new RuntimeException("State " + state + " was not recognized.");
         }
 
-        /*log the results of this iteration
-        if (state == newState) {
-            log("remains in state: ",state);
-        } else {
-            log("Transition:",state,"->",newState);
-        }
-		*/
+
         //update the state variable
         state = newState;
 

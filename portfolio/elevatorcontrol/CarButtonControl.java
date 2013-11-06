@@ -60,12 +60,10 @@ public class CarButtonControl extends Controller {
     
     
     // Output Mailbox and Translators:
-    	// Send mCarLight[f,b]
-    private WriteableCanMailbox networkCarLight;
-    private BooleanCanPayloadTranslator mCarLight;
+
     	// Send mCarCall[f,b]
     private WriteableCanMailbox networkCarCall;
-    private BooleanCanPayloadTranslator mCarCall;
+    private CarCallCanPayloadTranslator mCarCall;
     
     
     //these variables keep track of which instance this is.
@@ -148,19 +146,12 @@ public class CarButtonControl extends Controller {
         
         floorArray = new AtFloorArray(canInterface);
         
-        /** Outputs */      
-        // Registration for all the mCarLight messages
-        networkCarLight = CanMailbox.getWriteableCanMailbox(
-        				  MessageDictionary.CAR_LIGHT_BASE_CAN_ID+
-        				  ReplicationComputer.computeReplicationId(floor, hallway));
-        mCarLight = new BooleanCanPayloadTranslator(networkCarLight);
-        canInterface.sendTimeTriggered(networkCarLight, period);
-        
+        /** Outputs */              
         // Registration for all the mCarCall messages
         networkCarCall= CanMailbox.getWriteableCanMailbox(
 				  MessageDictionary.CAR_CALL_BASE_CAN_ID +
 				  ReplicationComputer.computeReplicationId(floor, hallway));
-        mCarCall= new BooleanCanPayloadTranslator(networkCarCall);
+        mCarCall= new CarCallCanPayloadTranslator(networkCarCall, floor, hallway);
         canInterface.sendTimeTriggered(networkCarCall, period);
         
         timer.start(period);
@@ -179,7 +170,6 @@ public class CarButtonControl extends Controller {
             case STATE_LIGHT_OFF:
                 //state actions for 'LIGHT OFF'
                 localCarLight.set(false);
-                mCarLight.set(false);
                 mCarCall.set(false);
                 CurrentFloor = floorArray.getCurrentFloor();
                 
@@ -194,7 +184,6 @@ public class CarButtonControl extends Controller {
             case STATE_LIGHT_ON:
                 //state actions for 'LIGHT ON'
                 localCarLight.set(true);
-                mCarLight.set(true);
                 mCarCall.set(true);
                 
                 //#transition '9.T.2'
@@ -204,7 +193,6 @@ public class CarButtonControl extends Controller {
                 	((mDesiredFloor.getDirection() == Direction.UP) && (floorArray.getCurrentFloor() > floor)) || 
                 	((mDesiredFloor.getDirection() == Direction.DOWN) && (floorArray.getCurrentFloor() < floor))) &&
                 	localCarCall.pressed() == false) {
-                	// AND BUTTON NOT PRESSED
                     newState = State.STATE_LIGHT_OFF;
                     break;
                 }
@@ -216,13 +204,6 @@ public class CarButtonControl extends Controller {
                 throw new RuntimeException("State " + state + " was not recognized.");
         }
         
-        /*log the results of this iteration
-        if (state == newState) {
-            log("remains in state: ",state);
-        } else {
-            log("Transition:",state,"->",newState);
-        }
-		*/
         //update the state variable
         state = newState;
 
