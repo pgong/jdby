@@ -18,7 +18,7 @@
 ;check that the light is off initially
 +1.21s A F CarLight 3 FRONT : lighted == false
 +0s A N CAR_LIGHT_[3][FRONT]_CAN_ID Boolean : getValue == false
-+0s A N CAR_CALL_[3][FRONT]_CAN_ID Boolean : getValue == false
++0s A N CAR_CALL_[3][FRONT]_CAN_ID CarCall 3 FRONT : getValue == false
 
 ;9.T.1
 ;set conditions for light to be turned on (9.T.1) - CarCall is Pressed
@@ -31,7 +31,7 @@
 +0.21s A S CarButtonControl[3][FRONT] : STATE == STATE_LIGHT_ON
 +0s A F CarLight 3 FRONT : lighted == true
 +0s A N CAR_LIGHT_[3][FRONT]_CAN_ID Boolean : getValue == true
-+0s A N CAR_CALL_[3][FRONT]_CAN_ID Boolean : getValue == true
++0s A N CAR_CALL_[3][FRONT]_CAN_ID CarCall 3 FRONT : getValue == true
  
 ;9.T.2
 ;set conditions for light to be turned off (9.T.2) - #1:arrive at floor
@@ -42,4 +42,4 @@
 +0.41s A S CarButtonControl[3][FRONT] : STATE == STATE_LIGHT_OFF
 +0s A F CarLight 3 FRONT : lighted == false
 +0s A N CAR_LIGHT_[3][FRONT]_CAN_ID Boolean : getValue == false
-+0s A N CAR_CALL_[3][FRONT]_CAN_ID Boolean : getValue == false
++0s A N CAR_CALL_[3][FRONT]_CAN_ID CarCall 3 FRONT : getValue == false
