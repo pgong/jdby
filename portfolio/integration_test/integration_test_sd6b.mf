@@ -1,0 +1,35 @@
+; 18649 <Fall 2013>
+; Group 22
+; David Chow (davidcho)
+; Brody Anderson (bcanders)
+; Yang Liu (yangliu2)
+; Jeff Lau (jalau)
+;
+; @Author: Brody Anderson
+; Integration test: SC6B - DriveControl and CarPositionControl Integration
+#INCLUDE defines.mf
+
+;Initialize Drive control jumps from Stopped state to slow state after one period.
+0s I AT_FLOOR_PERIOD N AT_FLOOR_[1][FRONT]_CAN_ID AtFloor 1 FRONT = true
++0s I DISPATCHER_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 7 STOP FRONT
++0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = true
++0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = true
++0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][RIGHT]_CAN_ID DoorClosed BACK RIGHT = true
++0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][LEFT]_CAN_ID DoorClosed BACK LEFT = true
++0s  I DOOR_CONTROL_PERIOD N DESIRED_DWELL_[FRONT]_CAN_ID DesiredDwell FRONT = 2s
++0s  I  DRIVE_CONTROL_PERIOD F DriveSpeed = UP 0.25 ; Should get the DriveControl to get into Fast speed
+
+;because mAtFloor is true, drive control jumps to level state after another period.
++0.41s I DRIVE_CONTROL_PERIOD F DriveSpeed = UP 0.3
++0s I CAR_LEVEL_POSITION_PERIOD N CAR_LEVEL_POSITION_CAN_ID CarLevelPosition = 10000 ; Floor 3
+
+;Check CarPositionControl	
++0.5s A N CAR_POSITION_CAN_ID Integer : getValue == 3
+
+;Check DriveControl State
++0.51s A S DriveControl : STATE == STATE_FAST
++0s A F Drive : speed == FAST
++0s A F Drive : direction == UP
++0s A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == UP
++0s A N DRIVE_COMMAND_CAN_ID DriveCommand : getSpeed == FAST
++0s A N DRIVE_COMMAND_CAN_ID DriveCommand : getDirection == UP

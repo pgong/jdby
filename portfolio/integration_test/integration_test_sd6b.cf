@@ -1,0 +1,12 @@
+; 18649 <Fall 2013>
+; Group 22
+; David Chow (davidcho)
+; Brody Anderson (bcanders)
+; Yang Liu (yangliu2)
+; Jeff Lau (jalau)
+;
+; @Author: Brody Anderson
+; Integration test: SC6B
+
+DriveControl 10ms true
+CarPositionControl 50ms true
