@@ -64,5 +64,5 @@
 ;Check if lights are off
 +0.29s A S HallButtonControl[2][BACK][UP] : STATE == STATE_LIGHT_OFF
 +0s A F HallLight 2 BACK UP : lighted == false
-+0s A N HALL_CALL_[2][BACK][UP]_CAN_ID Boolean : getValue == false
++0s A N HALL_CALL_[2][BACK][UP]_CAN_ID HallCall 4 FRONT DOWN : getValue == false
 

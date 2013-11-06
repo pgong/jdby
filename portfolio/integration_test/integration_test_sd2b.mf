@@ -37,14 +37,14 @@
 
 ;Check that the 3 FRONT light is on
 +0.31s A F CarLight 3 FRONT : lighted == true
-+0s A N CAR_CALL_[3][FRONT]_CAN_ID Boolean : getValue == true
++0s A N CAR_CALL_[3][FRONT]_CAN_ID CarCall 3 FRONT : getValue == true
 
 ;unpress
 +0.1s I CAR_BUTTON_CONTROL_PERIOD F CarCall 3 FRONT = false 
 
 ;Check that the 3 FRONT light is off 
 +0.35s A F CarLight 3 FRONT : lighted == false
-+0s A N CAR_CALL_[3][FRONT]_CAN_ID Boolean : getValue == false
++0s A N CAR_CALL_[3][FRONT]_CAN_ID CarCall 3 FRONT : getValue == false
 
 ;Dispatcher sends desiredFloor 
 +0.2s I DISPATCHER_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 3 STOP FRONT
