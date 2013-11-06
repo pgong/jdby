@@ -9,6 +9,7 @@
  */
 package simulator.elevatorcontrol;
  
+import simulator.elevatorcontrol.Utility.AtFloorArray;
 import simulator.elevatormodules.AtFloorCanPayloadTranslator;
 import simulator.elevatormodules.CarLevelPositionCanPayloadTranslator;
 import simulator.elevatormodules.CarWeightCanPayloadTranslator;
@@ -104,6 +105,8 @@ public class DriveControl extends Controller{
     private boolean commitPointReached;
     //Additional internal state variables
     private SimTime counter = SimTime.ZERO;
+    private int CurrentFloor;
+    private AtFloorArray floorArray;
 
     //enumerate states
     private enum State {
@@ -311,7 +314,7 @@ public class DriveControl extends Controller{
 			mDrive.set(Speed.SLOW, direction);
 			mDriveSpeed.set(localDriveSpeed.speed(),localDriveSpeed.direction());
 			
-			
+			//if false, then we can go faster!
 			if(direction == Direction.UP){
 				commitPointReached = ((mDesiredFloor.getFloor() -1) * 5 - 
 					(localDriveSpeed.speed() * localDriveSpeed.speed() / 2 + 0.2)) * 1000 < 

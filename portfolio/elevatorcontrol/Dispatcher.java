@@ -279,7 +279,7 @@ public class Dispatcher extends Controller{
 				}
 				else 
 					hallway = Hallway.BACK;
-				//log("floor is ", floor, " next direction is ", direction, " current direction is", curr_d);
+				log("floor is ", floor, " next direction is ", direction, " current direction is", curr_d);
 				//Now set the next target.
 				mDesiredFloor.set(floor, direction, hallway);
 				
@@ -636,7 +636,7 @@ public class Dispatcher extends Controller{
 			}
 		}
 		
-		//log("target: ", target, "nextTarget: ", nextTarget, "hall call: ", nextHallCall , "current floor ", curr_f);
+		log("target: ", target, " nextTarget: ", nextTarget, " hall call: ", nextHallCall , "current floor ", curr_f);
 		//If target was found, change desired floor.
 		if(targetFound){
 			floor = target;			
@@ -647,11 +647,18 @@ public class Dispatcher extends Controller{
 				if(target - nextTarget > 0)
 					direction = Direction.DOWN;
 				//It should not be possible for the nextTarget to equal the target
-				else
+				else if(target - nextTarget < 0)
 					direction = Direction.UP;
 			}
 			else
 				direction = Direction.STOP;
+		}
+		else if (!targetFound && nextTargetFound){
+			log("entered the arena ", (floor-nextTarget));
+			if(floor - nextTarget > 0)
+				direction = Direction.DOWN;
+			else if(floor - nextTarget < 0)
+				direction = Direction.UP;
 		}
 		//Set the current direction based on the target.
 		if(floor - curr_f > 0)

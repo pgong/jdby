@@ -22,11 +22,8 @@ import simulator.framework.ReplicationComputer;
 import simulator.framework.Side;
 import simulator.payloads.CanMailbox;
 import simulator.payloads.CanMailbox.ReadableCanMailbox;
-import simulator.payloads.CanMailbox.WriteableCanMailbox;
 import simulator.payloads.CarLanternPayload;
 import simulator.payloads.CarLanternPayload.WriteableCarLanternPayload;
-import simulator.payloads.translators.BooleanCanPayloadTranslator;
-
 
 
 public class LanternControl extends Controller {
@@ -47,11 +44,9 @@ public class LanternControl extends Controller {
     private DesiredFloorCanPayloadTranslator mDesiredFloor;
 
     private WriteableCarLanternPayload carLantern;
-    
-    private WriteableCanMailbox networkCarLantern;
-    private BooleanCanPayloadTranslator mCarLantern;
 
     private int CurrentFloor;
+    private Direction DesiredDirection;
     private AtFloorArray floorArray;
 
     private final Direction direction;
@@ -71,45 +66,33 @@ public class LanternControl extends Controller {
         this.direction = direction;
 
         log("Created LanternControl with period = ", period);
-        // Output:
-        // CarLantern
+
         carLantern = CarLanternPayload.getWriteablePayload(direction);
         physicalInterface.sendTimeTriggered(carLantern, period);
-        
-        // mCarLantern
-        networkCarLantern = CanMailbox.getWriteableCanMailbox(
-        				  MessageDictionary.CAR_LANTERN_BASE_CAN_ID);
-        mCarLantern = new BooleanCanPayloadTranslator(networkCarLantern);
-        canInterface.sendTimeTriggered(networkCarLantern, period);
 
-        // Input:
-        // mDoorClosed - Front Left
         networkDoorClosedFrontLeft = CanMailbox.getReadableCanMailbox(MessageDictionary.DOOR_CLOSED_SENSOR_BASE_CAN_ID + ReplicationComputer.computeReplicationId(Hallway.FRONT, Side.LEFT));
         mDoorClosedFrontLeft = new DoorClosedCanPayloadTranslator(networkDoorClosedFrontLeft, Hallway.FRONT, Side.LEFT);
         canInterface.registerTimeTriggered(networkDoorClosedFrontLeft);
 
-        // mDoorClosed - Front Right
         networkDoorClosedFrontRight = CanMailbox.getReadableCanMailbox(MessageDictionary.DOOR_CLOSED_SENSOR_BASE_CAN_ID + ReplicationComputer.computeReplicationId(Hallway.FRONT, Side.RIGHT));
         mDoorClosedFrontRight = new DoorClosedCanPayloadTranslator(networkDoorClosedFrontRight, Hallway.FRONT, Side.RIGHT);
         canInterface.registerTimeTriggered(networkDoorClosedFrontRight);
 
-        // mDoorClosed - Back Left
         networkDoorClosedBackLeft = CanMailbox.getReadableCanMailbox(MessageDictionary.DOOR_CLOSED_SENSOR_BASE_CAN_ID + ReplicationComputer.computeReplicationId(Hallway.BACK, Side.LEFT));
         mDoorClosedBackLeft = new DoorClosedCanPayloadTranslator(networkDoorClosedBackLeft, Hallway.BACK, Side.LEFT);
         canInterface.registerTimeTriggered(networkDoorClosedBackLeft);
 
-        // mDoorClosed - Back Right
         networkDoorClosedBackRight = CanMailbox.getReadableCanMailbox(MessageDictionary.DOOR_CLOSED_SENSOR_BASE_CAN_ID + ReplicationComputer.computeReplicationId(Hallway.BACK, Side.RIGHT));
         mDoorClosedBackRight = new DoorClosedCanPayloadTranslator(networkDoorClosedBackRight, Hallway.BACK, Side.RIGHT);
         canInterface.registerTimeTriggered(networkDoorClosedBackRight);
 
-        // mDesiredFloor
         networkDesiredFloor = CanMailbox.getReadableCanMailbox(MessageDictionary.DESIRED_FLOOR_CAN_ID);
         mDesiredFloor = new DesiredFloorCanPayloadTranslator(networkDesiredFloor);
         canInterface.registerTimeTriggered(networkDesiredFloor);
-        
 
         floorArray = new AtFloorArray(canInterface);
+        DesiredDirection = Direction.STOP;
+
         timer.start(period);
 
     }
@@ -119,15 +102,20 @@ public class LanternControl extends Controller {
         switch (state) {
             case STATE_LANTERN_OFF:
             	carLantern.set(false);
-            	mCarLantern.set(false);
             	CurrentFloor = floorArray.getCurrentFloor();
 
+            	if(CurrentFloor != MessageDictionary.NONE) {
+            		if(mDesiredFloor.getFloor() > CurrentFloor) {
+            			DesiredDirection = Direction.UP;
+            		}else if(mDesiredFloor.getFloor() < CurrentFloor) {
+            			DesiredDirection = Direction.DOWN;
+            		}else{
+            			DesiredDirection = Direction.STOP;
+            		}
+            		
+            	}
                 //#transition '7.T.1'
-            	if(mDesiredFloor.getDirection() == direction && 
-            		(mDoorClosedFrontLeft.getValue() == false || 
-            		mDoorClosedFrontRight.getValue() == false || 
-            		mDoorClosedBackLeft.getValue() == false || 
-            		mDoorClosedBackRight.getValue() == false)) {
+            	if(DesiredDirection == direction && (mDoorClosedFrontLeft.getValue() == false || mDoorClosedFrontRight.getValue() == false || mDoorClosedBackLeft.getValue() == false || mDoorClosedBackRight.getValue() == false)) {
             		newState = State.STATE_LANTERN_ON;
                 } 
                 //#transition '7.T.2'
@@ -137,12 +125,8 @@ public class LanternControl extends Controller {
                 break;
             case STATE_LANTERN_ON:	
             	carLantern.set(true);
-            	mCarLantern.set(true);
                 //#transition '7.T.3'
-            	if(mDoorClosedFrontLeft.getValue() == true && 
-            		mDoorClosedFrontRight.getValue() == true &&
-            		mDoorClosedBackLeft.getValue() == true &&
-            		mDoorClosedBackRight.getValue() == true) {
+            	if(mDoorClosedFrontLeft.getValue() == true && mDoorClosedFrontRight.getValue() == true && mDoorClosedBackLeft.getValue() == true && mDoorClosedBackRight.getValue() == true) {
             		newState = State.STATE_LANTERN_OFF;
             	} else {
             		newState = state;
@@ -151,7 +135,13 @@ public class LanternControl extends Controller {
             default:
                 throw new RuntimeException("State " + state + " was not recognized.");
         }
-
+       /* 
+        if (state == newState) {
+            log("remains in state: ",state);
+        } else {
+            log("Transition:",state,"->",newState);
+        }
+		*/
         //update the state variable
         state = newState;
 

@@ -135,11 +135,11 @@ public class HallButtonControl extends Controller {
                 //#transition '8.T.2'
                 if (mDoorClosedLeft.getValue() == false && 
                 	mDoorClosedRight.getValue() == false && 
-                	mAtFloor.getValue() == true && 
-                	((mDesiredFloor.getFloor() > floor && 
+                	mAtFloor.getValue() == true  
+                	/*((mDesiredFloor.getFloor() > floor && 
                 			direction == Direction.UP) || 
                 			(mDesiredFloor.getFloor() < floor && 
-                					direction == Direction.DOWN)))  {
+                					direction == Direction.DOWN))*/)  {
                     newState = State.STATE_LIGHT_OFF;
                 } else {
                     newState = state;

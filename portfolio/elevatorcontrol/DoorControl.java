@@ -231,13 +231,13 @@ public class DoorControl extends Controller {
             	if(mDesiredFloor.getHallway() == Hallway.BOTH){
             		if (mAtFloor[ReplicationComputer.computeReplicationId(
             				mDesiredFloor.getFloor(),Hallway.FRONT)].getValue() == true 
-            				&& mDriveSpeed.getSpeed() == 0) {
+            				&& mDriveSpeed.getSpeed() == 0.0) {
             			newState = State.OPENING_DOOR; // T1
             		}
             	}
             	else if (mAtFloor[ReplicationComputer.computeReplicationId(
             			mDesiredFloor.getFloor(),mDesiredFloor.getHallway())].getValue() == true 
-            			&& mDriveSpeed.getSpeed() == 0 && mDesiredFloor.getHallway() == this.h) {
+            			&& mDriveSpeed.getSpeed() == 0.0 && mDesiredFloor.getHallway() == this.h) {
             		newState = State.OPENING_DOOR; // T1
             	}
                 break;
