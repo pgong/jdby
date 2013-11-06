@@ -45,7 +45,7 @@
 
 ;Check to see if light is still on
 +0.21s A F CarLight 5 FRONT : lighted == true
-+0s A N CAR_CALL_[5][FRONT]_CAN_ID CarCall 3 FRONT : getValue == true
++0s A N CAR_CALL_[5][FRONT]_CAN_ID CarCall 5 FRONT : getValue == true
 
 ;Check to see if door closing
 +2.52s A S DoorControl[FRONT][LEFT] : STATE == CLOSING_DOOR
@@ -56,4 +56,4 @@
 
 ;Check to see if light is still on
 +0.2s A F CarLight 5 FRONT : lighted == true
-+0s A N CAR_CALL_[5][FRONT]_CAN_ID CarCall 3 FRONT : getValue == true
++0s A N CAR_CALL_[5][FRONT]_CAN_ID CarCall 5 FRONT : getValue == true

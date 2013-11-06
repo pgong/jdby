@@ -1,7 +1,7 @@
 
 Simulator Parameters:
 Command line = -cf integration_test_sd3a.cf -mf integration_test_sd3a.mf
-RandomSeed = 1383700592344
+RandomSeed = 1383723217613
 CanNetworkBitTime = 0 ns
 Effective Can Bitrate = Infinity
 Run Time = null
@@ -11,35 +11,28 @@ Controller File = integration_test_sd3a.cf
 
 Assertion Results:
 @1.01s:  PASSED DoorControl[FRONT][LEFT]::checkState(STATE) ?== CAR_MOVING PASSED
-@1.01s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@1412e75 :: command ?== STOP PASSED
+@1.01s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@d67067 :: command ?== STOP PASSED
 @1.01s:  PASSED Dispatcher::checkState(STATE) ?== STATE_DOORSCLOSED PASSED
-@1.01s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@1295fe8 :: getFloor ?== 2 PASSED
-@1.01s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@1071c84 :: getDirection ?== UP PASSED
-@1.01s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@d1329 :: getHallway ?== BACK PASSED
+@1.01s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@b6d6ab :: getFloor ?== 2 PASSED
+@1.01s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@1aecc3a :: getDirection ?== UP PASSED
+@1.01s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@186dda3 :: getHallway ?== BACK PASSED
 @1.22s:  PASSED DriveControl::checkState(STATE) ?== STATE_FAST PASSED
-@1.22s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@126a29c :: getSpeed ?== FAST PASSED
-@1.22s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@13e15f7 :: getDirection ?== UP PASSED
-@1.22s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@61373f :: getFloor ?== 2 PASSED
+@1.22s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@17cf6b6 :: getFloor ?== 2 PASSED
 @1.53s:  PASSED DriveControl::checkState(STATE) ?== STATE_SLOW PASSED
-@1.53s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@17f11fb :: getSpeed ?== SLOW PASSED
-@1.53s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@ebf068 :: getDirection ?== UP PASSED
-@1.53s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@602b6b :: getFloor ?== 2 PASSED
+@1.53s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@1071c84 :: getFloor ?== 2 PASSED
 @1.94s:  PASSED DriveControl::checkState(STATE) ?== STATE_LEVEL PASSED
-@1.94s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@3e1bc8 :: getSpeed ?== LEVEL PASSED
-@1.94s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@313170 :: getDirection ?== UP PASSED
-@1.94s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@afae4a :: getFloor ?== 2 PASSED
+@1.94s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@650892 :: getFloor ?== 2 PASSED
 @2.43s:  PASSED DoorControl[BACK][LEFT]::checkState(STATE) ?== OPENING_DOOR PASSED
 @2.43s:  PASSED DoorControl[BACK][RIGHT]::checkState(STATE) ?== OPENING_DOOR PASSED
-@2.43s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@6504bc :: command ?== OPEN PASSED
-@2.43s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@16089a5 :: command ?== OPEN PASSED
+@2.43s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@13e15f7 :: command ?== OPEN PASSED
+@2.43s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@61373f :: command ?== OPEN PASSED
 @2.72s:  PASSED HallButtonControl[2][BACK][UP]::checkState(STATE) ?== STATE_LIGHT_OFF PASSED
-@2.72s:  PASSED simulator.payloads.HallLightPayload$ReadableHallLightPayload@5e222e :: lighted ?== false PASSED
-@2.72s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@120540c :: getValue ?== false PASSED
-@2.72s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@a7c45e :: getValue ?== false PASSED
+@2.72s:  PASSED simulator.payloads.HallLightPayload$ReadableHallLightPayload@17f11fb :: lighted ?== false PASSED
+@2.72s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@ebf068 :: getValue ?== false PASSED
 
 
 ******************Summary******************
-Passed:  26
+Passed:  19
 Failed:  0
-Total :  26
+Total :  19
 
