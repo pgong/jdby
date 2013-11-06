@@ -55,12 +55,10 @@ public class DriveControl extends Controller{
 	private WriteableDrivePayload localDrive;
 	
 	//Network interface
-	//Outputs: mDrive and mDrivespeed
-	private WriteableCanMailbox networkDrive;
+	//Outputs: mDrivespeed
 	private WriteableCanMailbox networkDriveSpeed;
 	
 	//Respective translators for output messages
-	private DriveCommandCanPayloadTranslator mDrive;
 	private DriveSpeedCanPayloadTranslator mDriveSpeed;
 	
 	/*Inputs: mAtFloor, mLevel, mCarLevelPosition, 
@@ -145,15 +143,11 @@ public class DriveControl extends Controller{
         commitPointReached = false;
         //Initialize network interface
         //Outputted network messages
-        networkDrive = CanMailbox.getWriteableCanMailbox(
-        				MessageDictionary.DRIVE_COMMAND_CAN_ID);
         networkDriveSpeed = CanMailbox.getWriteableCanMailbox(
         					MessageDictionary.DRIVE_SPEED_CAN_ID);
         //Register each mailbox with its translator
-        mDrive = new DriveCommandCanPayloadTranslator(networkDrive);
     	mDriveSpeed = new DriveSpeedCanPayloadTranslator(networkDriveSpeed);
     	//Register each mailbox to send or receive messages on a timely basis
-    	canInterface.sendTimeTriggered(networkDrive,period);
     	canInterface.sendTimeTriggered(networkDriveSpeed,period);
         
         //Inputed network messages
@@ -248,7 +242,6 @@ public class DriveControl extends Controller{
 			//State actions for 'STOPPED'
 			direction = Direction.STOP;
 			localDrive.set(Speed.STOP, direction);
-			mDrive.set(Speed.STOP, direction);
 			//DriveSpeed should be stopped
 			
 			
@@ -311,7 +304,6 @@ public class DriveControl extends Controller{
 		case STATE_SLOW:
 			//State actions for 'SpeedSlow'
 			localDrive.set(Speed.SLOW, direction);
-			mDrive.set(Speed.SLOW, direction);
 			mDriveSpeed.set(localDriveSpeed.speed(),localDriveSpeed.direction());
 			
 			//if false, then we can go faster!
@@ -351,7 +343,6 @@ public class DriveControl extends Controller{
 		case STATE_LEVEL:
 			//State actions for 'SpeedLevel'
 			localDrive.set(Speed.LEVEL, direction);
-			mDrive.set(Speed.LEVEL, direction);
 			mDriveSpeed.set(localDriveSpeed.speed(),localDriveSpeed.direction());
 			
 			//transitions:
@@ -374,7 +365,6 @@ public class DriveControl extends Controller{
 		case STATE_FAST:
 			//State action for 'SpeedFast'
 			localDrive.set(Speed.FAST, direction);
-			mDrive.set(Speed.FAST, direction);
 			mDriveSpeed.set(localDriveSpeed.speed(),localDriveSpeed.direction());
 
 	
