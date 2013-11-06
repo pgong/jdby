@@ -9,4 +9,3 @@
 ; Integration test: SD5c
 
 DoorControl FRONT LEFT 100ms true
-DoorControl FRONT RIGHT 100ms true
