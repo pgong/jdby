@@ -37,15 +37,13 @@ public class Dispatcher extends Controller{
 	 * Declarations
 	 ***********************/
 	//Network interface
-	//Outputs: mDesiredFloor and mDesiredDwell
+	//Outputs: mDesiredFloor 
 	private WriteableCanMailbox networkDesiredFloor;
-	private WriteableCanMailbox networkDesiredDwellF;
-	private WriteableCanMailbox networkDesiredDwellB;
+
 
 	//Respective translators for output messages
 	private DesiredFloorCanPayloadTranslator mDesiredFloor;
-	private DesiredDwellCanPayloadTranslator mDesiredDwellF;
-	private DesiredDwellCanPayloadTranslator mDesiredDwellB;
+
 
 	/*Inputs:mAtFloor, mDoorClosed, mHallCall,
 	 * mCarCall, mCarWeight
@@ -75,7 +73,7 @@ public class Dispatcher extends Controller{
 	private Hallway hallway;
 	private Direction direction;
     private Direction curr_d;
-	private SimTime dwellTime;
+
     
 
 	//Store he period for the controller
@@ -104,7 +102,6 @@ public class Dispatcher extends Controller{
 		hallway = Hallway.BOTH;
 		//represents the next direction
 		direction = Direction.STOP;
-		dwellTime = new SimTime(2, SimTime.SimTimeUnit.SECOND);
 		
 		log("Created Dispatcher with period = ", period);
 
@@ -113,22 +110,8 @@ public class Dispatcher extends Controller{
 		networkDesiredFloor = CanMailbox.getWriteableCanMailbox(MessageDictionary.DESIRED_FLOOR_CAN_ID);
 		mDesiredFloor = new DesiredFloorCanPayloadTranslator(networkDesiredFloor);
 
-		networkDesiredDwellF = CanMailbox.getWriteableCanMailbox(
-						MessageDictionary.DESIRED_DWELL_BASE_CAN_ID +
-						ReplicationComputer.computeReplicationId(Hallway.FRONT));
-		mDesiredDwellF = new DesiredDwellCanPayloadTranslator(networkDesiredDwellF,Hallway.FRONT);
-		
-		networkDesiredDwellB = CanMailbox.getWriteableCanMailbox(
-				MessageDictionary.DESIRED_DWELL_BASE_CAN_ID +
-				ReplicationComputer.computeReplicationId(Hallway.BACK));
-		mDesiredDwellB = new DesiredDwellCanPayloadTranslator(networkDesiredDwellB,Hallway.BACK);
-
 
 		canInterface.sendTimeTriggered(networkDesiredFloor,period);
-		canInterface.sendTimeTriggered(networkDesiredDwellF,period);
-		canInterface.sendTimeTriggered(networkDesiredDwellB,period);
-
-
 
 		//Inputs
 		//CarWeight
@@ -207,8 +190,7 @@ public class Dispatcher extends Controller{
     	canInterface.registerTimeTriggered(networkDriveSpeed);
     	
 		//initially set target to lobby.
-		mDesiredDwellF.set(dwellTime);
-		mDesiredDwellB.set(dwellTime);
+
 		mDesiredFloor.set(floor,hallway,direction);
 		
 		timer.start(period);	    
