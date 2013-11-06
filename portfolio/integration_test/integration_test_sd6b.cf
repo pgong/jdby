@@ -6,6 +6,7 @@
 ; Jeff Lau (jalau)
 ;
 ; @Author: Brody Anderson
-; Integration test: SD5c
+; Integration test: SC6B
 
-DoorControl FRONT LEFT 100ms true
+DriveControl 10ms true
+CarPositionControl 50ms true
