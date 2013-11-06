@@ -15,7 +15,7 @@
 
 ;check that the light is off initially
 1.21s  A F HallLight 4 FRONT DOWN : lighted == false
-1.21s  A N HALL_CALL_[4][FRONT][DOWN]_CAN_ID Boolean : getValue == false
+1.21s  A N HALL_CALL_[4][FRONT][DOWN]_CAN_ID HallCall 4 FRONT DOWN : getValue == false
   
 ;arc 1a and 1b
 1.80s  I  HALL_BUTTON_CONTROL_PERIOD F HallCall 4 FRONT DOWN  = true
