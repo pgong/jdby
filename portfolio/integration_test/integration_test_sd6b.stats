@@ -1,7 +1,7 @@
 
 Simulator Parameters:
 Command line = -cf integration_test_sd6b.cf -mf integration_test_sd6b.mf
-RandomSeed = 1383699256599
+RandomSeed = 1383720313950
 CanNetworkBitTime = 0 ns
 Effective Can Bitrate = Infinity
 Run Time = null
@@ -10,17 +10,16 @@ Message File = integration_test_sd6b.mf
 Controller File = integration_test_sd6b.cf
 
 Assertion Results:
-@0.91s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@5f30f268 :: getValue ?== 3 PASSED
+@0.91s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@20fa83 :: getValue ?== 3 PASSED
 @1.42s:  PASSED DriveControl::checkState(STATE) ?== STATE_FAST PASSED
-@1.42s:  PASSED simulator.payloads.DrivePayload$ReadableDrivePayload@23a0a87c :: speed ?== FAST PASSED
-@1.42s:  PASSED simulator.payloads.DrivePayload$ReadableDrivePayload@cc26acd :: direction ?== UP PASSED
-@1.42s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@2844a541 :: getDirection ?== UP PASSED
-@1.42s:  FAILED simulator.payloads.CanMailbox$ReadableCanMailbox@2fb24628 :: getSpeed ?== LEVEL FAILED
-@1.42s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@766f3870 :: getDirection ?== UP PASSED
+@1.42s:  PASSED simulator.payloads.DrivePayload$ReadableDrivePayload@8ae45a :: speed ?== FAST PASSED
+@1.42s:  PASSED simulator.payloads.DrivePayload$ReadableDrivePayload@29c204 :: direction ?== UP PASSED
+@1.42s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@1a0d866 :: getSpeed ?== 0.3 PASSED
+@1.42s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@1226a77 :: getDirection ?== UP PASSED
 
 
 ******************Summary******************
 Passed:  6
-Failed:  1
-Total :  7
+Failed:  0
+Total :  6
 

@@ -1,20 +1,20 @@
 
 Simulator Parameters:
-Command line = -cf integration_test/integration_test_sd7a.cf -mf integration_test/integration_test_sd7a.mf
-RandomSeed = 1383419014589
+Command line = -cf integration_test_sd7a.cf -mf integration_test_sd7a.mf
+RandomSeed = 1383720336326
 CanNetworkBitTime = 0 ns
 Effective Can Bitrate = Infinity
 Run Time = null
 Real time rate = null
-Message File = integration_test/integration_test_sd7a.mf
-Controller File = integration_test/integration_test_sd7a.cf
+Message File = integration_test_sd7a.mf
+Controller File = integration_test_sd7a.cf
 
 Assertion Results:
-@0.6s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@762cd5a3 :: command ?== OPEN PASSED
-@0.6s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@3e697087 :: command ?== OPEN PASSED
-@1.16s:  PASSED simulator.payloads.CarLanternPayload$ReadableCarLanternPayload@2dd1282d :: lighted ?== true PASSED
-@1.6s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@70a5d82a :: command ?== STOP PASSED
-@1.6s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@10747b4 :: command ?== STOP PASSED
+@0.6s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@3aff84 :: command ?== OPEN PASSED
+@0.6s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@a53de4 :: command ?== OPEN PASSED
+@1.16s:  PASSED simulator.payloads.CarLanternPayload$ReadableCarLanternPayload@1f0b7d3 :: lighted ?== true PASSED
+@1.6s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@35bb0f :: command ?== STOP PASSED
+@1.6s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@e4245 :: command ?== STOP PASSED
 
 
 ******************Summary******************

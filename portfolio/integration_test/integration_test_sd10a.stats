@@ -1,14 +1,7 @@
-; 18649 <Fall 2013>
-; Group 22
-; David Chow (davidcho)
-; Brody Anderson (bcanders)
-; Yang Liu (yangliu2)
-; Jeff Lau (jalau)
-;
 
 Simulator Parameters:
 Command line = -cf integration_test_sd10a.cf -mf integration_test_sd10a.mf
-RandomSeed = 1381977296272
+RandomSeed = 1383721232511
 CanNetworkBitTime = 0 ns
 Effective Can Bitrate = Infinity
 Run Time = null
@@ -17,16 +10,14 @@ Message File = integration_test_sd10a.mf
 Controller File = integration_test_sd10a.cf
 
 Assertion Results:
-@1.22s:  PASSED simulator.payloads.DrivePayload$ReadableDrivePayload@18a37512 :: speed ?== STOP PASSED
-@1.22s:  PASSED simulator.payloads.DrivePayload$ReadableDrivePayload@3ab0f534 :: direction ?== STOP PASSED
-@1.22s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@1954f77b :: getSpeed ?== 0.0 PASSED
-@1.22s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@2d35dd72 :: getDirection ?== STOP PASSED
-@1.22s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@71fb2e0 :: getSpeed ?== STOP PASSED
-@1.22s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@6b8e0782 :: getDirection ?== STOP PASSED
+@1.22s:  PASSED simulator.payloads.DrivePayload$ReadableDrivePayload@1f6f27b :: speed ?== STOP PASSED
+@1.22s:  PASSED simulator.payloads.DrivePayload$ReadableDrivePayload@430b6 :: direction ?== STOP PASSED
+@1.22s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@70610a :: getSpeed ?== 0.0 PASSED
+@1.22s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@3e96cf :: getDirection ?== STOP PASSED
 
 
 ******************Summary******************
-Passed:  6
+Passed:  4
 Failed:  0
-Total :  6
+Total :  4
 

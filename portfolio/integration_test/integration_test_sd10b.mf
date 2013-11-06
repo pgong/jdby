@@ -15,7 +15,8 @@
 +0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = true
 +0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][RIGHT]_CAN_ID DoorClosed BACK RIGHT = true
 +0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][LEFT]_CAN_ID DoorClosed BACK LEFT = true
-+0s  I  HALL_BUTTON_CONTROL_PERIOD N HALL_CALL_[3][FRONT][UP]_CAN_ID Boolean = true
++0s  I  HALL_BUTTON_CONTROL_PERIOD N HALL_CALL_[3][FRONT][UP]_CAN_ID HallCall 3 FRONT UP = true
++0s  I DRIVE_CONTROL_PERIOD F DriveSpeed = UP 0.20
 
 ;CHECKS
 +0.21s  A S Dispatcher : STATE == STATE_DOORSCLOSED
@@ -24,9 +25,8 @@
 +0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getHallway == FRONT
 
 +0.21s  A S DriveControl : STATE == STATE_SLOW
-+0s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getSpeed == SLOW
-+0s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getDirection == UP
-+0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getFloor == 3
++0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0.20
++0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == UP
 
 ;Left floor
 +0.2s  I  AT_FLOOR_PERIOD N AT_FLOOR_[1][FRONT]_CAN_ID AtFloor 1 FRONT = false
@@ -38,14 +38,14 @@
 +0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getHallway == FRONT
 
 +0s  A S DriveControl : STATE == STATE_SLOW
-+0s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getSpeed == SLOW
-+0s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getDirection == UP
-+0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getFloor == 3
++0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0.20
++0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == UP
 
 ;Open Doors!
 +0.21s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[FRONT][LEFT]_CAN_ID DoorOpened FRONT LEFT = true
 +0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = false
 +0s I DRIVE_PERIOD N EMERGENCY_BRAKE_CAN_ID Boolean = true
++0s  I DRIVE_CONTROL_PERIOD F DriveSpeed = STOP 0.0
 
 ;In between
 +0.51s  A S Dispatcher : STATE == STATE_EMERGENCY
@@ -54,5 +54,5 @@
 +0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getHallway == BOTH
 
 +0.21s  A S DriveControl : STATE == STATE_STOP
-+0s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getSpeed == STOP
-+0s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getDirection == STOP 
++0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0.0
++0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == STOP
