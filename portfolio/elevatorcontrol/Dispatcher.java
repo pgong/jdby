@@ -59,8 +59,8 @@ public class Dispatcher extends Controller{
 	//Respective translators for input messages
 	private AtFloorCanPayloadTranslator[] mAtFloor;
 	private DoorClosedCanPayloadTranslator[] mDoorClosed;
-	private BooleanCanPayloadTranslator[] mHallCall;
-	private BooleanCanPayloadTranslator[] mCarCall;
+	private HallCallCanPayloadTranslator[] mHallCall;
+	private CarCallCanPayloadTranslator[] mCarCall;
 	private CarWeightCanPayloadTranslator mCarWeight;
 	private CarLevelPositionCanPayloadTranslator mCarLevelPosition;
 	private DriveSpeedCanPayloadTranslator mDriveSpeed;
@@ -149,7 +149,7 @@ public class Dispatcher extends Controller{
 
 		//HallCall
 		networkHallCall = new CanMailbox.ReadableCanMailbox[Elevator.numFloors*4];
-		mHallCall = new BooleanCanPayloadTranslator[Elevator.numFloors*4];
+		mHallCall = new HallCallCanPayloadTranslator[Elevator.numFloors*4];
 		for(int floors = 1; floors <= Elevator.numFloors; floors++) {
 			for (Hallway h : Hallway.replicationValues) {
 				for (Direction d : Direction.replicationValues) {
@@ -157,7 +157,7 @@ public class Dispatcher extends Controller{
 					networkHallCall[index] = CanMailbox.getReadableCanMailbox(
 							MessageDictionary.HALL_CALL_BASE_CAN_ID + 
 							ReplicationComputer.computeReplicationId(floors,h,d));
-					mHallCall[index] = new BooleanCanPayloadTranslator(networkHallCall[index]);
+					mHallCall[index] = new HallCallCanPayloadTranslator(networkHallCall[index],floors,h,d);
 					canInterface.registerTimeTriggered(networkHallCall[index]);
 				}
 			}
@@ -165,14 +165,14 @@ public class Dispatcher extends Controller{
 
 		//CarCall
 		networkCarCall = new CanMailbox.ReadableCanMailbox[Elevator.numFloors*2];
-		mCarCall = new BooleanCanPayloadTranslator[Elevator.numFloors*2];
+		mCarCall = new CarCallCanPayloadTranslator[Elevator.numFloors*2];
 		for(int floors = 1; floors <= Elevator.numFloors; floors++) {
 			for (Hallway h : Hallway.replicationValues) {
 				int index = ReplicationComputer.computeReplicationId(floors,h);
 				networkCarCall[index] = CanMailbox.getReadableCanMailbox(
 						MessageDictionary.CAR_CALL_BASE_CAN_ID + 
 						ReplicationComputer.computeReplicationId(floors,h));
-				mCarCall[index] = new BooleanCanPayloadTranslator(networkCarCall[index]);
+				mCarCall[index] = new CarCallCanPayloadTranslator(networkCarCall[index],floors,h);
 				canInterface.registerTimeTriggered(networkCarCall[index]);
 			}
 		}
