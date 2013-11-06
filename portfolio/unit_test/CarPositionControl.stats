@@ -1,7 +1,7 @@
 
 Simulator Parameters:
 Command line = -cf CarPositionControl.cf -mf CarPositionControl.mf
-RandomSeed = 1383684377776
+RandomSeed = 1383717662643
 CanNetworkBitTime = 0 ns
 Effective Can Bitrate = Infinity
 Run Time = null
@@ -10,18 +10,14 @@ Message File = CarPositionControl.mf
 Controller File = CarPositionControl.cf
 
 Assertion Results:
-@0.11s:  PASSED CarPositionControl::checkState(STATE) ?== POSITION PASSED
-@0.11s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@67a418a3 :: getValue ?== 1 PASSED
-@0.33s:  PASSED CarPositionControl::checkState(STATE) ?== POSITION PASSED
-@0.33s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@257b3135 :: getValue ?== 1 PASSED
-@0.55s:  PASSED CarPositionControl::checkState(STATE) ?== POSITION PASSED
-@0.55s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@33b17f92 :: getValue ?== 2 PASSED
-@0.87s:  PASSED CarPositionControl::checkState(STATE) ?== POSITION PASSED
-@0.87s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@2b988802 :: getValue ?== 3 PASSED
+@0.5s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@199939 :: getValue ?== 1 PASSED
+@1.11s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@502819 :: getValue ?== 1 PASSED
+@1.72s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@1d98a :: getValue ?== 2 PASSED
+@2.43s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@18aab40 :: getValue ?== 3 PASSED
 
 
 ******************Summary******************
-Passed:  8
+Passed:  4
 Failed:  0
-Total :  8
+Total :  4
 
