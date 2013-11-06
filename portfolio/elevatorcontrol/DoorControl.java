@@ -18,6 +18,7 @@ import jSimPack.SimTime;
 import jSimPack.SimTime.SimTimeUnit;
 import simulator.elevatormodules.*;
 import simulator.framework.Controller;
+import simulator.framework.Direction;
 import simulator.framework.DoorCommand;
 import simulator.framework.Elevator;
 import simulator.framework.Hallway;
@@ -48,7 +49,7 @@ public class DoorControl extends Controller {
     // State Variables:
     // long integer with number of msec desired for door 
     // dwell during current cycle.
-    private SimTime Dwell;
+    private final SimTime Dwell = new SimTime("2s");
     // a count-down timer for Door Dwell[b] (implemented in simulation by 
     // scheduling a future task execution at time of expiration)
     private SimTime CountDown;
@@ -57,6 +58,10 @@ public class DoorControl extends Controller {
     private Side s;
     private int maxReversals = 2;
     private int reversalCount;
+    private boolean open_flag = true;
+    private Direction p_dir = Direction.STOP;
+    private int p_floor = 1;
+    private Hallway p_hall = Hallway.BOTH;
     
     //store the period for the controller
     private SimTime period;
@@ -84,9 +89,6 @@ public class DoorControl extends Controller {
     ReadableCanMailbox networkDesiredFloor;
     DesiredFloorCanPayloadTranslator mDesiredFloor;
     
-    ReadableCanMailbox networkDesiredDwell;
-    DesiredDwellCanPayloadTranslator mDesiredDwell;
-    
     ReadableCanMailbox[] networkCarCall;
     BooleanCanPayloadTranslator[] mCarCall;
     
@@ -95,10 +97,6 @@ public class DoorControl extends Controller {
     
     ReadableCanMailbox networkDriveSpeed;
     DriveSpeedCanPayloadTranslator mDriveSpeed;
-    
-    //TODO: Fix the next 2 lines
-    //WriteableCanMailbox networkDoorMotor;
-    //DoorMotorCanPayloadTranslator mDoorMotor;   THIS DOESN'T EXIST!?
     
 	
     /**
@@ -140,11 +138,6 @@ public class DoorControl extends Controller {
 		networkDesiredFloor = CanMailbox.getReadableCanMailbox(MessageDictionary.DESIRED_FLOOR_CAN_ID);
 	    mDesiredFloor = new DesiredFloorCanPayloadTranslator(networkDesiredFloor);
 	    canInterface.registerTimeTriggered(networkDesiredFloor);
-	    
-	    networkDesiredDwell = CanMailbox.getReadableCanMailbox(MessageDictionary.DESIRED_DWELL_BASE_CAN_ID
-	    											+ ReplicationComputer.computeReplicationId(h));
-	    mDesiredDwell = new DesiredDwellCanPayloadTranslator(networkDesiredDwell,h);
-	    canInterface.registerTimeTriggered(networkDesiredDwell);
 		
         for (int floor = 1; floor <= Elevator.numFloors; floor++) {
             for (Hallway hall : Hallway.replicationValues) {
@@ -161,7 +154,7 @@ public class DoorControl extends Controller {
 		canInterface.registerTimeTriggered(networkDriveSpeed);
 		
 		networkCarCall = new CanMailbox.ReadableCanMailbox[Elevator.numFloors*2];
-        mCarCall = new BooleanCanPayloadTranslator[Elevator.numFloors*2];
+        mCarCall = new BooleanCanPayloadTranslator[Elevator.numFloors*2];        
         for(int floors = 1; floors <= Elevator.numFloors; floors++) {
                 for (Hallway H : Hallway.replicationValues) {
                         int index = ReplicationComputer.computeReplicationId(floors,H);
@@ -219,35 +212,31 @@ public class DoorControl extends Controller {
             case CAR_MOVING: // S1
             	// State 1 actions:
             	DoorMotor.set(DoorCommand.STOP);
-            	//mDoorMotor.set(DoorCommand.STOP);
-            	this.Dwell = mDesiredDwell.getValue();
-            	if (this.Dwell == null) this.CountDown = new SimTime("2s");
-            	else this.CountDown = this.Dwell;
+            	this.CountDown = this.Dwell;
             	this.reversalCount = 0;
-
+            	set_open_flag();
             	// State 1 transitions
             	// #transition 5.T.1
             	//If desired hallway is BOTH, open all doors.
             	if(mDesiredFloor.getHallway() == Hallway.BOTH){
             		if (mAtFloor[ReplicationComputer.computeReplicationId(
             				mDesiredFloor.getFloor(),Hallway.FRONT)].getValue() == true 
-            				&& mDriveSpeed.getSpeed() == 0.0) {
+            				&& mDriveSpeed.getSpeed() == 0.0
+            				&& this.open_flag) {
             			newState = State.OPENING_DOOR; // T1
             		}
             	}
             	else if (mAtFloor[ReplicationComputer.computeReplicationId(
             			mDesiredFloor.getFloor(),mDesiredFloor.getHallway())].getValue() == true 
-            			&& mDriveSpeed.getSpeed() == 0.0 && mDesiredFloor.getHallway() == this.h) {
+            			&& mDriveSpeed.getSpeed() == 0.0 && mDesiredFloor.getHallway() == this.h
+            			&& this.open_flag) {
             		newState = State.OPENING_DOOR; // T1
             	}
                 break;
             case OPENING_DOOR: // S2
             	// State 2 actions:
             	DoorMotor.set(DoorCommand.OPEN);
-            	//mDoorMotor.set(DoorCommand.OPEN);
-            	this.Dwell = mDesiredDwell.getValue();
-            	if (this.Dwell == null) this.CountDown = new SimTime("2s");
-            	else this.CountDown = this.Dwell;
+            	this.CountDown = this.Dwell;
 
             	// State 2 transitions
 				// #transition 5.T.2
@@ -258,14 +247,13 @@ public class DoorControl extends Controller {
             case WAIT_FOR_DWELL: // S3
             	// State 3 actions:
             	DoorMotor.set(DoorCommand.STOP);
-            	//mDoorMotor.set(DoorCommand.STOP);
             	
             	// decrement Countdown by the period
             	this.CountDown = SimTime.subtract(this.CountDown, this.period);
             	
             	// Increase the countdown whenver the elevator is over weight
             	if (mCarWeight.getValue() >= Elevator.MaxCarCapacity) {
-            		this.CountDown = this.mDesiredDwell.getValue();
+            		this.CountDown = this.Dwell;
             	}
             	
             	// State 3 transitions
@@ -280,10 +268,7 @@ public class DoorControl extends Controller {
             case CLOSING_DOOR: // S4
             	// State 4 actions:
             	DoorMotor.set(DoorCommand.CLOSE);
-            	//mDoorMotor.set(DoorCommand.CLOSE);
-            	this.Dwell = mDesiredDwell.getValue();
-            	if (this.Dwell == null) this.CountDown = new SimTime("2s");
-            	else this.CountDown = this.Dwell;
+            	this.CountDown = this.Dwell;
             	
             	// State 4 transitions
 				// #transition 5.T.5 and 5.T.6
@@ -312,10 +297,7 @@ public class DoorControl extends Controller {
                 break;
             case NUDGING_DOOR: // S5
             	DoorMotor.set(DoorCommand.NUDGE);
-            	//mDoorMotor.set(DoorCommand.NUDGE);          
-            	this.Dwell = mDesiredDwell.getValue();
-            	if (this.Dwell == null) this.CountDown = new SimTime("2s");
-            	else this.CountDown = this.Dwell;
+            	this.CountDown = this.Dwell;
             	
             	// State 5 transitions
 				// #transition 5.T.8
@@ -353,6 +335,19 @@ public class DoorControl extends Controller {
         //you must do this at the end of the timer callback in order to restart
         //the timer
         timer.start(period);
+	}
+	
+	private void set_open_flag() {
+		if (p_dir == mDesiredFloor.getDirection() 
+				&& p_floor == mDesiredFloor.getFloor()
+				&& p_hall == mDesiredFloor.getHallway()
+				&& p_dir == Direction.STOP) {
+			this.open_flag = false;
+		}
+		else {
+			this.open_flag = true;
+		}
+		return;
 	}
 
 }
