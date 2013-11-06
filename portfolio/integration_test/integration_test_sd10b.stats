@@ -1,7 +1,7 @@
 
 Simulator Parameters:
 Command line = -cf integration_test_sd10b.cf -mf integration_test_sd10b.mf
-RandomSeed = 1383701378022
+RandomSeed = 1383721342453
 CanNetworkBitTime = 0 ns
 Effective Can Bitrate = Infinity
 Run Time = null
@@ -11,32 +11,30 @@ Controller File = integration_test_sd10b.cf
 
 Assertion Results:
 @0.21s:  PASSED Dispatcher::checkState(STATE) ?== STATE_DOORSCLOSED PASSED
-@0.21s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@204a6ccc :: getFloor ?== 3 PASSED
-@0.21s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@797dfcf1 :: getDirection ?== UP PASSED
-@0.21s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@7c5acf13 :: getHallway ?== FRONT PASSED
+@0.21s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@1a5db4b :: getFloor ?== 3 PASSED
+@0.21s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@1f0aecc :: getDirection ?== UP PASSED
+@0.21s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@1cebc9f :: getHallway ?== FRONT PASSED
 @0.42s:  PASSED DriveControl::checkState(STATE) ?== STATE_SLOW PASSED
-@0.42s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@70a5d82a :: getSpeed ?== SLOW PASSED
-@0.42s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@10747b4 :: getDirection ?== UP PASSED
-@0.42s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@4eb3ea0f :: getFloor ?== 3 PASSED
-@0.83s:  FAILED Dispatcher::checkState(STATE) ?== STATE_BETWEEN (STATE_DOORSCLOSED instead) FAILED
-@0.83s:  FAILED simulator.payloads.CanMailbox$ReadableCanMailbox@43f459c2 :: getFloor ?== 2 FAILED
-@0.83s:  FAILED simulator.payloads.CanMailbox$ReadableCanMailbox@67abaab :: getDirection ?== STOP FAILED
-@0.83s:  FAILED simulator.payloads.CanMailbox$ReadableCanMailbox@23a0a87c :: getHallway ?== BACK FAILED
+@0.42s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@1342a67 :: getSpeed ?== 0.2 PASSED
+@0.42s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@57ea52 :: getDirection ?== UP PASSED
+@0.83s:  PASSED Dispatcher::checkState(STATE) ?== STATE_DOORSCLOSED PASSED
+@0.83s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@bf5555 :: getFloor ?== 3 PASSED
+@0.83s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@73305c :: getDirection ?== UP PASSED
+@0.83s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@1408a92 :: getHallway ?== FRONT PASSED
 @0.83s:  PASSED DriveControl::checkState(STATE) ?== STATE_SLOW PASSED
-@0.83s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@2ff1bf46 :: getSpeed ?== SLOW PASSED
-@0.83s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@32bd630e :: getDirection ?== UP PASSED
-@0.83s:  FAILED simulator.payloads.CanMailbox$ReadableCanMailbox@611c048e :: getFloor ?== 2 FAILED
+@0.83s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@1fc1a6 :: getSpeed ?== 0.2 PASSED
+@0.83s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@718242 :: getDirection ?== UP PASSED
 @1.55s:  PASSED Dispatcher::checkState(STATE) ?== STATE_EMERGENCY PASSED
-@1.55s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@6eb1a0f9 :: getFloor ?== 1 PASSED
-@1.55s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@22666c7a :: getDirection ?== STOP PASSED
-@1.55s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@6982237d :: getHallway ?== BOTH PASSED
+@1.55s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@5c3987 :: getFloor ?== 1 PASSED
+@1.55s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@147917a :: getDirection ?== STOP PASSED
+@1.55s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@46b90a :: getHallway ?== BOTH PASSED
 @1.76s:  PASSED DriveControl::checkState(STATE) ?== STATE_STOP PASSED
-@1.76s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@6d3c121b :: getSpeed ?== STOP PASSED
-@1.76s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@52977e69 :: getDirection ?== STOP PASSED
+@1.76s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@190ef12 :: getSpeed ?== 0.0 PASSED
+@1.76s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@ce16ad :: getDirection ?== STOP PASSED
 
 
 ******************Summary******************
-Passed:  18
-Failed:  5
-Total :  23
+Passed:  21
+Failed:  0
+Total :  21
 

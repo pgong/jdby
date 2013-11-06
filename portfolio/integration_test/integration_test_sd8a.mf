@@ -22,7 +22,6 @@
 +0s  I  DRIVE_CONTROL_PERIOD F DriveSpeed = STOP 0.0
 +0s  I  DISPATCHER_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 3 FRONT STOP
 +0s  I  DRIVE_CONTROL_PERIOD N LEVEL_SENSOR_[UP]_CAN_ID Leveling UP = true
-+0s  I  DOOR_CONTROL_PERIOD N DESIRED_DWELL_[FRONT]_CAN_ID DesiredDwell FRONT = 2s
 
 ;CHECKS
 +0.41s A S DoorControl[FRONT][LEFT] : STATE == WAIT_FOR_DWELL
@@ -32,22 +31,20 @@
 +0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getHallway == FRONT
 +0s  A N CAR_POSITION_CAN_ID CarPosition : getValue == 3
 +0.21s  A S DriveControl : STATE == STATE_STOP
-+0s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getSpeed == STOP
-+0s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getDirection == STOP
 
-;Wait for dwell and set next desired floor to be 2 BACK STOP
+;Wait for dwell and set next desired floor to be 4 FRONT STOP
 +0.61s  I  DISPATCHER_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor =  4 FRONT STOP
 
 ;CHECK that dwell countdown is done
 +1.51s A S DoorControl[FRONT][LEFT] : STATE == CLOSING_DOOR
-+0s A F DoorMotor FRONT LEFT : command == NUDGE
++0s A F DoorMotor FRONT LEFT : command == CLOSE
 +0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getFloor == 4
 +0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getDirection == STOP
 +0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getHallway == FRONT
 +0s  A N CAR_POSITION_CAN_ID CarPosition : getValue == 3
 +0s  A S DriveControl : STATE == STATE_STOP
-+0s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getSpeed == STOP
-+0s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getDirection == STOP
++0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0.0
++0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == STOP
 
 ;Set Doors to close
 +0.51s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = true
@@ -58,7 +55,8 @@
 +0s  I  DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[FRONT][RIGHT]_CAN_ID DoorOpened FRONT RIGHT = false
 
 ;Set DriveSpeed and leave the floor
-+0.21s  I  DRIVE_CONTROL_PERIOD F DriveSpeed = UP 0.25
++0.21s  I  DRIVE_CONTROL_PERIOD F DriveSpeed = UP 0.20
++0s  I  CAR_LEVEL_POSITION_PERIOD N CAR_LEVEL_POSITION_CAN_ID CarLevelPosition = 10050
 +0s  I  AT_FLOOR_PERIOD N AT_FLOOR_[3][FRONT]_CAN_ID AtFloor 3 FRONT = false
 +0s  I  DRIVE_CONTROL_PERIOD N LEVEL_SENSOR_[UP]_CAN_ID Leveling UP = false
 
@@ -67,12 +65,28 @@
 +0s A F DoorMotor FRONT LEFT : command == STOP
 +0s A N CAR_POSITION_CAN_ID CarPosition : getValue == 3
 +0.21s  A S DriveControl : STATE == STATE_SLOW
-+0s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getSpeed == SLOW
-+0s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getDirection == UP
++0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0.20
++0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == UP
+
+;Set DriveSpeed to FAST
++0.21s  I  DRIVE_CONTROL_PERIOD F DriveSpeed = UP 0.25
+
+;Check State of DriveControl
++0.21s  A S DriveControl : STATE == STATE_FAST
++0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0.25
++0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == UP
+
+;Arrive at Commit Point and slow down
++0.21s  I  CAR_LEVEL_POSITION_PERIOD N CAR_LEVEL_POSITION_CAN_ID CarLevelPosition = 14500
++0s  I  DRIVE_CONTROL_PERIOD F DriveSpeed = UP 0.90
+
+;Check State of Drive Control
++0.21s  A S DriveControl : STATE == STATE_SLOW
++0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0.90
++0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == UP
 
 ;Arrive at next Floor
 +0.51s  I  AT_FLOOR_PERIOD N AT_FLOOR_[4][FRONT]_CAN_ID AtFloor 4 FRONT = true
-
 ;Set DriveSpeed
 +0.21s  I  DRIVE_CONTROL_PERIOD F DriveSpeed = UP 0.05
 
@@ -81,8 +95,8 @@
 +0s A F DoorMotor FRONT LEFT : command == STOP
 +0s A N CAR_POSITION_CAN_ID CarPosition : getValue == 4
 +0.21s  A S DriveControl : STATE == STATE_LEVEL
-+0s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getSpeed == LEVEL
-+0s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getDirection == UP
++0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0.05
++0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == UP
 
 ;Level with floor
 +0.41s  I  DRIVE_CONTROL_PERIOD N LEVEL_SENSOR_[UP]_CAN_ID Leveling UP = true
@@ -93,7 +107,6 @@
 +0s A F DoorMotor FRONT LEFT : command == OPEN
 +0s A N CAR_POSITION_CAN_ID CarPosition : getValue == 4
 +0s  A S DriveControl : STATE == STATE_STOP
-+0s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getSpeed == STOP
-+0s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getDirection == STOP
++0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0.0
++0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == STOP
 
-+5s  I  DRIVE_CONTROL_PERIOD F DriveSpeed = STOP 0.0

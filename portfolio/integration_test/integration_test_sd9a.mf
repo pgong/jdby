@@ -15,8 +15,8 @@
 +0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = true
 +0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][RIGHT]_CAN_ID DoorClosed BACK RIGHT = true
 +0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][LEFT]_CAN_ID DoorClosed BACK LEFT = true
-+0s  I  CAR_BUTTON_CONTROL_PERIOD N CAR_CALL_[2][BACK]_CAN_ID Boolean = true
-+0s  I HALL_BUTTON_CONTROL_PERIOD N HALL_CALL_[3][FRONT][UP]_CAN_ID Boolean = true
++0s  I  CAR_BUTTON_CONTROL_PERIOD N CAR_CALL_[2][BACK]_CAN_ID CarCall 2 BACK = true
++0s  I HALL_BUTTON_CONTROL_PERIOD N HALL_CALL_[3][FRONT][UP]_CAN_ID HallCall 3 FRONT UP = true
 +0.5s  I  DRIVE_CONTROL_PERIOD F DriveSpeed = UP 0.25
 +0s  I  CAR_LEVEL_POSITION_PERIOD N CAR_LEVEL_POSITION_CAN_ID CarLevelPosition = 2000
 
@@ -30,9 +30,8 @@
 +0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getHallway == BACK
 
 +0.21s  A S DriveControl : STATE == STATE_FAST
-+0s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getSpeed == FAST
-+0s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getDirection == UP
-+0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getFloor == 2
++0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0.25
++0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == UP
 
 ;Reach commit point and slow down
 +0.1s  I  DRIVE_CONTROL_PERIOD F DriveSpeed = UP 1.0
@@ -40,9 +39,8 @@
 
 ;Check for slow
 +0.25s  A S DriveControl : STATE == STATE_SLOW
-+0s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getSpeed == SLOW
-+0s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getDirection == UP
-+0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getFloor == 2
++0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 1.0
++0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == UP
 
 ;Reached second floor
 +0.2s  I  AT_FLOOR_PERIOD N AT_FLOOR_[2][BACK]_CAN_ID AtFloor 2 BACK = true
@@ -50,9 +48,8 @@
 
 ;CHECKS
 +0.21s  A S DriveControl : STATE == STATE_LEVEL
-+0s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getSpeed == LEVEL
-+0s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getDirection == UP
-+0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getFloor == 2
++0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0.05
++0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == UP
 
 ;Leveling
 +0.21s  I  DRIVE_CONTROL_PERIOD N LEVEL_SENSOR_[UP]_CAN_ID Leveling UP = true
@@ -71,9 +68,8 @@
 +0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getHallway == BACK
 
 +0s  A S DriveControl : STATE == STATE_STOP
-+0s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getSpeed == STOP
-+0s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getDirection == STOP
-+0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getFloor == 2
++0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0.0
++0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == STOP
 
 ;Doors fully opened
 +0.21s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][RIGHT]_CAN_ID DoorClosed BACK RIGHT = false
@@ -96,9 +92,8 @@
 +0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getHallway == BACK
 
 +0s  A S DriveControl : STATE == STATE_STOP
-+0s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getSpeed == STOP
-+0s  A N DRIVE_COMMAND_CAN_ID DriveCommand : getDirection == STOP
-+0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getFloor == 2
++0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0.0
++0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == STOP
 
 ;CHECKS
 +2.02s A S DoorControl[BACK][LEFT] : STATE == CLOSING_DOOR
