@@ -11,10 +11,14 @@ SD5A integration_test_sd5a.cf integration_test_sd5a.mf
 SD5B integration_test_sd5b.cf integration_test_sd5b.mf
 SD5C integration_test_sd5c.cf integration_test_sd5c.mf
 SD6A integration_test_sd6a.cf integration_test_sd6a.mf
+SD6B integration_test_sd6b.cf integration_test_sd6b.mf
 SD7A integration_test_sd7a.cf integration_test_sd7a.mf
 SD7B integration_test_sd7b.cf integration_test_sd7b.mf
 SD7C integration_test_sd7c.cf integration_test_sd7c.mf
 SD8A integration_test_sd8a.cf integration_test_sd8a.mf
+SD8B integration_test_sd8b.cf integration_test_sd8b.mf
+SD8C integration_test_sd8c.cf integration_test_sd8c.mf
+SD8D integration_test_sd8d.cf integration_test_sd8d.mf
 SD9A integration_test_sd9a.cf integration_test_sd9a.mf
 SD10A integration_test_sd10a.cf integration_test_sd10a.mf
 SD10B integration_test_sd10b.cf integration_test_sd10b.mf
