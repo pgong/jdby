@@ -24,7 +24,7 @@
 +0s  I  DRIVE_CONTROL_PERIOD N LEVEL_SENSOR_[UP]_CAN_ID Leveling UP = true
 
 ;CHECKS
-+0.41s A S DoorControl[FRONT][LEFT] : STATE == WAIT_FOR_DWELL
++1.01s A S DoorControl[FRONT][LEFT] : STATE == WAIT_FOR_DWELL
 +0s A F DoorMotor FRONT LEFT : command == STOP
 +0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getFloor == 3
 +0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getDirection == STOP
@@ -32,13 +32,10 @@
 +0s  A N CAR_POSITION_CAN_ID CarPosition : getValue == 3
 +0.21s  A S DriveControl : STATE == STATE_STOP
 
-;Wait for dwell and set next desired floor to be 4 FRONT STOP
-+0.61s  I  DISPATCHER_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor =  4 FRONT STOP
-
 ;CHECK that dwell countdown is done
 +1.51s A S DoorControl[FRONT][LEFT] : STATE == CLOSING_DOOR
 +0s A F DoorMotor FRONT LEFT : command == CLOSE
-+0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getFloor == 4
++0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getFloor == 3
 +0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getDirection == STOP
 +0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getHallway == FRONT
 +0s  A N CAR_POSITION_CAN_ID CarPosition : getValue == 3
@@ -53,6 +50,9 @@
 +0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][LEFT]_CAN_ID DoorClosed BACK LEFT = true
 +0s  I  DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[FRONT][LEFT]_CAN_ID DoorOpened FRONT LEFT = false
 +0s  I  DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[FRONT][RIGHT]_CAN_ID DoorOpened FRONT RIGHT = false
+
+;Set next desired floor to be 4 FRONT STOP
++0.61s  I  DISPATCHER_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor =  4 FRONT STOP
 
 ;Set DriveSpeed and leave the floor
 +0.21s  I  DRIVE_CONTROL_PERIOD F DriveSpeed = UP 0.20

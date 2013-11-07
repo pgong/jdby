@@ -1,7 +1,7 @@
 
 Simulator Parameters:
 Command line = -cf LanternControl.cf -mf LanternControl.mf
-RandomSeed = 1383717835694
+RandomSeed = 1383844832098
 CanNetworkBitTime = 0 ns
 Effective Can Bitrate = Infinity
 Run Time = null
@@ -12,11 +12,11 @@ Controller File = LanternControl.cf
 Assertion Results:
 @1.01s:  PASSED simulator.payloads.CarLanternPayload$ReadableCarLanternPayload@d90453 :: lighted ?== false PASSED
 @3.01s:  PASSED LanternControl[UP]::checkState(STATE) ?== STATE_LANTERN_ON PASSED
-@3.01s:  PASSED simulator.payloads.CarLanternPayload$ReadableCarLanternPayload@1d0d124 :: lighted ?== true PASSED
+@3.01s:  PASSED simulator.payloads.CarLanternPayload$ReadableCarLanternPayload@52c6b4 :: lighted ?== true PASSED
 @3.81s:  PASSED LanternControl[UP]::checkState(STATE) ?== STATE_LANTERN_OFF PASSED
-@3.81s:  PASSED simulator.payloads.CarLanternPayload$ReadableCarLanternPayload@302e67 :: lighted ?== false PASSED
+@3.81s:  PASSED simulator.payloads.CarLanternPayload$ReadableCarLanternPayload@136a1a1 :: lighted ?== false PASSED
 @4.81s:  PASSED LanternControl[UP]::checkState(STATE) ?== STATE_LANTERN_OFF PASSED
-@4.81s:  PASSED simulator.payloads.CarLanternPayload$ReadableCarLanternPayload@5f2db0 :: lighted ?== false PASSED
+@4.81s:  PASSED simulator.payloads.CarLanternPayload$ReadableCarLanternPayload@b0a3f5 :: lighted ?== false PASSED
 
 
 ******************Summary******************

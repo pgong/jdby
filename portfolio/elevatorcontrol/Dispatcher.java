@@ -414,7 +414,7 @@ public class Dispatcher extends Controller{
 								else if (!nextTargetFound){
 									nextTargetFound = true;
 									nextTarget = f;
-									break outerloop;
+									break innerloop;
 								}
 							}
 						}	
@@ -470,7 +470,7 @@ public class Dispatcher extends Controller{
 									else if (!nextTargetFound){
 										nextTargetFound = true;
 										nextTarget = f;
-										break outerloop;
+										break innerloop;
 									}
 								}
 							}	
@@ -530,7 +530,7 @@ public class Dispatcher extends Controller{
 								else if (!nextTargetFound){
 									nextTargetFound = true;
 									nextTarget = f;
-									break outerloop;
+									break innerloop;
 								}
 							}
 						}	
@@ -586,7 +586,7 @@ public class Dispatcher extends Controller{
 									else if (!nextTargetFound){
 										nextTargetFound = true;
 										nextTarget = f;
-										break outerloop;
+										break innerloop;
 									}
 								}
 							}	
