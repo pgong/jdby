@@ -366,7 +366,7 @@ public class DoorControl extends Controller {
 		if (mCarCall[ReplicationComputer.computeReplicationId(this.currentFloor, this.h)].getValue()) {
 			this.open_flag = true;
 		}
-		else if (mHallCall[ReplicationComputer.computeReplicationId(this.currentFloor, this.h)].getValue()) {
+		else if (mHallCall[ReplicationComputer.computeReplicationId(this.currentFloor, this.h, mDesiredFloor.getDirection())].getValue()) {
 			this.open_flag = true;
 		}
 		else if (p_dir == mDesiredFloor.getDirection() 
