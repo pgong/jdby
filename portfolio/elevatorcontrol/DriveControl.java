@@ -300,12 +300,12 @@ public class DriveControl extends Controller{
 			if(direction == Direction.UP){
 				commitPointReached = (((double)mDesiredFloor.getFloor() -1.0) * 5.0 - 
 					(localDriveSpeed.speed() * localDriveSpeed.speed() / 2.0 + 0.5)) * 1000 < 
-					mCarLevelPosition.getPosition()*1000;
+					mCarLevelPosition.getPosition();
 			}
 			else if(direction == Direction.DOWN){
 				commitPointReached = (((double)mDesiredFloor.getFloor() -1.0) * 5.0 + 
 					(localDriveSpeed.speed() * localDriveSpeed.speed() / 2.0 + 0.5))*1000 > 
-					mCarLevelPosition.getPosition()*1000;
+					mCarLevelPosition.getPosition();
 			}
 			else;
 
@@ -363,12 +363,12 @@ public class DriveControl extends Controller{
 			if(direction == Direction.UP){
 				commitPointReached = (((double)mDesiredFloor.getFloor() -1.0) * 5.0 - 
 					(localDriveSpeed.speed() * localDriveSpeed.speed() / 2.0 + 0.5))*1000 < 
-					mCarLevelPosition.getPosition()*1000;
+					mCarLevelPosition.getPosition();
 			}
 			else if(direction == Direction.DOWN){
 				commitPointReached = (((double)mDesiredFloor.getFloor() -1.0) * 5.0 + 
 					(localDriveSpeed.speed() * localDriveSpeed.speed() / 2.0 + 0.5))*1000 > 
-					mCarLevelPosition.getPosition()*1000;
+					mCarLevelPosition.getPosition();
 			}
 			else;
 
