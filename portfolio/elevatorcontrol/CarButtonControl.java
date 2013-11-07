@@ -189,10 +189,8 @@ public class CarButtonControl extends Controller {
                 //#transition '9.T.2'
                 if (((mDoorClosedLeft.getValue() == false && 
                     	mDoorClosedRight.getValue() == false && 
-                		(mAtFloor.getValue() == true)) ||
-                	((mDesiredFloor.getDirection() == Direction.UP) && (floorArray.getCurrentFloor() > floor)) || 
-                	((mDesiredFloor.getDirection() == Direction.DOWN) && (floorArray.getCurrentFloor() < floor))) &&
-                	localCarCall.pressed() == false) {
+                		(mAtFloor.getValue() == true)) &&
+                	localCarCall.pressed() == false)) {
                     newState = State.STATE_LIGHT_OFF;
                     break;
                 }

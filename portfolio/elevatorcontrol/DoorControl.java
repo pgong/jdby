@@ -289,6 +289,9 @@ public class DoorControl extends Controller {
 				// #transition 5.T.4
             	else if (mDoorClosed.getValue()) {
             		newState = State.CAR_MOVING; //T4
+            		p_dir = mDesiredFloor.getDirection();
+        			p_floor = mDesiredFloor.getFloor();
+        			p_hall = mDesiredFloor.getHallway();
                 }
             	else {
             		newState = state;
@@ -309,6 +312,9 @@ public class DoorControl extends Controller {
 				// #transition 5.T.7
             	else if (mDoorClosed.getValue()) {
             		newState = State.CAR_MOVING; //T7
+            		p_dir = mDesiredFloor.getDirection();
+        			p_floor = mDesiredFloor.getFloor();
+        			p_hall = mDesiredFloor.getHallway();
                 }
             	else {
             		newState = state;
@@ -345,9 +351,6 @@ public class DoorControl extends Controller {
 		}
 		else {
 			this.open_flag = true;
-			p_dir = mDesiredFloor.getDirection();
-			p_floor = mDesiredFloor.getFloor();
-			p_hall = mDesiredFloor.getHallway();
 		}
 		return;
 	}

@@ -39,11 +39,11 @@ public class CarPositionCanPayloadTranslator extends CanPayloadTranslator {
 	 * @param position
 	 */
 	public void set(int position) {
-		setPosition(position);
+		setPosition(position*1000);
 	}
 	
 	public int getValue() {
-		return getPosition();
+		return getPosition()/1000;
 	}
 	
 	/**
