@@ -423,7 +423,7 @@ public class Dispatcher extends Controller{
 								//If there is a car call or hall call at the given floor, try and set as target.
 								if(mHallCall[hallIndex].getValue()){
 									//Make sure target hasn't already been set!
-									if(!targetFound){
+									if(!targetFound && commitPoint(f, current_d, car_position, speed)){
 										nextHallCall = Direction.DOWN;
 										target = f;
 										targetFound = true;
@@ -451,7 +451,7 @@ public class Dispatcher extends Controller{
 								//If there is a car call or hall call at the given floor, try and set as target.
 								if(mCarCall[index].getValue() || mHallCall[hallIndex].getValue()){
 									//Make sure target hasn't already been set!
-									if(!targetFound){
+									if(!targetFound && commitPoint(f, current_d, car_position, speed)){
 										target = f;
 										targetFound = true;
 										if(mHallCall[hallIndex].getValue()){
@@ -481,7 +481,7 @@ public class Dispatcher extends Controller{
 								//If there is a car call or hall call at the given floor, try and set as target.
 								if(mHallCall[hallIndex].getValue()){
 									//Make sure target hasn't already been set!
-									if(!targetFound){
+									if(!targetFound && commitPoint(f, current_d, car_position, speed)){
 										nextHallCall = Direction.UP;
 										target = f;
 										targetFound = true;
@@ -539,7 +539,7 @@ public class Dispatcher extends Controller{
 								//If there is a car call or hall call at the given floor, try and set as target.
 								if(mHallCall[hallIndex].getValue()){
 									//Make sure target hasn't already been set!
-									if(!targetFound){
+									if(!targetFound && commitPoint(f, current_d, car_position, speed)){
 										nextHallCall = Direction.UP;
 										target = f;
 										targetFound = true;
@@ -567,7 +567,7 @@ public class Dispatcher extends Controller{
 								//If there is a car call or hall call at the given floor, try and set as target.
 								if(mCarCall[index].getValue() || mHallCall[hallIndex].getValue()){
 									//Make sure target hasn't already been set!
-									if(!targetFound){
+									if(!targetFound && commitPoint(f, current_d, car_position, speed)){
 										target = f;
 										targetFound = true;
 										if(mHallCall[hallIndex].getValue()){
@@ -597,7 +597,7 @@ public class Dispatcher extends Controller{
 								//If there is a car call or hall call at the given floor, try and set as target.
 								if(mHallCall[hallIndex].getValue()){
 									//Make sure target hasn't already been set!
-									if(!targetFound){
+									if(!targetFound && commitPoint(f, current_d, car_position, speed)){
 										nextHallCall = Direction.DOWN;
 										target = f;
 										targetFound = true;
