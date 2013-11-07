@@ -76,8 +76,11 @@ public class DoorControl extends Controller {
     ReadableCanMailbox networkDoorOpen;
     DoorOpenedCanPayloadTranslator mDoorOpen;
     
-    ReadableCanMailbox networkDoorReversal;
-    DoorReversalCanPayloadTranslator mDoorReversal;
+    ReadableCanMailbox networkDoorReversal1;
+    DoorReversalCanPayloadTranslator mDoorReversal1;
+    
+    ReadableCanMailbox networkDoorReversal2;
+    DoorReversalCanPayloadTranslator mDoorReversal2;
     
     ReadableCanMailbox networkCarWeight;
     CarWeightCanPayloadTranslator mCarWeight;
@@ -129,10 +132,13 @@ public class DoorControl extends Controller {
 		mDoorOpen = new DoorOpenedCanPayloadTranslator(networkDoorOpen, h, s);
 		canInterface.registerTimeTriggered(networkDoorOpen);
 		
-		networkDoorReversal = CanMailbox.getReadableCanMailbox(MessageDictionary.DOOR_REVERSAL_SENSOR_BASE_CAN_ID + ReplicationComputer.computeReplicationId(h, s));
-		mDoorReversal = new DoorReversalCanPayloadTranslator(networkDoorReversal, h, s);
-		canInterface.registerTimeTriggered(networkDoorReversal);
+		networkDoorReversal1 = CanMailbox.getReadableCanMailbox(MessageDictionary.DOOR_REVERSAL_SENSOR_BASE_CAN_ID + ReplicationComputer.computeReplicationId(h, Side.LEFT));
+		mDoorReversal1 = new DoorReversalCanPayloadTranslator(networkDoorReversal1, h, Side.LEFT);
+		canInterface.registerTimeTriggered(networkDoorReversal1);
 		
+		networkDoorReversal2 = CanMailbox.getReadableCanMailbox(MessageDictionary.DOOR_REVERSAL_SENSOR_BASE_CAN_ID + ReplicationComputer.computeReplicationId(h, Side.RIGHT));
+		mDoorReversal2 = new DoorReversalCanPayloadTranslator(networkDoorReversal2, h, Side.RIGHT);
+		canInterface.registerTimeTriggered(networkDoorReversal2);		
 		
 		networkCarWeight = CanMailbox.getReadableCanMailbox(MessageDictionary.CAR_WEIGHT_CAN_ID);
 		mCarWeight = new CarWeightCanPayloadTranslator(networkCarWeight);
@@ -296,7 +302,7 @@ public class DoorControl extends Controller {
                  this.currentFloor, this.h)].getValue() == true)) {
                   		newState = State.OPENING_DOOR; // T5
             	}
-                else if (mDoorReversal.getValue()) { // Check for door reversal
+                else if (mDoorReversal1.getValue() || mDoorReversal2.getValue()) { // Check for door reversal
                 	if (this.reversalCount < this.maxReversals){
 	                	newState = State.OPENING_DOOR; // T5
 	                	reversalCount++;
