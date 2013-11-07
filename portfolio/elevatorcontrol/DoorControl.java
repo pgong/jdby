@@ -367,8 +367,12 @@ public class DoorControl extends Controller {
 			this.open_flag = true;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		else if (mDesiredFloor.getDirection() != Direction.STOP &&
 				mHallCall[ReplicationComputer.computeReplicationId(this.currentFloor, this.h, mDesiredFloor.getDirection())].getValue()) {
+=======
+		else if (mHallCall[ReplicationComputer.computeReplicationId(this.currentFloor, this.h, mDesiredFloor.getDirection())].getValue()) {
+>>>>>>> 593317c9eb2a3531398ae9cc18677c5fba0a3892
 =======
 		else if (mHallCall[ReplicationComputer.computeReplicationId(this.currentFloor, this.h, mDesiredFloor.getDirection())].getValue()) {
 >>>>>>> 593317c9eb2a3531398ae9cc18677c5fba0a3892
