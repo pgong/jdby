@@ -380,14 +380,19 @@ public class Dispatcher extends Controller{
 	private void nextTarget(double speed, int car_position, Direction current_d) {
 		int target = 0;
 		int nextTarget = 0;
+	//	int current_f = 0;
 		boolean targetFound = false;
 		boolean nextTargetFound = false;
 		Direction nextHallCall = Direction.STOP;
+	/*	if(curr_f == 1)
+			current_f = 2;
+		else
+			current_f = curr_f;*/
 		
 		//Step ONE and TWO, checking for car and hall calls in desired direction.
 		if(current_d == Direction.UP){
 			outerloop:
-				for(int f = curr_f+1; f <= Elevator.numFloors; f++){
+				for(int f = curr_f; f <= Elevator.numFloors; f++){
 					innerloop:
 						for (Hallway h : Hallway.replicationValues) {
 							int index = ReplicationComputer.computeReplicationId(f,h);
@@ -417,7 +422,7 @@ public class Dispatcher extends Controller{
 			//Step THREE: Checking hall calls in desired direction, going in opposite direction.
 			if((nextHallCall == Direction.STOP) && (!targetFound || !nextTargetFound)){
 				outerloop:
-					for(int f = curr_f+1; f <= Elevator.numFloors; f++){
+					for(int f = curr_f; f <= Elevator.numFloors; f++){
 							for (Hallway h : Hallway.replicationValues) {
 								int hallIndex = ReplicationComputer.computeReplicationId(f,h,Direction.DOWN);
 								//If there is a car call or hall call at the given floor, try and set as target.
@@ -443,7 +448,7 @@ public class Dispatcher extends Controller{
 			//Step FOUR and FIVE: Checking car and hall calls opposite of desired direction.
 			if((nextHallCall == Direction.STOP) && (!targetFound || !nextTargetFound)){
 				outerloop:
-					for(int f = curr_f-1; f >= 1; f--){
+					for(int f = curr_f; f >= 1; f--){
 						innerloop:
 							for (Hallway h : Hallway.replicationValues) {
 								int index = ReplicationComputer.computeReplicationId(f,h);
@@ -509,12 +514,12 @@ public class Dispatcher extends Controller{
 							int index = ReplicationComputer.computeReplicationId(f,h);
 							int hallIndex = ReplicationComputer.computeReplicationId(f,h,Direction.DOWN);
 							//If there is a car call or hall call at the given floor, try and set as target.
-							if(mCarCall[index].getValue() || mHallCall[hallIndex].getValue()){
+							if(mCarCall[index].getValue()==true || mHallCall[hallIndex].getValue()==true){
 								//Make sure target hasn't already been set!
 								if(!targetFound && commitPoint(f, current_d, car_position, speed)){
 									target = f;
 									targetFound = true;
-									if(mHallCall[hallIndex].getValue()){
+									if(mHallCall[hallIndex].getValue()==true){
 										nextHallCall = Direction.DOWN;
 										nextTargetFound = true;
 										break outerloop;
@@ -559,7 +564,7 @@ public class Dispatcher extends Controller{
 			//Step FOUR and FIVE: Checking car and hall calls opposite of desired direction.
 			if((nextHallCall == Direction.STOP) && (!targetFound || !nextTargetFound)){
 				outerloop:
-					for(int f = curr_f+1; f <= Elevator.numFloors; f++){
+					for(int f = curr_f; f <= Elevator.numFloors; f++){
 						innerloop:
 							for (Hallway h : Hallway.replicationValues) {
 								int index = ReplicationComputer.computeReplicationId(f,h);
@@ -591,7 +596,7 @@ public class Dispatcher extends Controller{
 			// going in current desired direction.
 			if((nextHallCall == Direction.STOP) && (!targetFound || !nextTargetFound)){
 				outerloop:
-					for(int f = curr_f+1; f <= Elevator.numFloors; f++){
+					for(int f = curr_f; f <= Elevator.numFloors; f++){
 							for (Hallway h : Hallway.replicationValues) {
 								int hallIndex = ReplicationComputer.computeReplicationId(f,h,Direction.DOWN);
 								//If there is a car call or hall call at the given floor, try and set as target.
@@ -635,10 +640,19 @@ public class Dispatcher extends Controller{
 		}
 		else if (!targetFound && nextTargetFound){
 			log("entered the arena ", (floor-nextTarget));
-			if(floor - nextTarget > 0)
-				direction = Direction.DOWN;
-			else if(floor - nextTarget < 0)
-				direction = Direction.UP;
+			floor = nextTarget;
+			if(Elevator.hasLanding(floor, Hallway.FRONT)){
+				if (mHallCall[ReplicationComputer.computeReplicationId(floor, Hallway.FRONT, Direction.UP)].getValue())
+					direction = Direction.UP;
+				else if (mHallCall[ReplicationComputer.computeReplicationId(floor, Hallway.FRONT, Direction.DOWN)].getValue())
+					direction = Direction.DOWN;
+			}
+			else {
+				if (mHallCall[ReplicationComputer.computeReplicationId(floor, Hallway.BACK, Direction.UP)].getValue())
+					direction = Direction.UP;
+				else if (mHallCall[ReplicationComputer.computeReplicationId(floor, Hallway.FRONT, Direction.DOWN)].getValue())
+					direction = Direction.DOWN;
+			}
 		}
 		//Set the current direction based on the target.
 		if(floor - curr_f > 0)
@@ -662,10 +676,10 @@ public class Dispatcher extends Controller{
 	 */
 	private boolean commitPoint(int f, Direction d, int car_position, double speed) {
 		if(d == Direction.UP){
-			return (((double)f - 1.0) * 5.0 - ((speed * speed) / 2.0 + 0.2))*1000 > car_position*1000;
+			return (((double)f - 1.0) * 5.0 - ((speed * speed) / 2.0 + 0.5))*1000 > car_position;
 		}
 		else if(d == Direction.DOWN){
-			return (((double)f - 1.0) * 5.0 + ((speed * speed) / 2.0 + 0.2))*1000 < car_position * 1000;
+			return (((double)f - 1.0) * 5.0 + ((speed * speed) / 2.0 + 0.5))*1000 < car_position;
 		}
 		//If stopped, then we've definitely not reached the commit point.
 		else
