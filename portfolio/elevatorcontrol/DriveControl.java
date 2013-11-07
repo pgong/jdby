@@ -78,7 +78,7 @@ public class DriveControl extends Controller{
 	//Respective translators for input messages
 	private AtFloorCanPayloadTranslator[] mAtFloor;
 	private LevelingCanPayloadTranslator[] mLevel;
-	private SafetySensorCanPayloadTranslator mEmergencyBrake;
+	private BooleanCanPayloadTranslator mEmergencyBrake;
 	private HoistwayLimitSensorCanPayloadTranslator[] mHoistwayLimit;
 	private DoorClosedCanPayloadTranslator[] mDoorClosed;
 	private CarLevelPositionCanPayloadTranslator mCarLevelPosition;
@@ -161,7 +161,7 @@ public class DriveControl extends Controller{
     	//Emergency Brake
     	networkEmergencyBrake = CanMailbox.getReadableCanMailbox(
     								MessageDictionary.EMERGENCY_BRAKE_CAN_ID);
-    	mEmergencyBrake = new SafetySensorCanPayloadTranslator(networkEmergencyBrake);
+    	mEmergencyBrake = new BooleanCanPayloadTranslator(networkEmergencyBrake);
     	canInterface.registerTimeTriggered(networkEmergencyBrake);
     	
     	//Desired Floor
@@ -243,8 +243,7 @@ public class DriveControl extends Controller{
 			direction = Direction.STOP;
 			localDrive.set(Speed.STOP, direction);
 			//DriveSpeed should be stopped
-			
-			
+		
 			mDriveSpeed.set(localDriveSpeed.speed(),localDriveSpeed.direction());
 			
 			//Determine if any doors are open:
@@ -264,7 +263,6 @@ public class DriveControl extends Controller{
 				weight_flag = true;
 				//Cable slips require the elevator to come back UP
 				direction = Direction.UP;
-				index_direction = ReplicationComputer.computeReplicationId(Direction.UP);
 				newState = State.STATE_LEVEL;
 			}
 			else if(mEmergencyBrake.getValue()) {
@@ -279,18 +277,10 @@ public class DriveControl extends Controller{
 				}
 				else if ((mDesiredFloor.getFloor() - floor) > 0){
 					direction = Direction.UP;
-					index_desired = ReplicationComputer.computeReplicationId(
-												mDesiredFloor.getFloor(),
-												mDesiredFloor.getHallway());
-					index_direction = ReplicationComputer.computeReplicationId(direction);
 					newState=State.STATE_SLOW;
 				}
 				else if ((mDesiredFloor.getFloor() - floor) < 0){
 					direction = Direction.DOWN;
-					index_desired = ReplicationComputer.computeReplicationId(
-							mDesiredFloor.getFloor(),
-							mDesiredFloor.getHallway());
-					index_direction = ReplicationComputer.computeReplicationId(direction);
 					newState=State.STATE_SLOW;
 				}
 			}
@@ -308,14 +298,14 @@ public class DriveControl extends Controller{
 			
 			//if false, then we can go faster!
 			if(direction == Direction.UP){
-				commitPointReached = ((mDesiredFloor.getFloor() -1) * 5 - 
-					(localDriveSpeed.speed() * localDriveSpeed.speed() / 2 + 0.2)) * 1000 < 
-					mCarLevelPosition.getPosition();
+				commitPointReached = (((double)mDesiredFloor.getFloor() -1.0) * 5.0 - 
+					(localDriveSpeed.speed() * localDriveSpeed.speed() / 2.0 + 0.5)) * 1000 < 
+					mCarLevelPosition.getPosition()*1000;
 			}
 			else if(direction == Direction.DOWN){
-				commitPointReached = ((mDesiredFloor.getFloor() -1) * 5 + 
-					(localDriveSpeed.speed() * localDriveSpeed.speed() / 2 + 0.2)) * 1000 > 
-					mCarLevelPosition.getPosition();
+				commitPointReached = (((double)mDesiredFloor.getFloor() -1.0) * 5.0 + 
+					(localDriveSpeed.speed() * localDriveSpeed.speed() / 2.0 + 0.5))*1000 > 
+					mCarLevelPosition.getPosition()*1000;
 			}
 			else;
 
@@ -347,11 +337,13 @@ public class DriveControl extends Controller{
 			
 			//transitions:
 			//#transition 6.T.5
-			if(mLevel[index_direction].getValue()){
+			//if level sensor triggers, stop the drive.
+			if(mLevel[ReplicationComputer.computeReplicationId(direction)].getValue()){
 				// If overweight, don't change the floor, and reset weight_flag
 				if (weight_flag) {
 					weight_flag = false;
 				}
+				//if we were leveling not because of weight, change the floor.
 				else if (!weight_flag) {
 					floor = mDesiredFloor.getFloor();
 				}
@@ -369,14 +361,14 @@ public class DriveControl extends Controller{
 
 	
 			if(direction == Direction.UP){
-				commitPointReached = ((mDesiredFloor.getFloor() -1) * 5 - 
-					(localDriveSpeed.speed() * localDriveSpeed.speed() / 2 + 0.2)) * 1000 < 
-					mCarLevelPosition.getPosition();
+				commitPointReached = (((double)mDesiredFloor.getFloor() -1.0) * 5.0 - 
+					(localDriveSpeed.speed() * localDriveSpeed.speed() / 2.0 + 0.5))*1000 < 
+					mCarLevelPosition.getPosition()*1000;
 			}
 			else if(direction == Direction.DOWN){
-				commitPointReached = ((mDesiredFloor.getFloor() -1) * 5000 + 
-					(localDriveSpeed.speed() * localDriveSpeed.speed() / 2 + 0.2)) * 1000 > 
-					mCarLevelPosition.getPosition();
+				commitPointReached = (((double)mDesiredFloor.getFloor() -1.0) * 5.0 + 
+					(localDriveSpeed.speed() * localDriveSpeed.speed() / 2.0 + 0.5))*1000 > 
+					mCarLevelPosition.getPosition()*1000;
 			}
 			else;
 

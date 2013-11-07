@@ -383,12 +383,11 @@ public class Dispatcher extends Controller{
 		boolean targetFound = false;
 		boolean nextTargetFound = false;
 		Direction nextHallCall = Direction.STOP;
-		//int curr_f = (car_position % 5000) + 1;
 		
 		//Step ONE and TWO, checking for car and hall calls in desired direction.
 		if(current_d == Direction.UP){
 			outerloop:
-				for(int f = curr_f; f <= Elevator.numFloors; f++){
+				for(int f = curr_f+1; f <= Elevator.numFloors; f++){
 					innerloop:
 						for (Hallway h : Hallway.replicationValues) {
 							int index = ReplicationComputer.computeReplicationId(f,h);
@@ -396,7 +395,7 @@ public class Dispatcher extends Controller{
 							//If there is a car call or hall call at the given floor, try and set as target.
 							if(mCarCall[index].getValue() || mHallCall[hallIndex].getValue()){
 								//Make sure target hasn't already been set!
-								if(!targetFound && commitPoint(f, curr_d, car_position, speed)){
+								if(!targetFound && commitPoint(f, current_d, car_position, speed)){
 									target = f;
 									targetFound = true;
 									if(mHallCall[hallIndex].getValue()){
@@ -418,8 +417,7 @@ public class Dispatcher extends Controller{
 			//Step THREE: Checking hall calls in desired direction, going in opposite direction.
 			if((nextHallCall == Direction.STOP) && (!targetFound || !nextTargetFound)){
 				outerloop:
-					for(int f = curr_f; f <= Elevator.numFloors; f++){
-						innerloop:
+					for(int f = curr_f+1; f <= Elevator.numFloors; f++){
 							for (Hallway h : Hallway.replicationValues) {
 								int hallIndex = ReplicationComputer.computeReplicationId(f,h,Direction.DOWN);
 								//If there is a car call or hall call at the given floor, try and set as target.
@@ -445,7 +443,7 @@ public class Dispatcher extends Controller{
 			//Step FOUR and FIVE: Checking car and hall calls opposite of desired direction.
 			if((nextHallCall == Direction.STOP) && (!targetFound || !nextTargetFound)){
 				outerloop:
-					for(int f = curr_f; f >= 1; f--){
+					for(int f = curr_f-1; f >= 1; f--){
 						innerloop:
 							for (Hallway h : Hallway.replicationValues) {
 								int index = ReplicationComputer.computeReplicationId(f,h);
@@ -473,7 +471,7 @@ public class Dispatcher extends Controller{
 							}	
 					}
 			}
-			//Step SIX: Checking hall calls opposite of desired direction, 
+			//Step SIX: Checking hall calls of desired direction, 
 			// going in current desired direction.
 			if((nextHallCall == Direction.STOP) && (!targetFound || !nextTargetFound)){
 				outerloop:
@@ -513,7 +511,7 @@ public class Dispatcher extends Controller{
 							//If there is a car call or hall call at the given floor, try and set as target.
 							if(mCarCall[index].getValue() || mHallCall[hallIndex].getValue()){
 								//Make sure target hasn't already been set!
-								if(!targetFound && commitPoint(f, curr_d, car_position, speed)){
+								if(!targetFound && commitPoint(f, current_d, car_position, speed)){
 									target = f;
 									targetFound = true;
 									if(mHallCall[hallIndex].getValue()){
@@ -561,7 +559,7 @@ public class Dispatcher extends Controller{
 			//Step FOUR and FIVE: Checking car and hall calls opposite of desired direction.
 			if((nextHallCall == Direction.STOP) && (!targetFound || !nextTargetFound)){
 				outerloop:
-					for(int f = curr_f; f <= Elevator.numFloors; f++){
+					for(int f = curr_f+1; f <= Elevator.numFloors; f++){
 						innerloop:
 							for (Hallway h : Hallway.replicationValues) {
 								int index = ReplicationComputer.computeReplicationId(f,h);
@@ -593,7 +591,7 @@ public class Dispatcher extends Controller{
 			// going in current desired direction.
 			if((nextHallCall == Direction.STOP) && (!targetFound || !nextTargetFound)){
 				outerloop:
-					for(int f = curr_f; f <= Elevator.numFloors; f++){
+					for(int f = curr_f+1; f <= Elevator.numFloors; f++){
 							for (Hallway h : Hallway.replicationValues) {
 								int hallIndex = ReplicationComputer.computeReplicationId(f,h,Direction.DOWN);
 								//If there is a car call or hall call at the given floor, try and set as target.
