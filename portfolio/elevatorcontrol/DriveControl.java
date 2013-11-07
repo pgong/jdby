@@ -78,7 +78,7 @@ public class DriveControl extends Controller{
 	//Respective translators for input messages
 	private AtFloorCanPayloadTranslator[] mAtFloor;
 	private LevelingCanPayloadTranslator[] mLevel;
-	private BooleanCanPayloadTranslator mEmergencyBrake;
+	private SafetySensorCanPayloadTranslator mEmergencyBrake;
 	private HoistwayLimitSensorCanPayloadTranslator[] mHoistwayLimit;
 	private DoorClosedCanPayloadTranslator[] mDoorClosed;
 	private CarLevelPositionCanPayloadTranslator mCarLevelPosition;
@@ -161,7 +161,7 @@ public class DriveControl extends Controller{
     	//Emergency Brake
     	networkEmergencyBrake = CanMailbox.getReadableCanMailbox(
     								MessageDictionary.EMERGENCY_BRAKE_CAN_ID);
-    	mEmergencyBrake = new BooleanCanPayloadTranslator(networkEmergencyBrake);
+    	mEmergencyBrake = new SafetySensorCanPayloadTranslator(networkEmergencyBrake);
     	canInterface.registerTimeTriggered(networkEmergencyBrake);
     	
     	//Desired Floor
