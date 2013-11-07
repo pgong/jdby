@@ -90,8 +90,8 @@
 
 ;Module CAN Ids
 ;NOTE:  These IDs assume you use the ReplicationComputer offsets and MessageDictionary base values
-#DEFINE LEVEL_SENSOR_[UP]_CAN_ID                       0x8071400
-#DEFINE LEVEL_SENSOR_[DOWN]_CAN_ID                     0x8071401
+#DEFINE LEVEL_SENSOR_[UP]_CAN_ID                       0x8011400
+#DEFINE LEVEL_SENSOR_[DOWN]_CAN_ID                     0x8011401
 #DEFINE AT_FLOOR_[1][FRONT]_CAN_ID                     0x8052800
 #DEFINE AT_FLOOR_[1][BACK]_CAN_ID                      0x8052801
 #DEFINE AT_FLOOR_[2][BACK]_CAN_ID                      0x8052803
