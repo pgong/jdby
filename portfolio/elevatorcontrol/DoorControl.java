@@ -340,12 +340,14 @@ public class DoorControl extends Controller {
 	private void set_open_flag() {
 		if (p_dir == mDesiredFloor.getDirection() 
 				&& p_floor == mDesiredFloor.getFloor()
-				&& p_hall == mDesiredFloor.getHallway()
-				&& p_dir == Direction.STOP) {
+				&& p_hall == mDesiredFloor.getHallway()) {
 			this.open_flag = false;
 		}
 		else {
 			this.open_flag = true;
+			p_dir = mDesiredFloor.getDirection();
+			p_floor = mDesiredFloor.getFloor();
+			p_hall = mDesiredFloor.getHallway();
 		}
 		return;
 	}

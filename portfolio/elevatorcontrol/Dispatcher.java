@@ -649,7 +649,7 @@ public class Dispatcher extends Controller{
 			curr_d = Direction.DOWN;
 		else
 			curr_d = Direction.STOP;
-		
+	
 	}
 
 	/**
