@@ -90,7 +90,10 @@ public class DoorControl extends Controller {
     DesiredFloorCanPayloadTranslator mDesiredFloor;
     
     ReadableCanMailbox[] networkCarCall;
-    BooleanCanPayloadTranslator[] mCarCall;
+    CarCallCanPayloadTranslator[] mCarCall;
+    
+    ReadableCanMailbox[] networkHallCall;
+    HallCallCanPayloadTranslator[] mHallCall;
     
     // Outputs
     WriteableDoorMotorPayload DoorMotor;
@@ -154,17 +157,33 @@ public class DoorControl extends Controller {
 		canInterface.registerTimeTriggered(networkDriveSpeed);
 		
 		networkCarCall = new CanMailbox.ReadableCanMailbox[Elevator.numFloors*2];
-        mCarCall = new BooleanCanPayloadTranslator[Elevator.numFloors*2];        
+        mCarCall = new CarCallCanPayloadTranslator[Elevator.numFloors*2];        
         for(int floors = 1; floors <= Elevator.numFloors; floors++) {
                 for (Hallway H : Hallway.replicationValues) {
                         int index = ReplicationComputer.computeReplicationId(floors,H);
                         networkCarCall[index] = CanMailbox.getReadableCanMailbox(
                                         MessageDictionary.CAR_CALL_BASE_CAN_ID + 
                                         ReplicationComputer.computeReplicationId(floors,H));
-                        mCarCall[index] = new BooleanCanPayloadTranslator(networkCarCall[index]);
+                        mCarCall[index] = new CarCallCanPayloadTranslator(networkCarCall[index], floors, H);
                         canInterface.registerTimeTriggered(networkCarCall[index]);
                 }
         }
+        
+        //HallCall
+  		networkHallCall = new CanMailbox.ReadableCanMailbox[Elevator.numFloors*4];
+  		mHallCall = new HallCallCanPayloadTranslator[Elevator.numFloors*4];
+  		for(int floors = 1; floors <= Elevator.numFloors; floors++) {
+  			for (Hallway h1 : Hallway.replicationValues) {
+  				for (Direction d : Direction.replicationValues) {
+  					int index = ReplicationComputer.computeReplicationId(floors,h1,d);
+  					networkHallCall[index] = CanMailbox.getReadableCanMailbox(
+  							MessageDictionary.HALL_CALL_BASE_CAN_ID + 
+  							ReplicationComputer.computeReplicationId(floors,h1,d));
+  					mHallCall[index] = new HallCallCanPayloadTranslator(networkHallCall[index],floors,h1,d);
+  					canInterface.registerTimeTriggered(networkHallCall[index]);
+  				}
+  			}
+  		}
 
 		DoorMotor = DoorMotorPayload.getWriteablePayload(h,s);
 		physicalInterface.sendTimeTriggered(DoorMotor, period);
@@ -344,7 +363,13 @@ public class DoorControl extends Controller {
 	}
 	
 	private void set_open_flag() {
-		if (p_dir == mDesiredFloor.getDirection() 
+		if (mCarCall[ReplicationComputer.computeReplicationId(this.currentFloor, this.h)].getValue()) {
+			this.open_flag = true;
+		}
+		else if (mHallCall[ReplicationComputer.computeReplicationId(this.currentFloor, this.h)].getValue()) {
+			this.open_flag = true;
+		}
+		else if (p_dir == mDesiredFloor.getDirection() 
 				&& p_floor == mDesiredFloor.getFloor()
 				&& p_hall == mDesiredFloor.getHallway()) {
 			this.open_flag = false;
