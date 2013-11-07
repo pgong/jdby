@@ -78,7 +78,7 @@ public class DriveControl extends Controller{
 	//Respective translators for input messages
 	private AtFloorCanPayloadTranslator[] mAtFloor;
 	private LevelingCanPayloadTranslator[] mLevel;
-	private SafetySensorCanPayloadTranslator mEmergencyBrake;
+	private BooleanCanPayloadTranslator mEmergencyBrake;
 	private HoistwayLimitSensorCanPayloadTranslator[] mHoistwayLimit;
 	private DoorClosedCanPayloadTranslator[] mDoorClosed;
 	private CarLevelPositionCanPayloadTranslator mCarLevelPosition;
@@ -161,7 +161,7 @@ public class DriveControl extends Controller{
     	//Emergency Brake
     	networkEmergencyBrake = CanMailbox.getReadableCanMailbox(
     								MessageDictionary.EMERGENCY_BRAKE_CAN_ID);
-    	mEmergencyBrake = new SafetySensorCanPayloadTranslator(networkEmergencyBrake);
+    	mEmergencyBrake = new BooleanCanPayloadTranslator(networkEmergencyBrake);
     	canInterface.registerTimeTriggered(networkEmergencyBrake);
     	
     	//Desired Floor
@@ -313,6 +313,9 @@ public class DriveControl extends Controller{
 			//#transition 6.T.3
 			if(mEmergencyBrake.getValue())
 				newState = State.STATE_STOP;
+			else if(commitPointReached == false && localDriveSpeed.speed() == 0.25){
+				newState = State.STATE_FAST;
+			}
 			//#transition 6.T.4
 			else if(mDesiredFloor.getHallway() == Hallway.BOTH){
 				if(mAtFloor[ReplicationComputer.computeReplicationId(
@@ -324,9 +327,7 @@ public class DriveControl extends Controller{
 					mDesiredFloor.getHallway())].getValue())
 				newState = State.STATE_LEVEL;
 			//#transition 6.T.7
-			else if(commitPointReached == false && localDriveSpeed.speed() == 0.25){
-				newState = State.STATE_FAST;
-			}
+			
 			else
 				newState = state;
 			break;
