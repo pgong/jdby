@@ -24,7 +24,7 @@
 ;Set conditions for 6.T.1
 ;#transition '6.T.1'
 ;Check that elevator stays in state based on state of emergency
-0.222s  I  DRIVE_CONTROL_PERIOD N EMERGENCY_BRAKE_CAN_ID Boolean = true
+0.222s  I  DRIVE_CONTROL_PERIOD N EMERGENCY_BRAKE_CAN_ID SafetySensor = true
 
 ;Check state outputs
 0.263s  A F Drive : speed == STOP
@@ -35,7 +35,7 @@
 ;Set conditions for 6.T.1 (part 2)
 ;#transition '6.T.1'
 ;Turn off Emergency
-0.284s  I  DRIVE_CONTROL_PERIOD N EMERGENCY_BRAKE_CAN_ID Boolean = false
+0.284s  I  DRIVE_CONTROL_PERIOD N EMERGENCY_BRAKE_CAN_ID SafetySensor = false
 
 ;Set car to be overweight.
 0.305s  I  DRIVE_CONTROL_PERIOD N CAR_WEIGHT_CAN_ID CarWeight = 20000
@@ -71,7 +71,7 @@
 
 ;Set conditions for 6.T.3
 ;#transition '6.T.3'
-1.221s  I DRIVE_CONTROL_PERIOD N EMERGENCY_BRAKE_CAN_ID Boolean = true
+1.221s  I DRIVE_CONTROL_PERIOD N EMERGENCY_BRAKE_CAN_ID SafetySensor = true
 1.221s  I DRIVE_CONTROL_PERIOD F DriveSpeed = STOP 0.0
 
 ;Check state outputs
@@ -81,7 +81,7 @@
 1.253s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == STOP
 
 ;Revert back to normal state
-1.263s  I  DRIVE_CONTROL_PERIOD N EMERGENCY_BRAKE_CAN_ID Boolean = false
+1.263s  I  DRIVE_CONTROL_PERIOD N EMERGENCY_BRAKE_CAN_ID SafetySensor = false
 1.300s  I DRIVE_CONTROL_PERIOD F DriveSpeed = UP 0.20
 
 ;Reverting conditions back for 6.T.2 and checking state
@@ -131,7 +131,7 @@
 
 ;Set conditions for 6.T.9
 ;#transition '6.T.9'
-1.721s  I DRIVE_CONTROL_PERIOD N EMERGENCY_BRAKE_CAN_ID Boolean = true
+1.721s  I DRIVE_CONTROL_PERIOD N EMERGENCY_BRAKE_CAN_ID SafetySensor = true
 1.721s  I DRIVE_CONTROL_PERIOD F DriveSpeed = STOP 0.0
 
 ;Check state outputs
@@ -144,7 +144,7 @@
 
 ;Set conditions for 6.T.2
 ;#transition '6.T.2'
-1.900s  I DRIVE_CONTROL_PERIOD N EMERGENCY_BRAKE_CAN_ID Boolean = false
+1.900s  I DRIVE_CONTROL_PERIOD N EMERGENCY_BRAKE_CAN_ID SafetySensor = false
 1.900s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = true
 1.900s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = true
 1.900s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][RIGHT]_CAN_ID DoorClosed BACK RIGHT = true
