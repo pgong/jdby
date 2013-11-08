@@ -20,7 +20,7 @@
 +0.51s  I DRIVE_CONTROL_PERIOD F DriveSpeed = UP 0.25
 
 ;Set conditions for emergency brake
-+0.21s  I DRIVE_CONTROL_PERIOD N EMERGENCY_BRAKE_CAN_ID Boolean = true
++0.21s  I DRIVE_CONTROL_PERIOD N EMERGENCY_BRAKE_CAN_ID SafetySensor = true
 +0s  I DRIVE_CONTROL_PERIOD F DriveSpeed = STOP 0.0
 
 ;Check state outputs

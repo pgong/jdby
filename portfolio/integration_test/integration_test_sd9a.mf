@@ -47,14 +47,13 @@
 +0s  I  DRIVE_CONTROL_PERIOD F DriveSpeed = UP 0.05
 
 ;CHECKS
-+0.21s  A S DriveControl : STATE == STATE_LEVEL
++0.41s  A S DriveControl : STATE == STATE_LEVEL
 +0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0.05
 +0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == UP
 
 ;Leveling
 +0.21s  I  DRIVE_CONTROL_PERIOD N LEVEL_SENSOR_[UP]_CAN_ID Leveling UP = true
 +0s  I  DRIVE_CONTROL_PERIOD F DriveSpeed = STOP 0.0
-+0s  I  CAR_LEVEL_POSITION_PERIOD N CAR_LEVEL_POSITION_CAN_ID CarLevelPosition = 5001
 
 ;CHECKS
 +0.35s A S DoorControl[BACK][LEFT] : STATE == OPENING_DOOR

@@ -1,7 +1,7 @@
 
 Simulator Parameters:
 Command line = -cf integration_test_sd10a.cf -mf integration_test_sd10a.mf
-RandomSeed = 1383721232511
+RandomSeed = 1383873743524
 CanNetworkBitTime = 0 ns
 Effective Can Bitrate = Infinity
 Run Time = null
