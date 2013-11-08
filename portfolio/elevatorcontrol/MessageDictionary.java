@@ -30,16 +30,10 @@ public class MessageDictionary {
 
     //controller message IDs
     public final static int DRIVE_SPEED_CAN_ID =                0x0802B500;
-    public final static int DRIVE_COMMAND_CAN_ID =              0x0F0AB500;
-    public final static int DESIRED_DWELL_BASE_CAN_ID =         0x0F0BB600;
     public final static int DESIRED_FLOOR_CAN_ID =              0x0806B600;
     public final static int CAR_POSITION_CAN_ID =               0x0808B700;
-    public final static int DOOR_MOTOR_COMMAND_BASE_CAN_ID =    0x0F0EB800;
     public final static int HALL_CALL_BASE_CAN_ID =             0x0809B900;
-    public final static int HALL_LIGHT_BASE_CAN_ID =            0x0F10B900;
     public final static int CAR_CALL_BASE_CAN_ID =              0x080ABA00;
-    public final static int CAR_LIGHT_BASE_CAN_ID =             0x0F12BA00;
-    public final static int CAR_LANTERN_BASE_CAN_ID =           0x0F13BB00;
     
     //module message IDs
     public final static int AT_FLOOR_BASE_CAN_ID =              0x08052800;
@@ -53,4 +47,11 @@ public class MessageDictionary {
     public final static int EMERGENCY_BRAKE_CAN_ID =            0x08041400;
     public final static int LEVELING_BASE_CAN_ID =              0x08011400;
     
+    //Unused Consants
+    public final static int CAR_LIGHT_BASE_CAN_ID =             0x0F12BA00;
+    public final static int CAR_LANTERN_BASE_CAN_ID =           0x0F13BB00;
+    public final static int DRIVE_COMMAND_CAN_ID =              0x0F0AB500;
+    public final static int DESIRED_DWELL_BASE_CAN_ID =         0x0F0BB600;
+    public final static int DOOR_MOTOR_COMMAND_BASE_CAN_ID =    0x0F0EB800;
+    public final static int HALL_LIGHT_BASE_CAN_ID =            0x0F10B900;
 }
