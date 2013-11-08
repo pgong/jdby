@@ -1,0 +1,90 @@
+
+Simulator Parameters:
+Command line = -pf proj10acceptance1.pass -b 200 -rate INFINITE
+RandomSeed = 1383876663046
+CanNetworkBitTime = 5000 ns
+Effective Can Bitrate = 199999.99999999997
+Run Time = null
+Real time rate = INFINITE
+Acceptance Test File = proj10acceptance1.pass
+
+STATISTICS FOR ELEVATOR SIMULATION PASSENGER DELIVERY
+-----------------------------------------------------
+
+
+These passengers were delivered:
+Passenger 1: INJECTED AT 0.3s and DELIVERED in 41.159s
+  Satisfaction score: 100.0
+Passenger 0: INJECTED AT 0.0s and DELIVERED in 70.725s
+  Satisfaction score: 50.0
+    @22.550000000: 0.50 Car passed passenger's destination floor without servicing it
+Passenger 14: INJECTED AT 66.2s and DELIVERED in 19.07s
+  Satisfaction score: 100.0
+Passenger 3: INJECTED AT 1.0s and DELIVERED in 162.992s
+  Satisfaction score: 50.0
+    @146.900000000: 0.50 Car passed passenger's destination floor without servicing it
+Passenger 11: INJECTED AT 7.0s and DELIVERED in 171.09s
+  Satisfaction score: 50.0
+    @140.600000000: 0.50 Car passed passenger's destination floor without servicing it
+Passenger 4: INJECTED AT 2.0s and DELIVERED in 177.369s
+  Satisfaction score: 50.0
+    @140.600000000: 0.50 Car passed passenger's destination floor without servicing it
+Passenger 7: INJECTED AT 3.0s and DELIVERED in 188.765s
+  Satisfaction score: 50.0
+    @135.600000000: 0.50 Car passed passenger's destination floor without servicing it
+Passenger 5: INJECTED AT 3.0s and DELIVERED in 190.298s
+  Satisfaction score: 50.0
+    @135.600000000: 0.50 Car passed passenger's destination floor without servicing it
+Passenger 15: INJECTED AT 100.0s and DELIVERED in 105.97s
+  Satisfaction score: 100.0
+Passenger 10: INJECTED AT 6.0s and DELIVERED in 201.572s
+  Satisfaction score: 50.0
+    @130.600000000: 0.50 Car passed passenger's destination floor without servicing it
+Passenger 12: INJECTED AT 7.1s and DELIVERED in 213.875s
+  Satisfaction score: 50.0
+    @125.600000000: 0.50 Car passed passenger's destination floor without servicing it
+Passenger 9: INJECTED AT 5.0s and DELIVERED in 228.721s
+  Satisfaction score: 50.0
+    @120.600000000: 0.50 Car passed passenger's destination floor without servicing it
+Passenger 8: INJECTED AT 4.0s and DELIVERED in 302.097s
+  Satisfaction score: 50.0
+    @289.050000000: 0.50 Car passed passenger's destination floor without servicing it
+Passenger 13: INJECTED AT 58.0s and DELIVERED in 286.997s
+  Satisfaction score: 100.0
+Passenger 6: INJECTED AT 3.0s and DELIVERED in 385.678s
+  Satisfaction score: 5.0625
+    @153.700000000: 0.50 Failed to exit at 8, FRONT even though the doors opened.
+    @153.900000000: 0.90 Repeated car call press
+    @154.450000000: 0.50 Car passed passenger's destination floor without servicing it
+    @295.860000000: 0.50 Failed to exit at 8, FRONT even though the doors opened.
+    @296.060000000: 0.90 Repeated car call press
+    @296.650000000: 0.50 Car passed passenger's destination floor without servicing it
+Passenger 16: INJECTED AT 101.0s and DELIVERED in 317.1s
+  Satisfaction score: 90.0
+    @319.900000000: 0.90 Repeated hall call press
+Passenger 2: INJECTED AT 0.6s and DELIVERED in 430.35s
+  Satisfaction score: 45.0
+    @262.220000000: 0.90 Repeated hall call press
+    @374.800000000: 0.50 Car passed passenger's destination floor without servicing it
+
+Passenger Delivery Summary
+Delivered: 17
+Stranded: 0
+Total: 17
+
+Deliver Stats (lower is better):
+Average_delivery_time: 205.519
+Maximum_delivery_time:  430.350
+Delivery_performance_score:  1252.427
+
+Satisfaction Stats (higher is better):
+Average_satisfaction_score: 61.180
+Min_satisfaction_score:  5.063
+Satisfaction_performance_score:  249.783
+
+
+
+
+Network Utilization Summary:
+Recent: 56.32 % Max: 56.32 %  Overall:  56.32 %
+
