@@ -1,0 +1,26 @@
+Project 11 Assignments:
+
+Verification Documentation (State Charts)
+
+R-T6 (Jeff)
+R-T7 (Brody)
+R-T8.1 (Yang)
+R-T8.2 (Yang)
+R-T8.3 (Yang)
+R-T9 (David)
+R-T10(Brody)
+
+RunTimeMonitor (Jeff)
+Document code txt file (Jeff)
+
+Verification Results Log (David)
+
+Improvements Log (Brody)
+
+Minimum Requirements (David)
+
+Ensure all unit tests pass after debugging race conditions (Yang)
+
+Ensure all integration tests 1 - 5 pass after debugging (David)
+
+Ensure all integration tests 6 - 10 pass after debugging (Brody)
