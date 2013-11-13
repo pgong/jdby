@@ -1,0 +1,16 @@
+Bug fix notes
+
+to fix race condition by adding a delay:
+	add a counter that only lets it go into slow state from stop state once it reaches 2.
+	set it to 0 when it reaches slow state
+	increment it when it reaches a point where it should transition into slow state
+	
+	
+To fix when it misses a commitpoint and doesn't stop till it crashes:
+	increase the 0.5 to 1 in the commit_point_reached value
+	
+Problem tests+seeds:
+	-pf proj10acceptance3.pass -gui -rt 10000s -rate INFINITE -b 200 -seed 1383867216660
+		Dispatcher switches desired floors before car can level
+		
+	-pf proj10acceptance3.pass -gui -rt 10000s -rate INFINITE -b 200 -seed 1383931279769
