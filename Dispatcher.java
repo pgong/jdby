@@ -695,11 +695,18 @@ public class Dispatcher extends Controller{
 	 * 		   false if commit point past.
 	 */
 	private boolean commitPoint(int f, Direction d, int car_position, double speed) {
+		
 		if(d == Direction.UP){
-			return (((double)f - 1.0) * 5.0 - ((speed * speed) / 2.0))*1000 > car_position;
+			if(speed <= 0.30 && (f >= curr_f))
+				return true;
+			else
+				return (((double)f - 1.0) * 5.0 - ((speed * speed) / 2.0))*1000 > car_position;
 		}
 		else if(d == Direction.DOWN){
-			return (((double)f - 1.0) * 5.0 + ((speed * speed) / 2.0))*1000 < car_position;
+			if(speed <= 0.30 && (f <= curr_f))
+				return true;
+			else
+				return (((double)f - 1.0) * 5.0 + ((speed * speed) / 2.0))*1000 < car_position;
 		}
 		//If stopped, then we've definitely not reached the commit point.
 		else
