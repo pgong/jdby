@@ -9,50 +9,59 @@
 ; Integration test: SD10B - Dispatcher, DriveControl, Safety Integration
 #INCLUDE defines.mf
 
-;intialize
-0s I AT_FLOOR_PERIOD N AT_FLOOR_[1][FRONT]_CAN_ID AtFloor 1 FRONT = true
-+0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = true
-+0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = true
-+0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][RIGHT]_CAN_ID DoorClosed BACK RIGHT = true
-+0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][LEFT]_CAN_ID DoorClosed BACK LEFT = true
-+0s  I  HALL_BUTTON_CONTROL_PERIOD N HALL_CALL_[3][FRONT][UP]_CAN_ID HallCall 3 FRONT UP = true
-+0s  I DRIVE_CONTROL_PERIOD F DriveSpeed = UP 0.20
+;Initialize to be travelling up the hoistway.
+0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = true
+0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = true
+0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][RIGHT]_CAN_ID DoorClosed BACK RIGHT = true
+0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][LEFT]_CAN_ID DoorClosed BACK LEFT = true
+0s  I  AT_FLOOR_PERIOD N AT_FLOOR_[1][FRONT]_CAN_ID AtFloor 1 FRONT = false
+0s  I  DISPATCHER_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 5 STOP FRONT
+0s  I  LEVEL_SENSOR_PERIOD N LEVEL_SENSOR_[UP]_CAN_ID Leveling UP = false
++0.2s I CAR_LEVEL_POSITION_PERIOD N CAR_LEVEL_POSITION_CAN_ID CarLevelPosition = 1000
++0.51s  I DRIVE_PERIOD F DriveSpeed = UP 0.25
++0.51s I DRIVE_PERIOD F DriveSpeed = UP 1.00
 
-;CHECKS
-+0.21s  A S Dispatcher : STATE == STATE_DOORSCLOSED
-+0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getFloor == 3
-+0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getDirection == UP
-+0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getHallway == FRONT
-
-+0.21s  A S DriveControl : STATE == STATE_SLOW
-+0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0.20
+;Check that it is initialized at FAST and going up
++0.5s  A F Drive : speed == FAST
++0s  A F Drive : direction == UP
++0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 1.00
 +0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == UP
 
-;Left floor
-+0.2s  I  AT_FLOOR_PERIOD N AT_FLOOR_[1][FRONT]_CAN_ID AtFloor 1 FRONT = false
+;Set conditions for emergency brake
++0.21s  I DRIVE_CONTROL_PERIOD N EMERGENCY_BRAKE_CAN_ID SafetySensor = true
 
-;In between
-+0.21s  A S Dispatcher : STATE == STATE_DOORSCLOSED
-+0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getFloor == 3
-+0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getDirection == UP
-+0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getHallway == FRONT
-
-+0s  A S DriveControl : STATE == STATE_SLOW
-+0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0.20
+;Check that it is now going slow and going up
++0.5s  A F Drive : speed == SLOW
++0s  A F Drive : direction == UP
++0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 1.00
 +0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == UP
 
-;Open Doors!
-+0.21s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[FRONT][LEFT]_CAN_ID DoorOpened FRONT LEFT = true
-+0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = false
-+0s I DRIVE_PERIOD N EMERGENCY_BRAKE_CAN_ID SafetySensor = true
-+0s  I DRIVE_CONTROL_PERIOD F DriveSpeed = STOP 0.0
+;Set conditions to where the car has moved to slow speed successfully
++0.21s I DRIVE_PERIOD F DriveSpeed = UP 0.25
 
-;In between
-+0.51s  A S Dispatcher : STATE == STATE_EMERGENCY
-+0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getFloor == 1 
-+0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getDirection == STOP
-+0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getHallway == BOTH
+;Check that the DriveControl sets speed to level now
++0.3s  A F Drive : speed == LEVEL
++0s  A F Drive : direction == UP
++0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0.25
++0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == UP
 
-+0.21s  A S DriveControl : STATE == STATE_STOP
+;Set conditions to where the car has moved to level speed successfully
++0.21s I DRIVE_PERIOD F DriveSpeed = UP 0.05
+
+;Check that the Drive control is now telling car to stop
++0.5s  A F Drive : speed == STOP
++0s  A F Drive : direction == STOP
++0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0.05
++0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == UP
+
+;Set conditions to where the car has moved to stop speed successfully
++0.21s I DRIVE_PERIOD F DriveSpeed = STOP 0.00
++0s  I  DISPATCHER_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 1 STOP BOTH
+
+;Check that the Drive control is now telling car to stop
++0.5s  A F Drive : speed == STOP
++0s  A F Drive : direction == STOP
 +0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0.0
 +0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == STOP
+
+

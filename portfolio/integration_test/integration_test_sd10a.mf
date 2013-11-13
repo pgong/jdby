@@ -33,7 +33,7 @@
 ;Check that it is now going slow and going up
 +0.5s  A F Drive : speed == SLOW
 +0s  A F Drive : direction == UP
-+0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0.25
++0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 1.00
 +0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == UP
 
 ;Set conditions to where the car has moved to slow speed successfully
@@ -52,10 +52,10 @@
 +0.5s  A F Drive : speed == STOP
 +0s  A F Drive : direction == STOP
 +0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0.05
-+0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == STOP
++0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == UP
 
 ;Set conditions to where the car has moved to stop speed successfully
-+0.21s I DRIVE_PERIOD F DriveSpeed = UP 0.00
++0.21s I DRIVE_PERIOD F DriveSpeed = STOP 0.00
 +0s  I  DISPATCHER_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 1 STOP BOTH
 
 ;Check that the Drive control is now telling car to stop
