@@ -256,7 +256,7 @@ public class DriveControl extends Controller{
 			//transitions:
 			//#transition 6.T.1
 			//If we are off level at all, level again.
-			//#transition 6.T.6
+			//#transition 6.T.5
 			if(mCarWeight.getValue() >= (Elevator.MaxCarCapacity) &&
 				!mLevel[ReplicationComputer.computeReplicationId(Direction.UP)].getValue()){
 				//Set weight_flag
@@ -313,10 +313,11 @@ public class DriveControl extends Controller{
 			//#transition 6.T.3
 			if(mEmergencyBrake.getValue() && localDriveSpeed.speed() <= 0.25)
 				newState = State.STATE_LEVEL;
+			//#transition 6.T.6
 			else if(commitPointReached == false && localDriveSpeed.speed() == 0.25){
 				newState = State.STATE_FAST;
 			}
-			//#transition 6.T.4
+			//#transition 6.T.3
 			else if(mDesiredFloor.getHallway() == Hallway.BOTH){
 				if(mAtFloor[ReplicationComputer.computeReplicationId(
 						mDesiredFloor.getFloor(),
@@ -325,9 +326,7 @@ public class DriveControl extends Controller{
 			} else if(mAtFloor[ReplicationComputer.computeReplicationId(
 					mDesiredFloor.getFloor(),
 					mDesiredFloor.getHallway())].getValue())
-				newState = State.STATE_LEVEL;
-			//#transition 6.T.7
-			
+				newState = State.STATE_LEVEL;			
 			else
 				newState = state;
 			break;
@@ -337,10 +336,10 @@ public class DriveControl extends Controller{
 			mDriveSpeed.set(localDriveSpeed.speed(),localDriveSpeed.direction());
 			
 			//transitions:
-			//#transition 6.T.?
+			//#transition 6.T.4
 			if(mEmergencyBrake.getValue() && localDriveSpeed.speed() <= 0.05)
 				newState = State.STATE_STOP;
-			//#transition 6.T.5
+			//#transition 6.T.4
 			//if level sensor triggers, stop the drive.
 			else if(mLevel[ReplicationComputer.computeReplicationId(direction)].getValue()){
 				// If overweight, don't change the floor, and reset weight_flag
@@ -377,10 +376,10 @@ public class DriveControl extends Controller{
 			else;
 
 			//transitions:
-			//#transition 6.T.9
+			//#transition 6.T.7
 			if (mEmergencyBrake.getValue())
 				newState = State.STATE_SLOW;
-			//#transition 6.T.8
+			//#transition 6.T.7
 			else if(commitPointReached == true && localDriveSpeed.speed() > 0.25){
 				newState = State.STATE_SLOW;
 			}
