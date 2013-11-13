@@ -542,10 +542,10 @@
         <dia:point val="19,6"/>
       </dia:attribute>
       <dia:attribute name="text_colour">
-        <dia:color val="#0000ff"/>
+        <dia:color val="#000000"/>
       </dia:attribute>
       <dia:attribute name="line_colour">
-        <dia:color val="#0000ff"/>
+        <dia:color val="#000000"/>
       </dia:attribute>
       <dia:attribute name="text">
         <dia:string>#1a. DriveSpeed=[FAST,d]#</dia:string>
@@ -572,10 +572,10 @@
         <dia:point val="19.0738,10.3325"/>
       </dia:attribute>
       <dia:attribute name="text_colour">
-        <dia:color val="#0000ff"/>
+        <dia:color val="#000000"/>
       </dia:attribute>
       <dia:attribute name="line_colour">
-        <dia:color val="#0000ff"/>
+        <dia:color val="#000000"/>
       </dia:attribute>
       <dia:attribute name="text">
         <dia:string>#2a. DriveSpeed=[SLOW,d]#</dia:string>
@@ -602,10 +602,10 @@
         <dia:point val="18.9738,14.2825"/>
       </dia:attribute>
       <dia:attribute name="text_colour">
-        <dia:color val="#0000ff"/>
+        <dia:color val="#000000"/>
       </dia:attribute>
       <dia:attribute name="line_colour">
-        <dia:color val="#0000ff"/>
+        <dia:color val="#000000"/>
       </dia:attribute>
       <dia:attribute name="text">
         <dia:string>#3a. DriveSpeed=[LEVEL,d]#</dia:string>
