@@ -102,18 +102,9 @@ public class LanternControl extends Controller {
         switch (state) {
             case STATE_LANTERN_OFF:
             	carLantern.set(false);
-            	CurrentFloor = floorArray.getCurrentFloor();
-
-            	if(CurrentFloor != MessageDictionary.NONE) {
-            		if(mDesiredFloor.getFloor() > CurrentFloor) {
-            			DesiredDirection = Direction.UP;
-            		}else if(mDesiredFloor.getFloor() < CurrentFloor) {
-            			DesiredDirection = Direction.DOWN;
-            		}else{
-            			DesiredDirection = Direction.STOP;
-            		}
+            	
+            	DesiredDirection = mDesiredFloor.getDirection();
             		
-            	}
                 //#transition '7.T.1'
             	if(DesiredDirection == direction && (mDoorClosedFrontLeft.getValue() == false || mDoorClosedFrontRight.getValue() == false || mDoorClosedBackLeft.getValue() == false || mDoorClosedBackRight.getValue() == false)) {
             		newState = State.STATE_LANTERN_ON;
