@@ -311,8 +311,8 @@ public class DriveControl extends Controller{
 
 			//transitions:
 			//#transition 6.T.3
-			if(mEmergencyBrake.getValue())
-				newState = State.STATE_STOP;
+			if(mEmergencyBrake.getValue() && localDriveSpeed.speed() <= 0.25)
+				newState = State.STATE_LEVEL;
 			else if(commitPointReached == false && localDriveSpeed.speed() == 0.25){
 				newState = State.STATE_FAST;
 			}
@@ -337,9 +337,12 @@ public class DriveControl extends Controller{
 			mDriveSpeed.set(localDriveSpeed.speed(),localDriveSpeed.direction());
 			
 			//transitions:
+			//#transition 6.T.?
+			if(mEmergencyBrake.getValue() && localDriveSpeed.speed() <= 0.05)
+				newState = State.STATE_STOP;
 			//#transition 6.T.5
 			//if level sensor triggers, stop the drive.
-			if(mLevel[ReplicationComputer.computeReplicationId(direction)].getValue()){
+			else if(mLevel[ReplicationComputer.computeReplicationId(direction)].getValue()){
 				// If overweight, don't change the floor, and reset weight_flag
 				if (weight_flag) {
 					weight_flag = false;
@@ -374,13 +377,13 @@ public class DriveControl extends Controller{
 			else;
 
 			//transitions:
+			//#transition 6.T.9
+			if (mEmergencyBrake.getValue())
+				newState = State.STATE_SLOW;
 			//#transition 6.T.8
-			if(commitPointReached == true && localDriveSpeed.speed() > 0.25){
+			else if(commitPointReached == true && localDriveSpeed.speed() > 0.25){
 				newState = State.STATE_SLOW;
 			}
-			//#transition 6.T.9
-			else if(mEmergencyBrake.getValue())
-				newState = State.STATE_STOP;
 			else
 				newState = state;
 			break;
