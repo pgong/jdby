@@ -55,6 +55,7 @@ public class Proj11RuntimeMonitor extends RuntimeMonitor{
         arr[0] = "Overweight Count = " + overWeightCount;
         arr[1] = "Wasted Opening Count = " + wastedOpening; 
         arr[2] = "Time Spent Reversing = " + timeReversal + "s";
+        arr[3] = getWarningStats();
         return arr;
     }
 
@@ -73,6 +74,9 @@ public class Proj11RuntimeMonitor extends RuntimeMonitor{
      * @param hallway which door the event pertains to
      */
     private void doorOpening(Hallway hallway) {
+    	//reset weightChange counter
+    	weightChange = false;
+    	//Check next desired direction
     	nextDirection = mDesiredFloor.getDirection();
     	//Check if car lantern is in compliance with requirements.
     	if(!carLanterns[nextDirection.ordinal()].lighted())
@@ -148,7 +152,6 @@ public class Proj11RuntimeMonitor extends RuntimeMonitor{
      */
     private void doorOpened(Hallway hallway) {
         //System.out.println(hallway.toString() + " Door Opened");
-    	weightChange = false;
     	//if the lantern flickers, violation of 8.2
     	if(!carLanterns[nextDirection.ordinal()].lighted())
     		warning("R-T8.2 Violated: Car Lantern is flickering!");
