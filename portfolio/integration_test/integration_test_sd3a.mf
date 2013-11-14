@@ -56,7 +56,7 @@
 +0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][LEFT]_CAN_ID DoorClosed BACK LEFT = false
 
 ;CHECKS
-+0.28s A S DoorControl[BACK][LEFT] : STATE == OPENING_DOOR
++0.48s A S DoorControl[BACK][LEFT] : STATE == OPENING_DOOR
 +0s A S DoorControl[BACK][RIGHT] : STATE == OPENING_DOOR
 +0s A F DoorMotor BACK LEFT : command == OPEN
 +0s A F DoorMotor BACK RIGHT : command == OPEN
