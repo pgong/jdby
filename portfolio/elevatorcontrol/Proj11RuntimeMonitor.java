@@ -102,7 +102,8 @@ public class Proj11RuntimeMonitor extends RuntimeMonitor{
      */
     private void doorReopening(Hallway hallway) {
         //System.out.println(hallway.toString() + " Door Reopening");
-    	reversalTimer.start();
+        if(!reversalTimer.isRunning)
+            reversalTimer.start();
     	hasReversed = true;
     }
 
