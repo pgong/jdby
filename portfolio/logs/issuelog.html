@@ -41,8 +41,8 @@
       </li>
     </ul>
     <br>
-    <table style="text-align: left; width: 100%;" border="1"
-      cellpadding="2" cellspacing="2">
+    <table style="text-align: left; width: 100%;" cellpadding="2"
+      cellspacing="2" border="1">
       <tbody>
         <tr>
           <td style="vertical-align: top;">Issue #<br>
@@ -494,9 +494,9 @@
           </td>
           <td valign="top">11/7/2013<br>
           </td>
-          <td valign="top"><br>
+          <td valign="top">11/13/2013<br>
           </td>
-          <td valign="top"><br>
+          <td valign="top">Brody Anderson<br>
           </td>
           <td valign="top">DriveControl.java<br>
           </td>
@@ -504,9 +504,10 @@
             DoorControl. DriveControl tries to go into slow at the same
             time DoorControl starts opening the door.<br>
           </td>
-          <td valign="top"><br>
+          <td valign="top">added a delay of 1 period before moving to
+            slow state<br>
           </td>
-          <td valign="top"><br>
+          <td valign="top">DriveControl<br>
           </td>
         </tr>
         <tr>
@@ -531,6 +532,66 @@
             DriveControl.stats, sc_code.html, req_const_traceability,
             sd_req_traceability.xls, requirements 2, Integration Tests
             10A and 10B, Sequence Diagrams 10A and 10B<br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top">24<br>
+          </td>
+          <td valign="top">11/12/2013<br>
+          </td>
+          <td valign="top">11/13/2013<br>
+          </td>
+          <td valign="top">Jeff Lau<br>
+          </td>
+          <td valign="top">Dispatcher.java<br>
+          </td>
+          <td valign="top">Dispatcher sometimes changes the desired
+            floor as it is about to reach the current desired floor.<br>
+          </td>
+          <td valign="top">Removed the line that defaulted the direction
+            to STOP<br>
+          </td>
+          <td valign="top">Dispatcher.java<br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top">25<br>
+          </td>
+          <td valign="top">11/13/2013<br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top">Dispatcher.java<br>
+          </td>
+          <td valign="top">Elevator gets stuck at a floor when someone
+            presses up hall call but doesn't press any car call, and no
+            hall call above the car is pushed. (nextTarget is the
+            current floor and target is 0)<br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top">26<br>
+          </td>
+          <td valign="top">11/13/2013<br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top">DoorControl.java<br>
+          </td>
+          <td valign="top">Very rarely 1 door will not open while the
+            other(s) manage to open.<br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
           </td>
         </tr>
       </tbody>

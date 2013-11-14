@@ -102,7 +102,8 @@ public class Proj11RuntimeMonitor extends RuntimeMonitor{
      */
     private void doorReopening(Hallway hallway) {
         //System.out.println(hallway.toString() + " Door Reopening");
-    	reversalTimer.start();
+        if(!reversalTimer.isRunning)
+            reversalTimer.start();
     	hasReversed = true;
     }
 
@@ -267,7 +268,7 @@ public class Proj11RuntimeMonitor extends RuntimeMonitor{
     	double speed = driveActualSpeed.speed();
     	//If the commit point is reached
     	if(!commitPoint(floor,d,position,speed)){
-    		if(speed == 0.25)
+    		if(speed <= 0.25)
     			warning("R-T9 Violated: Car was traveling at"
     					+ speed + "instead of max speed.");
     	}
@@ -606,10 +607,10 @@ public class Proj11RuntimeMonitor extends RuntimeMonitor{
 	 */
 	private boolean commitPoint(int f, Direction d, int car_position, double speed) {
 		if(d == Direction.UP){
-			return (((double)f - 1.0) * 5.0 - ((speed * speed) / 2.0 + 2.0))*1000 > car_position;
+			return (((double)f - 1.0) * 5.0 - ((speed * speed) / 2.0 + 0.5))*1000 > car_position;
 		}
 		else if(d == Direction.DOWN){
-			return (((double)f - 1.0) * 5.0 + ((speed * speed) / 2.0 + 2.0))*1000 < car_position;
+			return (((double)f - 1.0) * 5.0 + ((speed * speed) / 2.0 + 0.5))*1000 < car_position;
 		}
 		//If stopped, then we've definitely not reached the commit point.
 		else
