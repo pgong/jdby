@@ -39,6 +39,7 @@ public class Proj11RuntimeMonitor extends RuntimeMonitor{
     boolean hasReversed = false;
     int overWeightCount = 0;
     int wastedOpening = 0;
+    int current_floor = 0;
     int oldWeight = 0;
     double timeReversal = 0.0;
     private AtFloorArray floorArray;
@@ -79,6 +80,11 @@ public class Proj11RuntimeMonitor extends RuntimeMonitor{
     	weightChange = false;
     	//Check next desired direction
     	nextDirection = mDesiredFloor.getDirection();
+    	current_floor = floorArray.getCurrentFloor();
+    	if(current_floor != mDesiredFloor.getFloor()){
+    		warning("R-T7 Violated: Opening doors at floor" + 
+    				current_floor + " with no pending calls.");
+    	}
     }
 
     /**
@@ -231,16 +237,12 @@ public class Proj11RuntimeMonitor extends RuntimeMonitor{
     		!hallLights[currentFloor][Hallway.BACK.ordinal()][Direction.DOWN.ordinal()].lighted()){
     			warning("R-T6 Violated: Stopped at floor" + 
         				currentFloor + " with no pending calls.");
-    			warning("R-T7 Violated: Opening doors at floor" + 
-        				currentFloor + " with no pending calls.");
     		}
     	}else if(!carLights[currentFloor][h.ordinal()].lighted() &&
     	    	!hallLights[currentFloor][h.ordinal()][Direction.UP.ordinal()].lighted() &&
     	    	!hallLights[currentFloor][h.ordinal()][Direction.DOWN.ordinal()].lighted()){
     	    		warning("R-T6 Violated: Stopped at floor" + 
     	        			currentFloor + " with no pending calls.");
-    	    		warning("R-T7 Violated: Opening doors at floor" + 
-    	    				currentFloor + " with no pending calls.");
     		}
     	}
     
