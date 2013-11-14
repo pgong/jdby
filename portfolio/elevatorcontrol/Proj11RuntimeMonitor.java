@@ -4,7 +4,7 @@
  *  David Chow davidcho
  *  Yang Liu yangliu2
  *  Brody Anderson bcanders
- *  Project7RuntimeMonitor.java
+ *  Project11RuntimeMonitor.java
  *  @author Jeff Lau (jalau)
  */
 package simulator.elevatorcontrol;
@@ -39,6 +39,7 @@ public class Proj11RuntimeMonitor extends RuntimeMonitor{
     boolean hasReversed = false;
     int overWeightCount = 0;
     int wastedOpening = 0;
+    int oldWeight = 0;
     double timeReversal = 0.0;
     private AtFloorArray floorArray;
     //keep track of the next direction
@@ -50,7 +51,7 @@ public class Proj11RuntimeMonitor extends RuntimeMonitor{
  
     @Override
     protected String[] summarize() {
-        String[] arr = new String[3];
+        String[] arr = new String[4];
         timeReversal = reversalTimer.getAccumulatedTime().getFracSeconds();
         arr[0] = "Overweight Count = " + overWeightCount;
         arr[1] = "Wasted Opening Count = " + wastedOpening; 
@@ -78,26 +79,6 @@ public class Proj11RuntimeMonitor extends RuntimeMonitor{
     	weightChange = false;
     	//Check next desired direction
     	nextDirection = mDesiredFloor.getDirection();
-    	//Check if car lantern is in compliance with requirements.
-    	if(!carLanterns[nextDirection.ordinal()].lighted())
-    		warning("R-T8.1 Violated: Lantern not on with other pending"
-    				+ "calls on other floors");
-    	//check if floor is in compliance with requirements.
-    	int currentFloor = floorArray.getCurrentFloor();
-    	if(hallway == Hallway.BOTH){
-    		if(!carLights[currentFloor][Hallway.FRONT.ordinal()].lighted() &&
-    		!carLights[currentFloor][Hallway.BACK.ordinal()].lighted() &&
-    		!hallLights[currentFloor][Hallway.FRONT.ordinal()][Direction.UP.ordinal()].lighted() &&
-    		!hallLights[currentFloor][Hallway.FRONT.ordinal()][Direction.DOWN.ordinal()].lighted() &&
-    		!hallLights[currentFloor][Hallway.BACK.ordinal()][Direction.UP.ordinal()].lighted() &&
-    		!hallLights[currentFloor][Hallway.BACK.ordinal()][Direction.DOWN.ordinal()].lighted())
-    			warning("R-T7 Violated: Opening doors at floor" + 
-        				currentFloor + " with no pending calls.");
-    	}else if(!carLights[currentFloor][hallway.ordinal()].lighted() &&
-    	    	!hallLights[currentFloor][hallway.ordinal()][Direction.UP.ordinal()].lighted() &&
-    	    	!hallLights[currentFloor][hallway.ordinal()][Direction.DOWN.ordinal()].lighted())
-    	    			warning("R-T7 Violated: Opening doors at floor" + 
-    	        			currentFloor + " with no pending calls.");
     }
 
     /**
@@ -151,10 +132,16 @@ public class Proj11RuntimeMonitor extends RuntimeMonitor{
      * @param hallway which door the event pertains to
      */
     private void doorOpened(Hallway hallway) {
-        //System.out.println(hallway.toString() + " Door Opened");
+    	//System.out.println(hallway.toString() + " Door Opened");
     	//if the lantern flickers, violation of 8.2
-    	if(!carLanterns[nextDirection.ordinal()].lighted())
-    		warning("R-T8.2 Violated: Car Lantern is flickering!");
+    	if(nextDirection != Direction.STOP){
+    		if(!carLanterns[nextDirection.ordinal()].lighted())
+    			warning("R-T8.2 Violated: Car Lantern is flickering!");
+    		//Check if car lantern is in compliance with requirements.
+    		if(!carLanterns[nextDirection.ordinal()].lighted())
+    			warning("R-T8.1 Violated: Lantern not on with other pending"
+    					+ "calls on other floors");
+    	}
     }
     
     /**
@@ -179,10 +166,39 @@ public class Proj11RuntimeMonitor extends RuntimeMonitor{
      * Called when the drive is in the Slow State
      */
     private void driveSlow(){
-    	if(driveActualSpeed.direction() != nextDirection)
-    		warning("R-T8.3 Violated: Elevator is sevicing direction"
-    				+ driveActualSpeed.direction() + "instead of" +
-    				nextDirection);
+    	//Check if there are any calls in the specified direction.
+    	//If so, then violation. Otherwise, no violation.
+    	if(nextDirection != Direction.STOP){
+        	int currentFloor = floorArray.getCurrentFloor() - 1;
+        	if(nextDirection == Direction.UP){
+        		for(int f_u = currentFloor; f_u < Elevator.numFloors; f_u++){
+        			for (Hallway h : Hallway.replicationValues) {
+						for(Direction d : Direction.replicationValues){
+						if(carLights[f_u][h.ordinal()].lighted() || hallLights[f_u][h.ordinal()][d.ordinal()].lighted()){
+							if(nextDirection != driveActualSpeed.direction())
+								warning("R-T8.3 Violated: Elevator is sevicing direction " +
+				    				driveActualSpeed.direction() + " instead of " + f_u + " " + h +
+				    				" in direction " + nextDirection);
+							}
+						}
+        			}
+        		}
+        	}
+        	else if(nextDirection == Direction.DOWN){
+        		for(int f_d = currentFloor;f_d >= 1; f_d--){
+        			for (Hallway h : Hallway.replicationValues) {
+						for(Direction d : Direction.replicationValues){
+						if(carLights[f_d][h.ordinal()].lighted() || hallLights[f_d][h.ordinal()][d.ordinal()].lighted()){
+							if(nextDirection != driveActualSpeed.direction())
+								warning("R-T8.3 Violated: Elevator is sevicing direction " +
+				    				driveActualSpeed.direction() + " instead of " + f_d + " " + h + 
+				    				" in direction " + nextDirection);
+							}
+						}
+        			}
+        		}
+        	}		
+    	}
     }
 
     /**
@@ -191,7 +207,6 @@ public class Proj11RuntimeMonitor extends RuntimeMonitor{
     private void driveStopped(){
     	
     }
-    
     /**
      * Called when the drive is transitioning to the Stop state
      */
@@ -206,20 +221,27 @@ public class Proj11RuntimeMonitor extends RuntimeMonitor{
 		}
 		else 
 			h = Hallway.BACK;
+    	currentFloor--;
     	if(h == Hallway.BOTH){
     		if(!carLights[currentFloor][Hallway.FRONT.ordinal()].lighted() &&
     		!carLights[currentFloor][Hallway.BACK.ordinal()].lighted() &&
     		!hallLights[currentFloor][Hallway.FRONT.ordinal()][Direction.UP.ordinal()].lighted() &&
     		!hallLights[currentFloor][Hallway.FRONT.ordinal()][Direction.DOWN.ordinal()].lighted() &&
     		!hallLights[currentFloor][Hallway.BACK.ordinal()][Direction.UP.ordinal()].lighted() &&
-    		!hallLights[currentFloor][Hallway.BACK.ordinal()][Direction.DOWN.ordinal()].lighted())
+    		!hallLights[currentFloor][Hallway.BACK.ordinal()][Direction.DOWN.ordinal()].lighted()){
     			warning("R-T6 Violated: Stopped at floor" + 
         				currentFloor + " with no pending calls.");
+    			warning("R-T7 Violated: Opening doors at floor" + 
+        				currentFloor + " with no pending calls.");
+    		}
     	}else if(!carLights[currentFloor][h.ordinal()].lighted() &&
     	    	!hallLights[currentFloor][h.ordinal()][Direction.UP.ordinal()].lighted() &&
-    	    	!hallLights[currentFloor][h.ordinal()][Direction.DOWN.ordinal()].lighted())
+    	    	!hallLights[currentFloor][h.ordinal()][Direction.DOWN.ordinal()].lighted()){
     	    		warning("R-T6 Violated: Stopped at floor" + 
     	        			currentFloor + " with no pending calls.");
+    	    		warning("R-T7 Violated: Opening doors at floor" + 
+    	    				currentFloor + " with no pending calls.");
+    		}
     	}
     
     /**
@@ -228,9 +250,9 @@ public class Proj11RuntimeMonitor extends RuntimeMonitor{
      */
     private void weightChanged(int newWeight) {
         if (newWeight > Elevator.MaxCarCapacity) {
-        	weightChange = true;
             wasOverweight = true;
         }
+        weightChange = true;
     }
     
     /**
@@ -582,10 +604,10 @@ public class Proj11RuntimeMonitor extends RuntimeMonitor{
 	 */
 	private boolean commitPoint(int f, Direction d, int car_position, double speed) {
 		if(d == Direction.UP){
-			return (((double)f - 1.0) * 5.0 - ((speed * speed) / 2.0 + 0.5))*1000 > car_position;
+			return (((double)f - 1.0) * 5.0 - ((speed * speed) / 2.0 + 2.0))*1000 > car_position;
 		}
 		else if(d == Direction.DOWN){
-			return (((double)f - 1.0) * 5.0 + ((speed * speed) / 2.0 + 0.5))*1000 < car_position;
+			return (((double)f - 1.0) * 5.0 + ((speed * speed) / 2.0 + 2.0))*1000 < car_position;
 		}
 		//If stopped, then we've definitely not reached the commit point.
 		else

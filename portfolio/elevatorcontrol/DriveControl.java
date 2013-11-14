@@ -105,6 +105,8 @@ public class DriveControl extends Controller{
     private SimTime counter = SimTime.ZERO;
     private int CurrentFloor;
     private AtFloorArray floorArray;
+    
+    
 
     //enumerate states
     private enum State {
@@ -256,7 +258,7 @@ public class DriveControl extends Controller{
 			//transitions:
 			//#transition 6.T.1
 			//If we are off level at all, level again.
-			//#transition 6.T.5
+			//#transition 6.T.6
 			if(mCarWeight.getValue() >= (Elevator.MaxCarCapacity) &&
 				!mLevel[ReplicationComputer.computeReplicationId(Direction.UP)].getValue()){
 				//Set weight_flag
@@ -299,25 +301,24 @@ public class DriveControl extends Controller{
 			//if false, then we can go faster!
 			if(direction == Direction.UP){
 				commitPointReached = (((double)mDesiredFloor.getFloor() -1.0) * 5.0 - 
-					(localDriveSpeed.speed() * localDriveSpeed.speed() / 2.0 + 0.5)) * 1000 < 
+					(localDriveSpeed.speed() * localDriveSpeed.speed() / 2.0 + 1.0)) * 1000 < 
 					mCarLevelPosition.getPosition();
 			}
 			else if(direction == Direction.DOWN){
 				commitPointReached = (((double)mDesiredFloor.getFloor() -1.0) * 5.0 + 
-					(localDriveSpeed.speed() * localDriveSpeed.speed() / 2.0 + 0.5))*1000 > 
+					(localDriveSpeed.speed() * localDriveSpeed.speed() / 2.0 + 1.0))*1000 > 
 					mCarLevelPosition.getPosition();
 			}
 			else;
 
 			//transitions:
 			//#transition 6.T.3
-			if(mEmergencyBrake.getValue() && localDriveSpeed.speed() <= 0.25)
-				newState = State.STATE_LEVEL;
-			//#transition 6.T.6
+			if(mEmergencyBrake.getValue()==true)
+				newState = State.STATE_STOP;
 			else if(commitPointReached == false && localDriveSpeed.speed() == 0.25){
 				newState = State.STATE_FAST;
 			}
-			//#transition 6.T.3
+			//#transition 6.T.4
 			else if(mDesiredFloor.getHallway() == Hallway.BOTH){
 				if(mAtFloor[ReplicationComputer.computeReplicationId(
 						mDesiredFloor.getFloor(),
@@ -326,7 +327,8 @@ public class DriveControl extends Controller{
 			} else if(mAtFloor[ReplicationComputer.computeReplicationId(
 					mDesiredFloor.getFloor(),
 					mDesiredFloor.getHallway())].getValue())
-				newState = State.STATE_LEVEL;			
+					newState = State.STATE_LEVEL;
+			//#transition 6.T.7
 			else
 				newState = state;
 			break;
@@ -336,19 +338,16 @@ public class DriveControl extends Controller{
 			mDriveSpeed.set(localDriveSpeed.speed(),localDriveSpeed.direction());
 			
 			//transitions:
-			//#transition 6.T.4
-			if(mEmergencyBrake.getValue() && localDriveSpeed.speed() <= 0.05)
-				newState = State.STATE_STOP;
-			//#transition 6.T.4
+			//#transition 6.T.5
 			//if level sensor triggers, stop the drive.
-			else if(mLevel[ReplicationComputer.computeReplicationId(direction)].getValue()){
+			if(mLevel[ReplicationComputer.computeReplicationId(direction)].getValue()){
 				// If overweight, don't change the floor, and reset weight_flag
 				if (weight_flag) {
 					weight_flag = false;
 				}
 				//if we were leveling not because of weight, change the floor.
 				else if (!weight_flag) {
-					floor = mDesiredFloor.getFloor();
+					floor = (mCarLevelPosition.getPosition()+100)/5000 + 1;
 				}
 				hallway = mDesiredFloor.getHallway();
 				direction = mDesiredFloor.getDirection();
@@ -365,24 +364,24 @@ public class DriveControl extends Controller{
 	
 			if(direction == Direction.UP){
 				commitPointReached = (((double)mDesiredFloor.getFloor() -1.0) * 5.0 - 
-					(localDriveSpeed.speed() * localDriveSpeed.speed() / 2.0 + 0.5))*1000 < 
+					(localDriveSpeed.speed() * localDriveSpeed.speed() / 2.0 + 1.0))*1000 < 
 					mCarLevelPosition.getPosition();
 			}
 			else if(direction == Direction.DOWN){
 				commitPointReached = (((double)mDesiredFloor.getFloor() -1.0) * 5.0 + 
-					(localDriveSpeed.speed() * localDriveSpeed.speed() / 2.0 + 0.5))*1000 > 
+					(localDriveSpeed.speed() * localDriveSpeed.speed() / 2.0 + 1.0))*1000 > 
 					mCarLevelPosition.getPosition();
 			}
 			else;
 
 			//transitions:
-			//#transition 6.T.7
-			if (mEmergencyBrake.getValue())
-				newState = State.STATE_SLOW;
-			//#transition 6.T.7
-			else if(commitPointReached == true && localDriveSpeed.speed() > 0.25){
+			//#transition 6.T.8
+			if(commitPointReached == true && localDriveSpeed.speed() > 0.25){
 				newState = State.STATE_SLOW;
 			}
+			//#transition 6.T.9
+			else if(mEmergencyBrake.getValue())
+				newState = State.STATE_STOP;
 			else
 				newState = state;
 			break;
@@ -391,13 +390,13 @@ public class DriveControl extends Controller{
 			throw new RuntimeException("State " + state + " was not recognized.");
 		}
 		
-		/*log the results of this iteration
+		/*//log the results of this iteration
         if (state == newState) {
-            log("remains in state: ",state);
+            //log("remains in state: ",state);
         } else {
-            log("Transition:",state,"->",newState);
-        }
-		*/
+            System.out.println("Transition:" + state+" -> " + newState);
+        }*/
+		
         //update the state variable
         state = newState;
 
