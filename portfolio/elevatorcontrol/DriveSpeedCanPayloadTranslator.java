@@ -26,11 +26,11 @@ import simulator.payloads.translators.CanPayloadTranslator;
 public class DriveSpeedCanPayloadTranslator extends CanPayloadTranslator{
 
     public DriveSpeedCanPayloadTranslator(WriteableCanMailbox p) {
-        super(p, 6, MessageDictionary.DRIVE_SPEED_CAN_ID);
+        super(p, 3, MessageDictionary.DRIVE_SPEED_CAN_ID);
     }
     
     public DriveSpeedCanPayloadTranslator(ReadableCanMailbox p) {
-        super(p, 6, MessageDictionary.DRIVE_SPEED_CAN_ID);
+        super(p, 3, MessageDictionary.DRIVE_SPEED_CAN_ID);
     }
     
     /**
@@ -75,7 +75,7 @@ public class DriveSpeedCanPayloadTranslator extends CanPayloadTranslator{
             // check min/max according to elevator speeds
         	// we set max to some arbitrary large number but still within
         	//"reason" of a moving elevator.
-            double max = 20.0;
+            double max = 5000.0;
             double min = 0.0;
             if (value > max)
             {
@@ -89,12 +89,11 @@ public class DriveSpeedCanPayloadTranslator extends CanPayloadTranslator{
             }
         }
         int mask = 0x1;
-        long value_to_store = Double.doubleToLongBits(value);
-        value_to_store = value_to_store >> 32;
+        int value_to_store = (int) value;
         int bitOffset = startLocation;
         for (int i = 0; i < bitSize; i++)
         {
-            b.set(bitOffset, ((int)value_to_store & mask) == mask);
+            b.set(bitOffset, (value_to_store & mask) == mask);
             mask = mask << 1;
             bitOffset++;
         }
@@ -114,6 +113,7 @@ public class DriveSpeedCanPayloadTranslator extends CanPayloadTranslator{
      *        The number of bits to read.
      * @return The recovered (positive) double value.
      */
+    
     public static double getDoubleFromBitset(BitSet b, int startLocation, int bitSize)
     {
         if (bitSize > 32)
@@ -145,9 +145,8 @@ public class DriveSpeedCanPayloadTranslator extends CanPayloadTranslator{
                 mask = mask << 1;
             }
         }
-        value = value << 32;
-        return Double.longBitsToDouble(value);
-    }
+        return (double)value;
+    } 
     
     /**
      * This method is required for setting values by reflection in the
@@ -166,22 +165,22 @@ public class DriveSpeedCanPayloadTranslator extends CanPayloadTranslator{
     
     public void setSpeed(double speed) {
         BitSet b = getMessagePayload();
-        addDoubleToBitset(b, speed*1000, 0, 32);
+        addDoubleToBitset(b, speed*1000, 0, 16);
         setMessagePayload(b, getByteSize());
     }
 
     public double getSpeed() {
-        return getDoubleFromBitset(getMessagePayload(), 0, 32)/1000;
+        return getDoubleFromBitset(getMessagePayload(), 0, 16)/1000;
     }
 
     public void setDirection(Direction dir) {
         BitSet b = getMessagePayload();
-        addIntToBitset(b, dir.ordinal(), 32, 16);
+        addIntToBitset(b, dir.ordinal(), 17, 8);
         setMessagePayload(b, getByteSize());
     }
 
     public Direction getDirection() {
-        int val = getIntFromBitset(getMessagePayload(), 32, 16);
+        int val = getIntFromBitset(getMessagePayload(), 17, 8);
         for (Direction d : Direction.values()) {
             if (d.ordinal() == val) {
                 return d;
