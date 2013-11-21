@@ -102,8 +102,8 @@ public class Proj11RuntimeMonitor extends RuntimeMonitor{
      */
     private void doorReopening(Hallway hallway) {
         //System.out.println(hallway.toString() + " Door Reopening");
-        if(!reversalTimer.isRunning)
-            reversalTimer.start();
+    	if(!reversalTimer.isRunning)
+    		reversalTimer.start();
     	hasReversed = true;
     }
 
@@ -184,7 +184,7 @@ public class Proj11RuntimeMonitor extends RuntimeMonitor{
 						if(carLights[f_u][h.ordinal()].lighted() || hallLights[f_u][h.ordinal()][d.ordinal()].lighted()){
 							if(nextDirection != driveActualSpeed.direction())
 								warning("R-T8.3 Violated: Elevator is sevicing direction " +
-				    				driveActualSpeed.direction() + " instead of " + f_u + " " + h +
+				    				driveActualSpeed.direction() + " instead of " + f_u+1 + " " + h +
 				    				" in direction " + nextDirection);
 							}
 						}
@@ -387,7 +387,8 @@ public class Proj11RuntimeMonitor extends RuntimeMonitor{
                         driveFast();
                         break;
                     case SLOW:
-                        driveSlow();
+                    	if(previousState == DriveState.STOPPED)
+                    		driveSlow();
                         break;
                 }
             }
