@@ -16,3 +16,5 @@ Problem tests+seeds:
 	-pf proj10acceptance3.pass -gui -rt 10000s -rate INFINITE -b 200 -seed 1383931279769
 
 	-pf proj11acceptance1.pass -seed 1385001722790
+	
+		Doors in motion with the doors open @ 3468.53
