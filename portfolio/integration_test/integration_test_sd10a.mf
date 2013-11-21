@@ -19,12 +19,12 @@
 0s  I  LEVEL_SENSOR_PERIOD N LEVEL_SENSOR_[UP]_CAN_ID Leveling UP = false
 +0.2s I CAR_LEVEL_POSITION_PERIOD N CAR_LEVEL_POSITION_CAN_ID CarLevelPosition = 1000
 +0.51s  I DRIVE_PERIOD F DriveSpeed = UP 0.25
-+0.51s I DRIVE_PERIOD F DriveSpeed = UP 1.00
++0.51s I DRIVE_PERIOD F DriveSpeed = UP 5.00
 
 ;Check that it is initialized at FAST and going up
 +0.5s  A F Drive : speed == FAST
 +0s  A F Drive : direction == UP
-+0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 1.00
++0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 5.00
 +0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == UP
 
 ;Set conditions for emergency brake
@@ -33,7 +33,7 @@
 ;Check that it is now going slow and going up
 +0.5s  A F Drive : speed == SLOW
 +0s  A F Drive : direction == UP
-+0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 1.00
++0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 5.00
 +0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == UP
 
 ;Set conditions to where the car has moved to slow speed successfully

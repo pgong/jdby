@@ -34,12 +34,12 @@
 +0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == UP
 
 ;Reach commit point and slow down
-+0.1s  I  DRIVE_CONTROL_PERIOD F DriveSpeed = UP 1.0
-+0s  I  CAR_LEVEL_POSITION_PERIOD N CAR_LEVEL_POSITION_CAN_ID CarLevelPosition = 4400
++0.1s  I  DRIVE_CONTROL_PERIOD F DriveSpeed = UP 5.0
++0s  I  CAR_LEVEL_POSITION_PERIOD N CAR_LEVEL_POSITION_CAN_ID CarLevelPosition = 3800
 
 ;Check for slow
 +0.25s  A S DriveControl : STATE == STATE_SLOW
-+0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 1.0
++0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 5.0
 +0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == UP
 
 ;Reached second floor
