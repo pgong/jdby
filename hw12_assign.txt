@@ -1,0 +1,22 @@
+18 649 Fall 2013
+Project 12 and Presentation
+
+Update Unit tests to use a max speed of 5.0 m/s
+Yang
+
+Update Integration tests 1 - 5 to use max speed of 5.0 m/s
+David
+
+Update Integration tests 6 - 10 to use max speed of 5.0 m/s
+Jeff
+
+Update Acceptance tests to use max speed of 5.0 m/s
+Brody
+
+Improvements Log - Brody
+
+Minimum Requirements - David
+
+Peer Reviews..we'll figure it out.
+
+Lets meet Wednesday Night and talk about the presentation and which module we want to present
