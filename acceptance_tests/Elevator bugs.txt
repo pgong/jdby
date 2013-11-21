@@ -14,3 +14,5 @@ Problem tests+seeds:
 		Dispatcher switches desired floors before car can level
 		
 	-pf proj10acceptance3.pass -gui -rt 10000s -rate INFINITE -b 200 -seed 1383931279769
+
+	-pf proj11acceptance1.pass -seed 1385001722790
