@@ -20,8 +20,8 @@
 +0s  I  DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[BACK][LEFT]_CAN_ID DoorOpened BACK LEFT = false
 +0s  I  DRIVE_CONTROL_PERIOD F DriveSpeed = UP 0.25
 +0s  I  CAR_BUTTON_CONTROL_PERIOD N CAR_CALL_[5][FRONT]_CAN_ID CarCall 5 FRONT = true
-+0s  I  CAR_LEVEL_POSITION_PERIOD N CAR_LEVEL_POSITION_CAN_ID CarLevelPosition = 9400
-+0.5s  I DRIVE_CONTROL_PERIOD F DriveSpeed = UP 1.0
++0s  I  CAR_LEVEL_POSITION_PERIOD N CAR_LEVEL_POSITION_CAN_ID CarLevelPosition = 7400
++0.5s  I DRIVE_CONTROL_PERIOD F DriveSpeed = UP 5.0
 
 
 ;CHECKS
@@ -29,8 +29,8 @@
 +0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getFloor == 5
 +0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getDirection == STOP
 +0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getHallway == FRONT
-+0.21s  A S DriveControl : STATE == STATE_FAST
-+0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 1.0
++0.21s  A S DriveControl : STATE == STATE_SLOW
++0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 5.0
 +0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == UP
 
 ;Set Hall call at 3rd floor going UP
@@ -40,6 +40,6 @@
 +0.5s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getFloor == 5
 +0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getDirection == DOWN
 +0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getHallway == FRONT
-+0s  A S DriveControl : STATE == STATE_FAST
-+0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 1.0
++0s  A S DriveControl : STATE == STATE_SLOW
++0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 5.0
 +0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == UP

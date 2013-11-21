@@ -22,7 +22,7 @@
 ;because mAtFloor is true, drive control jumps to level state after another period.
 
 +0.2s I AT_FLOOR_PERIOD N AT_FLOOR_[1][FRONT]_CAN_ID AtFloor 1 FRONT = false
-+0.41s I DRIVE_CONTROL_PERIOD F DriveSpeed = UP 1.0
++0.41s I DRIVE_CONTROL_PERIOD F DriveSpeed = UP 5.0
 +0s I CAR_LEVEL_POSITION_PERIOD N CAR_LEVEL_POSITION_CAN_ID CarLevelPosition = 10000 ; Floor 3
 
 ;Check CarPositionControl	
@@ -32,5 +32,5 @@
 +0.51s A S DriveControl : STATE == STATE_FAST
 +0s A F Drive : speed == FAST
 +0s A F Drive : direction == UP
-+0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 1.0
++0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 5.0
 +0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == UP
