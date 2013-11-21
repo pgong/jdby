@@ -184,7 +184,11 @@ public class Proj11RuntimeMonitor extends RuntimeMonitor{
 						if(carLights[f_u][h.ordinal()].lighted() || hallLights[f_u][h.ordinal()][d.ordinal()].lighted()){
 							if(nextDirection != driveActualSpeed.direction())
 								warning("R-T8.3 Violated: Elevator is sevicing direction " +
+<<<<<<< HEAD
 				    				driveActualSpeed.direction() + " instead of " + f_u+1 + " " + h +
+=======
+				    				driveActualSpeed.direction() + " instead of " + (f_u+1) + " " + h +
+>>>>>>> a119bed74499b6c4fccae98698763577605f9c74
 				    				" in direction " + nextDirection);
 							}
 						}
@@ -198,7 +202,7 @@ public class Proj11RuntimeMonitor extends RuntimeMonitor{
 						if(carLights[f_d][h.ordinal()].lighted() || hallLights[f_d][h.ordinal()][d.ordinal()].lighted()){
 							if(nextDirection != driveActualSpeed.direction())
 								warning("R-T8.3 Violated: Elevator is sevicing direction " +
-				    				driveActualSpeed.direction() + " instead of " + f_d + " " + h + 
+				    				driveActualSpeed.direction() + " instead of " + (f_d+1) + " " + h + 
 				    				" in direction " + nextDirection);
 							}
 						}
