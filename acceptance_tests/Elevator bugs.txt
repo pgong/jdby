@@ -18,3 +18,6 @@ Problem tests+seeds:
 	-pf proj11acceptance1.pass -seed 1385001722790
 	
 		Doors in motion with the doors open @ 3468.53
+
+	-pf proj11acceptance2.pass -gui -rt 10000s -b 200 -fs 5.0 -rate INFINITE -monitor Proj11RuntimeMonitor -seed 1385140549224
+		Dispatcher takes it into emergency stop mode
