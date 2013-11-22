@@ -1,15 +1,15 @@
 PowerPoint Assignments
 
-Brody
-Door Control
+Jeff
+	Dispatcher
 	1. Scenarios and SD
 	3. Coding and Testing
 
-Jeff
+Brody
 	1. Statistics
 	
 Yang
-	Door Control
+	Dispatcher
 		1.Requirements and Statecharts
 
 David
@@ -22,7 +22,7 @@ David
 Overall Layout:
 
 Statistics
-DoorControl
+Dispatcher
 	1. Scen and SD
 	2. Req. and Statecharts
 	3. Coding and Testing
