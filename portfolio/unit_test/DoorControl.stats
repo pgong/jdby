@@ -1,59 +1,59 @@
 
 Simulator Parameters:
-Command line = -cf DoorControl.cf -mf DoorControl.mf -fs 5.0
-RandomSeed = 1385000536674
+Command line = -cf unit_test/DoorControl.cf -mf unit_test/DoorControl.mf
+RandomSeed = 1385402745068
 CanNetworkBitTime = 0 ns
 Effective Can Bitrate = Infinity
 Run Time = null
 Real time rate = null
-Message File = DoorControl.mf
-Controller File = DoorControl.cf
+Message File = unit_test/DoorControl.mf
+Controller File = unit_test/DoorControl.cf
 
 Assertion Results:
 @0.4s:  PASSED DoorControl[FRONT][LEFT]::checkState(STATE) ?== CAR_MOVING PASSED
-@0.4s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@53ba3d :: command ?== STOP PASSED
+@0.4s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@72c743eb :: command ?== STOP PASSED
 @1.0s:  PASSED DoorControl[FRONT][LEFT]::checkState(STATE) ?== OPENING_DOOR PASSED
-@1.0s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@1813fac :: command ?== OPEN PASSED
+@1.0s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@30419d05 :: command ?== OPEN PASSED
 @1.8s:  PASSED DoorControl[FRONT][LEFT]::checkState(STATE) ?== WAIT_FOR_DWELL PASSED
-@1.8s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@209f4e :: command ?== STOP PASSED
+@1.8s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@217f242c :: command ?== STOP PASSED
 @2.3s:  PASSED DoorControl[FRONT][LEFT]::checkState(STATE) ?== WAIT_FOR_DWELL PASSED
-@2.3s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@7a78d3 :: command ?== STOP PASSED
+@2.3s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@f06fc94 :: command ?== STOP PASSED
 @3.9s:  PASSED DoorControl[FRONT][LEFT]::checkState(STATE) ?== CLOSING_DOOR PASSED
-@3.9s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@1858610 :: command ?== CLOSE PASSED
+@3.9s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@6e84cc09 :: command ?== CLOSE PASSED
 @4.6s:  PASSED DoorControl[FRONT][LEFT]::checkState(STATE) ?== OPENING_DOOR PASSED
-@4.6s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@c1cd1f :: command ?== OPEN PASSED
+@4.6s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@75982fc1 :: command ?== OPEN PASSED
 @5.4s:  PASSED DoorControl[FRONT][LEFT]::checkState(STATE) ?== WAIT_FOR_DWELL PASSED
-@5.4s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@15601ea :: command ?== STOP PASSED
+@5.4s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@49e808ca :: command ?== STOP PASSED
 @5.9s:  PASSED DoorControl[FRONT][LEFT]::checkState(STATE) ?== WAIT_FOR_DWELL PASSED
-@5.9s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@16930e2 :: command ?== STOP PASSED
+@5.9s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@4bd53f5b :: command ?== STOP PASSED
 @7.6s:  PASSED DoorControl[FRONT][LEFT]::checkState(STATE) ?== CLOSING_DOOR PASSED
-@7.6s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@1add2dd :: command ?== CLOSE PASSED
+@7.6s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@6765f738 :: command ?== CLOSE PASSED
 @8.3s:  PASSED DoorControl[FRONT][LEFT]::checkState(STATE) ?== CAR_MOVING PASSED
-@8.3s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@defa1a :: command ?== STOP PASSED
+@8.3s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@6855a338 :: command ?== STOP PASSED
 @8.9s:  PASSED DoorControl[FRONT][LEFT]::checkState(STATE) ?== OPENING_DOOR PASSED
-@8.9s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@11a698a :: command ?== OPEN PASSED
+@8.9s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@877ef83 :: command ?== OPEN PASSED
 @9.7s:  PASSED DoorControl[FRONT][LEFT]::checkState(STATE) ?== WAIT_FOR_DWELL PASSED
-@9.7s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@1ac04e8 :: command ?== STOP PASSED
+@9.7s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@c68c26c :: command ?== STOP PASSED
 @10.2s:  PASSED DoorControl[FRONT][LEFT]::checkState(STATE) ?== WAIT_FOR_DWELL PASSED
-@10.2s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@14f8dab :: command ?== STOP PASSED
+@10.2s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@371bed71 :: command ?== STOP PASSED
 @11.8s:  PASSED DoorControl[FRONT][LEFT]::checkState(STATE) ?== CLOSING_DOOR PASSED
-@11.8s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@17590db :: command ?== CLOSE PASSED
+@11.8s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@6e79839 :: command ?== CLOSE PASSED
 @12.6s:  PASSED DoorControl[FRONT][LEFT]::checkState(STATE) ?== OPENING_DOOR PASSED
-@12.6s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@14fe5c :: command ?== OPEN PASSED
+@12.6s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@53f64158 :: command ?== OPEN PASSED
 @13.4s:  PASSED DoorControl[FRONT][LEFT]::checkState(STATE) ?== WAIT_FOR_DWELL PASSED
-@13.4s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@2bbd86 :: command ?== STOP PASSED
+@13.4s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@14fdb00d :: command ?== STOP PASSED
 @13.9s:  PASSED DoorControl[FRONT][LEFT]::checkState(STATE) ?== WAIT_FOR_DWELL PASSED
-@13.9s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@601bb1 :: command ?== STOP PASSED
+@13.9s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@7f033a6f :: command ?== STOP PASSED
 @15.6s:  PASSED DoorControl[FRONT][LEFT]::checkState(STATE) ?== OPENING_DOOR PASSED
-@15.6s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@17182c1 :: command ?== OPEN PASSED
+@15.6s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@2e00e753 :: command ?== OPEN PASSED
 @16.4s:  PASSED DoorControl[FRONT][LEFT]::checkState(STATE) ?== WAIT_FOR_DWELL PASSED
-@16.4s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@cac268 :: command ?== STOP PASSED
+@16.4s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@39478a43 :: command ?== STOP PASSED
 @16.9s:  PASSED DoorControl[FRONT][LEFT]::checkState(STATE) ?== WAIT_FOR_DWELL PASSED
-@16.9s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@16f0472 :: command ?== STOP PASSED
+@16.9s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@3fb6101e :: command ?== STOP PASSED
 @18.6s:  PASSED DoorControl[FRONT][LEFT]::checkState(STATE) ?== NUDGING_DOOR PASSED
-@18.6s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@45a877 :: command ?== NUDGE PASSED
+@18.6s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@49bdc9d8 :: command ?== NUDGE PASSED
 @19.6s:  PASSED DoorControl[FRONT][LEFT]::checkState(STATE) ?== CAR_MOVING PASSED
-@19.6s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@182f0db :: command ?== STOP PASSED
+@19.6s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@69d6065 :: command ?== STOP PASSED
 
 
 ******************Summary******************
