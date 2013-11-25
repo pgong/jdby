@@ -1,7 +1,7 @@
 
 Simulator Parameters:
 Command line = -cf integration_test/integration_test_sd5c.cf -mf integration_test/integration_test_sd5c.mf -fs 5.0
-RandomSeed = 1385006945455
+RandomSeed = 1385402861878
 CanNetworkBitTime = 0 ns
 Effective Can Bitrate = Infinity
 Run Time = null
