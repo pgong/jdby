@@ -227,7 +227,7 @@ public class Dispatcher extends Controller{
 			waitCounter = waitTime;
 			if(hallway == Hallway.BOTH) {
 				//If either side of doors open and we're not at the floor, emergency!
-				//#transition 11.T.2
+				//#transition 11.T.4
 				if ((!mDoorClosed[ReplicationComputer.computeReplicationId(Hallway.FRONT, Side.LEFT)].getValue() ||
 						!mDoorClosed[ReplicationComputer.computeReplicationId(Hallway.BACK, Side.LEFT)].getValue()) && 
 						!mAtFloor[ReplicationComputer.computeReplicationId(floor,Hallway.FRONT)].getValue()) {
@@ -239,7 +239,7 @@ public class Dispatcher extends Controller{
 					newState = State.STATE_DOORSCLOSED;
 			}
 			//if it is not at ANY floor and ANY doors are open, jump to emergency state
-			//#transition 11.T.2
+			//#transition 11.T.4
 			else if ((!mDoorClosed[ReplicationComputer.computeReplicationId(Hallway.FRONT, Side.LEFT)].getValue() ||
 					!mDoorClosed[ReplicationComputer.computeReplicationId(Hallway.BACK, Side.LEFT)].getValue()) && 
 					!mAtFloor[ReplicationComputer.computeReplicationId(floor,hallway)].getValue()) {
@@ -299,7 +299,7 @@ public class Dispatcher extends Controller{
 						curr_d = direction;
 					}
 					//If either side of doors open and we're not at any floor, emergency!
-					//#transition 11.T.4
+					//#transition 11.T.2
 					else if ((!mDoorClosed[ReplicationComputer.computeReplicationId(Hallway.FRONT, Side.LEFT)].getValue() ||
 						!mDoorClosed[ReplicationComputer.computeReplicationId(Hallway.BACK, Side.LEFT)].getValue()) && 
 						!mAtFloor[ReplicationComputer.computeReplicationId(curr_f,curr_h)].getValue() &&
@@ -310,7 +310,7 @@ public class Dispatcher extends Controller{
 						newState = state;
 				}
 				//If we're at the next target floor AND doors are opening, jump to DOORSOPEN
-				//#transition 11.T.3
+				//#transition 11.T.1
 				else if(mAtFloor[ReplicationComputer.computeReplicationId(floor,hallway)].getValue() && 
 						((!mDoorClosed[ReplicationComputer.computeReplicationId(Hallway.FRONT, Side.LEFT)].getValue() ||
 						!mDoorClosed[ReplicationComputer.computeReplicationId(Hallway.BACK, Side.LEFT)].getValue()))){
@@ -321,7 +321,7 @@ public class Dispatcher extends Controller{
 				}
 
 				//If either side of doors open and we're not at any floor, emergency!
-				//#transition 11.T.4
+				//#transition 11.T.2
 				else if ((!mDoorClosed[ReplicationComputer.computeReplicationId(Hallway.FRONT, Side.LEFT)].getValue() ||
 						!mDoorClosed[ReplicationComputer.computeReplicationId(Hallway.BACK, Side.LEFT)].getValue()) && 
 						!mAtFloor[ReplicationComputer.computeReplicationId(curr_f,curr_h)].getValue() &&
@@ -407,7 +407,6 @@ public class Dispatcher extends Controller{
 	//	int current_f = 0;
 		boolean targetFound = false;
 		boolean nextTargetFound = false;
-		boolean debug = false;
 		nextHallCall = Direction.STOP;
 	/*	if(curr_f == 1)
 			current_f = 2;
@@ -426,7 +425,7 @@ public class Dispatcher extends Controller{
 							if(mCarCall[index].getValue() || mHallCall[hallIndex].getValue()){
 								//Make sure target hasn't already been set!
 								if(!targetFound && (commitPoint(f, current_d, car_position, speed))){
-									if (debug) System.out.println("1A");
+									//System.out.println("1A");
 									target = f;
 									targetFound = true;
 									if(mHallCall[hallIndex].getValue()){
@@ -438,7 +437,7 @@ public class Dispatcher extends Controller{
 								}
 								//If the next target has been set as well, break out of both loops.
 								else if (!nextTargetFound){
-									if (debug) System.out.println("1B");
+									//System.out.println("1B");
 									nextTargetFound = true;
 									nextTarget = f;
 									break innerloop;
@@ -456,7 +455,7 @@ public class Dispatcher extends Controller{
 								if(mHallCall[hallIndex].getValue()){
 									//Make sure target hasn't already been set!
 									if(!targetFound && (commitPoint(f, current_d, car_position, speed))){
-										if (debug) System.out.println("2A");
+										//System.out.println("2A");
 										nextHallCall = Direction.DOWN;
 										target = f;
 										targetFound = true;
@@ -465,7 +464,7 @@ public class Dispatcher extends Controller{
 									}
 									//If the next target has been set as well, break out of both loops.
 									else if (!nextTargetFound){
-										if (debug) System.out.println("2B");
+										//System.out.println("2B");
 										nextTargetFound = true;
 										nextTarget = f;
 										break outerloop;
@@ -486,7 +485,7 @@ public class Dispatcher extends Controller{
 								if(mCarCall[index].getValue() || mHallCall[hallIndex].getValue()){
 									//Make sure target hasn't already been set!
 									if(!targetFound && (speed==0.0 || commitPoint(f, current_d, car_position, speed))){
-										if (debug) System.out.println("3A");
+										//System.out.println("3A");
 										target = f;
 										targetFound = true;
 										if(mHallCall[hallIndex].getValue()){
@@ -498,7 +497,7 @@ public class Dispatcher extends Controller{
 									}
 									//If the next target has been set as well, break out of both loops.
 									else if (!nextTargetFound){
-										if (debug) System.out.println("3B");
+										//System.out.println("3B");
 										nextTargetFound = true;
 										nextTarget = f;
 										break innerloop;
@@ -518,7 +517,7 @@ public class Dispatcher extends Controller{
 								if(mHallCall[hallIndex].getValue()){
 									//Make sure target hasn't already been set!
 									if(!targetFound && (speed == 0.0 || commitPoint(f, current_d, car_position, speed))){
-										if (debug) System.out.println("4A");
+										//System.out.println("4A");
 										nextHallCall = Direction.UP;
 										target = f;
 										targetFound = true;
@@ -527,7 +526,7 @@ public class Dispatcher extends Controller{
 									}
 									//If the next target has been set as well, break out of both loops.
 									else if (!nextTargetFound){
-										if (debug) System.out.println("4B");
+										//System.out.println("4B");
 										nextTargetFound = true;
 										nextTarget = f;
 										break outerloop;
@@ -550,7 +549,7 @@ public class Dispatcher extends Controller{
 							if(mCarCall[index].getValue()==true || mHallCall[hallIndex].getValue()==true){
 								//Make sure target hasn't already been set!
 								if(!targetFound && (commitPoint(f, current_d, car_position, speed))){
-									if (debug) System.out.println("5A");
+									//System.out.println("5A");
 									target = f;
 									targetFound = true;
 									if(mHallCall[hallIndex].getValue()==true){
@@ -562,7 +561,7 @@ public class Dispatcher extends Controller{
 								}
 								//If the next target has been set as well, break out of both loops.
 								else if (!nextTargetFound){
-									if (debug) System.out.println("5B");	
+									//System.out.println("5B");	
 									nextTargetFound = true;
 									nextTarget = f;
 									break innerloop;
@@ -580,7 +579,7 @@ public class Dispatcher extends Controller{
 								if(mHallCall[hallIndex].getValue()){
 									//Make sure target hasn't already been set!
 									if(!targetFound && (commitPoint(f, current_d, car_position, speed))){
-										if (debug) System.out.println("6A");
+										//System.out.println("6A");
 										nextHallCall = Direction.UP;
 										target = f;
 										targetFound = true;
@@ -589,7 +588,7 @@ public class Dispatcher extends Controller{
 									}
 									//If the next target has been set as well, break out of both loops.
 									else if (!nextTargetFound){
-										if (debug) System.out.println("6B");
+										//System.out.println("6B");
 										nextTargetFound = true;
 										nextTarget = f;
 										break outerloop;
@@ -610,7 +609,7 @@ public class Dispatcher extends Controller{
 								if(mCarCall[index].getValue() || mHallCall[hallIndex].getValue()){
 									//Make sure target hasn't already been set!
 									if(!targetFound && (speed == 0.0 || commitPoint(f, current_d, car_position, speed))){
-										if (debug) System.out.println("7A");
+										//System.out.println("7A");
 										target = f;
 										targetFound = true;
 										if(mHallCall[hallIndex].getValue()){
@@ -622,7 +621,7 @@ public class Dispatcher extends Controller{
 									}
 									//If the next target has been set as well, break out of both loops.
 									else if (!nextTargetFound){
-										if (debug) System.out.println("7B");
+										//System.out.println("7B");
 										nextTargetFound = true;
 										nextTarget = f;
 										break innerloop;
@@ -642,7 +641,7 @@ public class Dispatcher extends Controller{
 								if(mHallCall[hallIndex].getValue()){
 									//Make sure target hasn't already been set!
 									if(!targetFound && (speed == 0.0 || commitPoint(f, current_d, car_position, speed))){
-										if (debug) System.out.println("8A");
+										//System.out.println("8A");
 										nextHallCall = Direction.DOWN;
 										target = f;
 										targetFound = true;
@@ -651,7 +650,7 @@ public class Dispatcher extends Controller{
 									}
 									//If the next target has been set as well, break out of both loops.
 									else if (!nextTargetFound){
-										if (debug) System.out.println("8B");
+										//System.out.println("8B");
 										nextTargetFound = true;
 										nextTarget = f;
 										break outerloop;
@@ -662,7 +661,7 @@ public class Dispatcher extends Controller{
 			}
 		}
 		
-		if (debug) System.out.println("target: " + target + " nextTarget: " + nextTarget + " hall call: " + nextHallCall + "current floor " + curr_f);
+		//System.out.println("target: " + target + " nextTarget: " + nextTarget + " hall call: " + nextHallCall + "current floor " + curr_f);
 		//If target was found, change desired floor.
 		if(targetFound){
 			floor = target;			
