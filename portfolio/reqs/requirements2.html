@@ -2908,8 +2908,8 @@
     11.5&nbsp;&nbsp;&nbsp; If all mAtFloor[f, b] are False AND any
     mDoorClosed [b, r] is True, mDesiredFloor.d shall be set to direction
     compared between Target and nextTarget.<br>
-    11.6&nbsp;&nbsp;&nbsp; Whenever any mDoorClosed [b, r] is False,
-    then mDesiredFloor shall remain the same.<br>
+    11.6&nbsp;&nbsp;&nbsp; Whenever any mDoorClosed [b, r] is False and some mAtFloor[f,b] is True, then 
+mDesiredFloor shall remain the same.<br>
     11.7&nbsp;&nbsp;&nbsp; If all mAtFloor[f, b] are False AND any
     mDoorClosed [b, r] is False (which means doors are not closed
     between floors!); then<br>
