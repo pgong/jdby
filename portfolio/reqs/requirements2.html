@@ -2905,8 +2905,7 @@
     <h3> TIME-TRIGGERED BEHAVIORS: </h3>
     11.4&nbsp;&nbsp;&nbsp; mDesiredFloor.f shall always be set to
     Target.<br>
-    11.5&nbsp;&nbsp;&nbsp; If all mAtFloor[f, b] are False AND any
-    mDoorClosed [b, r] is True, mDesiredFloor.d shall be set to direction
+    11.5&nbsp;&nbsp;&nbsp;If all mDoorClosed [*, *] are True, mDesiredFloor.d shall be set to direction
     compared between Target and nextTarget.<br>
     11.6&nbsp;&nbsp;&nbsp; Whenever any mDoorClosed [b, r] is False and some mAtFloor[f,b] is True, then 
 mDesiredFloor shall remain the same.<br>
@@ -2920,8 +2919,7 @@ mDesiredFloor shall remain the same.<br>
     to Stop .<br>
     11.8 &nbsp;&nbsp; mDesiredFloor.b shall be set to b where b is
     whichever mHallCall[Target,b,d] OR mCarCall[Target,b] is true.<br>
-    11.9 If all mAtFloor[f, b] are False AND any
-    mDoorClosed [b, r] is False, <br>
+    11.9 If all mDoorClosed [*, *] are True,  <br>
 	&nbsp;&nbsp;&nbsp;11.9.1 Target shall be set to nearest possible floor f to current
     floor where mCarCall[f,b] OR mHallCall[f,b,DesiredDirection] is true and not beyond
     the CommitPoint in DesiredDirection.<br>
