@@ -1,0 +1,112 @@
+
+Simulator Parameters:
+Command line = -pf /afs/ece.cmu.edu/class/ece649/Private/final_demo/proj10acceptance2.pass -rt 2h -monitor GradingMonitor -seed 4242
+RandomSeed = 4242
+CanNetworkBitTime = 0 ns
+Effective Can Bitrate = Infinity
+Run Time = 7200.0s
+Real time rate = null
+Acceptance Test File = /afs/ece.cmu.edu/class/ece649/Private/final_demo/proj10acceptance2.pass
+Monitors: GradingMonitor  
+
+STATISTICS FOR ELEVATOR SIMULATION PASSENGER DELIVERY
+-----------------------------------------------------
+
+
+These passengers were delivered:
+Passenger 9: INJECTED AT 47.0s and DELIVERED in 42.593s
+  Satisfaction score: 100.0
+Passenger 2: INJECTED AT 6.7s and DELIVERED in 83.648s
+  Satisfaction score: 100.0
+Passenger 1: INJECTED AT 2.4s and DELIVERED in 89.349s
+  Satisfaction score: 100.0
+Passenger 3: INJECTED AT 7.5s and DELIVERED in 84.554s
+  Satisfaction score: 100.0
+Passenger 7: INJECTED AT 43.0s and DELIVERED in 50.361s
+  Satisfaction score: 100.0
+Passenger 0: INJECTED AT 1.0s and DELIVERED in 109.17s
+  Satisfaction score: 25.0
+    @79.100000000: 0.50 Car passed passenger's destination floor without servicing it
+    @98.330000000: 0.50 Expected to move DOWN but moved UP
+Passenger 12: INJECTED AT 61.0s and DELIVERED in 70.995s
+  Satisfaction score: 100.0
+Passenger 24: INJECTED AT 100.5s and DELIVERED in 49.344s
+  Satisfaction score: 100.0
+Passenger 25: INJECTED AT 101.0s and DELIVERED in 63.159s
+  Satisfaction score: 100.0
+Passenger 11: INJECTED AT 60.0s and DELIVERED in 124.793s
+  Satisfaction score: 100.0
+Passenger 26: INJECTED AT 150.0s and DELIVERED in 120.483s
+  Satisfaction score: 100.0
+Passenger 14: INJECTED AT 66.0s and DELIVERED in 265.391s
+  Satisfaction score: 100.0
+Passenger 18: INJECTED AT 84.0s and DELIVERED in 249.371s
+  Satisfaction score: 90.0
+    @163.060000000: 0.90 Repeated hall call press
+Passenger 19: INJECTED AT 86.0s and DELIVERED in 249.115s
+  Satisfaction score: 90.0
+    @199.060000000: 0.90 Repeated hall call press
+Passenger 8: INJECTED AT 43.0s and DELIVERED in 293.791s
+  Satisfaction score: 100.0
+Passenger 16: INJECTED AT 73.0s and DELIVERED in 265.243s
+  Satisfaction score: 100.0
+Passenger 20: INJECTED AT 91.0s and DELIVERED in 248.496s
+  Satisfaction score: 100.0
+Passenger 21: INJECTED AT 92.0s and DELIVERED in 248.816s
+  Satisfaction score: 100.0
+Passenger 5: INJECTED AT 39.0s and DELIVERED in 303.237s
+  Satisfaction score: 90.0
+    @178.480000000: 0.90 Repeated hall call press
+Passenger 15: INJECTED AT 73.0s and DELIVERED in 270.592s
+  Satisfaction score: 100.0
+Passenger 6: INJECTED AT 39.0s and DELIVERED in 365.092s
+  Satisfaction score: 90.0
+    @128.100000000: 0.90 Repeated hall call press
+Passenger 4: INJECTED AT 7.7s and DELIVERED in 398.216s
+  Satisfaction score: 90.0
+    @145.420000000: 0.90 Repeated hall call press
+Passenger 23: INJECTED AT 100.0s and DELIVERED in 348.753s
+  Satisfaction score: 80.0
+    @344.653000000: 0.80 Failed to enter car
+Passenger 10: INJECTED AT 57.0s and DELIVERED in 462.385s
+  Satisfaction score: 90.0
+    @400.020000000: 0.90 Repeated hall call press
+Passenger 17: INJECTED AT 83.0s and DELIVERED in 437.612s
+  Satisfaction score: 90.0
+    @400.020000000: 0.90 Repeated hall call press
+Passenger 13: INJECTED AT 64.0s and DELIVERED in 458.179s
+  Satisfaction score: 90.0
+    @382.500000000: 0.90 Repeated hall call press
+Passenger 22: INJECTED AT 92.0s and DELIVERED in 431.324s
+  Satisfaction score: 90.0
+    @382.500000000: 0.90 Repeated hall call press
+
+Passenger Delivery Summary
+Delivered: 27
+Stranded: 0
+Total: 27
+
+Deliver Stats (lower is better):
+Average_delivery_time: 229.039
+Maximum_delivery_time:  462.385
+Delivery_performance_score:  1378.542
+
+Satisfaction Stats (higher is better):
+Average_satisfaction_score: 93.148
+Min_satisfaction_score:  25.000
+Satisfaction_performance_score:  397.593
+
+
+
+
+Monitors Warning Results: 
+RuntimeMonitor generated 29 warnings.
+
+Monitors Summmary Results: 
+0 RT-6 violations
+4 RT-7 violations
+2 RT-8.1 violations
+0 RT-8.2 violations
+0 RT-8.3 violations
+0 RT-9 violations
+

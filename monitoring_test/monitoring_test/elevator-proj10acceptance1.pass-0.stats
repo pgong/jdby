@@ -1,0 +1,80 @@
+
+Simulator Parameters:
+Command line = -pf /afs/ece.cmu.edu/class/ece649/Private/final_demo/proj10acceptance1.pass -rt 2h -monitor GradingMonitor -seed 4242
+RandomSeed = 4242
+CanNetworkBitTime = 0 ns
+Effective Can Bitrate = Infinity
+Run Time = 7200.0s
+Real time rate = null
+Acceptance Test File = /afs/ece.cmu.edu/class/ece649/Private/final_demo/proj10acceptance1.pass
+Monitors: GradingMonitor  
+
+STATISTICS FOR ELEVATOR SIMULATION PASSENGER DELIVERY
+-----------------------------------------------------
+
+
+These passengers were delivered:
+Passenger 9: INJECTED AT 5.0s and DELIVERED in 20.073s
+  Satisfaction score: 100.0
+Passenger 0: INJECTED AT 0.0s and DELIVERED in 41.09s
+  Satisfaction score: 100.0
+Passenger 10: INJECTED AT 6.0s and DELIVERED in 49.785s
+  Satisfaction score: 100.0
+Passenger 7: INJECTED AT 3.0s and DELIVERED in 68.601s
+  Satisfaction score: 100.0
+Passenger 5: INJECTED AT 3.0s and DELIVERED in 70.037s
+  Satisfaction score: 100.0
+Passenger 2: INJECTED AT 0.6s and DELIVERED in 74.488s
+  Satisfaction score: 100.0
+Passenger 4: INJECTED AT 2.0s and DELIVERED in 89.636s
+  Satisfaction score: 100.0
+Passenger 1: INJECTED AT 0.3s and DELIVERED in 107.189s
+  Satisfaction score: 100.0
+Passenger 3: INJECTED AT 1.0s and DELIVERED in 108.194s
+  Satisfaction score: 100.0
+Passenger 16: INJECTED AT 101.0s and DELIVERED in 25.823s
+  Satisfaction score: 100.0
+Passenger 15: INJECTED AT 100.0s and DELIVERED in 59.352s
+  Satisfaction score: 100.0
+Passenger 14: INJECTED AT 66.2s and DELIVERED in 126.431s
+  Satisfaction score: 100.0
+Passenger 13: INJECTED AT 58.0s and DELIVERED in 150.339s
+  Satisfaction score: 100.0
+Passenger 12: INJECTED AT 7.1s and DELIVERED in 227.015s
+  Satisfaction score: 100.0
+Passenger 11: INJECTED AT 7.0s and DELIVERED in 251.913s
+  Satisfaction score: 100.0
+Passenger 8: INJECTED AT 4.0s and DELIVERED in 270.951s
+  Satisfaction score: 100.0
+Passenger 6: INJECTED AT 3.0s and DELIVERED in 287.412s
+  Satisfaction score: 100.0
+
+Passenger Delivery Summary
+Delivered: 17
+Stranded: 0
+Total: 17
+
+Deliver Stats (lower is better):
+Average_delivery_time: 119.313
+Maximum_delivery_time:  287.412
+Delivery_performance_score:  764.666
+
+Satisfaction Stats (higher is better):
+Average_satisfaction_score: 100.000
+Min_satisfaction_score:  100.000
+Satisfaction_performance_score:  500.000
+
+
+
+
+Monitors Warning Results: 
+RuntimeMonitor generated 17 warnings.
+
+Monitors Summmary Results: 
+0 RT-6 violations
+1 RT-7 violations
+0 RT-8.1 violations
+0 RT-8.2 violations
+0 RT-8.3 violations
+0 RT-9 violations
+

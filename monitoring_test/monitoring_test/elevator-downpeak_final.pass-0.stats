@@ -1,0 +1,663 @@
+
+Simulator Parameters:
+Command line = -pf /afs/ece.cmu.edu/class/ece649/Private/final_demo/downpeak_final.pass -rt 3h -monitor GradingMonitor -seed 4242
+RandomSeed = 4242
+CanNetworkBitTime = 0 ns
+Effective Can Bitrate = Infinity
+Run Time = 10800.0s
+Real time rate = null
+Acceptance Test File = /afs/ece.cmu.edu/class/ece649/Private/final_demo/downpeak_final.pass
+Monitors: GradingMonitor  
+
+STATISTICS FOR ELEVATOR SIMULATION PASSENGER DELIVERY
+-----------------------------------------------------
+
+The following passengers were stranded:
+Passenger 1: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 8: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 10: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 11: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 14: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 19: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 22: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 23: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 25: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 26: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 29: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 30: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 33: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 34: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 40: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 42: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 44: NOT_DELIVERED, WAITING_IN_CAR
+Passenger 46: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 48: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 49: NOT_DELIVERED, WAITING_IN_CAR
+Passenger 50: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 52: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 53: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 55: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 59: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 63: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 64: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 65: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 68: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 70: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 71: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 73: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 74: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 75: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 78: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 80: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 81: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 82: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 83: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 86: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 87: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 88: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 90: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 93: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 96: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 101: NOT_DELIVERED, WAITING_IN_CAR
+Passenger 103: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 106: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 107: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 108: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 109: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 112: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 113: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 114: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 117: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 120: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 121: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 122: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 123: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 124: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 125: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 126: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 129: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 131: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 133: NOT_DELIVERED, WAITING_IN_CAR
+Passenger 134: NOT_DELIVERED, WAITING_IN_CAR
+Passenger 136: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 145: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 148: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 149: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 150: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 151: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 152: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 153: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 154: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 156: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 157: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 160: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 162: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 163: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 164: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 168: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 171: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 172: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 173: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 175: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 176: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 178: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 179: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 180: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 182: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 184: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 185: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 187: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 188: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 189: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 192: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 194: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 196: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 197: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 198: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 206: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 208: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 212: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 213: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 215: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 216: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 219: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 222: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 224: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 225: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 226: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 228: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 229: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 230: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 232: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 233: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 234: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 235: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 236: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 237: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 238: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 239: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 240: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 241: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 243: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 244: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 245: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 247: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 248: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 250: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 251: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 252: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 253: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 254: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 255: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 257: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 259: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 260: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 261: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 263: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 264: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 265: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 267: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 268: NOT_DELIVERED, WAITING_IN_CAR
+Passenger 269: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 270: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 271: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 273: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 274: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 277: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 278: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 280: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 282: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 283: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 285: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 286: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 288: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 289: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 291: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 292: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 293: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 294: NOT_DELIVERED, WAITING_IN_CAR
+Passenger 295: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 296: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 297: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 298: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 299: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 300: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 301: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 302: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 303: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 304: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 305: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 306: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 307: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 308: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 309: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 310: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 311: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 312: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 313: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 314: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 315: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 316: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 317: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 318: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 319: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 320: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 321: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 322: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 323: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 324: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 325: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 329: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 330: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 332: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 333: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 334: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 336: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 337: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 339: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 341: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 342: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 343: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 344: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 345: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 346: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 347: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 348: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 349: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 350: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 351: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 352: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 353: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 354: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 355: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 356: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 357: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 358: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 359: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 360: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 361: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 362: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 363: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 364: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 365: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 366: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 367: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 368: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 369: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 370: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 371: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 372: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 373: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 374: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 375: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 376: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 377: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 378: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 379: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 380: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 381: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 382: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 383: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 384: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 385: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 386: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 387: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 388: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 389: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 390: NOT_DELIVERED, WAITING_IN_HALL
+Passenger 391: NOT_DELIVERED, WAITING_IN_HALL
+
+These passengers were delivered:
+Passenger 2: INJECTED AT 62.3s and DELIVERED in 11.394s
+  Satisfaction score: 100.0
+Passenger 6: INJECTED AT 90.4s and DELIVERED in 27.874s
+  Satisfaction score: 100.0
+Passenger 5: INJECTED AT 81.9s and DELIVERED in 51.737s
+  Satisfaction score: 100.0
+Passenger 17: INJECTED AT 135.5s and DELIVERED in 115.812s
+  Satisfaction score: 100.0
+Passenger 0: INJECTED AT 60.0s and DELIVERED in 192.33s
+  Satisfaction score: 100.0
+Passenger 3: INJECTED AT 65.7s and DELIVERED in 187.294s
+  Satisfaction score: 100.0
+Passenger 12: INJECTED AT 117.5s and DELIVERED in 136.835s
+  Satisfaction score: 100.0
+Passenger 13: INJECTED AT 118.6s and DELIVERED in 135.979s
+  Satisfaction score: 100.0
+Passenger 15: INJECTED AT 127.1s and DELIVERED in 128.792s
+  Satisfaction score: 100.0
+Passenger 4: INJECTED AT 72.8s and DELIVERED in 184.876s
+  Satisfaction score: 100.0
+Passenger 16: INJECTED AT 133.0s and DELIVERED in 126.143s
+  Satisfaction score: 100.0
+Passenger 7: INJECTED AT 95.1s and DELIVERED in 165.701s
+  Satisfaction score: 100.0
+Passenger 45: INJECTED AT 264.7s and DELIVERED in 34.917s
+  Satisfaction score: 100.0
+Passenger 18: INJECTED AT 142.4s and DELIVERED in 172.611s
+  Satisfaction score: 100.0
+Passenger 38: INJECTED AT 232.1s and DELIVERED in 115.341s
+  Satisfaction score: 100.0
+Passenger 20: INJECTED AT 150.8s and DELIVERED in 211.996s
+  Satisfaction score: 100.0
+Passenger 39: INJECTED AT 239.2s and DELIVERED in 126.236s
+  Satisfaction score: 100.0
+Passenger 47: INJECTED AT 274.7s and DELIVERED in 91.386s
+  Satisfaction score: 100.0
+Passenger 31: INJECTED AT 200.7s and DELIVERED in 166.594s
+  Satisfaction score: 100.0
+Passenger 21: INJECTED AT 153.9s and DELIVERED in 228.636s
+  Satisfaction score: 100.0
+Passenger 36: INJECTED AT 220.6s and DELIVERED in 325.189s
+  Satisfaction score: 100.0
+Passenger 37: INJECTED AT 225.0s and DELIVERED in 320.858s
+  Satisfaction score: 100.0
+Passenger 62: INJECTED AT 342.6s and DELIVERED in 204.834s
+  Satisfaction score: 100.0
+Passenger 57: INJECTED AT 317.1s and DELIVERED in 230.577s
+  Satisfaction score: 100.0
+Passenger 72: INJECTED AT 380.2s and DELIVERED in 168.953s
+  Satisfaction score: 100.0
+Passenger 51: INJECTED AT 295.2s and DELIVERED in 254.235s
+  Satisfaction score: 100.0
+Passenger 41: INJECTED AT 247.4s and DELIVERED in 303.242s
+  Satisfaction score: 100.0
+Passenger 27: INJECTED AT 182.5s and DELIVERED in 368.435s
+  Satisfaction score: 100.0
+Passenger 54: INJECTED AT 314.9s and DELIVERED in 238.015s
+  Satisfaction score: 100.0
+Passenger 91: INJECTED AT 465.3s and DELIVERED in 89.532s
+  Satisfaction score: 100.0
+Passenger 94: INJECTED AT 481.3s and DELIVERED in 145.9s
+  Satisfaction score: 100.0
+Passenger 118: INJECTED AT 600.0s and DELIVERED in 44.909s
+  Satisfaction score: 100.0
+Passenger 85: INJECTED AT 436.8s and DELIVERED in 208.205s
+  Satisfaction score: 100.0
+Passenger 67: INJECTED AT 369.9s and DELIVERED in 276.271s
+  Satisfaction score: 100.0
+Passenger 77: INJECTED AT 389.6s and DELIVERED in 259.074s
+  Satisfaction score: 100.0
+Passenger 66: INJECTED AT 363.1s and DELIVERED in 304.466s
+  Satisfaction score: 100.0
+Passenger 105: INJECTED AT 542.6s and DELIVERED in 126.174s
+  Satisfaction score: 100.0
+Passenger 110: INJECTED AT 565.1s and DELIVERED in 151.965s
+  Satisfaction score: 20.0
+    @631.210000000: 0.80 Failed to exit car at 6,FRONT
+    @633.767000000: 0.50 Failed to exit at 6, FRONT even though the doors opened.
+    @641.850000000: 0.50 Car passed passenger's destination floor without servicing it
+Passenger 56: INJECTED AT 316.5s and DELIVERED in 424.082s
+  Satisfaction score: 90.0
+    @417.300000000: 0.90 Repeated hall call press
+Passenger 111: INJECTED AT 568.9s and DELIVERED in 253.019s
+  Satisfaction score: 100.0
+Passenger 97: INJECTED AT 496.2s and DELIVERED in 326.817s
+  Satisfaction score: 100.0
+Passenger 99: INJECTED AT 508.3s and DELIVERED in 315.46s
+  Satisfaction score: 100.0
+Passenger 102: INJECTED AT 526.5s and DELIVERED in 298.1s
+  Satisfaction score: 100.0
+Passenger 58: INJECTED AT 326.0s and DELIVERED in 499.592s
+  Satisfaction score: 90.0
+    @417.300000000: 0.90 Repeated hall call press
+Passenger 132: INJECTED AT 673.2s and DELIVERED in 152.798s
+  Satisfaction score: 100.0
+Passenger 79: INJECTED AT 406.5s and DELIVERED in 420.693s
+  Satisfaction score: 90.0
+    @423.100000000: 0.90 Repeated hall call press
+Passenger 98: INJECTED AT 499.8s and DELIVERED in 328.696s
+  Satisfaction score: 100.0
+Passenger 119: INJECTED AT 607.8s and DELIVERED in 222.77s
+  Satisfaction score: 100.0
+Passenger 142: INJECTED AT 716.0s and DELIVERED in 183.56s
+  Satisfaction score: 100.0
+Passenger 170: INJECTED AT 860.7s and DELIVERED in 40.42s
+  Satisfaction score: 100.0
+Passenger 165: INJECTED AT 821.4s and DELIVERED in 93.072s
+  Satisfaction score: 100.0
+Passenger 116: INJECTED AT 595.8s and DELIVERED in 320.394s
+  Satisfaction score: 100.0
+Passenger 167: INJECTED AT 837.9s and DELIVERED in 80.147s
+  Satisfaction score: 100.0
+Passenger 159: INJECTED AT 789.9s and DELIVERED in 132.21s
+  Satisfaction score: 100.0
+Passenger 115: INJECTED AT 592.2s and DELIVERED in 344.932s
+  Satisfaction score: 100.0
+Passenger 181: INJECTED AT 918.9s and DELIVERED in 19.674s
+  Satisfaction score: 100.0
+Passenger 143: INJECTED AT 717.7s and DELIVERED in 237.15s
+  Satisfaction score: 100.0
+Passenger 161: INJECTED AT 798.9s and DELIVERED in 157.545s
+  Satisfaction score: 100.0
+Passenger 141: INJECTED AT 713.8s and DELIVERED in 244.039s
+  Satisfaction score: 100.0
+Passenger 169: INJECTED AT 851.2s and DELIVERED in 187.96s
+  Satisfaction score: 100.0
+Passenger 177: INJECTED AT 897.3s and DELIVERED in 164.513s
+  Satisfaction score: 100.0
+Passenger 100: INJECTED AT 510.9s and DELIVERED in 552.382s
+  Satisfaction score: 90.0
+    @950.620000000: 0.90 Repeated hall call press
+Passenger 95: INJECTED AT 486.6s and DELIVERED in 597.468s
+  Satisfaction score: 90.0
+    @950.860000000: 0.90 Repeated hall call press
+Passenger 128: INJECTED AT 658.8s and DELIVERED in 446.567s
+  Satisfaction score: 90.0
+    @950.620000000: 0.90 Repeated hall call press
+Passenger 127: INJECTED AT 649.1s and DELIVERED in 456.954s
+  Satisfaction score: 90.0
+    @861.040000000: 0.90 Repeated hall call press
+Passenger 146: INJECTED AT 734.8s and DELIVERED in 371.893s
+  Satisfaction score: 90.0
+    @878.420000000: 0.90 Repeated hall call press
+Passenger 104: INJECTED AT 535.2s and DELIVERED in 572.749s
+  Satisfaction score: 90.0
+    @950.620000000: 0.90 Repeated hall call press
+Passenger 147: INJECTED AT 735.5s and DELIVERED in 372.472s
+  Satisfaction score: 100.0
+Passenger 24: INJECTED AT 168.4s and DELIVERED in 941.644s
+  Satisfaction score: 81.0
+    @423.100000000: 0.90 Repeated hall call press
+    @950.860000000: 0.90 Repeated hall call press
+Passenger 60: INJECTED AT 332.9s and DELIVERED in 778.573s
+  Satisfaction score: 81.0
+    @417.300000000: 0.90 Repeated hall call press
+    @950.620000000: 0.90 Repeated hall call press
+Passenger 211: INJECTED AT 1062.3s and DELIVERED in 49.284s
+  Satisfaction score: 100.0
+Passenger 199: INJECTED AT 1008.0s and DELIVERED in 104.682s
+  Satisfaction score: 100.0
+Passenger 190: INJECTED AT 968.9s and DELIVERED in 145.489s
+  Satisfaction score: 100.0
+Passenger 191: INJECTED AT 971.0s and DELIVERED in 144.932s
+  Satisfaction score: 100.0
+Passenger 221: INJECTED AT 1107.5s and DELIVERED in 10.415s
+  Satisfaction score: 50.0
+    @1115.235000000: 0.50 Failed to exit at 1, BACK even though the doors opened.
+Passenger 183: INJECTED AT 928.6s and DELIVERED in 189.87s
+  Satisfaction score: 100.0
+Passenger 137: INJECTED AT 700.4s and DELIVERED in 456.344s
+  Satisfaction score: 81.0
+    @878.420000000: 0.90 Repeated hall call press
+    @1080.620000000: 0.90 Repeated hall call press
+Passenger 220: INJECTED AT 1103.8s and DELIVERED in 69.46s
+  Satisfaction score: 100.0
+Passenger 218: INJECTED AT 1098.2s and DELIVERED in 79.396s
+  Satisfaction score: 100.0
+Passenger 186: INJECTED AT 946.5s and DELIVERED in 254.344s
+  Satisfaction score: 100.0
+Passenger 130: INJECTED AT 662.9s and DELIVERED in 539.505s
+  Satisfaction score: 90.0
+    @895.860000000: 0.90 Repeated hall call press
+Passenger 205: INJECTED AT 1033.3s and DELIVERED in 170.627s
+  Satisfaction score: 100.0
+Passenger 139: INJECTED AT 708.2s and DELIVERED in 513.764s
+  Satisfaction score: 90.0
+    @895.860000000: 0.90 Repeated hall call press
+Passenger 144: INJECTED AT 721.0s and DELIVERED in 502.171s
+  Satisfaction score: 90.0
+    @895.860000000: 0.90 Repeated hall call press
+Passenger 200: INJECTED AT 1011.3s and DELIVERED in 226.146s
+  Satisfaction score: 100.0
+Passenger 223: INJECTED AT 1115.3s and DELIVERED in 122.179s
+  Satisfaction score: 100.0
+Passenger 166: INJECTED AT 831.1s and DELIVERED in 407.965s
+  Satisfaction score: 100.0
+Passenger 202: INJECTED AT 1020.0s and DELIVERED in 219.506s
+  Satisfaction score: 100.0
+Passenger 201: INJECTED AT 1016.0s and DELIVERED in 225.3s
+  Satisfaction score: 100.0
+Passenger 209: INJECTED AT 1050.3s and DELIVERED in 192.752s
+  Satisfaction score: 100.0
+Passenger 214: INJECTED AT 1080.5s and DELIVERED in 162.583s
+  Satisfaction score: 100.0
+Passenger 203: INJECTED AT 1020.3s and DELIVERED in 334.733s
+  Satisfaction score: 100.0
+Passenger 227: INJECTED AT 1141.4s and DELIVERED in 235.695s
+  Satisfaction score: 100.0
+Passenger 69: INJECTED AT 372.5s and DELIVERED in 1004.746s
+  Satisfaction score: 81.0
+    @641.460000000: 0.90 Repeated hall call press
+    @1235.620000000: 0.90 Repeated hall call press
+Passenger 76: INJECTED AT 389.0s and DELIVERED in 989.531s
+  Satisfaction score: 81.0
+    @641.460000000: 0.90 Repeated hall call press
+    @1235.620000000: 0.90 Repeated hall call press
+Passenger 35: INJECTED AT 210.7s and DELIVERED in 1168.734s
+  Satisfaction score: 40.5
+    @641.460000000: 0.90 Repeated hall call press
+    @1235.620000000: 0.90 Repeated hall call press
+    @1267.534000000: 0.50 After the car came by 4 times without showing arrows compatible with DOWN, finally gave up and got on anyway.
+Passenger 28: INJECTED AT 183.5s and DELIVERED in 1196.569s
+  Satisfaction score: 72.9
+    @361.420000000: 0.90 Repeated hall call press
+    @641.460000000: 0.90 Repeated hall call press
+    @1235.620000000: 0.90 Repeated hall call press
+Passenger 158: INJECTED AT 782.9s and DELIVERED in 598.001s
+  Satisfaction score: 90.0
+    @1235.620000000: 0.90 Repeated hall call press
+Passenger 193: INJECTED AT 976.4s and DELIVERED in 406.537s
+  Satisfaction score: 90.0
+    @1152.100000000: 0.90 Repeated hall call press
+Passenger 217: INJECTED AT 1095.5s and DELIVERED in 289.156s
+  Satisfaction score: 100.0
+Passenger 204: INJECTED AT 1027.9s and DELIVERED in 358.052s
+  Satisfaction score: 100.0
+Passenger 242: INJECTED AT 1222.3s and DELIVERED in 197.799s
+  Satisfaction score: 100.0
+Passenger 246: INJECTED AT 1245.7s and DELIVERED in 191.983s
+  Satisfaction score: 100.0
+Passenger 262: INJECTED AT 1342.8s and DELIVERED in 139.762s
+  Satisfaction score: 100.0
+Passenger 258: INJECTED AT 1324.8s and DELIVERED in 159.666s
+  Satisfaction score: 100.0
+Passenger 276: INJECTED AT 1424.0s and DELIVERED in 76.437s
+  Satisfaction score: 100.0
+Passenger 249: INJECTED AT 1265.8s and DELIVERED in 235.467s
+  Satisfaction score: 100.0
+Passenger 231: INJECTED AT 1165.9s and DELIVERED in 336.477s
+  Satisfaction score: 100.0
+Passenger 284: INJECTED AT 1448.7s and DELIVERED in 54.308s
+  Satisfaction score: 100.0
+Passenger 281: INJECTED AT 1441.4s and DELIVERED in 63.728s
+  Satisfaction score: 100.0
+Passenger 272: INJECTED AT 1398.8s and DELIVERED in 109.739s
+  Satisfaction score: 100.0
+Passenger 266: INJECTED AT 1368.0s and DELIVERED in 144.456s
+  Satisfaction score: 100.0
+Passenger 256: INJECTED AT 1315.0s and DELIVERED in 215.783s
+  Satisfaction score: 100.0
+Passenger 135: INJECTED AT 687.5s and DELIVERED in 881.934s
+  Satisfaction score: 65.61000000000001
+    @950.860000000: 0.90 Repeated hall call press
+    @993.300000000: 0.90 Repeated hall call press
+    @1255.460000000: 0.90 Repeated hall call press
+    @1527.320000000: 0.90 Repeated hall call press
+Passenger 92: INJECTED AT 468.7s and DELIVERED in 1102.552s
+  Satisfaction score: 36.45
+    @950.860000000: 0.90 Repeated hall call press
+    @993.300000000: 0.90 Repeated hall call press
+    @1255.460000000: 0.90 Repeated hall call press
+    @1512.092000000: 0.50 After the car came by 4 times without showing arrows compatible with DOWN, finally gave up and got on anyway.
+Passenger 287: INJECTED AT 1458.6s and DELIVERED in 136.677s
+  Satisfaction score: 100.0
+Passenger 43: INJECTED AT 250.0s and DELIVERED in 1420.563s
+  Satisfaction score: 36.45
+    @950.860000000: 0.90 Repeated hall call press
+    @993.300000000: 0.90 Repeated hall call press
+    @1255.460000000: 0.90 Repeated hall call press
+    @1514.043000000: 0.50 After the car came by 5 times without showing arrows compatible with DOWN, finally gave up and got on anyway.
+Passenger 61: INJECTED AT 333.9s and DELIVERED in 1336.754s
+  Satisfaction score: 36.45
+    @950.860000000: 0.90 Repeated hall call press
+    @993.300000000: 0.90 Repeated hall call press
+    @1255.460000000: 0.90 Repeated hall call press
+    @1515.734000000: 0.50 After the car came by 5 times without showing arrows compatible with DOWN, finally gave up and got on anyway.
+Passenger 138: INJECTED AT 703.9s and DELIVERED in 967.977s
+  Satisfaction score: 72.9
+    @1235.620000000: 0.90 Repeated hall call press
+    @1291.740000000: 0.90 Repeated hall call press
+    @1497.140000000: 0.90 Repeated hall call press
+Passenger 210: INJECTED AT 1057.5s and DELIVERED in 614.576s
+  Satisfaction score: 81.0
+    @1291.740000000: 0.90 Repeated hall call press
+    @1497.140000000: 0.90 Repeated hall call press
+Passenger 32: INJECTED AT 202.5s and DELIVERED in 1470.565s
+  Satisfaction score: 32.80500000000001
+    @417.300000000: 0.90 Repeated hall call press
+    @950.620000000: 0.90 Repeated hall call press
+    @993.640000000: 0.90 Repeated hall call press
+    @1255.620000000: 0.90 Repeated hall call press
+    @1507.325000000: 0.50 After the car came by 4 times without showing arrows compatible with DOWN, finally gave up and got on anyway.
+Passenger 207: INJECTED AT 1041.9s and DELIVERED in 632.159s
+  Satisfaction score: 90.0
+    @1474.340000000: 0.90 Repeated hall call press
+Passenger 279: INJECTED AT 1435.6s and DELIVERED in 239.871s
+  Satisfaction score: 100.0
+Passenger 140: INJECTED AT 710.7s and DELIVERED in 966.348s
+  Satisfaction score: 81.0
+    @861.040000000: 0.90 Repeated hall call press
+    @1152.100000000: 0.90 Repeated hall call press
+Passenger 174: INJECTED AT 882.5s and DELIVERED in 796.566s
+  Satisfaction score: 72.9
+    @993.640000000: 0.90 Repeated hall call press
+    @1255.620000000: 0.90 Repeated hall call press
+    @1519.100000000: 0.90 Repeated hall call press
+Passenger 331: INJECTED AT 1677.6s and DELIVERED in 4.648s
+  Satisfaction score: 100.0
+Passenger 328: INJECTED AT 1659.3s and DELIVERED in 59.709s
+  Satisfaction score: 100.0
+Passenger 326: INJECTED AT 1644.7s and DELIVERED in 95.379s
+  Satisfaction score: 100.0
+Passenger 335: INJECTED AT 1698.2s and DELIVERED in 61.476s
+  Satisfaction score: 100.0
+Passenger 340: INJECTED AT 1730.4s and DELIVERED in 43.971s
+  Satisfaction score: 100.0
+Passenger 290: INJECTED AT 1480.8s and DELIVERED in 295.479s
+  Satisfaction score: 100.0
+Passenger 327: INJECTED AT 1651.5s and DELIVERED in 126.458s
+  Satisfaction score: 100.0
+Passenger 9: INJECTED AT 106.8s and DELIVERED in 1752.073s
+  Satisfaction score: 22.5
+    @606.420000000: 0.90 Repeated hall call press
+    @1612.253000000: 0.50 After the car came by 5 times without showing arrows compatible with DOWN, finally gave up and got on anyway.
+    @1720.273000000: 0.50 After the car came by 5 times without showing arrows compatible with DOWN, finally gave up and got on anyway.
+Passenger 155: INJECTED AT 771.1s and DELIVERED in 1088.614s
+  Satisfaction score: 36.45
+    @993.300000000: 0.90 Repeated hall call press
+    @1255.460000000: 0.90 Repeated hall call press
+    @1527.320000000: 0.90 Repeated hall call press
+    @1791.814000000: 0.50 After the car came by 5 times without showing arrows compatible with DOWN, finally gave up and got on anyway.
+Passenger 338: INJECTED AT 1720.8s and DELIVERED in 176.425s
+  Satisfaction score: 100.0
+Passenger 84: INJECTED AT 427.2s and DELIVERED in 1621.459s
+  Satisfaction score: 40.5
+    @606.420000000: 0.90 Repeated hall call press
+    @1732.660000000: 0.90 Repeated hall call press
+    @1900.459000000: 0.50 After the car came by 5 times without showing arrows compatible with DOWN, finally gave up and got on anyway.
+Passenger 89: INJECTED AT 457.4s and DELIVERED in 1609.269s
+  Satisfaction score: 40.5
+    @606.420000000: 0.90 Repeated hall call press
+    @1732.660000000: 0.90 Repeated hall call press
+    @1899.069000000: 0.50 After the car came by 4 times without showing arrows compatible with DOWN, finally gave up and got on anyway.
+Passenger 195: INJECTED AT 991.2s and DELIVERED in 1098.909s
+  Satisfaction score: 72.9
+    @1152.100000000: 0.90 Repeated hall call press
+    @1416.700000000: 0.90 Repeated hall call press
+    @1710.080000000: 0.90 Repeated hall call press
+Passenger 275: INJECTED AT 1418.0s and DELIVERED in 672.21s
+  Satisfaction score: 20.25
+    @1770.840000000: 0.90 Repeated hall call press
+    @1863.060000000: 0.50 Failed to exit at 1, FRONT even though the doors opened.
+    @1863.260000000: 0.90 Repeated car call press
+    @1868.850000000: 0.50 Car passed passenger's destination floor without servicing it
+
+Passenger Delivery Summary
+Delivered: 139
+Stranded: 253
+Total: 392
+
+Deliver Stats (lower is better):
+Average_delivery_time: n/a
+Maximum_delivery_time:  n/a
+Delivery_performance_score:  2147483647
+
+Satisfaction Stats (higher is better):
+Average_satisfaction_score: n/a
+Min_satisfaction_score:  n/a
+Satisfaction_performance_score:  0.000
+
+
+
+Monitors Warning Results: 
+RuntimeMonitor generated 148 warnings.
+
+Monitors Summmary Results: 
+0 RT-6 violations
+-1 RT-7 violations
+2 RT-8.1 violations
+42 RT-8.2 violations
+0 RT-8.3 violations
+0 RT-9 violations
+
