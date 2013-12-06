@@ -1,0 +1,301 @@
+group22 code compiled correctly.
+
+
+Staring Unit Tests
+  
+Unit Test Summary Results
+# of missing unit tests (malformed test list or missing files):  0
+# of unit tests that failed to run (Java runtime errors):  0
+# of failed assertions in all unit tests:   0
+
+Unit test detailed results (compare these to the pass/fail totals in the Unit Test Log):
+injection-CarButtonControl.mf-0.stats:Passed:  8
+injection-CarButtonControl.mf-0.stats-Failed:  0
+injection-CarButtonControl.mf-0.stats-Total :  8
+--
+injection-CarPositionControl.mf-0.stats:Passed:  4
+injection-CarPositionControl.mf-0.stats-Failed:  0
+injection-CarPositionControl.mf-0.stats-Total :  4
+--
+injection-Dispatcher.mf-0.stats:Passed:  47
+injection-Dispatcher.mf-0.stats-Failed:  0
+injection-Dispatcher.mf-0.stats-Total :  47
+--
+injection-DoorControl.mf-0.stats:Passed:  44
+injection-DoorControl.mf-0.stats-Failed:  0
+injection-DoorControl.mf-0.stats-Total :  44
+--
+injection-DriveControl.mf-0.stats:Passed:  89
+injection-DriveControl.mf-0.stats-Failed:  0
+injection-DriveControl.mf-0.stats-Total :  89
+--
+injection-HallButtonControl.mf-0.stats:Passed:  8
+injection-HallButtonControl.mf-0.stats-Failed:  0
+injection-HallButtonControl.mf-0.stats-Total :  8
+--
+injection-LanternControl.mf-0.stats:Passed:  7
+injection-LanternControl.mf-0.stats-Failed:  0
+injection-LanternControl.mf-0.stats-Total :  7
+
+
+Starting integrcation tests
+Integration Test Summary
+# of missing integration tests (malformed test list or missing files):  0
+# of integration tests that failed to run (Java runtime errors):  0
+# of failed assertions in all integration tests:   3
+  
+Integration test detailed results (compare these to the pass/fail totals in the Integration Test Log):
+injection-integration_test_sd10a.mf-0.stats:Passed:  20
+injection-integration_test_sd10a.mf-0.stats-Failed:  0
+injection-integration_test_sd10a.mf-0.stats-Total :  20
+--
+injection-integration_test_sd10b.mf-0.stats:Passed:  20
+injection-integration_test_sd10b.mf-0.stats-Failed:  0
+injection-integration_test_sd10b.mf-0.stats-Total :  20
+--
+injection-integration_test_sd1a.mf-0.stats:Passed:  4
+injection-integration_test_sd1a.mf-0.stats-Failed:  0
+injection-integration_test_sd1a.mf-0.stats-Total :  4
+--
+injection-integration_test_sd1b.mf-0.stats:Passed:  14
+injection-integration_test_sd1b.mf-0.stats-Failed:  0
+injection-integration_test_sd1b.mf-0.stats-Total :  14
+--
+injection-integration_test_sd1c.mf-0.stats:Passed:  14
+injection-integration_test_sd1c.mf-0.stats-Failed:  0
+injection-integration_test_sd1c.mf-0.stats-Total :  14
+--
+injection-integration_test_sd2a.mf-0.stats:Passed:  13
+injection-integration_test_sd2a.mf-0.stats-Failed:  0
+injection-integration_test_sd2a.mf-0.stats-Total :  13
+--
+injection-integration_test_sd2b.mf-0.stats:Passed:  10
+injection-integration_test_sd2b.mf-0.stats-Failed:  0
+injection-integration_test_sd2b.mf-0.stats-Total :  10
+--
+injection-integration_test_sd3a.mf-0.stats:Passed:  19
+injection-integration_test_sd3a.mf-0.stats-Failed:  0
+injection-integration_test_sd3a.mf-0.stats-Total :  19
+--
+injection-integration_test_sd3b.mf-0.stats:Passed:  24
+injection-integration_test_sd3b.mf-0.stats-Failed:  0
+injection-integration_test_sd3b.mf-0.stats-Total :  24
+--
+injection-integration_test_sd4a.mf-0.stats:Passed:  26
+injection-integration_test_sd4a.mf-0.stats-Failed:  0
+injection-integration_test_sd4a.mf-0.stats-Total :  26
+--
+injection-integration_test_sd4b.mf-0.stats:Passed:  30
+injection-integration_test_sd4b.mf-0.stats-Failed:  0
+injection-integration_test_sd4b.mf-0.stats-Total :  30
+--
+injection-integration_test_sd5a.mf-0.stats:Passed:  20
+injection-integration_test_sd5a.mf-0.stats-Failed:  0
+injection-integration_test_sd5a.mf-0.stats-Total :  20
+--
+injection-integration_test_sd5b.mf-0.stats:Passed:  20
+injection-integration_test_sd5b.mf-0.stats-Failed:  0
+injection-integration_test_sd5b.mf-0.stats-Total :  20
+--
+injection-integration_test_sd5c.mf-0.stats:Passed:  18
+injection-integration_test_sd5c.mf-0.stats-Failed:  0
+injection-integration_test_sd5c.mf-0.stats-Total :  18
+--
+injection-integration_test_sd6a.mf-0.stats:Passed:  11
+injection-integration_test_sd6a.mf-0.stats-Failed:  0
+injection-integration_test_sd6a.mf-0.stats-Total :  11
+--
+injection-integration_test_sd6b.mf-0.stats:Passed:  6
+injection-integration_test_sd6b.mf-0.stats-Failed:  0
+injection-integration_test_sd6b.mf-0.stats-Total :  6
+--
+injection-integration_test_sd7a.mf-0.stats:Passed:  4
+injection-integration_test_sd7a.mf-0.stats-Failed:  1
+injection-integration_test_sd7a.mf-0.stats-Total :  5
+--
+injection-integration_test_sd7b.mf-0.stats:Passed:  5
+injection-integration_test_sd7b.mf-0.stats-Failed:  0
+injection-integration_test_sd7b.mf-0.stats-Total :  5
+--
+injection-integration_test_sd7c.mf-0.stats:Passed:  10
+injection-integration_test_sd7c.mf-0.stats-Failed:  0
+injection-integration_test_sd7c.mf-0.stats-Total :  10
+--
+injection-integration_test_sd8a.mf-0.stats:Passed:  40
+injection-integration_test_sd8a.mf-0.stats-Failed:  0
+injection-integration_test_sd8a.mf-0.stats-Total :  40
+--
+injection-integration_test_sd8b.mf-0.stats:Passed:  19
+injection-integration_test_sd8b.mf-0.stats-Failed:  0
+injection-integration_test_sd8b.mf-0.stats-Total :  19
+--
+injection-integration_test_sd8c.mf-0.stats:Passed:  13
+injection-integration_test_sd8c.mf-0.stats-Failed:  0
+injection-integration_test_sd8c.mf-0.stats-Total :  13
+--
+injection-integration_test_sd8d.mf-0.stats:Passed:  13
+injection-integration_test_sd8d.mf-0.stats-Failed:  0
+injection-integration_test_sd8d.mf-0.stats-Total :  13
+--
+injection-integration_test_sd9a.mf-0.stats:Passed:  43
+injection-integration_test_sd9a.mf-0.stats-Failed:  2
+injection-integration_test_sd9a.mf-0.stats-Total :  45
+Acceptance tests not requested.
+
+
+Starting runtime monitoring tests
+  Monitoring test GradingMonitor proj7acceptance2.pass 2h failed to run (had runtime errors)  Check monitoring_test.log for details.
+Monitoring Test Summary
+# of failed tests (java runtime errors):  1
+# of emergency brake triggers:  1
+Total # of monitor warnings:  139
+
+
+Emergency Brake Triggers:
+EMERGENCY BRAKE ENGAGED! Car in motion with the doors open.
+
+
+Runtime Monitor Warning Summary:
+
+[RuntimeMonitor] @986.440000000: WARNING:  R-T7 violated:    The door opened at 7,FRONT without any pending calls. Current calls: HC-7-BACK-DOWN,
+[RuntimeMonitor] @2107.480000000: WARNING:  R-T7 violated:    The door opened at 1,BACK without any pending calls. Current calls: CC-1-FRONT,
+[RuntimeMonitor] @2248.880000000: WARNING:  R-T7 violated:    The door opened at 7,BACK without any pending calls. Current calls: CC-7-FRONT,
+[RuntimeMonitor] @2805.960000000: WARNING:  R-T7 violated:    The door opened at 7,BACK without any pending calls. Current calls: 
+[RuntimeMonitor] @3298.000000000: WARNING:  R-T7 violated:    The door opened at 1,FRONT without any pending calls. Current calls: CC-1-BACK,
+[RuntimeMonitor] @4216.320000000: WARNING:  R-T7 violated:    The door opened at 7,FRONT without any pending calls. Current calls: HC-7-BACK-DOWN,
+[RuntimeMonitor] @5565.600000000: WARNING:  R-T7 violated:    The door opened at 1,FRONT without any pending calls. Current calls: HC-1-BACK-UP,
+[RuntimeMonitor] @5727.840000000: WARNING:  R-T7 violated:    The door opened at 7,BACK without any pending calls. Current calls: HC-7-FRONT-UP,
+[RuntimeMonitor] @6199.200000000: WARNING:  R-T7 violated:    The door opened at 1,BACK without any pending calls. Current calls: HC-1-FRONT-UP,
+[RuntimeMonitor] @125.280000000: WARNING:  R-T7 violated:    The door opened at 7,BACK without any pending calls. Current calls: HC-1-BACK-UP,HC-6-FRONT-DOWN,CC-7-FRONT,
+[RuntimeMonitor] @195.680000000: WARNING:  R-T7 violated:    The door opened at 7,BACK without any pending calls. Current calls: HC-1-FRONT-UP,HC-1-BACK-UP,CC-7-FRONT,
+[RuntimeMonitor] @343.040000000: WARNING:  R-T7 violated:    The door opened at 7,BACK without any pending calls. Current calls: HC-1-FRONT-UP,HC-1-BACK-UP,CC-7-FRONT,
+[RuntimeMonitor] @91.800000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @91.800000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @137.720000000: WARNING:  R-T7 violated:    The door opened at 7,FRONT without any pending calls. Current calls: HC-1-FRONT-UP,CC-1-BACK,HC-4-FRONT-DOWN,CC-7-BACK,
+[RuntimeMonitor] @199.480000000: WARNING:  R-T7 violated:    The door opened at 7,BACK without any pending calls. Current calls: HC-1-FRONT-UP,HC-2-BACK-DOWN,HC-7-FRONT-DOWN,
+[RuntimeMonitor] @278.680000000: WARNING:  R-T7 violated:    The door opened at 7,BACK without any pending calls. Current calls: HC-3-FRONT-DOWN,HC-7-FRONT-DOWN,
+[RuntimeMonitor] @337.240000000: WARNING:  R-T7 violated:    The door opened at 7,BACK without any pending calls. Current calls: HC-2-BACK-DOWN,HC-3-FRONT-DOWN,HC-4-FRONT-DOWN,HC-7-FRONT-DOWN,
+[RuntimeMonitor] @623.400000000: WARNING:  R-T7 violated:    The door opened at 1,FRONT without any pending calls. Current calls: CC-1-BACK,HC-3-FRONT-UP,HC-4-FRONT-DOWN,HC-7-FRONT-DOWN,
+[RuntimeMonitor] @893.320000000: WARNING:  R-T7 violated:    The door opened at 1,FRONT without any pending calls. Current calls: CC-1-BACK,
+[RuntimeMonitor] @222.000000000: WARNING:  R-T7 violated:    The door opened at 7,FRONT without any pending calls. Current calls: CC-7-BACK,HC-7-BACK-DOWN,CC-8-FRONT,
+[RuntimeMonitor] @251.000000000: WARNING:  R-T7 violated:    The door opened at 7,FRONT without any pending calls. Current calls: HC-7-BACK-DOWN,
+[RuntimeMonitor] @453.440000000: WARNING:  R-T7 violated:    The door opened at 1,BACK without any pending calls. Current calls: CC-1-FRONT,HC-1-FRONT-UP,HC-3-FRONT-DOWN,
+[RuntimeMonitor] @111.440000000: WARNING:  R-T8.1 violated:  CarLantern was not lit at floor 1 while there were pending calls elsewhere.  Current calls:  CC-2-BACK,HC-2-BACK-UP,HC-2-BACK-DOWN,HC-3-FRONT-UP,HC-3-FRONT-DOWN,HC-4-FRONT-UP,HC-5-FRONT-UP,HC-5-FRONT-DOWN,CC-6-FRONT,HC-6-FRONT-UP,HC-6-FRONT-DOWN,CC-8-FRONT,
+[RuntimeMonitor] @111.440000000: WARNING:  R-T8.1 violated:  CarLantern was not lit at floor 1 while there were pending calls elsewhere.  Current calls:  CC-2-BACK,HC-2-BACK-UP,HC-2-BACK-DOWN,HC-3-FRONT-UP,HC-3-FRONT-DOWN,HC-4-FRONT-UP,HC-5-FRONT-UP,HC-5-FRONT-DOWN,CC-6-FRONT,HC-6-FRONT-UP,HC-6-FRONT-DOWN,CC-8-FRONT,
+[RuntimeMonitor] @369.000000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @369.000000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @369.200000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @369.200000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @369.400000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @369.400000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @369.600000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @369.600000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @369.800000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @369.800000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @370.000000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @370.000000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @370.200000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @370.200000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @370.400000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @370.400000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @370.600000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @370.600000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @370.800000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @370.800000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @371.000000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @371.000000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @371.200000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @371.200000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @371.400000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @371.400000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @371.600000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @371.600000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @371.800000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @371.800000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @372.000000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @372.000000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @372.200000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @372.200000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @372.400000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @372.400000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @372.600000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @372.600000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @372.800000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @372.800000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @373.000000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @373.000000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @67.320000000: WARNING:  R-T7 violated:    The door opened at 1,FRONT without any pending calls. Current calls: CC-1-BACK,HC-4-FRONT-UP,
+[RuntimeMonitor] @142.640000000: WARNING:  R-T7 violated:    The door opened at 1,BACK without any pending calls. Current calls: HC-1-FRONT-UP,
+[RuntimeMonitor] @151.040000000: WARNING:  R-T7 violated:    The door opened at 1,BACK without any pending calls. Current calls: CC-4-FRONT,
+[RuntimeMonitor] @199.400000000: WARNING:  R-T7 violated:    The door opened at 7,FRONT without any pending calls. Current calls: HC-2-BACK-DOWN,HC-7-BACK-DOWN,
+[RuntimeMonitor] @252.440000000: WARNING:  R-T7 violated:    The door opened at 1,BACK without any pending calls. Current calls: CC-1-FRONT,HC-4-FRONT-DOWN,HC-5-FRONT-UP,
+[RuntimeMonitor] @258.440000000: WARNING:  R-T8.1 violated:  CarLantern was not lit at floor 1 while there were pending calls elsewhere.  Current calls:  HC-4-FRONT-DOWN,HC-5-FRONT-UP,
+[RuntimeMonitor] @258.440000000: WARNING:  R-T8.1 violated:  CarLantern was not lit at floor 1 while there were pending calls elsewhere.  Current calls:  HC-4-FRONT-DOWN,HC-5-FRONT-UP,
+[RuntimeMonitor] @389.600000000: WARNING:  R-T7 violated:    The door opened at 7,FRONT without any pending calls. Current calls: HC-3-FRONT-UP,CC-7-BACK,HC-7-BACK-DOWN,
+[RuntimeMonitor] @471.800000000: WARNING:  R-T7 violated:    The door opened at 7,BACK without any pending calls. Current calls: CC-7-FRONT,CC-8-FRONT,
+[RuntimeMonitor] @529.040000000: WARNING:  R-T7 violated:    The door opened at 7,FRONT without any pending calls. Current calls: HC-4-FRONT-DOWN,CC-7-BACK,
+[RuntimeMonitor] @622.240000000: WARNING:  R-T7 violated:    The door opened at 1,FRONT without any pending calls. Current calls: HC-1-BACK-UP,
+[RuntimeMonitor] @727.480000000: WARNING:  R-T7 violated:    The door opened at 7,FRONT without any pending calls. Current calls: HC-7-BACK-DOWN,
+[RuntimeMonitor] @804.560000000: WARNING:  R-T7 violated:    The door opened at 1,FRONT without any pending calls. Current calls: CC-1-BACK,
+[RuntimeMonitor] @1029.960000000: WARNING:  R-T7 violated:    The door opened at 1,BACK without any pending calls. Current calls: CC-1-FRONT,HC-7-BACK-DOWN,
+[RuntimeMonitor] @1050.440000000: WARNING:  R-T7 violated:    The door opened at 7,FRONT without any pending calls. Current calls: HC-7-BACK-DOWN,
+[RuntimeMonitor] @1205.320000000: WARNING:  R-T7 violated:    The door opened at 1,BACK without any pending calls. Current calls: HC-1-FRONT-UP,
+[RuntimeMonitor] @1251.000000000: WARNING:  R-T7 violated:    The door opened at 1,BACK without any pending calls. Current calls: CC-1-FRONT,
+[RuntimeMonitor] @1330.480000000: WARNING:  R-T7 violated:    The door opened at 7,FRONT without any pending calls. Current calls: HC-5-FRONT-DOWN,CC-7-BACK,
+[RuntimeMonitor] @1366.600000000: WARNING:  R-T7 violated:    The door opened at 1,BACK without any pending calls. Current calls: CC-1-FRONT,
+[RuntimeMonitor] @1422.600000000: WARNING:  R-T7 violated:    The door opened at 7,FRONT without any pending calls. Current calls: HC-7-BACK-DOWN,
+[RuntimeMonitor] @1445.120000000: WARNING:  R-T7 violated:    The door opened at 1,BACK without any pending calls. Current calls: CC-1-FRONT,
+[RuntimeMonitor] @1482.600000000: WARNING:  R-T7 violated:    The door opened at 7,FRONT without any pending calls. Current calls: HC-3-FRONT-DOWN,CC-7-BACK,
+[RuntimeMonitor] @1539.200000000: WARNING:  R-T7 violated:    The door opened at 7,FRONT without any pending calls. Current calls: HC-4-FRONT-DOWN,CC-7-BACK,HC-7-BACK-DOWN,
+[RuntimeMonitor] @1626.200000000: WARNING:  R-T7 violated:    The door opened at 1,FRONT without any pending calls. Current calls: CC-1-BACK,
+[RuntimeMonitor] @1646.640000000: WARNING:  R-T7 violated:    The door opened at 7,BACK without any pending calls. Current calls: HC-7-FRONT-DOWN,
+[RuntimeMonitor] @1711.400000000: WARNING:  R-T7 violated:    The door opened at 1,FRONT without any pending calls. Current calls: CC-1-BACK,HC-3-FRONT-UP,
+[RuntimeMonitor] @1747.600000000: WARNING:  R-T7 violated:    The door opened at 7,FRONT without any pending calls. Current calls: HC-1-BACK-UP,HC-5-FRONT-DOWN,CC-7-BACK,
+[RuntimeMonitor] @1783.000000000: WARNING:  R-T7 violated:    The door opened at 1,FRONT without any pending calls. Current calls: CC-1-BACK,HC-1-BACK-UP,
+[RuntimeMonitor] @1883.480000000: WARNING:  R-T7 violated:    The door opened at 7,BACK without any pending calls. Current calls: HC-6-FRONT-DOWN,HC-7-FRONT-DOWN,
+[RuntimeMonitor] @1934.760000000: WARNING:  R-T7 violated:    The door opened at 1,BACK without any pending calls. Current calls: CC-1-FRONT,HC-5-FRONT-UP,
+[RuntimeMonitor] @1940.840000000: WARNING:  R-T8.1 violated:  CarLantern was not lit at floor 1 while there were pending calls elsewhere.  Current calls:  HC-5-FRONT-UP,
+[RuntimeMonitor] @1940.840000000: WARNING:  R-T8.1 violated:  CarLantern was not lit at floor 1 while there were pending calls elsewhere.  Current calls:  HC-5-FRONT-UP,
+[RuntimeMonitor] @1982.680000000: WARNING:  R-T7 violated:    The door opened at 7,BACK without any pending calls. Current calls: HC-4-FRONT-UP,HC-7-FRONT-DOWN,
+[RuntimeMonitor] @2005.120000000: WARNING:  R-T7 violated:    The door opened at 1,BACK without any pending calls. Current calls: CC-1-FRONT,HC-4-FRONT-UP,
+[RuntimeMonitor] @2122.560000000: WARNING:  R-T7 violated:    The door opened at 1,BACK without any pending calls. Current calls: CC-1-FRONT,HC-3-FRONT-UP,HC-5-FRONT-DOWN,
+[RuntimeMonitor] @2194.840000000: WARNING:  R-T7 violated:    The door opened at 7,FRONT without any pending calls. Current calls: HC-7-BACK-DOWN,
+[RuntimeMonitor] @2222.840000000: WARNING:  R-T8.1 violated:  CarLantern was not lit at floor 2 while there were pending calls elsewhere.  Current calls:  HC-7-BACK-DOWN,
+[RuntimeMonitor] @2311.240000000: WARNING:  R-T7 violated:    The door opened at 7,BACK without any pending calls. Current calls: HC-5-FRONT-DOWN,CC-7-FRONT,
+[RuntimeMonitor] @2363.520000000: WARNING:  R-T7 violated:    The door opened at 1,FRONT without any pending calls. Current calls: CC-1-BACK,HC-7-FRONT-DOWN,
+[RuntimeMonitor] @2383.840000000: WARNING:  R-T7 violated:    The door opened at 7,BACK without any pending calls. Current calls: HC-7-FRONT-DOWN,
+[RuntimeMonitor] @2601.160000000: WARNING:  R-T7 violated:    The door opened at 7,BACK without any pending calls. Current calls: HC-3-FRONT-UP,CC-7-FRONT,
+[RuntimeMonitor] @2676.840000000: WARNING:  R-T8.1 violated:  CarLantern was not lit at floor 5 while there were pending calls elsewhere.  Current calls:  HC-7-BACK-DOWN,
+[RuntimeMonitor] @2687.040000000: WARNING:  R-T7 violated:    The door opened at 7,FRONT without any pending calls. Current calls: HC-7-BACK-DOWN,
+[RuntimeMonitor] @2771.560000000: WARNING:  R-T7 violated:    The door opened at 1,BACK without any pending calls. Current calls: HC-1-FRONT-UP,HC-5-FRONT-DOWN,
+[RuntimeMonitor] @2843.400000000: WARNING:  R-T7 violated:    The door opened at 7,BACK without any pending calls. Current calls: CC-7-FRONT,HC-7-FRONT-DOWN,
+[RuntimeMonitor] @2883.720000000: WARNING:  R-T7 violated:    The door opened at 1,BACK without any pending calls. Current calls: HC-1-FRONT-UP,
+[RuntimeMonitor] @2956.400000000: WARNING:  R-T7 violated:    The door opened at 7,FRONT without any pending calls. Current calls: HC-7-BACK-DOWN,
+[RuntimeMonitor] @3010.000000000: WARNING:  R-T7 violated:    The door opened at 7,FRONT without any pending calls. Current calls: HC-7-BACK-UP,
+[RuntimeMonitor] @3077.600000000: WARNING:  R-T7 violated:    The door opened at 1,FRONT without any pending calls. Current calls: CC-1-BACK,
+[RuntimeMonitor] @3147.640000000: WARNING:  R-T7 violated:    The door opened at 1,BACK without any pending calls. Current calls: HC-1-FRONT-UP,
+[RuntimeMonitor] @3200.720000000: WARNING:  R-T7 violated:    The door opened at 7,FRONT without any pending calls. Current calls: CC-7-BACK,HC-7-BACK-DOWN,
+[RuntimeMonitor] @3368.480000000: WARNING:  R-T7 violated:    The door opened at 1,BACK without any pending calls. Current calls: HC-1-FRONT-UP,HC-2-BACK-UP,
+[RuntimeMonitor] @3492.880000000: WARNING:  R-T7 violated:    The door opened at 7,FRONT without any pending calls. Current calls: HC-1-BACK-UP,HC-2-BACK-UP,HC-7-BACK-DOWN,
+[RuntimeMonitor] @3578.400000000: WARNING:  R-T7 violated:    The door opened at 7,FRONT without any pending calls. Current calls: HC-1-BACK-UP,HC-4-FRONT-UP,HC-7-BACK-UP,
+[RuntimeMonitor] @3586.760000000: WARNING:  R-T7 violated:    The door opened at 7,FRONT without any pending calls. Current calls: HC-1-BACK-UP,HC-4-FRONT-UP,HC-7-BACK-DOWN,
+[RuntimeMonitor] @3689.680000000: WARNING:  R-T7 violated:    The door opened at 7,BACK without any pending calls. Current calls: HC-1-FRONT-UP,HC-5-FRONT-DOWN,HC-7-FRONT-DOWN,
+[RuntimeMonitor] @3742.040000000: WARNING:  R-T7 violated:    The door opened at 1,BACK without any pending calls. Current calls: CC-1-FRONT,HC-1-FRONT-UP,HC-6-FRONT-UP,
+[RuntimeMonitor] @3799.000000000: WARNING:  R-T7 violated:    The door opened at 7,BACK without any pending calls. Current calls: HC-1-FRONT-UP,HC-5-FRONT-UP,HC-7-FRONT-DOWN,
+[RuntimeMonitor] @3841.760000000: WARNING:  R-T7 violated:    The door opened at 1,BACK without any pending calls. Current calls: HC-1-FRONT-UP,HC-3-FRONT-UP,HC-5-FRONT-UP,
+[RuntimeMonitor] @3896.760000000: WARNING:  R-T7 violated:    The door opened at 7,FRONT without any pending calls. Current calls: HC-4-FRONT-DOWN,HC-6-FRONT-DOWN,CC-7-BACK,CC-8-FRONT,
+[RuntimeMonitor] @4014.200000000: WARNING:  R-T7 violated:    The door opened at 7,BACK without any pending calls. Current calls: HC-1-BACK-UP,HC-7-FRONT-DOWN,
+[RuntimeMonitor] @4036.600000000: WARNING:  R-T7 violated:    The door opened at 1,FRONT without any pending calls. Current calls: CC-1-BACK,HC-1-BACK-UP,
+[RuntimeMonitor] @4071.840000000: WARNING:  R-T7 violated:    The door opened at 7,FRONT without any pending calls. Current calls: HC-7-BACK-DOWN,
+[RuntimeMonitor] @4108.480000000: WARNING:  R-T7 violated:    The door opened at 1,FRONT without any pending calls. Current calls: HC-1-BACK-UP,
+[RuntimeMonitor] @4194.000000000: WARNING:  R-T7 violated:    The door opened at 7,FRONT without any pending calls. Current calls: HC-7-BACK-UP,
+[RuntimeMonitor] @4246.920000000: WARNING:  R-T7 violated:    The door opened at 1,BACK without any pending calls. Current calls: HC-1-FRONT-UP,
+[RuntimeMonitor] @4295.000000000: WARNING:  R-T7 violated:    The door opened at 7,BACK without any pending calls. Current calls: HC-2-BACK-DOWN,CC-7-FRONT,
+[RuntimeMonitor] @4374.200000000: WARNING:  R-T7 violated:    The door opened at 7,BACK without any pending calls. Current calls: HC-7-FRONT-DOWN,
+[RuntimeMonitor] @4396.720000000: WARNING:  R-T7 violated:    The door opened at 1,BACK without any pending calls. Current calls: CC-1-FRONT,HC-6-FRONT-DOWN,
+[RuntimeMonitor] @4454.040000000: WARNING:  R-T7 violated:    The door opened at 7,FRONT without any pending calls. Current calls: HC-7-BACK-DOWN,
+[RuntimeMonitor] @4526.440000000: WARNING:  R-T7 violated:    The door opened at 1,FRONT without any pending calls. Current calls: CC-1-BACK,
+[RuntimeMonitor] @4619.400000000: WARNING:  R-T7 violated:    The door opened at 7,FRONT without any pending calls. Current calls: HC-2-BACK-UP,HC-7-BACK-UP,
+[RuntimeMonitor] @636.800000000: WARNING:  R-T7 violated:    The door opened at 1,FRONT without any pending calls. Current calls: CC-1-BACK,
+[RuntimeMonitor] @71.000000000: WARNING:  R-T7 violated:    The door opened at 7,FRONT without any pending calls. Current calls: HC-1-FRONT-UP,HC-2-BACK-UP,HC-3-FRONT-UP,HC-5-FRONT-DOWN,HC-6-FRONT-DOWN,HC-7-BACK-DOWN,
+[RuntimeMonitor] @301.040000000: WARNING:  R-T8.1 violated:  CarLantern was not lit at floor 1 while there were pending calls elsewhere.  Current calls:  CC-2-BACK,HC-2-BACK-DOWN,CC-3-FRONT,CC-4-FRONT,HC-4-FRONT-UP,HC-4-FRONT-DOWN,HC-5-FRONT-DOWN,HC-6-FRONT-UP,

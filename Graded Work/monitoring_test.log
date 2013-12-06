@@ -1,0 +1,968 @@
+group22 monitoring test log
+  Running monitoring test: GradingMonitor proj7acceptance1.pass 2h
+Simulator Parameters:
+Command line = -pf /afs/ece.cmu.edu/usr/nnuemah/649grading/proj7acceptance1.pass -rt 2h -monitor GradingMonitor -seed 4242 -fs 5.0 -b 200
+RandomSeed = 4242
+CanNetworkBitTime = 5000 ns
+Effective Can Bitrate = 199999.99999999997
+Run Time = 7200.0s
+Real time rate = null
+Acceptance Test File = /afs/ece.cmu.edu/usr/nnuemah/649grading/proj7acceptance1.pass
+Monitors: GradingMonitor  
+
+
+[Elevator] @0.000000000: Starting Simulation
+[Elevator] @60.000000000: Progress indicator
+[Elevator] @120.000000000: Progress indicator
+[Elevator] @180.000000000: Progress indicator
+[Elevator] @240.000000000: Progress indicator
+[Elevator] @300.000000000: Progress indicator
+[Elevator] @360.000000000: Progress indicator
+[Elevator] @420.000000000: Progress indicator
+[Elevator] @480.000000000: Progress indicator
+[Elevator] @540.000000000: Progress indicator
+[Elevator] @600.000000000: Progress indicator
+[Elevator] @660.000000000: Progress indicator
+[Elevator] @720.000000000: Progress indicator
+[Elevator] @780.000000000: Progress indicator
+[Elevator] @840.000000000: Progress indicator
+[Elevator] @900.000000000: Progress indicator
+[Elevator] @960.000000000: Progress indicator
+[RuntimeMonitor] @986.440000000: WARNING:  R-T7 violated:    The door opened at 7,FRONT without any pending calls. Current calls: HC-7-BACK-DOWN,
+[Elevator] @1020.000000000: Progress indicator
+[Elevator] @1080.000000000: Progress indicator
+[Elevator] @1140.000000000: Progress indicator
+[Elevator] @1200.000000000: Progress indicator
+[Elevator] @1260.000000000: Progress indicator
+[Elevator] @1320.000000000: Progress indicator
+[Elevator] @1380.000000000: Progress indicator
+[Elevator] @1440.000000000: Progress indicator
+[Elevator] @1500.000000000: Progress indicator
+[Elevator] @1560.000000000: Progress indicator
+[Elevator] @1620.000000000: Progress indicator
+[Elevator] @1680.000000000: Progress indicator
+[Elevator] @1740.000000000: Progress indicator
+[Elevator] @1800.000000000: Progress indicator
+[Elevator] @1860.000000000: Progress indicator
+[Elevator] @1920.000000000: Progress indicator
+[Elevator] @1980.000000000: Progress indicator
+[Elevator] @2040.000000000: Progress indicator
+[Elevator] @2100.000000000: Progress indicator
+[RuntimeMonitor] @2107.480000000: WARNING:  R-T7 violated:    The door opened at 1,BACK without any pending calls. Current calls: CC-1-FRONT,
+[Elevator] @2160.000000000: Progress indicator
+[Elevator] @2220.000000000: Progress indicator
+[RuntimeMonitor] @2248.880000000: WARNING:  R-T7 violated:    The door opened at 7,BACK without any pending calls. Current calls: CC-7-FRONT,
+[Elevator] @2280.000000000: Progress indicator
+[Elevator] @2340.000000000: Progress indicator
+[Elevator] @2400.000000000: Progress indicator
+[Elevator] @2460.000000000: Progress indicator
+[Elevator] @2520.000000000: Progress indicator
+[Elevator] @2580.000000000: Progress indicator
+[Elevator] @2640.000000000: Progress indicator
+[Elevator] @2700.000000000: Progress indicator
+[Elevator] @2760.000000000: Progress indicator
+[RuntimeMonitor] @2805.960000000: WARNING:  R-T7 violated:    The door opened at 7,BACK without any pending calls. Current calls: 
+[Elevator] @2820.000000000: Progress indicator
+[Elevator] @2880.000000000: Progress indicator
+[Elevator] @2940.000000000: Progress indicator
+[Elevator] @3000.000000000: Progress indicator
+[Elevator] @3060.000000000: Progress indicator
+[Elevator] @3120.000000000: Progress indicator
+[Elevator] @3180.000000000: Progress indicator
+[Elevator] @3240.000000000: Progress indicator
+[RuntimeMonitor] @3298.000000000: WARNING:  R-T7 violated:    The door opened at 1,FRONT without any pending calls. Current calls: CC-1-BACK,
+[Elevator] @3300.000000000: Progress indicator
+[Elevator] @3360.000000000: Progress indicator
+[Elevator] @3420.000000000: Progress indicator
+[Elevator] @3480.000000000: Progress indicator
+[Elevator] @3540.000000000: Progress indicator
+[Elevator] @3600.000000000: Progress indicator
+[Elevator] @3660.000000000: Progress indicator
+[Elevator] @3720.000000000: Progress indicator
+[Elevator] @3780.000000000: Progress indicator
+[Elevator] @3840.000000000: Progress indicator
+[Elevator] @3900.000000000: Progress indicator
+[Elevator] @3960.000000000: Progress indicator
+[Elevator] @4020.000000000: Progress indicator
+[Elevator] @4080.000000000: Progress indicator
+[Elevator] @4140.000000000: Progress indicator
+[Elevator] @4200.000000000: Progress indicator
+[RuntimeMonitor] @4216.320000000: WARNING:  R-T7 violated:    The door opened at 7,FRONT without any pending calls. Current calls: HC-7-BACK-DOWN,
+[Elevator] @4260.000000000: Progress indicator
+[Elevator] @4320.000000000: Progress indicator
+[Elevator] @4380.000000000: Progress indicator
+[Elevator] @4440.000000000: Progress indicator
+[Elevator] @4500.000000000: Progress indicator
+[Elevator] @4560.000000000: Progress indicator
+[Elevator] @4620.000000000: Progress indicator
+[Elevator] @4680.000000000: Progress indicator
+[Elevator] @4740.000000000: Progress indicator
+[Elevator] @4800.000000000: Progress indicator
+[Elevator] @4860.000000000: Progress indicator
+[Elevator] @4920.000000000: Progress indicator
+[Elevator] @4980.000000000: Progress indicator
+[Elevator] @5040.000000000: Progress indicator
+[Elevator] @5100.000000000: Progress indicator
+[Elevator] @5160.000000000: Progress indicator
+[Elevator] @5220.000000000: Progress indicator
+[Elevator] @5280.000000000: Progress indicator
+[Elevator] @5340.000000000: Progress indicator
+[Elevator] @5400.000000000: Progress indicator
+[Elevator] @5460.000000000: Progress indicator
+[Elevator] @5520.000000000: Progress indicator
+[RuntimeMonitor] @5565.600000000: WARNING:  R-T7 violated:    The door opened at 1,FRONT without any pending calls. Current calls: HC-1-BACK-UP,
+[Elevator] @5580.000000000: Progress indicator
+[Elevator] @5640.000000000: Progress indicator
+[Elevator] @5700.000000000: Progress indicator
+[RuntimeMonitor] @5727.840000000: WARNING:  R-T7 violated:    The door opened at 7,BACK without any pending calls. Current calls: HC-7-FRONT-UP,
+[Elevator] @5760.000000000: Progress indicator
+[Elevator] @5820.000000000: Progress indicator
+[Elevator] @5880.000000000: Progress indicator
+[Elevator] @5940.000000000: Progress indicator
+[Elevator] @6000.000000000: Progress indicator
+[Elevator] @6060.000000000: Progress indicator
+[Elevator] @6120.000000000: Progress indicator
+[Elevator] @6180.000000000: Progress indicator
+[RuntimeMonitor] @6199.200000000: WARNING:  R-T7 violated:    The door opened at 1,BACK without any pending calls. Current calls: HC-1-FRONT-UP,
+[Elevator] @6240.000000000: Progress indicator
+[Elevator] @6300.000000000: Progress indicator
+[Elevator] @6360.000000000: Progress indicator
+[Elevator] @6420.000000000: Progress indicator
+[Elevator] @6480.000000000: Progress indicator
+[Elevator] @6540.000000000: Progress indicator
+[Elevator] @6600.000000000: Progress indicator
+[Elevator] @6660.000000000: Progress indicator
+[Elevator] @6720.000000000: Progress indicator
+[Elevator] @6780.000000000: Progress indicator
+[Elevator] @6840.000000000: Progress indicator
+[Elevator] @6890.232000000: Simulation Finished
+
+Network Utilization Summary:
+Recent: 54.97 % Max: 54.97 %  Overall:  54.97 %
+
+Monitors Warning Results: 
+RuntimeMonitor generated 9 warnings.
+
+Monitors Summmary Results: 
+0 RT-6 violations
+8 RT-7 violations
+0 RT-8.1 violations
+0 RT-8.2 violations
+0 RT-8.3 violations
+0 RT-9 violations
+
+STATISTICS FOR ELEVATOR SIMULATION PASSENGER DELIVERY
+-----------------------------------------------------
+
+
+Passenger Delivery Summary
+Delivered: 18
+Stranded: 0
+Total: 18
+
+Deliver Stats (lower is better):
+Average_delivery_time: 28.552
+Maximum_delivery_time:  36.171
+Delivery_performance_score:  150.377
+
+Satisfaction Stats (higher is better):
+Average_satisfaction_score: 100.000
+Min_satisfaction_score:  100.000
+Satisfaction_performance_score:  500.000
+
+
+
+6890.232s simulation seconds
+ 371.037 real seconds
+ effective rate 18.57
+  Running monitoring test: GradingMonitor proj7acceptance2.pass 2h
+Simulator Parameters:
+Command line = -pf /afs/ece.cmu.edu/usr/nnuemah/649grading/proj7acceptance2.pass -rt 2h -monitor GradingMonitor -seed 4242 -fs 5.0 -b 200
+RandomSeed = 4242
+CanNetworkBitTime = 5000 ns
+Effective Can Bitrate = 199999.99999999997
+Run Time = 7200.0s
+Real time rate = null
+Acceptance Test File = /afs/ece.cmu.edu/usr/nnuemah/649grading/proj7acceptance2.pass
+Monitors: GradingMonitor  
+
+
+[Elevator] @0.000000000: Starting Simulation
+[Elevator] @60.000000000: Progress indicator
+[Elevator] @120.000000000: Progress indicator
+[RuntimeMonitor] @125.280000000: WARNING:  R-T7 violated:    The door opened at 7,BACK without any pending calls. Current calls: HC-1-BACK-UP,HC-6-FRONT-DOWN,CC-7-FRONT,
+[Elevator] @180.000000000: Progress indicator
+[RuntimeMonitor] @195.680000000: WARNING:  R-T7 violated:    The door opened at 7,BACK without any pending calls. Current calls: HC-1-FRONT-UP,HC-1-BACK-UP,CC-7-FRONT,
+[Elevator] @240.000000000: Progress indicator
+[Elevator] @300.000000000: Progress indicator
+[RuntimeMonitor] @343.040000000: WARNING:  R-T7 violated:    The door opened at 7,BACK without any pending calls. Current calls: HC-1-FRONT-UP,HC-1-BACK-UP,CC-7-FRONT,
+[Elevator] @360.000000000: Progress indicator
+[Safety] @376.880000000: EMERGENCY BRAKE ENGAGED! Car in motion with the doors open.
+EMERGENCY BRAKE ENGAGED! Car in motion with the doors open.
+simulator.elevatormodules.SafetyViolationException: EMERGENCY BRAKE ENGAGED! Car in motion with the doors open.
+	at simulator.elevatormodules.Safety.EngageBrake(Safety.java:277)
+	at simulator.elevatormodules.Safety.checkDoorOpenInMotion(Safety.java:156)
+	at simulator.elevatormodules.Safety.receive(Safety.java:250)
+	at simulator.payloads.DriveSpeedPayload$ReadableDriveSpeedPayload.deliverTo(DriveSpeedPayload.java:50)
+	at simulator.payloads.NetworkScheduler.timerExpired(NetworkScheduler.java:381)
+	at simulator.framework.AbstractTimer.eventReleased(AbstractTimer.java:159)
+	at jSimPack.FutureEventList.executeSimulationStep(FutureEventList.java:320)
+	at jSimPack.FutureEventList.runSimulation(FutureEventList.java:246)
+	at jSimPack.FutureEventList.runSimulationUntil(FutureEventList.java:237)
+	at simulator.framework.Harness.runSim(Harness.java:86)
+	at simulator.framework.Elevator.main(Elevator.java:471)
+  Running monitoring test: GradingMonitor proj7acceptance3.pass 2h
+Simulator Parameters:
+Command line = -pf /afs/ece.cmu.edu/usr/nnuemah/649grading/proj7acceptance3.pass -rt 2h -monitor GradingMonitor -seed 4242 -fs 5.0 -b 200
+RandomSeed = 4242
+CanNetworkBitTime = 5000 ns
+Effective Can Bitrate = 199999.99999999997
+Run Time = 7200.0s
+Real time rate = null
+Acceptance Test File = /afs/ece.cmu.edu/usr/nnuemah/649grading/proj7acceptance3.pass
+Monitors: GradingMonitor  
+
+
+[Elevator] @0.000000000: Starting Simulation
+[Elevator] @60.000000000: Progress indicator
+[RuntimeMonitor] @91.800000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @91.800000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[Elevator] @120.000000000: Progress indicator
+[RuntimeMonitor] @137.720000000: WARNING:  R-T7 violated:    The door opened at 7,FRONT without any pending calls. Current calls: HC-1-FRONT-UP,CC-1-BACK,HC-4-FRONT-DOWN,CC-7-BACK,
+[Elevator] @180.000000000: Progress indicator
+[RuntimeMonitor] @199.480000000: WARNING:  R-T7 violated:    The door opened at 7,BACK without any pending calls. Current calls: HC-1-FRONT-UP,HC-2-BACK-DOWN,HC-7-FRONT-DOWN,
+[Elevator] @240.000000000: Progress indicator
+[RuntimeMonitor] @278.680000000: WARNING:  R-T7 violated:    The door opened at 7,BACK without any pending calls. Current calls: HC-3-FRONT-DOWN,HC-7-FRONT-DOWN,
+[Elevator] @300.000000000: Progress indicator
+[RuntimeMonitor] @337.240000000: WARNING:  R-T7 violated:    The door opened at 7,BACK without any pending calls. Current calls: HC-2-BACK-DOWN,HC-3-FRONT-DOWN,HC-4-FRONT-DOWN,HC-7-FRONT-DOWN,
+[Elevator] @360.000000000: Progress indicator
+[Elevator] @420.000000000: Progress indicator
+[Elevator] @480.000000000: Progress indicator
+[Elevator] @540.000000000: Progress indicator
+[Elevator] @600.000000000: Progress indicator
+[RuntimeMonitor] @623.400000000: WARNING:  R-T7 violated:    The door opened at 1,FRONT without any pending calls. Current calls: CC-1-BACK,HC-3-FRONT-UP,HC-4-FRONT-DOWN,HC-7-FRONT-DOWN,
+[Elevator] @660.000000000: Progress indicator
+[Elevator] @720.000000000: Progress indicator
+[Elevator] @780.000000000: Progress indicator
+[Elevator] @840.000000000: Progress indicator
+[RuntimeMonitor] @893.320000000: WARNING:  R-T7 violated:    The door opened at 1,FRONT without any pending calls. Current calls: CC-1-BACK,
+[Elevator] @895.475000000: Simulation Finished
+
+Network Utilization Summary:
+Recent: 54.97 % Max: 54.97 %  Overall:  54.97 %
+
+Monitors Warning Results: 
+RuntimeMonitor generated 8 warnings.
+
+Monitors Summmary Results: 
+0 RT-6 violations
+6 RT-7 violations
+0 RT-8.1 violations
+2 RT-8.2 violations
+0 RT-8.3 violations
+0 RT-9 violations
+
+STATISTICS FOR ELEVATOR SIMULATION PASSENGER DELIVERY
+-----------------------------------------------------
+
+
+Passenger Delivery Summary
+Delivered: 51
+Stranded: 0
+Total: 51
+
+Deliver Stats (lower is better):
+Average_delivery_time: 83.328
+Maximum_delivery_time:  183.736
+Delivery_performance_score:  517.047
+
+Satisfaction Stats (higher is better):
+Average_satisfaction_score: 97.451
+Min_satisfaction_score:  20.000
+Satisfaction_performance_score:  409.804
+
+
+
+895.475s simulation seconds
+ 56.832 real seconds
+ effective rate 15.76
+  Running monitoring test: GradingMonitor proj10acceptance1.pass 2h
+Simulator Parameters:
+Command line = -pf /afs/ece.cmu.edu/usr/nnuemah/649grading/proj10acceptance1.pass -rt 2h -monitor GradingMonitor -seed 4242 -fs 5.0 -b 200
+RandomSeed = 4242
+CanNetworkBitTime = 5000 ns
+Effective Can Bitrate = 199999.99999999997
+Run Time = 7200.0s
+Real time rate = null
+Acceptance Test File = /afs/ece.cmu.edu/usr/nnuemah/649grading/proj10acceptance1.pass
+Monitors: GradingMonitor  
+
+
+[Elevator] @0.000000000: Starting Simulation
+[Elevator] @60.000000000: Progress indicator
+[Elevator] @120.000000000: Progress indicator
+[Elevator] @180.000000000: Progress indicator
+[RuntimeMonitor] @222.000000000: WARNING:  R-T7 violated:    The door opened at 7,FRONT without any pending calls. Current calls: CC-7-BACK,HC-7-BACK-DOWN,CC-8-FRONT,
+[Elevator] @240.000000000: Progress indicator
+[RuntimeMonitor] @251.000000000: WARNING:  R-T7 violated:    The door opened at 7,FRONT without any pending calls. Current calls: HC-7-BACK-DOWN,
+[Elevator] @269.663000000: Simulation Finished
+
+Network Utilization Summary:
+Recent: 54.97 % Max: 54.97 %  Overall:  54.97 %
+
+Monitors Warning Results: 
+RuntimeMonitor generated 2 warnings.
+
+Monitors Summmary Results: 
+0 RT-6 violations
+2 RT-7 violations
+0 RT-8.1 violations
+0 RT-8.2 violations
+0 RT-8.3 violations
+0 RT-9 violations
+
+STATISTICS FOR ELEVATOR SIMULATION PASSENGER DELIVERY
+-----------------------------------------------------
+
+
+Passenger Delivery Summary
+Delivered: 17
+Stranded: 0
+Total: 17
+
+Deliver Stats (lower is better):
+Average_delivery_time: 104.768
+Maximum_delivery_time:  236.132
+Delivery_performance_score:  655.202
+
+Satisfaction Stats (higher is better):
+Average_satisfaction_score: 97.059
+Min_satisfaction_score:  90.000
+Satisfaction_performance_score:  478.235
+
+
+
+269.663s simulation seconds
+ 21.208 real seconds
+ effective rate 12.72
+  Running monitoring test: GradingMonitor proj10acceptance2.pass 2h
+Simulator Parameters:
+Command line = -pf /afs/ece.cmu.edu/usr/nnuemah/649grading/proj10acceptance2.pass -rt 2h -monitor GradingMonitor -seed 4242 -fs 5.0 -b 200
+RandomSeed = 4242
+CanNetworkBitTime = 5000 ns
+Effective Can Bitrate = 199999.99999999997
+Run Time = 7200.0s
+Real time rate = null
+Acceptance Test File = /afs/ece.cmu.edu/usr/nnuemah/649grading/proj10acceptance2.pass
+Monitors: GradingMonitor  
+
+
+[Elevator] @0.000000000: Starting Simulation
+[Elevator] @60.000000000: Progress indicator
+[Elevator] @120.000000000: Progress indicator
+[Elevator] @180.000000000: Progress indicator
+[Elevator] @240.000000000: Progress indicator
+[Elevator] @300.000000000: Progress indicator
+[Elevator] @360.000000000: Progress indicator
+[Elevator] @420.000000000: Progress indicator
+[RuntimeMonitor] @453.440000000: WARNING:  R-T7 violated:    The door opened at 1,BACK without any pending calls. Current calls: CC-1-FRONT,HC-1-FRONT-UP,HC-3-FRONT-DOWN,
+[Elevator] @480.000000000: Progress indicator
+[Elevator] @515.673000000: Simulation Finished
+
+Network Utilization Summary:
+Recent: 54.97 % Max: 54.97 %  Overall:  54.97 %
+
+Monitors Warning Results: 
+RuntimeMonitor generated 1 warnings.
+
+Monitors Summmary Results: 
+0 RT-6 violations
+0 RT-7 violations
+0 RT-8.1 violations
+0 RT-8.2 violations
+0 RT-8.3 violations
+0 RT-9 violations
+
+STATISTICS FOR ELEVATOR SIMULATION PASSENGER DELIVERY
+-----------------------------------------------------
+
+
+Passenger Delivery Summary
+Delivered: 27
+Stranded: 0
+Total: 27
+
+Deliver Stats (lower is better):
+Average_delivery_time: 232.856
+Maximum_delivery_time:  450.211
+Delivery_performance_score:  1381.636
+
+Satisfaction Stats (higher is better):
+Average_satisfaction_score: 71.310
+Min_satisfaction_score:  1.139
+Satisfaction_performance_score:  286.381
+
+
+
+515.673s simulation seconds
+ 37.375 real seconds
+ effective rate 13.80
+  Running monitoring test: GradingMonitor proj10acceptance3.pass 2h
+Simulator Parameters:
+Command line = -pf /afs/ece.cmu.edu/usr/nnuemah/649grading/proj10acceptance3.pass -rt 2h -monitor GradingMonitor -seed 4242 -fs 5.0 -b 200
+RandomSeed = 4242
+CanNetworkBitTime = 5000 ns
+Effective Can Bitrate = 199999.99999999997
+Run Time = 7200.0s
+Real time rate = null
+Acceptance Test File = /afs/ece.cmu.edu/usr/nnuemah/649grading/proj10acceptance3.pass
+Monitors: GradingMonitor  
+
+
+[Elevator] @0.000000000: Starting Simulation
+[Elevator] @60.000000000: Progress indicator
+[RuntimeMonitor] @111.440000000: WARNING:  R-T8.1 violated:  CarLantern was not lit at floor 1 while there were pending calls elsewhere.  Current calls:  CC-2-BACK,HC-2-BACK-UP,HC-2-BACK-DOWN,HC-3-FRONT-UP,HC-3-FRONT-DOWN,HC-4-FRONT-UP,HC-5-FRONT-UP,HC-5-FRONT-DOWN,CC-6-FRONT,HC-6-FRONT-UP,HC-6-FRONT-DOWN,CC-8-FRONT,
+[RuntimeMonitor] @111.440000000: WARNING:  R-T8.1 violated:  CarLantern was not lit at floor 1 while there were pending calls elsewhere.  Current calls:  CC-2-BACK,HC-2-BACK-UP,HC-2-BACK-DOWN,HC-3-FRONT-UP,HC-3-FRONT-DOWN,HC-4-FRONT-UP,HC-5-FRONT-UP,HC-5-FRONT-DOWN,CC-6-FRONT,HC-6-FRONT-UP,HC-6-FRONT-DOWN,CC-8-FRONT,
+[Elevator] @120.000000000: Progress indicator
+[Elevator] @180.000000000: Progress indicator
+[Elevator] @240.000000000: Progress indicator
+[Elevator] @300.000000000: Progress indicator
+[Elevator] @360.000000000: Progress indicator
+[RuntimeMonitor] @369.000000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @369.000000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @369.200000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @369.200000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @369.400000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @369.400000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @369.600000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @369.600000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @369.800000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @369.800000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @370.000000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @370.000000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @370.200000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @370.200000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @370.400000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @370.400000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @370.600000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @370.600000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @370.800000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @370.800000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @371.000000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @371.000000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @371.200000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @371.200000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @371.400000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @371.400000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @371.600000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @371.600000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @371.800000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @371.800000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @372.000000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @372.000000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @372.200000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @372.200000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @372.400000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @372.400000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @372.600000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @372.600000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @372.800000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @372.800000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @373.000000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[RuntimeMonitor] @373.000000000: WARNING:  R-T8.2 violated:  Car lanterns in both directions were lit during one door cycle.
+[Elevator] @420.000000000: Progress indicator
+[Elevator] @480.000000000: Progress indicator
+[Elevator] @540.000000000: Progress indicator
+[Elevator] @600.000000000: Progress indicator
+[Elevator] @660.000000000: Progress indicator
+[Elevator] @720.000000000: Progress indicator
+[Elevator] @731.135000000: Simulation Finished
+
+Network Utilization Summary:
+Recent: 54.97 % Max: 54.97 %  Overall:  54.97 %
+
+Monitors Warning Results: 
+RuntimeMonitor generated 44 warnings.
+
+Monitors Summmary Results: 
+0 RT-6 violations
+-1 RT-7 violations
+2 RT-8.1 violations
+42 RT-8.2 violations
+0 RT-8.3 violations
+0 RT-9 violations
+
+STATISTICS FOR ELEVATOR SIMULATION PASSENGER DELIVERY
+-----------------------------------------------------
+
+
+Passenger Delivery Summary
+Delivered: 61
+Stranded: 0
+Total: 61
+
+Deliver Stats (lower is better):
+Average_delivery_time: 263.522
+Maximum_delivery_time:  649.341
+Delivery_performance_score:  1703.430
+
+Satisfaction Stats (higher is better):
+Average_satisfaction_score: 88.493
+Min_satisfaction_score:  1.563
+Satisfaction_performance_score:  355.533
+
+
+
+731.135s simulation seconds
+ 49.884 real seconds
+ effective rate 14.66
+  Running monitoring test: GradingMonitor proj11acceptance1.pass 2h
+Simulator Parameters:
+Command line = -pf /afs/ece.cmu.edu/usr/nnuemah/649grading/proj11acceptance1.pass -rt 2h -monitor GradingMonitor -seed 4242 -fs 5.0 -b 200
+RandomSeed = 4242
+CanNetworkBitTime = 5000 ns
+Effective Can Bitrate = 199999.99999999997
+Run Time = 7200.0s
+Real time rate = null
+Acceptance Test File = /afs/ece.cmu.edu/usr/nnuemah/649grading/proj11acceptance1.pass
+Monitors: GradingMonitor  
+
+
+[Elevator] @0.000000000: Starting Simulation
+[Elevator] @60.000000000: Progress indicator
+[RuntimeMonitor] @67.320000000: WARNING:  R-T7 violated:    The door opened at 1,FRONT without any pending calls. Current calls: CC-1-BACK,HC-4-FRONT-UP,
+[Elevator] @120.000000000: Progress indicator
+[RuntimeMonitor] @142.640000000: WARNING:  R-T7 violated:    The door opened at 1,BACK without any pending calls. Current calls: HC-1-FRONT-UP,
+[RuntimeMonitor] @151.040000000: WARNING:  R-T7 violated:    The door opened at 1,BACK without any pending calls. Current calls: CC-4-FRONT,
+[Elevator] @180.000000000: Progress indicator
+[RuntimeMonitor] @199.400000000: WARNING:  R-T7 violated:    The door opened at 7,FRONT without any pending calls. Current calls: HC-2-BACK-DOWN,HC-7-BACK-DOWN,
+[Elevator] @240.000000000: Progress indicator
+[RuntimeMonitor] @252.440000000: WARNING:  R-T7 violated:    The door opened at 1,BACK without any pending calls. Current calls: CC-1-FRONT,HC-4-FRONT-DOWN,HC-5-FRONT-UP,
+[RuntimeMonitor] @258.440000000: WARNING:  R-T8.1 violated:  CarLantern was not lit at floor 1 while there were pending calls elsewhere.  Current calls:  HC-4-FRONT-DOWN,HC-5-FRONT-UP,
+[RuntimeMonitor] @258.440000000: WARNING:  R-T8.1 violated:  CarLantern was not lit at floor 1 while there were pending calls elsewhere.  Current calls:  HC-4-FRONT-DOWN,HC-5-FRONT-UP,
+[Elevator] @300.000000000: Progress indicator
+[Elevator] @360.000000000: Progress indicator
+[RuntimeMonitor] @389.600000000: WARNING:  R-T7 violated:    The door opened at 7,FRONT without any pending calls. Current calls: HC-3-FRONT-UP,CC-7-BACK,HC-7-BACK-DOWN,
+[Elevator] @420.000000000: Progress indicator
+[RuntimeMonitor] @471.800000000: WARNING:  R-T7 violated:    The door opened at 7,BACK without any pending calls. Current calls: CC-7-FRONT,CC-8-FRONT,
+[Elevator] @480.000000000: Progress indicator
+[RuntimeMonitor] @529.040000000: WARNING:  R-T7 violated:    The door opened at 7,FRONT without any pending calls. Current calls: HC-4-FRONT-DOWN,CC-7-BACK,
+[Elevator] @540.000000000: Progress indicator
+[Elevator] @600.000000000: Progress indicator
+[RuntimeMonitor] @622.240000000: WARNING:  R-T7 violated:    The door opened at 1,FRONT without any pending calls. Current calls: HC-1-BACK-UP,
+[Elevator] @660.000000000: Progress indicator
+[Elevator] @720.000000000: Progress indicator
+[RuntimeMonitor] @727.480000000: WARNING:  R-T7 violated:    The door opened at 7,FRONT without any pending calls. Current calls: HC-7-BACK-DOWN,
+[Elevator] @780.000000000: Progress indicator
+[RuntimeMonitor] @804.560000000: WARNING:  R-T7 violated:    The door opened at 1,FRONT without any pending calls. Current calls: CC-1-BACK,
+[Elevator] @840.000000000: Progress indicator
+[Elevator] @900.000000000: Progress indicator
+[Elevator] @960.000000000: Progress indicator
+[Elevator] @1020.000000000: Progress indicator
+[RuntimeMonitor] @1029.960000000: WARNING:  R-T7 violated:    The door opened at 1,BACK without any pending calls. Current calls: CC-1-FRONT,HC-7-BACK-DOWN,
+[RuntimeMonitor] @1050.440000000: WARNING:  R-T7 violated:    The door opened at 7,FRONT without any pending calls. Current calls: HC-7-BACK-DOWN,
+[Elevator] @1080.000000000: Progress indicator
+[Elevator] @1140.000000000: Progress indicator
+[Elevator] @1200.000000000: Progress indicator
+[RuntimeMonitor] @1205.320000000: WARNING:  R-T7 violated:    The door opened at 1,BACK without any pending calls. Current calls: HC-1-FRONT-UP,
+[RuntimeMonitor] @1251.000000000: WARNING:  R-T7 violated:    The door opened at 1,BACK without any pending calls. Current calls: CC-1-FRONT,
+[Elevator] @1260.000000000: Progress indicator
+[Elevator] @1320.000000000: Progress indicator
+[RuntimeMonitor] @1330.480000000: WARNING:  R-T7 violated:    The door opened at 7,FRONT without any pending calls. Current calls: HC-5-FRONT-DOWN,CC-7-BACK,
+[RuntimeMonitor] @1366.600000000: WARNING:  R-T7 violated:    The door opened at 1,BACK without any pending calls. Current calls: CC-1-FRONT,
+[Elevator] @1380.000000000: Progress indicator
+[RuntimeMonitor] @1422.600000000: WARNING:  R-T7 violated:    The door opened at 7,FRONT without any pending calls. Current calls: HC-7-BACK-DOWN,
+[Elevator] @1440.000000000: Progress indicator
+[RuntimeMonitor] @1445.120000000: WARNING:  R-T7 violated:    The door opened at 1,BACK without any pending calls. Current calls: CC-1-FRONT,
+[RuntimeMonitor] @1482.600000000: WARNING:  R-T7 violated:    The door opened at 7,FRONT without any pending calls. Current calls: HC-3-FRONT-DOWN,CC-7-BACK,
+[Elevator] @1500.000000000: Progress indicator
+[RuntimeMonitor] @1539.200000000: WARNING:  R-T7 violated:    The door opened at 7,FRONT without any pending calls. Current calls: HC-4-FRONT-DOWN,CC-7-BACK,HC-7-BACK-DOWN,
+[Elevator] @1560.000000000: Progress indicator
+[Elevator] @1620.000000000: Progress indicator
+[RuntimeMonitor] @1626.200000000: WARNING:  R-T7 violated:    The door opened at 1,FRONT without any pending calls. Current calls: CC-1-BACK,
+[RuntimeMonitor] @1646.640000000: WARNING:  R-T7 violated:    The door opened at 7,BACK without any pending calls. Current calls: HC-7-FRONT-DOWN,
+[Elevator] @1680.000000000: Progress indicator
+[RuntimeMonitor] @1711.400000000: WARNING:  R-T7 violated:    The door opened at 1,FRONT without any pending calls. Current calls: CC-1-BACK,HC-3-FRONT-UP,
+[Elevator] @1740.000000000: Progress indicator
+[RuntimeMonitor] @1747.600000000: WARNING:  R-T7 violated:    The door opened at 7,FRONT without any pending calls. Current calls: HC-1-BACK-UP,HC-5-FRONT-DOWN,CC-7-BACK,
+[RuntimeMonitor] @1783.000000000: WARNING:  R-T7 violated:    The door opened at 1,FRONT without any pending calls. Current calls: CC-1-BACK,HC-1-BACK-UP,
+[Elevator] @1800.000000000: Progress indicator
+[Elevator] @1860.000000000: Progress indicator
+[RuntimeMonitor] @1883.480000000: WARNING:  R-T7 violated:    The door opened at 7,BACK without any pending calls. Current calls: HC-6-FRONT-DOWN,HC-7-FRONT-DOWN,
+[Elevator] @1920.000000000: Progress indicator
+[RuntimeMonitor] @1934.760000000: WARNING:  R-T7 violated:    The door opened at 1,BACK without any pending calls. Current calls: CC-1-FRONT,HC-5-FRONT-UP,
+[RuntimeMonitor] @1940.840000000: WARNING:  R-T8.1 violated:  CarLantern was not lit at floor 1 while there were pending calls elsewhere.  Current calls:  HC-5-FRONT-UP,
+[RuntimeMonitor] @1940.840000000: WARNING:  R-T8.1 violated:  CarLantern was not lit at floor 1 while there were pending calls elsewhere.  Current calls:  HC-5-FRONT-UP,
+[Elevator] @1980.000000000: Progress indicator
+[RuntimeMonitor] @1982.680000000: WARNING:  R-T7 violated:    The door opened at 7,BACK without any pending calls. Current calls: HC-4-FRONT-UP,HC-7-FRONT-DOWN,
+[RuntimeMonitor] @2005.120000000: WARNING:  R-T7 violated:    The door opened at 1,BACK without any pending calls. Current calls: CC-1-FRONT,HC-4-FRONT-UP,
+[Elevator] @2040.000000000: Progress indicator
+[Elevator] @2100.000000000: Progress indicator
+[RuntimeMonitor] @2122.560000000: WARNING:  R-T7 violated:    The door opened at 1,BACK without any pending calls. Current calls: CC-1-FRONT,HC-3-FRONT-UP,HC-5-FRONT-DOWN,
+[Elevator] @2160.000000000: Progress indicator
+[RuntimeMonitor] @2194.840000000: WARNING:  R-T7 violated:    The door opened at 7,FRONT without any pending calls. Current calls: HC-7-BACK-DOWN,
+[Elevator] @2220.000000000: Progress indicator
+[RuntimeMonitor] @2222.840000000: WARNING:  R-T8.1 violated:  CarLantern was not lit at floor 2 while there were pending calls elsewhere.  Current calls:  HC-7-BACK-DOWN,
+[Elevator] @2280.000000000: Progress indicator
+[RuntimeMonitor] @2311.240000000: WARNING:  R-T7 violated:    The door opened at 7,BACK without any pending calls. Current calls: HC-5-FRONT-DOWN,CC-7-FRONT,
+[Elevator] @2340.000000000: Progress indicator
+[RuntimeMonitor] @2363.520000000: WARNING:  R-T7 violated:    The door opened at 1,FRONT without any pending calls. Current calls: CC-1-BACK,HC-7-FRONT-DOWN,
+[RuntimeMonitor] @2383.840000000: WARNING:  R-T7 violated:    The door opened at 7,BACK without any pending calls. Current calls: HC-7-FRONT-DOWN,
+[Elevator] @2400.000000000: Progress indicator
+[Elevator] @2460.000000000: Progress indicator
+[Elevator] @2520.000000000: Progress indicator
+[Elevator] @2580.000000000: Progress indicator
+[RuntimeMonitor] @2601.160000000: WARNING:  R-T7 violated:    The door opened at 7,BACK without any pending calls. Current calls: HC-3-FRONT-UP,CC-7-FRONT,
+[Elevator] @2640.000000000: Progress indicator
+[RuntimeMonitor] @2676.840000000: WARNING:  R-T8.1 violated:  CarLantern was not lit at floor 5 while there were pending calls elsewhere.  Current calls:  HC-7-BACK-DOWN,
+[RuntimeMonitor] @2687.040000000: WARNING:  R-T7 violated:    The door opened at 7,FRONT without any pending calls. Current calls: HC-7-BACK-DOWN,
+[Elevator] @2700.000000000: Progress indicator
+[Elevator] @2760.000000000: Progress indicator
+[RuntimeMonitor] @2771.560000000: WARNING:  R-T7 violated:    The door opened at 1,BACK without any pending calls. Current calls: HC-1-FRONT-UP,HC-5-FRONT-DOWN,
+[Elevator] @2820.000000000: Progress indicator
+[RuntimeMonitor] @2843.400000000: WARNING:  R-T7 violated:    The door opened at 7,BACK without any pending calls. Current calls: CC-7-FRONT,HC-7-FRONT-DOWN,
+[Elevator] @2880.000000000: Progress indicator
+[RuntimeMonitor] @2883.720000000: WARNING:  R-T7 violated:    The door opened at 1,BACK without any pending calls. Current calls: HC-1-FRONT-UP,
+[Elevator] @2940.000000000: Progress indicator
+[RuntimeMonitor] @2956.400000000: WARNING:  R-T7 violated:    The door opened at 7,FRONT without any pending calls. Current calls: HC-7-BACK-DOWN,
+[Elevator] @3000.000000000: Progress indicator
+[RuntimeMonitor] @3010.000000000: WARNING:  R-T7 violated:    The door opened at 7,FRONT without any pending calls. Current calls: HC-7-BACK-UP,
+[Elevator] @3060.000000000: Progress indicator
+[RuntimeMonitor] @3077.600000000: WARNING:  R-T7 violated:    The door opened at 1,FRONT without any pending calls. Current calls: CC-1-BACK,
+[Elevator] @3120.000000000: Progress indicator
+[RuntimeMonitor] @3147.640000000: WARNING:  R-T7 violated:    The door opened at 1,BACK without any pending calls. Current calls: HC-1-FRONT-UP,
+[Elevator] @3180.000000000: Progress indicator
+[RuntimeMonitor] @3200.720000000: WARNING:  R-T7 violated:    The door opened at 7,FRONT without any pending calls. Current calls: CC-7-BACK,HC-7-BACK-DOWN,
+[Elevator] @3240.000000000: Progress indicator
+[Elevator] @3300.000000000: Progress indicator
+[Elevator] @3360.000000000: Progress indicator
+[RuntimeMonitor] @3368.480000000: WARNING:  R-T7 violated:    The door opened at 1,BACK without any pending calls. Current calls: HC-1-FRONT-UP,HC-2-BACK-UP,
+[Elevator] @3420.000000000: Progress indicator
+[Elevator] @3480.000000000: Progress indicator
+[RuntimeMonitor] @3492.880000000: WARNING:  R-T7 violated:    The door opened at 7,FRONT without any pending calls. Current calls: HC-1-BACK-UP,HC-2-BACK-UP,HC-7-BACK-DOWN,
+[Elevator] @3540.000000000: Progress indicator
+[RuntimeMonitor] @3578.400000000: WARNING:  R-T7 violated:    The door opened at 7,FRONT without any pending calls. Current calls: HC-1-BACK-UP,HC-4-FRONT-UP,HC-7-BACK-UP,
+[RuntimeMonitor] @3586.760000000: WARNING:  R-T7 violated:    The door opened at 7,FRONT without any pending calls. Current calls: HC-1-BACK-UP,HC-4-FRONT-UP,HC-7-BACK-DOWN,
+[Elevator] @3600.000000000: Progress indicator
+[Elevator] @3660.000000000: Progress indicator
+[RuntimeMonitor] @3689.680000000: WARNING:  R-T7 violated:    The door opened at 7,BACK without any pending calls. Current calls: HC-1-FRONT-UP,HC-5-FRONT-DOWN,HC-7-FRONT-DOWN,
+[Elevator] @3720.000000000: Progress indicator
+[RuntimeMonitor] @3742.040000000: WARNING:  R-T7 violated:    The door opened at 1,BACK without any pending calls. Current calls: CC-1-FRONT,HC-1-FRONT-UP,HC-6-FRONT-UP,
+[Elevator] @3780.000000000: Progress indicator
+[RuntimeMonitor] @3799.000000000: WARNING:  R-T7 violated:    The door opened at 7,BACK without any pending calls. Current calls: HC-1-FRONT-UP,HC-5-FRONT-UP,HC-7-FRONT-DOWN,
+[Elevator] @3840.000000000: Progress indicator
+[RuntimeMonitor] @3841.760000000: WARNING:  R-T7 violated:    The door opened at 1,BACK without any pending calls. Current calls: HC-1-FRONT-UP,HC-3-FRONT-UP,HC-5-FRONT-UP,
+[RuntimeMonitor] @3896.760000000: WARNING:  R-T7 violated:    The door opened at 7,FRONT without any pending calls. Current calls: HC-4-FRONT-DOWN,HC-6-FRONT-DOWN,CC-7-BACK,CC-8-FRONT,
+[Elevator] @3900.000000000: Progress indicator
+[Elevator] @3960.000000000: Progress indicator
+[RuntimeMonitor] @4014.200000000: WARNING:  R-T7 violated:    The door opened at 7,BACK without any pending calls. Current calls: HC-1-BACK-UP,HC-7-FRONT-DOWN,
+[Elevator] @4020.000000000: Progress indicator
+[RuntimeMonitor] @4036.600000000: WARNING:  R-T7 violated:    The door opened at 1,FRONT without any pending calls. Current calls: CC-1-BACK,HC-1-BACK-UP,
+[RuntimeMonitor] @4071.840000000: WARNING:  R-T7 violated:    The door opened at 7,FRONT without any pending calls. Current calls: HC-7-BACK-DOWN,
+[Elevator] @4080.000000000: Progress indicator
+[RuntimeMonitor] @4108.480000000: WARNING:  R-T7 violated:    The door opened at 1,FRONT without any pending calls. Current calls: HC-1-BACK-UP,
+[Elevator] @4140.000000000: Progress indicator
+[RuntimeMonitor] @4194.000000000: WARNING:  R-T7 violated:    The door opened at 7,FRONT without any pending calls. Current calls: HC-7-BACK-UP,
+[Elevator] @4200.000000000: Progress indicator
+[RuntimeMonitor] @4246.920000000: WARNING:  R-T7 violated:    The door opened at 1,BACK without any pending calls. Current calls: HC-1-FRONT-UP,
+[Elevator] @4260.000000000: Progress indicator
+[RuntimeMonitor] @4295.000000000: WARNING:  R-T7 violated:    The door opened at 7,BACK without any pending calls. Current calls: HC-2-BACK-DOWN,CC-7-FRONT,
+[Elevator] @4320.000000000: Progress indicator
+[RuntimeMonitor] @4374.200000000: WARNING:  R-T7 violated:    The door opened at 7,BACK without any pending calls. Current calls: HC-7-FRONT-DOWN,
+[Elevator] @4380.000000000: Progress indicator
+[RuntimeMonitor] @4396.720000000: WARNING:  R-T7 violated:    The door opened at 1,BACK without any pending calls. Current calls: CC-1-FRONT,HC-6-FRONT-DOWN,
+[Elevator] @4440.000000000: Progress indicator
+[RuntimeMonitor] @4454.040000000: WARNING:  R-T7 violated:    The door opened at 7,FRONT without any pending calls. Current calls: HC-7-BACK-DOWN,
+[Elevator] @4500.000000000: Progress indicator
+[RuntimeMonitor] @4526.440000000: WARNING:  R-T7 violated:    The door opened at 1,FRONT without any pending calls. Current calls: CC-1-BACK,
+[Elevator] @4560.000000000: Progress indicator
+[RuntimeMonitor] @4619.400000000: WARNING:  R-T7 violated:    The door opened at 7,FRONT without any pending calls. Current calls: HC-2-BACK-UP,HC-7-BACK-UP,
+[Elevator] @4620.000000000: Progress indicator
+[Elevator] @4680.000000000: Progress indicator
+[Elevator] @4740.000000000: Progress indicator
+[Elevator] @4743.653000000: Simulation Finished
+
+Network Utilization Summary:
+Recent: 54.97 % Max: 54.97 %  Overall:  54.97 %
+
+Monitors Warning Results: 
+RuntimeMonitor generated 72 warnings.
+
+Monitors Summmary Results: 
+0 RT-6 violations
+66 RT-7 violations
+6 RT-8.1 violations
+0 RT-8.2 violations
+0 RT-8.3 violations
+0 RT-9 violations
+
+STATISTICS FOR ELEVATOR SIMULATION PASSENGER DELIVERY
+-----------------------------------------------------
+
+
+Passenger Delivery Summary
+Delivered: 150
+Stranded: 0
+Total: 150
+
+Deliver Stats (lower is better):
+Average_delivery_time: 49.372
+Maximum_delivery_time:  143.565
+Delivery_performance_score:  341.052
+
+Satisfaction Stats (higher is better):
+Average_satisfaction_score: 98.867
+Min_satisfaction_score:  50.000
+Satisfaction_performance_score:  445.467
+
+
+
+4743.653s simulation seconds
+ 237.294 real seconds
+ effective rate 19.99
+  Running monitoring test: GradingMonitor proj11acceptance2.pass 2h
+Simulator Parameters:
+Command line = -pf /afs/ece.cmu.edu/usr/nnuemah/649grading/proj11acceptance2.pass -rt 2h -monitor GradingMonitor -seed 4242 -fs 5.0 -b 200
+RandomSeed = 4242
+CanNetworkBitTime = 5000 ns
+Effective Can Bitrate = 199999.99999999997
+Run Time = 7200.0s
+Real time rate = null
+Acceptance Test File = /afs/ece.cmu.edu/usr/nnuemah/649grading/proj11acceptance2.pass
+Monitors: GradingMonitor  
+
+
+[Elevator] @0.000000000: Starting Simulation
+[Elevator] @60.000000000: Progress indicator
+[Elevator] @120.000000000: Progress indicator
+[Elevator] @180.000000000: Progress indicator
+[Elevator] @240.000000000: Progress indicator
+[Elevator] @300.000000000: Progress indicator
+[Elevator] @360.000000000: Progress indicator
+[Elevator] @420.000000000: Progress indicator
+[Elevator] @480.000000000: Progress indicator
+[Elevator] @540.000000000: Progress indicator
+[Elevator] @600.000000000: Progress indicator
+[RuntimeMonitor] @636.800000000: WARNING:  R-T7 violated:    The door opened at 1,FRONT without any pending calls. Current calls: CC-1-BACK,
+[Elevator] @639.515000000: Simulation Finished
+
+Network Utilization Summary:
+Recent: 54.96 % Max: 54.96 %  Overall:  54.96 %
+
+Monitors Warning Results: 
+RuntimeMonitor generated 1 warnings.
+
+Monitors Summmary Results: 
+0 RT-6 violations
+0 RT-7 violations
+0 RT-8.1 violations
+0 RT-8.2 violations
+0 RT-8.3 violations
+0 RT-9 violations
+
+STATISTICS FOR ELEVATOR SIMULATION PASSENGER DELIVERY
+-----------------------------------------------------
+
+
+Passenger Delivery Summary
+Delivered: 56
+Stranded: 0
+Total: 56
+
+Deliver Stats (lower is better):
+Average_delivery_time: 133.700
+Maximum_delivery_time:  492.915
+Delivery_performance_score:  1027.713
+
+Satisfaction Stats (higher is better):
+Average_satisfaction_score: 95.554
+Min_satisfaction_score:  40.000
+Satisfaction_performance_score:  422.214
+
+
+
+639.515s simulation seconds
+ 43.278 real seconds
+ effective rate 14.78
+  Running monitoring test: GradingMonitor proj11acceptance3.pass 2h
+Simulator Parameters:
+Command line = -pf /afs/ece.cmu.edu/usr/nnuemah/649grading/proj11acceptance3.pass -rt 2h -monitor GradingMonitor -seed 4242 -fs 5.0 -b 200
+RandomSeed = 4242
+CanNetworkBitTime = 5000 ns
+Effective Can Bitrate = 199999.99999999997
+Run Time = 7200.0s
+Real time rate = null
+Acceptance Test File = /afs/ece.cmu.edu/usr/nnuemah/649grading/proj11acceptance3.pass
+Monitors: GradingMonitor  
+
+
+[Elevator] @0.000000000: Starting Simulation
+[Elevator] @60.000000000: Progress indicator
+[RuntimeMonitor] @71.000000000: WARNING:  R-T7 violated:    The door opened at 7,FRONT without any pending calls. Current calls: HC-1-FRONT-UP,HC-2-BACK-UP,HC-3-FRONT-UP,HC-5-FRONT-DOWN,HC-6-FRONT-DOWN,HC-7-BACK-DOWN,
+[Elevator] @120.000000000: Progress indicator
+[Elevator] @180.000000000: Progress indicator
+[Elevator] @240.000000000: Progress indicator
+[Elevator] @300.000000000: Progress indicator
+[RuntimeMonitor] @301.040000000: WARNING:  R-T8.1 violated:  CarLantern was not lit at floor 1 while there were pending calls elsewhere.  Current calls:  CC-2-BACK,HC-2-BACK-DOWN,CC-3-FRONT,CC-4-FRONT,HC-4-FRONT-UP,HC-4-FRONT-DOWN,HC-5-FRONT-DOWN,HC-6-FRONT-UP,
+[Elevator] @360.000000000: Progress indicator
+[Elevator] @420.000000000: Progress indicator
+[Elevator] @480.000000000: Progress indicator
+[Elevator] @540.000000000: Progress indicator
+[Elevator] @600.000000000: Progress indicator
+[Elevator] @660.000000000: Progress indicator
+[Elevator] @720.000000000: Progress indicator
+[Elevator] @780.000000000: Progress indicator
+[Elevator] @840.000000000: Progress indicator
+[Elevator] @900.000000000: Progress indicator
+[Elevator] @960.000000000: Progress indicator
+[Elevator] @1020.000000000: Progress indicator
+[Elevator] @1080.000000000: Progress indicator
+[Elevator] @1140.000000000: Progress indicator
+[Elevator] @1200.000000000: Progress indicator
+[Elevator] @1260.000000000: Progress indicator
+[Elevator] @1320.000000000: Progress indicator
+[Elevator] @1380.000000000: Progress indicator
+[Elevator] @1440.000000000: Progress indicator
+[Elevator] @1500.000000000: Progress indicator
+[Elevator] @1560.000000000: Progress indicator
+[Elevator] @1620.000000000: Progress indicator
+[Elevator] @1680.000000000: Progress indicator
+[Elevator] @1740.000000000: Progress indicator
+[Elevator] @1800.000000000: Progress indicator
+[Elevator] @1860.000000000: Progress indicator
+[Elevator] @1920.000000000: Progress indicator
+[Elevator] @1980.000000000: Progress indicator
+[Elevator] @2040.000000000: Progress indicator
+[Elevator] @2100.000000000: Progress indicator
+[Elevator] @2160.000000000: Progress indicator
+[Elevator] @2220.000000000: Progress indicator
+[Elevator] @2280.000000000: Progress indicator
+[Elevator] @2340.000000000: Progress indicator
+[Elevator] @2400.000000000: Progress indicator
+[Elevator] @2460.000000000: Progress indicator
+[Elevator] @2520.000000000: Progress indicator
+[Elevator] @2580.000000000: Progress indicator
+[Elevator] @2640.000000000: Progress indicator
+[Elevator] @2700.000000000: Progress indicator
+[Elevator] @2760.000000000: Progress indicator
+[Elevator] @2820.000000000: Progress indicator
+[Elevator] @2880.000000000: Progress indicator
+[Elevator] @2940.000000000: Progress indicator
+[Elevator] @3000.000000000: Progress indicator
+[Elevator] @3060.000000000: Progress indicator
+[Elevator] @3120.000000000: Progress indicator
+[Elevator] @3180.000000000: Progress indicator
+[Elevator] @3240.000000000: Progress indicator
+[Elevator] @3300.000000000: Progress indicator
+[Elevator] @3360.000000000: Progress indicator
+[Elevator] @3420.000000000: Progress indicator
+[Elevator] @3480.000000000: Progress indicator
+[Elevator] @3540.000000000: Progress indicator
+[Elevator] @3600.000000000: Progress indicator
+[Elevator] @3660.000000000: Progress indicator
+[Elevator] @3720.000000000: Progress indicator
+[Elevator] @3780.000000000: Progress indicator
+[Elevator] @3840.000000000: Progress indicator
+[Elevator] @3900.000000000: Progress indicator
+[Elevator] @3960.000000000: Progress indicator
+[Elevator] @4020.000000000: Progress indicator
+[Elevator] @4080.000000000: Progress indicator
+[Elevator] @4140.000000000: Progress indicator
+[Elevator] @4200.000000000: Progress indicator
+[Elevator] @4260.000000000: Progress indicator
+[Elevator] @4320.000000000: Progress indicator
+[Elevator] @4380.000000000: Progress indicator
+[Elevator] @4440.000000000: Progress indicator
+[Elevator] @4500.000000000: Progress indicator
+[Elevator] @4560.000000000: Progress indicator
+[Elevator] @4620.000000000: Progress indicator
+[Elevator] @4680.000000000: Progress indicator
+[Elevator] @4740.000000000: Progress indicator
+[Elevator] @4800.000000000: Progress indicator
+[Elevator] @4860.000000000: Progress indicator
+[Elevator] @4920.000000000: Progress indicator
+[Elevator] @4980.000000000: Progress indicator
+[Elevator] @5040.000000000: Progress indicator
+[Elevator] @5100.000000000: Progress indicator
+[Elevator] @5160.000000000: Progress indicator
+[Elevator] @5220.000000000: Progress indicator
+[Elevator] @5280.000000000: Progress indicator
+[Elevator] @5340.000000000: Progress indicator
+[Elevator] @5400.000000000: Progress indicator
+[Elevator] @5460.000000000: Progress indicator
+[Elevator] @5520.000000000: Progress indicator
+[Elevator] @5580.000000000: Progress indicator
+[Elevator] @5640.000000000: Progress indicator
+[Elevator] @5700.000000000: Progress indicator
+[Elevator] @5760.000000000: Progress indicator
+[Elevator] @5820.000000000: Progress indicator
+[Elevator] @5880.000000000: Progress indicator
+[Elevator] @5940.000000000: Progress indicator
+[Elevator] @6000.000000000: Progress indicator
+[Elevator] @6060.000000000: Progress indicator
+[Elevator] @6120.000000000: Progress indicator
+[Elevator] @6180.000000000: Progress indicator
+[Elevator] @6240.000000000: Progress indicator
+[Elevator] @6300.000000000: Progress indicator
+[Elevator] @6360.000000000: Progress indicator
+[Elevator] @6420.000000000: Progress indicator
+[Elevator] @6480.000000000: Progress indicator
+[Elevator] @6540.000000000: Progress indicator
+[Elevator] @6600.000000000: Progress indicator
+[Elevator] @6660.000000000: Progress indicator
+[Elevator] @6720.000000000: Progress indicator
+[Elevator] @6780.000000000: Progress indicator
+[Elevator] @6840.000000000: Progress indicator
+[Elevator] @6900.000000000: Progress indicator
+[Elevator] @6960.000000000: Progress indicator
+[Elevator] @7020.000000000: Progress indicator
+[Elevator] @7080.000000000: Progress indicator
+[Elevator] @7140.000000000: Progress indicator
+[Elevator] @7200.000000000: Progress indicator
+[Elevator] @7260.000000000: Progress indicator
+[Elevator] @7320.000000000: Progress indicator
+[Elevator] @7380.000000000: Progress indicator
+[Elevator] @7440.000000000: Progress indicator
+[Elevator] @7500.000000000: Progress indicator
+[Elevator] @7560.000000000: Progress indicator
+[Elevator] @7620.000000000: Progress indicator
+[Elevator] @7680.000000000: Progress indicator
+[Elevator] @7727.700000000: Simulation Finished
+
+Network Utilization Summary:
+Recent: 54.96 % Max: 54.96 %  Overall:  54.96 %
+
+Monitors Warning Results: 
+RuntimeMonitor generated 2 warnings.
+
+Monitors Summmary Results: 
+0 RT-6 violations
+0 RT-7 violations
+1 RT-8.1 violations
+0 RT-8.2 violations
+0 RT-8.3 violations
+0 RT-9 violations
+
+STATISTICS FOR ELEVATOR SIMULATION PASSENGER DELIVERY
+-----------------------------------------------------
+
+
+Passenger Delivery Summary
+Delivered: 21
+Stranded: 35
+Total: 56
+
+Deliver Stats (lower is better):
+Average_delivery_time: n/a
+Maximum_delivery_time:  n/a
+Delivery_performance_score:  2147483647
+
+Satisfaction Stats (higher is better):
+Average_satisfaction_score: n/a
+Min_satisfaction_score:  n/a
+Satisfaction_performance_score:  0.000
+
+
+7727.7s simulation seconds
+ 430.925 real seconds
+ effective rate 17.93
