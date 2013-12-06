@@ -287,7 +287,12 @@ public class DoorControl extends Controller {
                 }
 				// #transition 5.T.3
                 else { // Countdown still greater than 0
-                	newState = State.CLOSING_DOOR; // T3
+                	if (this.reversalCount < this.maxReversals){
+                		newState = State.CLOSING_DOOR; // T3
+                	}
+                	else {
+                		newState = State.NUDGING_DOOR;
+                	}
                 }
                 break;
             case CLOSING_DOOR: // S4
@@ -303,13 +308,8 @@ public class DoorControl extends Controller {
                   		newState = State.OPENING_DOOR; // T5
             	}
                 else if (mDoorReversal1.getValue() || mDoorReversal2.getValue()) { // Check for door reversal
-                	if (this.reversalCount < this.maxReversals){
-	                	newState = State.OPENING_DOOR; // T5
-	                	reversalCount++;
-                	}
-                	else { // Too many reversals have been done
-                		newState = State.NUDGING_DOOR; // T6
-                	}
+                	newState = State.OPENING_DOOR; // T5
+                	reversalCount++;
                 }
 				// #transition 5.T.4
             	else if (mDoorClosed.getValue()) {
