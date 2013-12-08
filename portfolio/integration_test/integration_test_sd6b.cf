@@ -6,7 +6,7 @@
 ; Jeff Lau (jalau)
 ;
 ; @Author: Brody Anderson
-; Integration test: SC6B
+; Integration test: SD6B
 
 DriveControl 10ms true
 CarPositionControl 50ms true

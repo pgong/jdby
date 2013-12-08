@@ -6,7 +6,7 @@
 ; Jeff Lau (jalau)
 ;
 ; @Author: Brody Anderson
-; Integration test: SC4B - DriveControl and DoorControl Integration
+; Integration test: SD4B - DriveControl and DoorControl Integration
 #INCLUDE defines.mf
 
 ;initialize

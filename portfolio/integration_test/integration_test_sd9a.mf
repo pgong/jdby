@@ -6,7 +6,7 @@
 ; Jeff Lau (jalau)
 ;
 ; @Author: David Chow
-; Integration test: SC9A - Dispatcher, DriveControl, DoorControl Integration
+; Integration test: SD9A - Dispatcher, DriveControl, DoorControl Integration
 #INCLUDE defines.mf
 
 ;Initialize

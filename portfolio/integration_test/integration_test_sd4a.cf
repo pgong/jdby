@@ -6,7 +6,7 @@
 ; Jeff Lau (jalau)
 ;
 ; @Author: David Chow
-; Integration test: SC4A
+; Integration test: SD4A
 
 DriveControl 100ms true
 DoorControl FRONT LEFT 100ms true

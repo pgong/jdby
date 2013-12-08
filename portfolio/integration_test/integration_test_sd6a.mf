@@ -6,7 +6,7 @@
 ; Jeff Lau (jalau)
 ;
 ; @Author: David Chow
-; Integration test: SC6A - DriveControl and CarPositionControl Integration
+; Integration test: SD6A - DriveControl and CarPositionControl Integration
 #INCLUDE defines.mf
 
 ;Initialize Drive control jumps from Stopped state to slow state after one period.

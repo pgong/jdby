@@ -6,7 +6,7 @@
 ; Jeff Lau (jalau)
 ;
 ; @Author: David Chow
-; Integration test: SC3A
+; Integration test: SD3A
 
 Dispatcher 8 50ms true
 DriveControl 100ms true

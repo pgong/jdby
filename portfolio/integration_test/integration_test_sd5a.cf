@@ -6,7 +6,7 @@
 ; Jeff Lau (jalau)
 ;
 ; @Author: Brody Anderson
-; Integration test: SD5a
+; Integration test: SD5A
 
 DoorControl FRONT LEFT 100ms true
 DoorControl FRONT RIGHT 100ms true

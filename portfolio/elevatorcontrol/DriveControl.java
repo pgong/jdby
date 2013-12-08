@@ -6,6 +6,7 @@
  * Yang Liu yangliu2
  * Jeffrey Lau jalau
  * DriveControl.java
+ * @author: Yang Liu (yangliu2)
  */
 package simulator.elevatorcontrol;
  
@@ -40,11 +41,6 @@ import simulator.payloads.HoistwayLimitPayload.ReadableHoistwayLimitPayload;
 import simulator.payloads.translators.BooleanCanPayloadTranslator;
 import jSimPack.SimTime;
 
-/**
- * 
- * @author Yang Liu
- *
- */
 public class DriveControl extends Controller{
 
 	/************************

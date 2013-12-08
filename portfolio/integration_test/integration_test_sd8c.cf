@@ -6,7 +6,7 @@
 ; Jeff Lau (jalau)
 ;
 ; @Author: David Chow
-; Integration test: SC4A
+; Integration test: SD8C
 
 DriveControl 100ms true
 Dispatcher 8 50ms true

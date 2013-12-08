@@ -1,3 +1,13 @@
+/*
+ * 18-649 Fall 2013
+ * Group 22
+ * David Chow davidcho
+ * Brody Anderson bcanders
+ * Yang Liu yangliu2
+ * Jeffrey Lau jalau
+ * CarCallCanPayloadTranslator.java
+ * @author: Jeff Lau (jalau)
+ */
 package simulator.elevatorcontrol;
 
 import simulator.elevatorcontrol.MessageDictionary;

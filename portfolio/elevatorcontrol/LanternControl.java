@@ -6,7 +6,7 @@
  * Yang Liu yangliu2
  * Jeffrey Lau jalau
  * LanternControl.java
- * @author: Yang Liu yangliu2
+ * @author: Yang Liu (yangliu2)
  */
 
 package simulator.elevatorcontrol;

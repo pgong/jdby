@@ -6,7 +6,7 @@
 ; Jeff Lau (jalau)
 ;
 ; @Author: Yang Liu
-; Integration test: SD5c
+; Integration test: SD5C
 
 #INCLUDE defines.mf ;include CAN id and period definitions
 

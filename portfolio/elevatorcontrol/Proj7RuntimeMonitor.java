@@ -1,12 +1,14 @@
-/** 18649 Fall 2013
- *  Project 7 Runtime Monitor
- *  Jeffrey Lau jalau
- *  David Chow davidcho
- *  Yang Liu yangliu2
- *  Brody Anderson bcanders
- *  Project7RuntimeMonitor.java
- *  @author Jeff Lau (jalau)
+/*
+ * 18-649 Fall 2013
+ * Group 22
+ * David Chow davidcho
+ * Brody Anderson bcanders
+ * Yang Liu yangliu2
+ * Jeffrey Lau jalau
+ * Project7RuntimeMonitor.java
+ * @author: Jeff Lau (jalau)
  */
+
 package simulator.elevatorcontrol;
 
 import jSimPack.SimTime;
