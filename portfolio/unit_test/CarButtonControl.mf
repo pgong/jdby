@@ -5,9 +5,7 @@
 ; Yang Liu (yangliu2)
 ; Jeff Lau (jalau)
 ;
-; Unit test for CarButtonControl
-; @Author: David Chow
-; Last modified 2013-10-1
+; Unit Test: CarButtonControl
 
 #INCLUDE defines.mf ;include CAN id and period definitions
 

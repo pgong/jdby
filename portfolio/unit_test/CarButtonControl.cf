@@ -4,6 +4,7 @@
 ; Brody Anderson (bcanders)
 ; Yang Liu (yangliu2)
 ; Jeff Lau (jalau)
-; CarButtonControl.cf
+; 
+; Unit Test: CarButtonControl
 
 CarButtonControl 3 FRONT 100ms true

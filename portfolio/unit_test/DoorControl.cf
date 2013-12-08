@@ -1,10 +1,11 @@
-; 18649 Fall 2013
-; group # 22
+; 18649 <Fall 2013>
+; Group 22
 ; David Chow (davidcho)
-; Author: Brody Anderson (bcanders)
+; Brody Anderson (bcanders)
 ; Yang Liu (yangliu2)
 ; Jeff Lau (jalau)
-; doorcontrol_test.cf
+; 
+; Unit Test: DoorControl
 
 
 DoorControl FRONT LEFT 100ms true 

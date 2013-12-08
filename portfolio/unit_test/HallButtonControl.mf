@@ -1,10 +1,11 @@
-; 18649 Fall 2013
-; group 22
-; David Chow davidcho
-; Brody Anderson bcanders
-; Yang Liu yangliu2
-; Jeffrey Lau jalau
-; hallbuttoncontrol_test.mf
+; 18649 <Fall 2013>
+; Group 22
+; David Chow (davidcho)
+; Brody Anderson (bcanders)
+; Yang Liu (yangliu2)
+; Jeff Lau (jalau)
+; 
+; Unit Test: HallButtonControl
 
 #INCLUDE defines.mf
 

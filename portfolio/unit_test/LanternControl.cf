@@ -4,6 +4,7 @@
 ; Brody Anderson bcanders
 ; Yang Liu yangliu2
 ; Jeffrey Lau jalau
-; lanterncontrol.cf
+;
+; Unit Test: LanternControl
 
 LanternControl UP 200.0ms true
