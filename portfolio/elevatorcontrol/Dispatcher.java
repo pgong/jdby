@@ -68,6 +68,7 @@ public class Dispatcher extends Controller{
 	private int numFloors;
 	private int floor;
 	private int curr_f;
+	private int lastFloor;
 	private int curr_pos;
 	private int hallIndexF;
 	private int carIndexF;
@@ -78,6 +79,8 @@ public class Dispatcher extends Controller{
 	private Direction direction;
 	private Direction curr_d;
 	private Direction nextHallCall;
+	
+	private boolean overweight;
 	//This variable is set for when there is a hall call, we wait
 	//for the passenger to submit a call (about 2 seconds after doors
 	//close)
@@ -105,7 +108,9 @@ public class Dispatcher extends Controller{
 
 		this.period = period;
 		this.numFloors = numFloors;
+		overweight = false;
 		curr_f = 1;
+		lastFloor = 1;
 		curr_pos = 0;
 		curr_h = Hallway.BOTH;
 		curr_d = Direction.STOP;
@@ -214,6 +219,10 @@ public class Dispatcher extends Controller{
 		curr_pos = mCarLevelPosition.getPosition();
 		//We add 100 in order to make sure the floor is being updated correctly.
 		curr_f = (curr_pos+100)/5000 + 1;
+		if(curr_f != lastFloor){
+			lastFloor = curr_f;
+			overweight = false;
+		}
 		//System.out.println("curr_pos is " + curr_pos + " and curr_f is " + curr_f);
 		if(Elevator.hasLanding(curr_f, Hallway.FRONT)){
 			if(Elevator.hasLanding(curr_f, Hallway.BACK))
@@ -250,13 +259,17 @@ public class Dispatcher extends Controller{
 				mDesiredFloor.set(curr_f, curr_d, hallway);
 				//System.out.println("2current desired direction:" + mDesiredFloor.getDirection());
 			}
-
+			//If the car is overweight, dont answer hall calls at this floor until later!
+			if(mCarWeight.getValue() > Elevator.MaxCarCapacity){
+				overweight = true;
+			}
+			
 			if(hallway == Hallway.BOTH) {
 				//If either side of doors open and we're not at the floor, emergency!
 				//#transition 11.T.4
 				if ((!mDoorClosed[ReplicationComputer.computeReplicationId(Hallway.FRONT, Side.LEFT)].getValue() ||
-						!mDoorClosed[ReplicationComputer.computeReplicationId(Hallway.BACK, Side.LEFT)].getValue()) && 
-						!mAtFloor[ReplicationComputer.computeReplicationId(curr_f,Hallway.FRONT)].getValue()) {
+					!mDoorClosed[ReplicationComputer.computeReplicationId(Hallway.BACK, Side.LEFT)].getValue()) && 
+					!mAtFloor[ReplicationComputer.computeReplicationId(curr_f,Hallway.FRONT)].getValue()) {
 					newState = State.STATE_EMERGENCY;
 				}
 				//#transition 11.T.3 when doors closed.
@@ -338,7 +351,7 @@ public class Dispatcher extends Controller{
 				mDesiredFloor.set(floor, direction, hallway);
 
 				//Check both sides for closed doors if that is the case.
-				if(hallway == Hallway.BOTH) {
+				if(hallway == Hallway.BOTH || curr_h == Hallway.BOTH) {
 					//If we're at the next target floor AND doors are opening, jump to DOORSOPEN
 					//#transition 11.T.1
 					if(mAtFloor[ReplicationComputer.computeReplicationId(floor,Hallway.FRONT)].getValue() &&
@@ -355,7 +368,8 @@ public class Dispatcher extends Controller{
 					//#transition 11.T.2
 					else if ((!mDoorClosed[ReplicationComputer.computeReplicationId(Hallway.FRONT, Side.LEFT)].getValue() ||
 							!mDoorClosed[ReplicationComputer.computeReplicationId(Hallway.BACK, Side.LEFT)].getValue()) && 
-							!mAtFloor[ReplicationComputer.computeReplicationId(curr_f,curr_h)].getValue() &&
+							!(mAtFloor[ReplicationComputer.computeReplicationId(curr_f,Hallway.FRONT)].getValue() ||
+								mAtFloor[ReplicationComputer.computeReplicationId(curr_f,Hallway.BACK)].getValue()) &&
 							!mAtFloor[ReplicationComputer.computeReplicationId(floor,Hallway.FRONT)].getValue()) {
 						newState = State.STATE_EMERGENCY;
 					}
@@ -389,7 +403,8 @@ public class Dispatcher extends Controller{
 			//State actions for 'EMERGENCY'
 			//#state State 3: Emergency
 		case STATE_EMERGENCY:
-			System.out.println("emergency!");
+			System.out.println("emergency at supposedly" + curr_f + " but at postion " + mCarLevelPosition.getPosition() +
+					" with desiredfloor " + mDesiredFloor.getFloor()+mDesiredFloor.getHallway()+mDesiredFloor.getDirection());
 			floor = 1;
 			hallway = Hallway.BOTH;
 			direction = Direction.STOP;
@@ -479,7 +494,7 @@ public class Dispatcher extends Controller{
 							//If there is a car call or hall call at the given floor, try and set as target.
 							if(mCarCall[index].getValue() || mHallCall[hallIndex].getValue()){
 								//Make sure target hasn't already been set!
-								if(!targetFound && (commitPoint(f, current_d, car_position, speed))){
+								if(!targetFound && (commitPoint(f, current_d, car_position, speed,overweight))){
 									//System.out.println("1A");
 									target = f;
 									targetFound = true;
@@ -517,7 +532,7 @@ public class Dispatcher extends Controller{
 						//If there is a car call or hall call at the given floor, try and set as target.
 						if(mHallCall[hallIndex].getValue()){
 							//Make sure target hasn't already been set!
-							if(!targetFound && (commitPoint(f, current_d, car_position, speed))){
+							if(!targetFound && (commitPoint(f, current_d, car_position, speed,overweight))){
 								//System.out.println("2A");
 								nextHallCall = Direction.DOWN;
 								target = f;
@@ -553,7 +568,7 @@ public class Dispatcher extends Controller{
 							//If there is a car call or hall call at the given floor, try and set as target.
 							if(mCarCall[index].getValue() || mHallCall[hallIndex].getValue()){
 								//Make sure target hasn't already been set!
-								if(!targetFound && (speed==0.0 || commitPoint(f, current_d, car_position, speed))){
+								if(!targetFound && (speed==0.0 || commitPoint(f, current_d, car_position, speed,overweight))){
 									//System.out.println("3A");
 									target = f;
 									targetFound = true;
@@ -591,7 +606,7 @@ public class Dispatcher extends Controller{
 						//If there is a car call or hall call at the given floor, try and set as target.
 						if(mHallCall[hallIndex].getValue()){
 							//Make sure target hasn't already been set!
-							if(!targetFound && (speed == 0.0 || commitPoint(f, current_d, car_position, speed))){
+							if(!targetFound && (speed == 0.0 || commitPoint(f, current_d, car_position, speed,overweight))){
 								//System.out.println("4A");
 								nextHallCall = Direction.UP;
 								target = f;
@@ -629,7 +644,7 @@ public class Dispatcher extends Controller{
 							//If there is a car call or hall call at the given floor, try and set as target.
 							if(mCarCall[index].getValue()==true || mHallCall[hallIndex].getValue()==true){
 								//Make sure target hasn't already been set!
-								if(!targetFound && (commitPoint(f, current_d, car_position, speed))){
+								if(!targetFound && (commitPoint(f, current_d, car_position, speed,overweight))){
 									//System.out.println("5A");
 									target = f;
 									targetFound = true;
@@ -665,7 +680,7 @@ public class Dispatcher extends Controller{
 						//If there is a car call or hall call at the given floor, try and set as target.
 						if(mHallCall[hallIndex].getValue()){
 							//Make sure target hasn't already been set!
-							if(!targetFound && (commitPoint(f, current_d, car_position, speed))){
+							if(!targetFound && (commitPoint(f, current_d, car_position, speed,overweight))){
 								//System.out.println("6A");
 								nextHallCall = Direction.UP;
 								target = f;
@@ -701,7 +716,7 @@ public class Dispatcher extends Controller{
 							//If there is a car call or hall call at the given floor, try and set as target.
 							if(mCarCall[index].getValue() || mHallCall[hallIndex].getValue()){
 								//Make sure target hasn't already been set!
-								if(!targetFound && (speed == 0.0 || commitPoint(f, current_d, car_position, speed))){
+								if(!targetFound && (speed == 0.0 || commitPoint(f, current_d, car_position, speed,overweight))){
 									//System.out.println("7A");
 									target = f;
 									targetFound = true;
@@ -739,7 +754,7 @@ public class Dispatcher extends Controller{
 						//If there is a car call or hall call at the given floor, try and set as target.
 						if(mHallCall[hallIndex].getValue()){
 							//Make sure target hasn't already been set!
-							if(!targetFound && (speed == 0.0 || commitPoint(f, current_d, car_position, speed))){
+							if(!targetFound && (speed == 0.0 || commitPoint(f, current_d, car_position, speed,overweight))){
 								//System.out.println("8A");
 								nextHallCall = Direction.DOWN;
 								target = f;
@@ -813,9 +828,12 @@ public class Dispatcher extends Controller{
 	 * @return true if commit point not reached.
 	 * 		   false if commit point past.
 	 */
-	private boolean commitPoint(int f, Direction d, int car_position, double speed) {
-
-		if(speed == 0.0 && Math.round(car_position/5000) == ((double)f -1.0)){
+	private boolean commitPoint(int f, Direction d, int car_position, double speed, boolean overweight) {
+		//If overweight is true, our target floor can never be equal to the car position.
+		if(overweight && (Math.round(car_position/5000) == ((double)f -1.0))){
+			return false;
+		}
+		else if(speed == 0.0 && Math.round(car_position/5000) == ((double)f -1.0)){
 			return true;
 		}
 		else if(d == Direction.UP){

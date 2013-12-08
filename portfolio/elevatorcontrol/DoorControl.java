@@ -377,15 +377,11 @@ public class DoorControl extends Controller {
 	
 	private void set_open_flag() {
 		if(mDesiredFloor.getHallway() == Hallway.BOTH){
-			if (mCarCall[ReplicationComputer.computeReplicationId(this.currentFloor, Hallway.FRONT)].getValue() &&
-				mCarCall[ReplicationComputer.computeReplicationId(this.currentFloor, Hallway.BACK)].getValue()) {
+			if ((mCarCall[ReplicationComputer.computeReplicationId(this.currentFloor, Hallway.FRONT)].getValue() ||
+				mHallCall[ReplicationComputer.computeReplicationId(this.currentFloor, Hallway.FRONT, mDesiredFloor.getDirection())].getValue())	&&
+				(mCarCall[ReplicationComputer.computeReplicationId(this.currentFloor, Hallway.BACK)].getValue() ||
+				mHallCall[ReplicationComputer.computeReplicationId(this.currentFloor, Hallway.BACK, mDesiredFloor.getDirection())].getValue())) {
 				//System.out.println("wut1");
-				this.open_flag = true;
-			}
-			else if (mDesiredFloor.getDirection() != Direction.STOP &&
-					mHallCall[ReplicationComputer.computeReplicationId(this.currentFloor, Hallway.FRONT, mDesiredFloor.getDirection())].getValue() &&
-					mHallCall[ReplicationComputer.computeReplicationId(this.currentFloor, Hallway.BACK, mDesiredFloor.getDirection())].getValue()) {
-				//System.out.println("i guess they're both true...?" + this.h);
 				this.open_flag = true;
 			}
 			else if (p_dir == mDesiredFloor.getDirection() 
