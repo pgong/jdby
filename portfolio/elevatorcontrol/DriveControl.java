@@ -259,12 +259,18 @@ public class DriveControl extends Controller{
 			//#transition 6.T.1
 			//If we are off level at all, level again.
 			//#transition 6.T.5
-			if(mCarWeight.getValue() >= (Elevator.MaxCarCapacity) &&
-				!mLevel[ReplicationComputer.computeReplicationId(Direction.UP)].getValue()){
+			if(!mLevel[ReplicationComputer.computeReplicationId(Direction.UP)].getValue()){
 				//Set weight_flag
 				weight_flag = true;
 				//Cable slips require the elevator to come back UP
 				direction = Direction.UP;
+				newState = State.STATE_LEVEL;
+			}
+			else if(!mLevel[ReplicationComputer.computeReplicationId(Direction.DOWN)].getValue()){
+				//Set weight_flag
+				weight_flag = true;
+				//Cable slips require the elevator to come back UP
+				direction = Direction.DOWN;
 				newState = State.STATE_LEVEL;
 			}
 			else if(mEmergencyBrake.getValue()) {
