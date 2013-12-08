@@ -85,6 +85,12 @@ public class Proj11RuntimeMonitor extends RuntimeMonitor{
     		warning("R-T7 Violated: Opening doors at floor" + 
     				current_floor + " with no pending calls.");
     	}
+    	else if(mDesiredFloor.getHallway() != Hallway.BOTH){
+    		if(mDesiredFloor.getHallway() != hallway){
+    			warning("R-T7 Violated: Opening doors at floor" + 
+        				current_floor + " hallway " + hallway + " with no pending calls.");
+    		}
+    	}
     }
 
     /**
@@ -141,14 +147,28 @@ public class Proj11RuntimeMonitor extends RuntimeMonitor{
     private void doorOpened(Hallway hallway) {
     	//System.out.println(hallway.toString() + " Door Opened");
     	//if the lantern flickers, violation of 8.2
-    	if(nextDirection != Direction.STOP){
-    		if(!carLanterns[nextDirection.ordinal()].lighted())
-    			warning("R-T8.2 Violated: Car Lantern is flickering!");
+    	if(nextDirection == Direction.UP){
+    		if(carLanterns[Direction.DOWN.ordinal()].lighted())
+    			warning("R-T8.2 Violated: Both lanterns lit in one cycle!");
     		//Check if car lantern is in compliance with requirements.
-    		if(!carLanterns[nextDirection.ordinal()].lighted())
-    			warning("R-T8.1 Violated: Lantern not on with other pending"
-    					+ "calls on other floors");
+    	}	
+    	else if(nextDirection == Direction.DOWN){
+    		if(carLanterns[Direction.UP.ordinal()].lighted())
+    			warning("R-T8.2 Violated: Both lanterns lit in one cycle!");
+    		//Check if car lantern is in compliance with requirements.
     	}
+    	//else, nextDirection == STOP and lantern not on.
+    	else
+    	for(int f = 1; f < Elevator.numFloors; f++){
+			for (Hallway h : Hallway.replicationValues) {
+				for(Direction d : Direction.replicationValues){
+				if(carLights[f][h.ordinal()].lighted() || hallLights[f][h.ordinal()][d.ordinal()].lighted()){
+					warning("R-T8.1 Violated: Lantern not on with other pending"
+	    					+ "calls on other floors at hallway " + hallway);
+					}
+				}
+			}
+    	}	
     }
     
     /**
@@ -198,7 +218,7 @@ public class Proj11RuntimeMonitor extends RuntimeMonitor{
 						if(carLights[f_d][h.ordinal()].lighted() || hallLights[f_d][h.ordinal()][d.ordinal()].lighted()){
 							if(nextDirection != driveActualSpeed.direction())
 								warning("R-T8.3 Violated: Elevator is sevicing direction " +
-				    				driveActualSpeed.direction() + " instead of " + (f_d+1) + " " + h + 
+				    				driveActualSpeed.direction() + " instead of " + f_d + " " + h + 
 				    				" in direction " + nextDirection);
 							}
 						}

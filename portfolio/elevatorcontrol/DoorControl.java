@@ -231,7 +231,10 @@ public class DoorControl extends Controller {
 		if (CurrentMAtFloor() != -1) {
     		this.lastValidFloor = CurrentMAtFloor();
     	}
-		this.currentFloor = this.lastValidFloor;
+		if(currentFloor != lastValidFloor){
+			this.currentFloor = this.lastValidFloor;
+			p_floor = 0;
+		}
 		State newState = state;
         switch (state) {
             case CAR_MOVING: // S1
@@ -248,6 +251,7 @@ public class DoorControl extends Controller {
             				mDesiredFloor.getFloor(),Hallway.FRONT)].getValue() == true 
             				&& mDriveSpeed.getSpeed() == 0.0
             				&& this.open_flag) {
+            			//System.out.println("t1");
             			newState = State.OPENING_DOOR; // T1
             		}
             	}
@@ -305,10 +309,12 @@ public class DoorControl extends Controller {
                 if ((mCarWeight.getValue() >= Elevator.MaxCarCapacity) ||
                 (mCarCall[ReplicationComputer.computeReplicationId(
                  this.currentFloor, this.h)].getValue() == true)) {
+                		//System.out.println("carcall?");
                   		newState = State.OPENING_DOOR; // T5
             	}
                 else if (mDoorReversal1.getValue() || mDoorReversal2.getValue()) { // Check for door reversal
                 	newState = State.OPENING_DOOR; // T5
+                	//System.out.println("reversal?");
                 	reversalCount++;
                 }
 				// #transition 5.T.4
@@ -332,6 +338,7 @@ public class DoorControl extends Controller {
                 if ((mCarWeight.getValue() >= Elevator.MaxCarCapacity) ||
                 (mCarCall[ReplicationComputer.computeReplicationId(
                  this.currentFloor, this.h)].getValue() == true)) {
+                		//System.out.println("nudge carcall??");
                   		newState = State.OPENING_DOOR; // T8
             	}
 				// #transition 5.T.7
@@ -369,20 +376,48 @@ public class DoorControl extends Controller {
 	}
 	
 	private void set_open_flag() {
-		if (mCarCall[ReplicationComputer.computeReplicationId(this.currentFloor, this.h)].getValue()) {
-			this.open_flag = true;
-		}
-		else if (mDesiredFloor.getDirection() != Direction.STOP &&
-				mHallCall[ReplicationComputer.computeReplicationId(this.currentFloor, this.h, mDesiredFloor.getDirection())].getValue()) {
-			this.open_flag = true;
-		}
-		else if (p_dir == mDesiredFloor.getDirection() 
-				&& p_floor == mDesiredFloor.getFloor()
-				&& p_hall == mDesiredFloor.getHallway()) {
-			this.open_flag = false;
+		if(mDesiredFloor.getHallway() == Hallway.BOTH){
+			if (mCarCall[ReplicationComputer.computeReplicationId(this.currentFloor, Hallway.FRONT)].getValue() &&
+				mCarCall[ReplicationComputer.computeReplicationId(this.currentFloor, Hallway.BACK)].getValue()) {
+				//System.out.println("wut1");
+				this.open_flag = true;
+			}
+			else if (mDesiredFloor.getDirection() != Direction.STOP &&
+					mHallCall[ReplicationComputer.computeReplicationId(this.currentFloor, Hallway.FRONT, mDesiredFloor.getDirection())].getValue() &&
+					mHallCall[ReplicationComputer.computeReplicationId(this.currentFloor, Hallway.BACK, mDesiredFloor.getDirection())].getValue()) {
+				//System.out.println("i guess they're both true...?" + this.h);
+				this.open_flag = true;
+			}
+			else if (p_dir == mDesiredFloor.getDirection() 
+					&& p_floor == mDesiredFloor.getFloor()
+					&& p_hall == mDesiredFloor.getHallway()) {
+				//System.out.println("false" + this.h + " dir " + p_dir + " floor " + p_floor + " hall " + p_hall);
+				this.open_flag = false;
+			}
+			else{
+				//System.out.println("last1");
+				this.open_flag = true;
+			}
 		}
 		else {
-			this.open_flag = true;
+			if (mCarCall[ReplicationComputer.computeReplicationId(this.currentFloor, this.h)].getValue()) {
+				//System.out.println("wut2");
+				this.open_flag = true;
+			}
+			else if (mDesiredFloor.getDirection() != Direction.STOP &&
+					mHallCall[ReplicationComputer.computeReplicationId(this.currentFloor, this.h, mDesiredFloor.getDirection())].getValue()) {
+				//System.out.println("wut3");
+				this.open_flag = true;
+			}
+			else if (p_dir == mDesiredFloor.getDirection() 
+					&& p_floor == mDesiredFloor.getFloor()
+					&& p_hall == mDesiredFloor.getHallway()) {
+				this.open_flag = false;
+			}
+			else {
+				//System.out.println("no match?" + mDesiredFloor.getDirection() + mDesiredFloor.getFloor() + mDesiredFloor.getHallway());
+				this.open_flag = true;
+			}
 		}
 		return;
 	}
