@@ -78,7 +78,7 @@ public class Dispatcher extends Controller{
 	private Hallway hallway;
 	private Direction direction;
 	private Direction curr_d;
-	private Direction promised_d;
+	//private Direction promised_d;
 	private Direction nextHallCall;
 
 	private boolean overweight;
@@ -119,7 +119,7 @@ public class Dispatcher extends Controller{
 		hallway = Hallway.BACK;
 		//represents the next direction
 		direction = Direction.STOP;
-		promised_d = Direction.STOP;
+		//promised_d = Direction.STOP;
 		nextHallCall = Direction.STOP;
 		waitForCall = false;
 		log("Created Dispatcher with period = ", period);
@@ -326,7 +326,7 @@ public class Dispatcher extends Controller{
 							waitForCall = true;
 						//curr_d updated within nextTarget() but also updated when we open doors.
 						curr_d = direction;
-						promised_d = direction;
+						//promised_d = direction;
 					}
 					//If either side of doors open and we're not at any floor, emergency!
 					//#transition 11.T.2
@@ -347,7 +347,7 @@ public class Dispatcher extends Controller{
 								!mDoorClosed[ReplicationComputer.computeReplicationId(Hallway.BACK, Side.LEFT)].getValue()))){
 					newState = State.STATE_DOORSOPEN;
 					curr_d = direction;
-					promised_d = direction;
+					//promised_d = direction;
 					if(nextHallCall != Direction.STOP)
 						waitForCall = true;
 				}
@@ -399,15 +399,15 @@ public class Dispatcher extends Controller{
 						hallway = Hallway.BACK;
 					}
 				}
-				if(promised_d != Direction.STOP && promised_d != curr_d ){
-					mDesiredFloor.setDirection(promised_d);
-				}
+				/*if(promised_d != Direction.STOP && promised_d != curr_d ){
+					mDesiredFloor.setDirection(curr_d);
+				}*/
 				//log("floor is ", floor, " next direction is ", direction, " current direction is", curr_d);
 				//System.out.println("Closed floor is " + floor + " next direction is " + direction + " current direction is " + curr_d + " hallway " + hallway);
 				//Now set the next target.
-				else{
+				//else{
 					mDesiredFloor.set(floor, direction, hallway);
-				}
+				//}
 			}
 			break;
 
