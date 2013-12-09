@@ -145,6 +145,7 @@ public class Proj11RuntimeMonitor extends RuntimeMonitor{
      * @param hallway which door the event pertains to
      */
     private void doorOpened(Hallway hallway) {
+    	nextDirection = mDesiredFloor.getDirection();
     	//System.out.println(hallway.toString() + " Door Opened");
     	//if the lantern flickers, violation of 8.2
     	if(nextDirection == Direction.UP){
