@@ -1,9 +1,4 @@
 Things to fix up: 
-Scenario 2B should be numbered
-Sequence Diagram 3a: halllight turns off *after* door opens
-Sequence Diagram 4a: Dispatcher should be BLACK
-Sequence Diagram 7a + 7b: get rid of mDesiredDwell
-Sequence Diagram 10b: mDesiredFloor to go from Dispatcher
 
 
 
