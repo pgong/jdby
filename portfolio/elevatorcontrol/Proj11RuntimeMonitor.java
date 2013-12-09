@@ -201,7 +201,7 @@ public class Proj11RuntimeMonitor extends RuntimeMonitor{
     	if(nextDirection != Direction.STOP){
         	int currentFloor = floorArray.getCurrentFloor() - 1;
         	if(nextDirection == Direction.UP){
-        		for(int f_u = currentFloor; f_u < Elevator.numFloors; f_u++){
+        		for(int f_u = currentFloor+1; f_u < Elevator.numFloors; f_u++){
         			for (Hallway h : Hallway.replicationValues) {
 						for(Direction d : Direction.replicationValues){
 						if(carLights[f_u][h.ordinal()].lighted() || hallLights[f_u][h.ordinal()][d.ordinal()].lighted()){
@@ -215,7 +215,7 @@ public class Proj11RuntimeMonitor extends RuntimeMonitor{
         		}
         	}
         	else if(nextDirection == Direction.DOWN){
-        		for(int f_d = currentFloor;f_d >= 1; f_d--){
+        		for(int f_d = currentFloor-1;f_d >= 1; f_d--){
         			for (Hallway h : Hallway.replicationValues) {
 						for(Direction d : Direction.replicationValues){
 						if(carLights[f_d][h.ordinal()].lighted() || hallLights[f_d][h.ordinal()][d.ordinal()].lighted()){
