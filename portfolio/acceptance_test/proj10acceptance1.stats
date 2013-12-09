@@ -1,7 +1,7 @@
 
 Simulator Parameters:
 Command line = -pf acceptance_test/proj10acceptance1.pass -gui -monitor Proj11RuntimeMonitor -b 200 -fs 5.0
-RandomSeed = 1385013084401
+RandomSeed = 1386628923001
 CanNetworkBitTime = 5000 ns
 Effective Can Bitrate = 199999.99999999997
 Run Time = null
@@ -14,46 +14,43 @@ STATISTICS FOR ELEVATOR SIMULATION PASSENGER DELIVERY
 
 
 These passengers were delivered:
-Passenger 0: INJECTED AT 0.0s and DELIVERED in 29.001s
+Passenger 9: INJECTED AT 5.0s and DELIVERED in 45.208s
   Satisfaction score: 100.0
-Passenger 12: INJECTED AT 7.1s and DELIVERED in 23.743s
+Passenger 0: INJECTED AT 0.0s and DELIVERED in 66.799s
   Satisfaction score: 100.0
-Passenger 10: INJECTED AT 6.0s and DELIVERED in 38.005s
+Passenger 10: INJECTED AT 6.0s and DELIVERED in 77.676s
   Satisfaction score: 100.0
-Passenger 5: INJECTED AT 3.0s and DELIVERED in 55.776s
+Passenger 5: INJECTED AT 3.0s and DELIVERED in 97.641s
   Satisfaction score: 100.0
-Passenger 11: INJECTED AT 7.0s and DELIVERED in 65.68s
+Passenger 2: INJECTED AT 0.6s and DELIVERED in 101.383s
   Satisfaction score: 100.0
-Passenger 8: INJECTED AT 4.0s and DELIVERED in 83.163s
+Passenger 7: INJECTED AT 3.0s and DELIVERED in 100.664s
   Satisfaction score: 100.0
-Passenger 1: INJECTED AT 0.3s and DELIVERED in 88.47s
+Passenger 11: INJECTED AT 7.0s and DELIVERED in 115.083s
   Satisfaction score: 100.0
-Passenger 6: INJECTED AT 3.0s and DELIVERED in 98.999s
+Passenger 3: INJECTED AT 1.0s and DELIVERED in 138.022s
   Satisfaction score: 100.0
-Passenger 16: INJECTED AT 101.0s and DELIVERED in 31.71s
+Passenger 1: INJECTED AT 0.3s and DELIVERED in 140.59s
   Satisfaction score: 100.0
-Passenger 15: INJECTED AT 100.0s and DELIVERED in 64.117s
+Passenger 16: INJECTED AT 101.0s and DELIVERED in 59.683s
   Satisfaction score: 100.0
-Passenger 14: INJECTED AT 66.2s and DELIVERED in 129.152s
+Passenger 15: INJECTED AT 100.0s and DELIVERED in 93.919s
   Satisfaction score: 100.0
-Passenger 13: INJECTED AT 58.0s and DELIVERED in 151.786s
+Passenger 14: INJECTED AT 66.2s and DELIVERED in 160.423s
+  Satisfaction score: 100.0
+Passenger 13: INJECTED AT 58.0s and DELIVERED in 185.719s
+  Satisfaction score: 100.0
+Passenger 8: INJECTED AT 4.0s and DELIVERED in 261.431s
+  Satisfaction score: 100.0
+Passenger 12: INJECTED AT 7.1s and DELIVERED in 303.931s
   Satisfaction score: 90.0
-    @101.300000000: 0.90 Repeated hall call press
-Passenger 9: INJECTED AT 5.0s and DELIVERED in 224.96s
+    @257.140000000: 0.90 Repeated hall call press
+Passenger 4: INJECTED AT 2.0s and DELIVERED in 328.603s
   Satisfaction score: 90.0
-    @27.520000000: 0.90 Repeated hall call press
-Passenger 2: INJECTED AT 0.6s and DELIVERED in 246.689s
+    @257.140000000: 0.90 Repeated hall call press
+Passenger 6: INJECTED AT 3.0s and DELIVERED in 346.19s
   Satisfaction score: 90.0
-    @23.120000000: 0.90 Repeated hall call press
-Passenger 7: INJECTED AT 3.0s and DELIVERED in 245.971s
-  Satisfaction score: 90.0
-    @23.120000000: 0.90 Repeated hall call press
-Passenger 4: INJECTED AT 2.0s and DELIVERED in 259.675s
-  Satisfaction score: 90.0
-    @23.120000000: 0.90 Repeated hall call press
-Passenger 3: INJECTED AT 1.0s and DELIVERED in 275.138s
-  Satisfaction score: 90.0
-    @27.520000000: 0.90 Repeated hall call press
+    @257.140000000: 0.90 Repeated hall call press
 
 Passenger Delivery Summary
 Delivered: 17
@@ -61,14 +58,14 @@ Stranded: 0
 Total: 17
 
 Deliver Stats (lower is better):
-Average_delivery_time: 124.237
-Maximum_delivery_time:  275.138
-Delivery_performance_score:  772.087
+Average_delivery_time: 154.292
+Maximum_delivery_time:  346.190
+Delivery_performance_score:  963.358
 
 Satisfaction Stats (higher is better):
-Average_satisfaction_score: 96.471
+Average_satisfaction_score: 98.235
 Min_satisfaction_score:  90.000
-Satisfaction_performance_score:  475.882
+Satisfaction_performance_score:  482.941
 
 
 
@@ -80,8 +77,8 @@ Monitors Warning Results:
 RuntimeMonitor generated 0 warnings.
 
 Monitors Summmary Results: 
-Overweight Count = 0
-Wasted Opening Count = 0
-Time Spent Reversing = 11.0s
+Overweight Count = 1
+Wasted Opening Count = 1
+Time Spent Reversing = 28.92s
 RuntimeMonitor generated 0 warnings.
 
