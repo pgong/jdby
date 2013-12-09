@@ -59,6 +59,7 @@ public class DoorControl extends Controller {
     private int maxReversals = 2;
     private int reversalCount;
     private boolean open_flag = true;
+    private boolean overweight = false;
     private Direction p_dir = Direction.STOP;
     private int p_floor = 1;
     private Hallway p_hall = Hallway.BOTH;
@@ -234,6 +235,7 @@ public class DoorControl extends Controller {
 		if(currentFloor != lastValidFloor){
 			this.currentFloor = this.lastValidFloor;
 			p_floor = 0;
+			overweight = false;
 		}
 		State newState = state;
         switch (state) {
@@ -283,18 +285,20 @@ public class DoorControl extends Controller {
             	// Increase the countdown whenver the elevator is over weight
             	if (mCarWeight.getValue() >= Elevator.MaxCarCapacity) {
             		this.CountDown = this.Dwell;
+            		overweight = true;
             	}
             	
             	// State 3 transitions
-                if (this.CountDown.isPositive()) { // Countdown has reached 0
+                if (this.CountDown.isPositive()) { // Countdown still greater than 0
                 	newState = state; 
                 }
 				// #transition 5.T.3
-                else { // Countdown still greater than 0
+                else { // Countdown is 0
                 	if (this.reversalCount < this.maxReversals){
                 		newState = State.CLOSING_DOOR; // T3
                 	}
                 	else {
+                		//System.out.println("Nudging after " + reversalCount);
                 		newState = State.NUDGING_DOOR;
                 	}
                 }
@@ -340,10 +344,12 @@ public class DoorControl extends Controller {
                  this.currentFloor, this.h)].getValue() == true)) {
                 		//System.out.println("nudge carcall??");
                   		newState = State.OPENING_DOOR; // T8
+                  		reversalCount = 0;
             	}
 				// #transition 5.T.7
             	else if (mDoorClosed.getValue()) {
             		newState = State.CAR_MOVING; //T7
+            		reversalCount = 0;
             		p_dir = mDesiredFloor.getDirection();
         			p_floor = mDesiredFloor.getFloor();
         			p_hall = mDesiredFloor.getHallway();
@@ -377,7 +383,13 @@ public class DoorControl extends Controller {
 	
 	private void set_open_flag() {
 		if(mDesiredFloor.getHallway() == Hallway.BOTH){
-			if ((mCarCall[ReplicationComputer.computeReplicationId(this.currentFloor, Hallway.FRONT)].getValue() ||
+			//If we were overweight, dont open the door again for a hall call
+			if(overweight &&
+			!mCarCall[ReplicationComputer.computeReplicationId(this.currentFloor, Hallway.FRONT)].getValue() &&
+			!mCarCall[ReplicationComputer.computeReplicationId(this.currentFloor, Hallway.BACK)].getValue()){
+				this.open_flag = false;
+			}
+			else if ((mCarCall[ReplicationComputer.computeReplicationId(this.currentFloor, Hallway.FRONT)].getValue() ||
 				mHallCall[ReplicationComputer.computeReplicationId(this.currentFloor, Hallway.FRONT, mDesiredFloor.getDirection())].getValue())	&&
 				(mCarCall[ReplicationComputer.computeReplicationId(this.currentFloor, Hallway.BACK)].getValue() ||
 				mHallCall[ReplicationComputer.computeReplicationId(this.currentFloor, Hallway.BACK, mDesiredFloor.getDirection())].getValue())) {
@@ -396,11 +408,18 @@ public class DoorControl extends Controller {
 			}
 		}
 		else {
-			if (mCarCall[ReplicationComputer.computeReplicationId(this.currentFloor, this.h)].getValue()) {
+			//If we were overweight, dont open the door again for a hall call
+			if(overweight && mDesiredFloor.getHallway() == this.h &&
+			!mCarCall[ReplicationComputer.computeReplicationId(this.currentFloor, this.h)].getValue()){
+				this.open_flag = false;
+			}
+			else if (mDesiredFloor.getHallway() == this.h &&
+				mCarCall[ReplicationComputer.computeReplicationId(this.currentFloor, this.h)].getValue()) {
 				//System.out.println("wut2");
 				this.open_flag = true;
 			}
 			else if (mDesiredFloor.getDirection() != Direction.STOP &&
+					mDesiredFloor.getHallway() == this.h &&
 					mHallCall[ReplicationComputer.computeReplicationId(this.currentFloor, this.h, mDesiredFloor.getDirection())].getValue()) {
 				//System.out.println("wut3");
 				this.open_flag = true;
