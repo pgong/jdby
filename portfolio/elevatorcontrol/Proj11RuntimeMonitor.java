@@ -1,14 +1,12 @@
-/*
- * 18-649 Fall 2013
- * Group 22
- * David Chow davidcho
- * Brody Anderson bcanders
- * Yang Liu yangliu2
- * Jeffrey Lau jalau
- * Project11RuntimeMonitor.java
- * @author: Jeff Lau (jalau)
+/** 18649 Fall 2013
+ *  Project 7 Runtime Monitor
+ *  Jeffrey Lau jalau
+ *  David Chow davidcho
+ *  Yang Liu yangliu2
+ *  Brody Anderson bcanders
+ *  Project11RuntimeMonitor.java
+ *  @author Jeff Lau (jalau)
  */
-
 package simulator.elevatorcontrol;
 
 import jSimPack.SimTime;
@@ -109,7 +107,7 @@ public class Proj11RuntimeMonitor extends RuntimeMonitor{
      * @param hallway which door the event pertains to
      */
     private void doorReopening(Hallway hallway) {
-        //System.out.println(hallway.toString() + " Door Reopening");
+        //System.out.println(hallway + " Door Reopening");
     	if(!reversalTimer.isRunning)
     		reversalTimer.start();
     	hasReversed = true;
@@ -151,12 +149,14 @@ public class Proj11RuntimeMonitor extends RuntimeMonitor{
     	//if the lantern flickers, violation of 8.2
     	if(nextDirection == Direction.UP){
     		if(carLanterns[Direction.DOWN.ordinal()].lighted())
-    			warning("R-T8.2 Violated: Both lanterns lit in one cycle!");
+    			warning("R-T8.2 Violated: Both lanterns lit in one cycle! NextDirection " + nextDirection +
+    					" DesiredFloor " + mDesiredFloor.getFloor()+mDesiredFloor.getHallway()+mDesiredFloor.getDirection());
     		//Check if car lantern is in compliance with requirements.
     	}	
     	else if(nextDirection == Direction.DOWN){
     		if(carLanterns[Direction.UP.ordinal()].lighted())
-    			warning("R-T8.2 Violated: Both lanterns lit in one cycle!");
+    			warning("R-T8.2 Violated: Both lanterns lit in one cycle! NextDirection " + nextDirection +
+    					" DesiredFloor " + mDesiredFloor.getFloor()+mDesiredFloor.getHallway()+mDesiredFloor.getDirection());
     		//Check if car lantern is in compliance with requirements.
     	}
     	//else, nextDirection == STOP and lantern not on.
@@ -178,7 +178,7 @@ public class Proj11RuntimeMonitor extends RuntimeMonitor{
      * @param hallway
      */
     private void doorNudging(Hallway hallway){
-    	if (hasReversed == false){
+    	if (!hasReversed){
     		warning("R-T10 Violated: Car doors began to nudge "
     				+ "without a previous door reversal.");
     	}
@@ -206,7 +206,7 @@ public class Proj11RuntimeMonitor extends RuntimeMonitor{
 						if(carLights[f_u][h.ordinal()].lighted() || hallLights[f_u][h.ordinal()][d.ordinal()].lighted()){
 							if(nextDirection != driveActualSpeed.direction())
 								warning("R-T8.3 Violated: Elevator is sevicing direction " +
-				    				driveActualSpeed.direction() + " instead of " + f_u+1 + " " + h +
+				    				driveActualSpeed.direction() + " instead of " + (f_u+1) + " " + h +
 				    				" in direction " + nextDirection);
 							}
 						}
@@ -471,7 +471,7 @@ public class Proj11RuntimeMonitor extends RuntimeMonitor{
                         doorOpened(h);
                         break;
                     case OPENING:
-                        if (previousState == DoorState.CLOSING) {
+                        if (previousState == DoorState.CLOSING || previousState == DoorState.OPEN) {
                             doorReopening(h);
                         } else {
                             doorOpening(h);
