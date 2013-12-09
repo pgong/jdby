@@ -297,6 +297,7 @@ public class DoorControl extends Controller {
                 	if (this.reversalCount < this.maxReversals){
                 		newState = State.CLOSING_DOOR; // T3
                 	}
+                    // #transition 5.T.6
                 	else {
                 		//System.out.println("Nudging after " + reversalCount);
                 		newState = State.NUDGING_DOOR;
@@ -309,7 +310,7 @@ public class DoorControl extends Controller {
             	this.CountDown = this.Dwell;
             	
             	// State 4 transitions
-				// #transition 5.T.5 and 5.T.6
+				// #transition 5.T.5
                 if ((mCarWeight.getValue() >= Elevator.MaxCarCapacity) ||
                 (mCarCall[ReplicationComputer.computeReplicationId(
                  this.currentFloor, this.h)].getValue() == true)) {
