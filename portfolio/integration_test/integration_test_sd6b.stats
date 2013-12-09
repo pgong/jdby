@@ -1,21 +1,21 @@
 
 Simulator Parameters:
-Command line = -cf integration_test/integration_test_sd6b.cf -mf integration_test/integration_test_sd6b.mf -fs 5.0
-RandomSeed = 1385402874598
+Command line = -cf integration_test_sd6b.cf -mf integration_test_sd6b.mf
+RandomSeed = 1386626786544
 CanNetworkBitTime = 0 ns
 Effective Can Bitrate = Infinity
 Run Time = null
 Real time rate = null
-Message File = integration_test/integration_test_sd6b.mf
-Controller File = integration_test/integration_test_sd6b.cf
+Message File = integration_test_sd6b.mf
+Controller File = integration_test_sd6b.cf
 
 Assertion Results:
-@1.11s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@36baa466 :: getValue ?== 3 PASSED
-@1.62s:  PASSED DriveControl::checkState(STATE) ?== STATE_FAST PASSED
-@1.62s:  PASSED simulator.payloads.DrivePayload$ReadableDrivePayload@38ee6681 :: speed ?== FAST PASSED
-@1.62s:  PASSED simulator.payloads.DrivePayload$ReadableDrivePayload@62facf0b :: direction ?== UP PASSED
-@1.62s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@513c6a22 :: getSpeed ?== 5.0 PASSED
-@1.62s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@d0721b0 :: getDirection ?== UP PASSED
+@1.31s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@29c204 :: getValue ?== 3 PASSED
+@1.82s:  PASSED DriveControl::checkState(STATE) ?== STATE_FAST PASSED
+@1.82s:  PASSED simulator.payloads.DrivePayload$ReadableDrivePayload@df48c4 :: speed ?== FAST PASSED
+@1.82s:  PASSED simulator.payloads.DrivePayload$ReadableDrivePayload@ee3aa7 :: direction ?== UP PASSED
+@1.82s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@54f9f1 :: getSpeed ?== 5.0 PASSED
+@1.82s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@dc86eb :: getDirection ?== UP PASSED
 
 
 ******************Summary******************

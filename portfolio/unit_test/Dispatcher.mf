@@ -1,11 +1,9 @@
-; 18649 <Fall 2013>
-; Group 22
-; David Chow (davidcho)
-; Brody Anderson (bcanders)
-; Yang Liu (yangliu2)
-; Jeff Lau (jalau)
-; 
-; Unit Test: Dispatcher
+;18-649 Fall 2013
+;Unit test for DriveControl
+;Group 22 - Brody Anderson (bcanders), 
+;Jeff Lau (jalau), 
+;David Chow (davidcho),
+;Yang Liu (yangliu2)
 
 #INCLUDE defines.mf ;include CAN id and period definitions
 
@@ -16,14 +14,15 @@
 0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][LEFT]_CAN_ID DoorClosed BACK LEFT = false
 0s  I  AT_FLOOR_PERIOD N AT_FLOOR_[1][FRONT]_CAN_ID AtFloor 1 FRONT = true
 0s  I  HALL_BUTTON_CONTROL_PERIOD N HALL_CALL_[2][BACK][UP]_CAN_ID HallCall 2 BACK UP = true
++0s  I  CAR_LEVEL_POSITION_PERIOD N CAR_LEVEL_POSITION_CAN_ID CarLevelPosition = 0
 +0.1s  I  CAR_BUTTON_CONTROL_PERIOD N CAR_CALL_[5][FRONT]_CAN_ID CarCall 5 FRONT = true
 +0s  I  DRIVE_CONTROL_PERIOD N DRIVE_SPEED_CAN_ID DriveSpeed = 0.0 STOP
-+0s  I  CAR_LEVEL_POSITION_PERIOD N CAR_LEVEL_POSITION_CAN_ID CarLevelPosition = 0
+
 
 ;check that state 2:
 ;#state 'STATE_DOORSOPEN
 +0.21s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getFloor == 1
-+0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getDirection == STOP
++0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getDirection == UP
 +0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getHallway == BOTH
 
 ;Set conditions to get to the next floor
@@ -53,9 +52,10 @@
 ;check state 2
 ;#state 'STATE_DOORSOPEN'
 +0.21s A N HALL_CALL_[2][BACK][UP]_CAN_ID HallCall 2 BACK UP : getValue == false
-+0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getFloor == 5
-+0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getDirection == STOP
-+0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getHallway == FRONT
++0s  A N CAR_CALL_[5][FRONT]_CAN_ID CarCall 5 FRONT : getValue == true
++0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getFloor == 2
++0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getDirection == UP
++0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getHallway == BACK
 
 ;Set conditions to get to the next floor
 ;#transition 11.T.3
@@ -65,7 +65,7 @@
 
 ;check state 1
 ;#state 'STATE_DOORSCLOSED
-+0.21s A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0.0
++2.2s A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0.0
 +0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getFloor == 5
 +0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getDirection == STOP
 +0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getHallway == FRONT
@@ -93,7 +93,7 @@
 ;check state 2
 ;#state 'STATE_DOORSOPEN
 +0.21s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getFloor == 1
-+0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getDirection == STOP
++0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getDirection == UP
 +0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getHallway == BOTH
 
 ;Set conditions to get to an emergency state
@@ -113,7 +113,7 @@
 ;check state 2
 ;#state 'STATE_DOORSOPEN
 +0.21s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getFloor == 1
-+0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getDirection == STOP
++0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getDirection == UP
 +0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getHallway == BOTH
 
 ;Set conditions to get to the DoorsClosed State and set on level 3
@@ -182,11 +182,11 @@
 +0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][RIGHT]_CAN_ID DoorClosed BACK RIGHT = true
 +0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][LEFT]_CAN_ID DoorClosed BACK LEFT = true
 
-;Expect 1 STOP BOTH
+;Expect 1 STOP FRONT
 ;#state 'STATE_DOORSCLOSED
 +0.21s  A  N DESIRED_FLOOR_CAN_ID DesiredFloor : getFloor == 1
 +0s  A  N DESIRED_FLOOR_CAN_ID DesiredFloor : getDirection == STOP
-+0s  A  N DESIRED_FLOOR_CAN_ID DesiredFloor : getHallway == BOTH
++0s  A  N DESIRED_FLOOR_CAN_ID DesiredFloor : getHallway == FRONT
 
 ;Set conditions for hall call down at floor 2
 +0.025s  I  HALL_BUTTON_CONTROL_PERIOD N HALL_CALL_[2][BACK][DOWN]_CAN_ID HallCall 2 BACK DOWN = true
@@ -203,9 +203,9 @@
 +0.1s  I  HALL_BUTTON_CONTROL_PERIOD N HALL_CALL_[2][BACK][DOWN]_CAN_ID HallCall 2 BACK DOWN = false
 
 ;check state 1
-;Expect 1 UP BOTH
+;Expect 1 UP FRONT
 ;#state 'STATE_DOORSCLOSED
 +0.21s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getFloor == 1
 +0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getDirection == UP
-+0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getHallway == BOTH
++0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getHallway == FRONT
 

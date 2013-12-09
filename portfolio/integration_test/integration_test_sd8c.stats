@@ -1,28 +1,28 @@
 
 Simulator Parameters:
-Command line = -cf integration_test/integration_test_sd8c.cf -mf integration_test/integration_test_sd8c.mf -fs 5.0
-RandomSeed = 1385402903718
+Command line = -cf integration_test_sd8c.cf -mf integration_test_sd8c.mf
+RandomSeed = 1386627586225
 CanNetworkBitTime = 0 ns
 Effective Can Bitrate = Infinity
 Run Time = null
 Real time rate = null
-Message File = integration_test/integration_test_sd8c.mf
-Controller File = integration_test/integration_test_sd8c.cf
+Message File = integration_test_sd8c.mf
+Controller File = integration_test_sd8c.cf
 
 Assertion Results:
-@0.91s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@48082d37 :: command ?== STOP PASSED
-@0.91s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@6f649b44 :: getFloor ?== 5 PASSED
-@0.91s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@426295eb :: getDirection ?== STOP PASSED
-@0.91s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@5ff3ce5c :: getHallway ?== FRONT PASSED
+@0.91s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@b51404 :: command ?== STOP PASSED
+@0.91s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@1db484d :: getFloor ?== 5 PASSED
+@0.91s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@94cb8b :: getDirection ?== STOP PASSED
+@0.91s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@118278a :: getHallway ?== FRONT PASSED
 @1.12s:  PASSED DriveControl::checkState(STATE) ?== STATE_SLOW PASSED
-@1.12s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@16ba5c7a :: getSpeed ?== 5.0 PASSED
-@1.12s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@f5e0873 :: getDirection ?== UP PASSED
-@2.12s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@7977b9b :: getFloor ?== 5 PASSED
-@2.12s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@7c2e1f1f :: getDirection ?== DOWN PASSED
-@2.12s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@5eb7ec5d :: getHallway ?== FRONT PASSED
+@1.12s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@1a1c42f :: getSpeed ?== 5.0 PASSED
+@1.12s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@121b59a :: getDirection ?== UP PASSED
+@2.12s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@9fa8f :: getFloor ?== 5 PASSED
+@2.12s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@4845aa :: getDirection ?== DOWN PASSED
+@2.12s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@1701bdc :: getHallway ?== FRONT PASSED
 @2.12s:  PASSED DriveControl::checkState(STATE) ?== STATE_SLOW PASSED
-@2.12s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@7ac2b2f6 :: getSpeed ?== 5.0 PASSED
-@2.12s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@37a001ff :: getDirection ?== UP PASSED
+@2.12s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@8c5ea2 :: getSpeed ?== 5.0 PASSED
+@2.12s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@1579a30 :: getDirection ?== UP PASSED
 
 
 ******************Summary******************

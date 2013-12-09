@@ -1,29 +1,29 @@
 
 Simulator Parameters:
-Command line = -cf integration_test/integration_test_sd1c.cf -mf integration_test/integration_test_sd1c.mf -fs 5.0
-RandomSeed = 1385402789116
+Command line = -cf integration_test_sd1c.cf -mf integration_test_sd1c.mf
+RandomSeed = 1386625729256
 CanNetworkBitTime = 0 ns
 Effective Can Bitrate = Infinity
 Run Time = null
 Real time rate = null
-Message File = integration_test/integration_test_sd1c.mf
-Controller File = integration_test/integration_test_sd1c.cf
+Message File = integration_test_sd1c.mf
+Controller File = integration_test_sd1c.cf
 
 Assertion Results:
 @0.41s:  PASSED DoorControl[FRONT][LEFT]::checkState(STATE) ?== WAIT_FOR_DWELL PASSED
 @0.41s:  PASSED DoorControl[FRONT][RIGHT]::checkState(STATE) ?== WAIT_FOR_DWELL PASSED
-@0.41s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@402f0df1 :: command ?== STOP PASSED
-@0.41s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@555c07d8 :: command ?== STOP PASSED
+@0.41s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@2d95b3 :: command ?== STOP PASSED
+@0.41s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@17b4703 :: command ?== STOP PASSED
 @2.93s:  PASSED DoorControl[FRONT][LEFT]::checkState(STATE) ?== CLOSING_DOOR PASSED
 @2.93s:  PASSED DoorControl[FRONT][RIGHT]::checkState(STATE) ?== CLOSING_DOOR PASSED
-@2.93s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@4d3c7378 :: command ?== CLOSE PASSED
-@2.93s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@788ab708 :: command ?== CLOSE PASSED
+@2.93s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@4977e2 :: command ?== CLOSE PASSED
+@2.93s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@1fc1a6 :: command ?== CLOSE PASSED
 @3.96s:  PASSED HallButtonControl[4][FRONT][DOWN]::checkState(STATE) ?== STATE_LIGHT_OFF PASSED
-@3.96s:  PASSED simulator.payloads.HallLightPayload$ReadableHallLightPayload@125b8827 :: lighted ?== false PASSED
-@3.96s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@48082d37 :: getValue ?== false PASSED
+@3.96s:  PASSED simulator.payloads.HallLightPayload$ReadableHallLightPayload@3afb99 :: lighted ?== false PASSED
+@3.96s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@c4d04d :: getValue ?== false PASSED
 @5.0s:  PASSED HallButtonControl[4][FRONT][DOWN]::checkState(STATE) ?== STATE_LIGHT_OFF PASSED
-@5.0s:  PASSED simulator.payloads.HallLightPayload$ReadableHallLightPayload@360dc67e :: lighted ?== false PASSED
-@5.0s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@56609959 :: getValue ?== false PASSED
+@5.0s:  PASSED simulator.payloads.HallLightPayload$ReadableHallLightPayload@46b90a :: lighted ?== false PASSED
+@5.0s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@1284fd4 :: getValue ?== false PASSED
 
 
 ******************Summary******************

@@ -1,25 +1,25 @@
 
 Simulator Parameters:
-Command line = -cf integration_test/integration_test_sd7c.cf -mf integration_test/integration_test_sd7c.mf -fs 5.0
-RandomSeed = 1385402889798
+Command line = -cf integration_test_sd7c.cf -mf integration_test_sd7c.mf
+RandomSeed = 1386627080884
 CanNetworkBitTime = 0 ns
 Effective Can Bitrate = Infinity
 Run Time = null
 Real time rate = null
-Message File = integration_test/integration_test_sd7c.mf
-Controller File = integration_test/integration_test_sd7c.cf
+Message File = integration_test_sd7c.mf
+Controller File = integration_test_sd7c.cf
 
 Assertion Results:
 @3.61s:  PASSED DoorControl[FRONT][LEFT]::checkState(STATE) ?== CLOSING_DOOR PASSED
 @3.61s:  PASSED DoorControl[FRONT][RIGHT]::checkState(STATE) ?== CLOSING_DOOR PASSED
-@3.61s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@177f409c :: command ?== CLOSE PASSED
-@3.61s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@38ee6681 :: command ?== CLOSE PASSED
+@3.61s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@1546dbc :: command ?== CLOSE PASSED
+@3.61s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@322bce :: command ?== CLOSE PASSED
 @6.83s:  PASSED DoorControl[FRONT][LEFT]::checkState(STATE) ?== CAR_MOVING PASSED
 @6.83s:  PASSED DoorControl[FRONT][RIGHT]::checkState(STATE) ?== CAR_MOVING PASSED
-@6.83s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@c2f48d2 :: command ?== STOP PASSED
-@6.83s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@30296f76 :: command ?== STOP PASSED
+@6.83s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@1f0aecc :: command ?== STOP PASSED
+@6.83s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@1cebc9f :: command ?== STOP PASSED
 @6.83s:  PASSED LanternControl[UP]::checkState(STATE) ?== STATE_LANTERN_OFF PASSED
-@6.83s:  PASSED simulator.payloads.CarLanternPayload$ReadableCarLanternPayload@3bc0f2e5 :: lighted ?== false PASSED
+@6.83s:  PASSED simulator.payloads.CarLanternPayload$ReadableCarLanternPayload@1342a67 :: lighted ?== false PASSED
 
 
 ******************Summary******************

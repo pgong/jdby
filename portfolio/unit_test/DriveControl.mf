@@ -1,11 +1,9 @@
-; 18649 <Fall 2013>
-; Group 22
-; David Chow (davidcho)
-; Brody Anderson (bcanders)
-; Yang Liu (yangliu2)
-; Jeff Lau (jalau)
-; 
-; Unit Test: DriveControl
+;18-649 Fall 2013
+;Unit test for DriveControl
+;Group 22 - Brody Anderson (bcanders), 
+;Jeff Lau (jalau), 
+;David Chow (davidcho),
+;Yang Liu (yangliu2)
 
 #INCLUDE defines.mf ;include CAN id and period definitions
 
@@ -15,6 +13,7 @@
 0s  I  AT_FLOOR_PERIOD N AT_FLOOR_[1][FRONT]_CAN_ID AtFloor 1 FRONT = true
 0s  I  DISPATCHER_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 1 STOP BOTH
 0s  I  DRIVE_CONTROL_PERIOD N LEVEL_SENSOR_[UP]_CAN_ID Leveling UP = true
++0s  I  CAR_LEVEL_POSITION_PERIOD N CAR_LEVEL_POSITION_CAN_ID CarLevelPosition = 0
 
 ;check initial state
 ;#state 'STATE_STOP'
@@ -58,8 +57,9 @@
 +0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][RIGHT]_CAN_ID DoorClosed BACK RIGHT = true
 +0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][LEFT]_CAN_ID DoorClosed BACK LEFT = true
 +0s  I AT_FLOOR_PERIOD N AT_FLOOR_[1][FRONT]_CAN_ID AtFloor 1 FRONT = false
++0s  I  DRIVE_CONTROL_PERIOD N LEVEL_SENSOR_[UP]_CAN_ID Leveling UP = true
 +0s  I DISPATCHER_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 2 STOP BACK
-+0s  I DRIVE_CONTROL_PERIOD F DriveSpeed = UP 0.20
++0.2s  I DRIVE_CONTROL_PERIOD F DriveSpeed = UP 0.20
 +0s  I  DRIVE_CONTROL_PERIOD N LEVEL_SENSOR_[UP]_CAN_ID Leveling UP = false
 
 ;Check that elevator moves to slow_state based on new DesiredFloor
@@ -83,6 +83,7 @@
 
 ;#transition '6.T.4'
 +0.21s  I DRIVE_CONTROL_PERIOD F DriveSpeed = STOP 0.05
++0s  I  DRIVE_CONTROL_PERIOD N LEVEL_SENSOR_[UP]_CAN_ID Leveling UP = true
 
 ;Check state outputs
 ;#state 'S7.1 STATE_STOP'
@@ -105,6 +106,7 @@
 ;Revert back to normal state
 +0.21s  I  DRIVE_CONTROL_PERIOD N EMERGENCY_BRAKE_CAN_ID SafetySensor = false
 +0s  I DRIVE_CONTROL_PERIOD F DriveSpeed = UP 0.20
++0s  I  DRIVE_CONTROL_PERIOD N LEVEL_SENSOR_[UP]_CAN_ID Leveling UP = true
 
 ;Reverting conditions back for 6.T.2 and checking state
 ;Check that elevator moves to slow_state based on new DesiredFloor
@@ -117,6 +119,7 @@
 ;Set conditions for 6.T.7
 +0.21s  I DRIVE_CONTROL_PERIOD F DriveSpeed = UP 0.25
 +0s  I DISPATCHER_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 2 STOP BACK
++0s  I  DRIVE_CONTROL_PERIOD N LEVEL_SENSOR_[UP]_CAN_ID Leveling UP = false
 +0s  I CAR_POSITION_CONTROL_PERIOD N CAR_LEVEL_POSITION_CAN_ID CarLevelPosition = 3000
 
 ;Transition to State Fast:
@@ -173,6 +176,7 @@
 
 ;#transition '6.T.4'
 +0.21s  I DRIVE_CONTROL_PERIOD F DriveSpeed = STOP 0.05
++0s  I  DRIVE_CONTROL_PERIOD N LEVEL_SENSOR_[UP]_CAN_ID Leveling UP = true
 
 ;Check state outputs
 ;#state 'S7.1 STATE_STOP'
@@ -202,7 +206,7 @@
 +0s  I AT_FLOOR_PERIOD N AT_FLOOR_[1][FRONT]_CAN_ID AtFloor 1 FRONT = false
 +0s  I DISPATCHER_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 2 STOP BACK
 +0s  I DRIVE_CONTROL_PERIOD F DriveSpeed = UP 0.20
-+0s  I  DRIVE_CONTROL_PERIOD N LEVEL_SENSOR_[UP]_CAN_ID Leveling UP = false
++0s  I  DRIVE_CONTROL_PERIOD N LEVEL_SENSOR_[UP]_CAN_ID Leveling UP = true
 
 ;#state 'STATE_SLOW'
 +0.21s  A F Drive : speed == SLOW
@@ -216,6 +220,7 @@
 ;#transition '6.T.4'
 +0.21s  I AT_FLOOR_PERIOD N AT_FLOOR_[2][BACK]_CAN_ID AtFloor 2 BACK = true
 +0s  I DRIVE_CONTROL_PERIOD F DriveSpeed = UP 0.05
++0s  I  DRIVE_CONTROL_PERIOD N LEVEL_SENSOR_[UP]_CAN_ID Leveling UP = false
 
 ;Check State for Leveling outputs
 ;#state 'STATE_LEVEL'

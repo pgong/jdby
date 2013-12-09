@@ -10,7 +10,8 @@
 #INCLUDE defines.mf
 
 ;initialize
-0s I AT_FLOOR_PERIOD N AT_FLOOR_[3][FRONT]_CAN_ID AtFloor 3 FRONT = false
+0s I AT_FLOOR_PERIOD N AT_FLOOR_[2][BACK]_CAN_ID AtFloor 2 BACK = true
++0s  I  DRIVE_CONTROL_PERIOD N LEVEL_SENSOR_[UP]_CAN_ID Leveling UP = true
 +0s I DISPATCHER_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 3 STOP FRONT
 +0s I DOOR_CONTROL_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = true
 +0s I DOOR_CONTROL_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = true
@@ -18,6 +19,8 @@
 +0s I DOOR_CONTROL_PERIOD N DOOR_CLOSED_SENSOR_[BACK][RIGHT]_CAN_ID DoorClosed BACK RIGHT = true
 +0s I DOOR_CONTROL_PERIOD N DESIRED_DWELL_[FRONT]_CAN_ID DesiredDwell FRONT = 2s
 +0.21s I DRIVE_CONTROL_PERIOD F DriveSpeed = UP 0.25
++0s  I AT_FLOOR_PERIOD N AT_FLOOR_[2][BACK]_CAN_ID AtFloor 2 BACK = false
++0s  I  DRIVE_CONTROL_PERIOD N LEVEL_SENSOR_[UP]_CAN_ID Leveling UP = false
 
 ;Check that Car is moving to 3rd floor
 +0.21s A S DoorControl[FRONT][LEFT] : STATE == CAR_MOVING
@@ -49,9 +52,10 @@
 ;Level is true
 +0.21s I  DRIVE_CONTROL_PERIOD N LEVEL_SENSOR_[UP]_CAN_ID Leveling UP = true
 +0s I DRIVE_CONTROL_PERIOD F DriveSpeed = STOP 0.0
++0s  I  CAR_LEVEL_POSITION_PERIOD N CAR_LEVEL_POSITION_CAN_ID CarLevelPosition = 10000
 
 ;Check that Elevator has stopped and doors have started opening
-+0.41s A S DriveControl : STATE == STATE_STOP
++0.51s A S DriveControl : STATE == STATE_STOP
 +0s A F Drive : speed == STOP
 +0s A F Drive : direction == STOP
 +0s A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0.0
