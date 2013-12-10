@@ -15,33 +15,37 @@
 0s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[FRONT][LEFT]_CAN_ID DoorOpened FRONT LEFT = true
 0s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[FRONT][RIGHT]_CAN_ID DoorOpened FRONT RIGHT = true
 
-;Check to see if in dwell (0)
+;Check to see if in dwell
 +0.55s A S DoorControl[FRONT][LEFT] : STATE == WAIT_FOR_DWELL
 +0s A S DoorControl[FRONT][RIGHT] : STATE == WAIT_FOR_DWELL
 +0s A F DoorMotor FRONT LEFT : command == STOP
 +0s A F DoorMotor FRONT RIGHT : command == STOP
 
-;Check to see if door closing (0.35)
+;Check to see if door closing
+; Arc 1
 +2.52s A S DoorControl[FRONT][LEFT] : STATE == CLOSING_DOOR
 +0s A F DoorMotor FRONT LEFT : command == CLOSE
 
-;Button pressed for current floor (2.87)
+;Button pressed for current floor
+; Arc 2a, 2b, 2c
 +0.1s I CAR_BUTTON_CONTROL_PERIOD F CarCall 3 FRONT = true 
 +0s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[FRONT][LEFT]_CAN_ID DoorOpened FRONT LEFT = false
 +0s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[FRONT][RIGHT]_CAN_ID DoorOpened FRONT RIGHT = false
 
 ;Check that the 3 FRONT light is on
+; Arc 3a
 +0.31s A F CarLight 3 FRONT : lighted == true
 +0s A N CAR_CALL_[3][FRONT]_CAN_ID CarCall 3 FRONT : getValue == true
 
 ;unpress
 +0.1s I CAR_BUTTON_CONTROL_PERIOD F CarCall 3 FRONT = false 
-
+; Arc 4
 ;Check that the 3 FRONT light is off 
 +0.35s A F CarLight 3 FRONT : lighted == false
 +0s A N CAR_CALL_[3][FRONT]_CAN_ID CarCall 3 FRONT : getValue == false
 
 ;Dispatcher sends desiredFloor 
+; Arc 3b, 3c, 3d
 +0.2s I DISPATCHER_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 3 STOP FRONT
 +0s I AT_FLOOR_PERIOD N AT_FLOOR_[3][FRONT]_CAN_ID AtFloor 3 FRONT = true
 +0s I DRIVE_CONTROL_PERIOD N DRIVE_SPEED_CAN_ID DriveSpeed = 0 STOP
@@ -49,6 +53,6 @@
 +0.5s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = true
 +0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = true
 
-;#Transition '5.T.2'
+; Arc 5
 +0.1s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[FRONT][LEFT]_CAN_ID DoorOpened FRONT LEFT = true
 +0s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[FRONT][RIGHT]_CAN_ID DoorOpened FRONT RIGHT = true

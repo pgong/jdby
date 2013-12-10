@@ -41,30 +41,35 @@
 +0s  I  CAR_LEVEL_POSITION_PERIOD N CAR_LEVEL_POSITION_CAN_ID CarLevelPosition = 4400
 
 ;Check for slow
+; Arc 1b, 1c
 +0.21s  A S DriveControl : STATE == STATE_SLOW
 +0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getFloor == 2
 
 ;Reached second floor
+; Arc 1d, 3a
 +0.2s  I  AT_FLOOR_PERIOD N AT_FLOOR_[2][BACK]_CAN_ID AtFloor 2 BACK = true
 +0s  I  DRIVE_CONTROL_PERIOD F DriveSpeed = UP 0.05
 
-;CHECKS
+; Arc 1e
 +0.21s  A S DriveControl : STATE == STATE_LEVEL
 +0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getFloor == 2
 
 ;Leveling
+; Arc 1f, 1g, 1h 1i
 +0.21s  I  DRIVE_CONTROL_PERIOD N LEVEL_SENSOR_[UP]_CAN_ID Leveling UP = true
 +0s  I  DRIVE_CONTROL_PERIOD F DriveSpeed = STOP 0.0
 +0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][RIGHT]_CAN_ID DoorClosed BACK RIGHT = false
 +0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][LEFT]_CAN_ID DoorClosed BACK LEFT = false
 
 ;CHECKS
+; Arc 2,
 +0.48s A S DoorControl[BACK][LEFT] : STATE == OPENING_DOOR
 +0s A S DoorControl[BACK][RIGHT] : STATE == OPENING_DOOR
 +0s A F DoorMotor BACK LEFT : command == OPEN
 +0s A F DoorMotor BACK RIGHT : command == OPEN
 
 ;Check if lights are off
+; Arc 3b, 3c
 +0.29s A S HallButtonControl[2][BACK][UP] : STATE == STATE_LIGHT_OFF
 +0s A F HallLight 2 BACK UP : lighted == false
 +0s A N HALL_CALL_[2][BACK][UP]_CAN_ID HallCall 2 BACK UP : getValue == false

@@ -39,11 +39,13 @@
 +0s A F DoorMotor FRONT LEFT : command == STOP
 
 ;Passenger pressed the button
+; Arc 1a, 1b, 1c
 +0.1s I CAR_BUTTON_CONTROL_PERIOD F CarCall 5 FRONT = true
 +0.1s I CAR_BUTTON_CONTROL_PERIOD F CarCall 5 FRONT = false
 +0s I DISPATCHER_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 5 STOP FRONT
 
 ;Check to see if light is still on
+; Arc 2
 +0.21s A F CarLight 5 FRONT : lighted == true
 +0s A N CAR_CALL_[5][FRONT]_CAN_ID CarCall 5 FRONT : getValue == true
 
@@ -52,6 +54,7 @@
 +0s A F DoorMotor FRONT LEFT : command == CLOSE
 
 ;Check to see if door is closed
+; Arc 3a, 3b
 +0.63s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = true
 
 ;Check to see if light is still on

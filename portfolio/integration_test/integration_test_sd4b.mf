@@ -29,27 +29,32 @@
 +0s A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == UP
 
 ;Car arrives to 7rd floor
+; Arc 1a, 2c
 +0.1s I AT_FLOOR_PERIOD N AT_FLOOR_[7][FRONT]_CAN_ID AtFloor 7 FRONT = true
 +0s I AT_FLOOR_PERIOD N AT_FLOOR_[7][BACK]_CAN_ID AtFloor 7 BACK = true
 
 ;Check if Drive switch to level
+; Arc 1b
 +0.41s A S DriveControl : STATE == STATE_LEVEL
 +0s A F Drive : speed == LEVEL
 +0s A F Drive : direction == UP
 +0s A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == UP
 
 ;Level is true
+; Arc 1c
 +0.21s I  DRIVE_CONTROL_PERIOD N LEVEL_SENSOR_[UP]_CAN_ID Leveling UP = true
 +0s I DRIVE_CONTROL_PERIOD F DriveSpeed = STOP 0
 +0s  I  CAR_LEVEL_POSITION_PERIOD N CAR_LEVEL_POSITION_CAN_ID CarLevelPosition = 30000
 
 ;Check that Elevator has stopped and doors have started opening
+; Arc 2a
 +0.41s A S DriveControl : STATE == STATE_STOP
 +0s A F Drive : speed == STOP
 +0s A F Drive : direction == STOP
 +0s A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0.0
 +0s A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == STOP
 
+; Arc 2b, 2d
 +0.3s A S DoorControl[FRONT][LEFT] : STATE == OPENING_DOOR
 +0s A S DoorControl[FRONT][RIGHT] : STATE == OPENING_DOOR
 +0s A S DoorControl[BACK][LEFT] : STATE == OPENING_DOOR
@@ -60,7 +65,7 @@
 +0s A F DoorMotor BACK RIGHT : command == OPEN
 
 
-;#Transition '5.T.2'
+; Arc 2e
 +0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = false
 +0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = false
 +0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][LEFT]_CAN_ID DoorClosed BACK LEFT = false

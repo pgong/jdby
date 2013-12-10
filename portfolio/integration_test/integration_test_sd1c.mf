@@ -25,6 +25,7 @@
 
 ;Wait 2s to check if doors are closing
 ;Check to see if door closing
+; Arc 1a
 +2.52s A S DoorControl[FRONT][LEFT] : STATE == CLOSING_DOOR
 +0s A S DoorControl[FRONT][RIGHT] : STATE == CLOSING_DOOR
 +0s A F DoorMotor FRONT LEFT : command == CLOSE
@@ -35,15 +36,18 @@
 +0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = false
 
 ;Passenger Presses HallCall (and lets go)
+; Arc 3a, 3b, 3c
 +0.21s I HALL_BUTTON_CONTROL_PERIOD F HallCall 4 FRONT DOWN = true
 +0.2s I HALL_BUTTON_CONTROL_PERIOD F HallCall 4 FRONT DOWN = false
 
 ;Check if lights are on
+; Arc 4
 +0.41s A S HallButtonControl[4][FRONT][DOWN] : STATE == STATE_LIGHT_OFF
 +0s A F HallLight 4 FRONT DOWN : lighted == false
 +0s A N HALL_CALL_[4][FRONT][DOWN]_CAN_ID HallCall 4 FRONT DOWN : getValue == false
 
 ;door is closed
+; Arc 5a, 5b
 +0.63s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = true
 +0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = true
 

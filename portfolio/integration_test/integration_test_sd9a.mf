@@ -65,6 +65,7 @@
 +0s A F DoorMotor BACK LEFT : command == OPEN
 +0s A F DoorMotor BACK RIGHT : command == OPEN
 
+; Arc 1
 +0s  A S Dispatcher : STATE == STATE_DOORSCLOSED
 +0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getFloor == 2
 +0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getDirection == UP
@@ -75,6 +76,7 @@
 +0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == STOP
 
 ;Doors fully opened
+; Arc 2a, 2b, 2c, 2d
 +0.21s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][RIGHT]_CAN_ID DoorClosed BACK RIGHT = false
 +0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][LEFT]_CAN_ID DoorClosed BACK LEFT = false
 +0s  I  DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[BACK][RIGHT]_CAN_ID DoorOpened BACK RIGHT = true
@@ -84,6 +86,7 @@
 +0.2s  I  CAR_BUTTON_CONTROL_PERIOD N CAR_CALL_[2][BACK]_CAN_ID Boolean = false
 
 ;CHECKS
+; Arc 2e
 +0.25s A S DoorControl[BACK][LEFT] : STATE == WAIT_FOR_DWELL
 +0s A S DoorControl[BACK][RIGHT] : STATE == WAIT_FOR_DWELL
 +0s A F DoorMotor BACK LEFT : command == STOP
@@ -99,12 +102,14 @@
 +0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == STOP
 
 ;CHECKS
+; Arc 4a
 +2.02s A S DoorControl[BACK][LEFT] : STATE == CLOSING_DOOR
 +0s A S DoorControl[BACK][RIGHT] : STATE == CLOSING_DOOR
 +0s A F DoorMotor BACK LEFT : command == CLOSE
 +0s A F DoorMotor BACK RIGHT : command == CLOSE
 
 ;Wait for doors to close
+; Arc 4b, 4c, 4d, 4e, 4f
 +0.21s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][RIGHT]_CAN_ID DoorClosed BACK RIGHT = true
 +0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][LEFT]_CAN_ID DoorClosed BACK LEFT = true
 +0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = true
