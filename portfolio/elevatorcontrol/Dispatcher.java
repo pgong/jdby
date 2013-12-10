@@ -348,7 +348,7 @@ public class Dispatcher extends Controller{
 					newState = State.STATE_DOORSOPEN;
 					curr_d = direction;
 					//promised_d = direction;
-					if(nextHallCall != Direction.STOP)
+					if(mDesiredFloor.getDirection() != Direction.STOP)
 						waitForCall = true;
 				}
 
