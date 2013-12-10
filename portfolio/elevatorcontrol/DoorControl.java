@@ -99,11 +99,12 @@ public class DoorControl extends Controller {
     ReadableCanMailbox[] networkHallCall;
     HallCallCanPayloadTranslator[] mHallCall;
     
-    // Outputs
-    WriteableDoorMotorPayload DoorMotor;
-    
     ReadableCanMailbox networkDriveSpeed;
     DriveSpeedCanPayloadTranslator mDriveSpeed;
+    
+    // Outputs
+    WriteableDoorMotorPayload DoorMotor;
+
     
 	
     /**
