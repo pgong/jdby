@@ -22,12 +22,13 @@
 ; Should get the DriveControl to get into slow fast
 
 ;because mAtFloor is true, drive control jumps to level state after another period.
-
+; Arc 1
 +0.2s I AT_FLOOR_PERIOD N AT_FLOOR_[1][FRONT]_CAN_ID AtFloor 1 FRONT = false
 +0.41s I DRIVE_CONTROL_PERIOD F DriveSpeed = UP 5.0
 +0s I CAR_LEVEL_POSITION_PERIOD N CAR_LEVEL_POSITION_CAN_ID CarLevelPosition = 10000 ; Floor 3
 
 ;Check CarPositionControl	
+; Arc 2
 +0.5s A N CAR_POSITION_CAN_ID CarPosition : getValue == 3
 
 ;Check DriveControl State

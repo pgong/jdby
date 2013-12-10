@@ -10,6 +10,7 @@
 #INCLUDE defines.mf
 
 ;Initialize Drive control jumps from Stopped state to slow state after one period.
+; Arc 1a, 1b, 2
 +0s  I  CAR_LEVEL_POSITION_PERIOD N CAR_LEVEL_POSITION_CAN_ID CarLevelPosition = 9400
 0s I AT_FLOOR_PERIOD N AT_FLOOR_[3][FRONT]_CAN_ID AtFloor 3 FRONT = true
 +0s I DISPATCHER_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 3 STOP FRONT
@@ -19,6 +20,7 @@
 +0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][LEFT]_CAN_ID DoorClosed BACK LEFT = true
 
 ;because mAtFloor is true, drive control jumps to level state after another period.
+; Arc 3a, 3b
 +0.41s I DRIVE_CONTROL_PERIOD F DriveSpeed = UP 0.05
 
 ;Check CarPositionControl	
@@ -33,10 +35,12 @@
 +0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == UP
 
 ;Level is true
+; Arc 3c
 +0.21s I  DRIVE_CONTROL_PERIOD N LEVEL_SENSOR_[UP]_CAN_ID Leveling UP = true
 +0s I DRIVE_CONTROL_PERIOD F DriveSpeed = STOP 0.0
 
-;Check that Elevator has stopped 
+;Check that Elevator has stopped
+; Arc 3d, 3e 
 +0.61s A S DriveControl : STATE == STATE_STOP
 +0s A F Drive : speed == STOP
 +0s A F Drive : direction == STOP

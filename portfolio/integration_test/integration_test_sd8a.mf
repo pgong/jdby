@@ -33,6 +33,7 @@
 +0.21s  A S DriveControl : STATE == STATE_STOP
 
 ;CHECK that dwell countdown is done
+; Arc 1a
 +1.51s A S DoorControl[FRONT][LEFT] : STATE == CLOSING_DOOR
 +0s A F DoorMotor FRONT LEFT : command == CLOSE
 +0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getFloor == 3
@@ -44,6 +45,7 @@
 +0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == STOP
 
 ;Set Doors to close
+; Arc 1b, 1c, 1d, 1e
 +0.51s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = true
 +0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = true
 +0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][RIGHT]_CAN_ID DoorClosed BACK RIGHT = true
@@ -55,6 +57,7 @@
 +0.61s  I  DISPATCHER_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor =  4 FRONT STOP
 
 ;Set DriveSpeed and leave the floor
+; Arc 2a, 2b
 +0.21s  I  DRIVE_CONTROL_PERIOD F DriveSpeed = UP 0.20
 +0s  I  CAR_LEVEL_POSITION_PERIOD N CAR_LEVEL_POSITION_CAN_ID CarLevelPosition = 10050
 +0s  I  AT_FLOOR_PERIOD N AT_FLOOR_[3][FRONT]_CAN_ID AtFloor 3 FRONT = false
@@ -72,6 +75,7 @@
 +0.21s  I  DRIVE_CONTROL_PERIOD F DriveSpeed = UP 0.25
 
 ;Check State of DriveControl
+; Arc 2c, 2d
 +0.21s  A S DriveControl : STATE == STATE_FAST
 +0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0.25
 +0s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == UP
