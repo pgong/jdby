@@ -99,12 +99,11 @@ public class DoorControl extends Controller {
     ReadableCanMailbox[] networkHallCall;
     HallCallCanPayloadTranslator[] mHallCall;
     
-    ReadableCanMailbox networkDriveSpeed;
-    DriveSpeedCanPayloadTranslator mDriveSpeed;
-    
     // Outputs
     WriteableDoorMotorPayload DoorMotor;
-
+    
+    ReadableCanMailbox networkDriveSpeed;
+    DriveSpeedCanPayloadTranslator mDriveSpeed;
     
 	
     /**
@@ -267,6 +266,10 @@ public class DoorControl extends Controller {
                 break;
             case OPENING_DOOR: // S2
             	// State 2 actions:
+            	if(mDriveSpeed.getSpeed() != 0.0){
+            		newState = State.CAR_MOVING;
+            		break;		
+            	}
             	DoorMotor.set(DoorCommand.OPEN);
             	this.CountDown = this.Dwell;
 
@@ -298,7 +301,6 @@ public class DoorControl extends Controller {
                 	if (this.reversalCount < this.maxReversals){
                 		newState = State.CLOSING_DOOR; // T3
                 	}
-                    // #transition 5.T.6
                 	else {
                 		//System.out.println("Nudging after " + reversalCount);
                 		newState = State.NUDGING_DOOR;
@@ -311,7 +313,7 @@ public class DoorControl extends Controller {
             	this.CountDown = this.Dwell;
             	
             	// State 4 transitions
-				// #transition 5.T.5
+				// #transition 5.T.5 and 5.T.6
                 if ((mCarWeight.getValue() >= Elevator.MaxCarCapacity) ||
                 (mCarCall[ReplicationComputer.computeReplicationId(
                  this.currentFloor, this.h)].getValue() == true)) {
