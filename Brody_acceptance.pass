@@ -1,0 +1,7 @@
+; Brody's acceptance test
+; Scenario 1: elevator at floor 1, hall call down on floors 5 and 6
+
+020.000s	4	FRONT	5	FRONT
+022.000S	5	FRONT	1	FRONT
+056.29999999999999s	5	FRONT	2	BACK
+
