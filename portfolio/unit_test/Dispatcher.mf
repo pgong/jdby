@@ -184,7 +184,7 @@
 
 ;Expect 1 STOP FRONT
 ;#state 'STATE_DOORSCLOSED
-+0.21s  A  N DESIRED_FLOOR_CAN_ID DesiredFloor : getFloor == 1
++2.21s  A  N DESIRED_FLOOR_CAN_ID DesiredFloor : getFloor == 1
 +0s  A  N DESIRED_FLOOR_CAN_ID DesiredFloor : getDirection == STOP
 +0s  A  N DESIRED_FLOOR_CAN_ID DesiredFloor : getHallway == FRONT
 
