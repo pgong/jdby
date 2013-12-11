@@ -148,6 +148,11 @@ public class CarPositionControl extends Controller {
 		mCarPositionIndicator.set(currentFloor);
 		carPositionIndicator.set(currentFloor);
 		
+		State newState = State.POSITION;
+		
+		setState(STATE_KEY,newState.toString());
+		
+		
 		//schedule the next iteration of the controller
 		//you must do this at the end of the timer callback in order to restart
 		//the timer

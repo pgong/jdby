@@ -14,7 +14,8 @@
 
 ;#state 'S10.1 AT FLOOR'
 ;At state POSITION and floor 1
-+0.5s A N CAR_POSITION_CAN_ID CarPosition : getValue == 1
++0.5s A S CarPositionControl : STATE == POSITION
++0s A N CAR_POSITION_CAN_ID CarPosition : getValue == 1
 
 ; move away from floor
 +0.110s I AT_FLOOR_PERIOD N AT_FLOOR_[1][FRONT]_CAN_ID AtFloor 1 FRONT = false
