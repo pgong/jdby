@@ -81,7 +81,6 @@ public class Dispatcher extends Controller{
 	//private Direction promised_d;
 	private Direction nextHallCall;
 
-	private int lastClosedAt;
 	private boolean overweight;
 	//This variable is set for when there is a hall call, we wait
 	//for the passenger to submit a call (about 2 seconds after doors
