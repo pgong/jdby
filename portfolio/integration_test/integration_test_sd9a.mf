@@ -116,7 +116,8 @@
 +0s  I  DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = true
 
 ;Dispatcher updated now
-+0.21s  A S Dispatcher : STATE == STATE_DOORSCLOSED
++3.21s  A S Dispatcher : STATE == STATE_DOORSCLOSED
 +0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getFloor == 3
 +0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getDirection == UP
 +0s  A N DESIRED_FLOOR_CAN_ID DesiredFloor : getHallway == FRONT
+
