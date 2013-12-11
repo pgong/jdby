@@ -514,7 +514,10 @@ public class Dispatcher extends Controller{
 								//Make sure target hasn't already been set!
 								if(!targetFound && (commitPoint(f, current_d, car_position, speed))){
 									if (debug) System.out.println("1A");
-									if((lastClosedAt == f && nextHallCall != Direction.STOP) || (mHallCall[hallIndex].getValue() && overweight && curr_f== (f))){
+									//if((lastClosedAt == f && nextHallCall != Direction.STOP) || (mHallCall[hallIndex].getValue() && overweight && curr_f== (f))){
+									if((lastClosedAt == f && nextHallCall != Direction.STOP) || (mHallCall[hallIndex].getValue() && overweight)){
+
+										if (debug) System.out.println("1Aa!");
 										break innerloop;
 									}
 									target = f;
