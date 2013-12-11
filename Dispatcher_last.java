@@ -514,8 +514,8 @@ public class Dispatcher extends Controller{
 								//Make sure target hasn't already been set!
 								if(!targetFound && (commitPoint(f, current_d, car_position, speed))){
 									if (debug) System.out.println("1A");
-									//if((lastClosedAt == f && nextHallCall != Direction.STOP) || (mHallCall[hallIndex].getValue() && overweight && curr_f== (f))){
-									if((lastClosedAt == f && nextHallCall != Direction.STOP) || (mHallCall[hallIndex].getValue() && overweight)){
+									if((lastClosedAt == f) || (mHallCall[hallIndex].getValue() && overweight && curr_f== f)){
+									//if((lastClosedAt == f && nextHallCall != Direction.STOP) || (mHallCall[hallIndex].getValue() && overweight)){
 
 										if (debug) System.out.println("1Aa!");
 										break innerloop;
@@ -558,7 +558,7 @@ public class Dispatcher extends Controller{
 							if(mHallCall[hallIndex].getValue()){
 								//Make sure target hasn't already been set!
 								if(!targetFound && (commitPoint(f, current_d, car_position, speed))){
-									if(lastClosedAt == f || overweight && curr_f== (f)){
+									if(lastClosedAt == f || (overweight && curr_f== f)){
 										break innerloop;
 									}
 									if (debug) System.out.println("2A");
@@ -573,7 +573,7 @@ public class Dispatcher extends Controller{
 									if (debug) System.out.println("2B");
 									if(nextHallCall == Direction.STOP &&
 											mHallCall[hallIndex].getValue()==true){
-										if(lastClosedAt == f || overweight && curr_f== (f)){
+										if(lastClosedAt == f || (overweight && curr_f== f)){
 											break innerloop;
 										}
 									}
@@ -598,7 +598,7 @@ public class Dispatcher extends Controller{
 								//Make sure target hasn't already been set!
 								if(!targetFound && (speed==0.0 || commitPoint(f, current_d, car_position, speed))){
 									if (debug) System.out.println("3A");
-									if(lastClosedAt == f || mHallCall[hallIndex].getValue() && overweight && curr_f== (f)){
+									if(lastClosedAt == f || (mHallCall[hallIndex].getValue() && overweight && curr_f== f)){
 										break innerloop;
 									}
 									target = f;
@@ -615,7 +615,7 @@ public class Dispatcher extends Controller{
 									if (debug) System.out.println("3B");
 									if(nextHallCall == Direction.STOP &&
 											mHallCall[hallIndex].getValue()==true){
-										if(lastClosedAt == f || overweight && curr_f== (f)){
+										if(lastClosedAt == f || (overweight && curr_f== f)){
 											break innerloop;
 										}
 									}
@@ -640,7 +640,7 @@ public class Dispatcher extends Controller{
 								//Make sure target hasn't already been set!
 								if (debug) System.out.println("4");
 								if(!targetFound && (speed == 0.0 || commitPoint(f, current_d, car_position, speed))){
-									if(lastClosedAt == f || overweight && curr_f== (f)){
+									if(lastClosedAt == f || (overweight && curr_f== f)){
 										break innerloop;
 									}
 									if (debug) System.out.println("4A");
@@ -655,7 +655,7 @@ public class Dispatcher extends Controller{
 									if (debug) System.out.println("4B");
 									if(nextHallCall == Direction.STOP &&
 											mHallCall[hallIndex].getValue()==true){
-										if(lastClosedAt == f || overweight && curr_f== (f)){
+										if(lastClosedAt == f || (overweight && curr_f== f)){
 											break innerloop;
 										}
 									}
@@ -682,7 +682,7 @@ public class Dispatcher extends Controller{
 								//Make sure target hasn't already been set!
 								if(!targetFound && (commitPoint(f, current_d, car_position, speed))){
 									if (debug) System.out.println("5A");
-									if((lastClosedAt == f && nextHallCall != Direction.STOP) || mHallCall[hallIndex].getValue() && overweight && curr_f== (f)){
+									if((lastClosedAt == f) || (mHallCall[hallIndex].getValue() && overweight && curr_f== f)){
 										break innerloop;
 									}
 									target = f;
@@ -699,7 +699,7 @@ public class Dispatcher extends Controller{
 									if (debug) System.out.println("5B");	
 									if(nextHallCall == Direction.STOP &&
 											mHallCall[hallIndex].getValue()==true){
-										if(lastClosedAt == f || overweight && curr_f== (f)){
+										if(lastClosedAt == f || (overweight && curr_f== f)){
 											break innerloop;
 										}
 									}
@@ -722,7 +722,7 @@ public class Dispatcher extends Controller{
 								//Make sure target hasn't already been set!
 								if(!targetFound && (commitPoint(f, current_d, car_position, speed))){
 									if (debug) System.out.println("6A");
-									if(lastClosedAt == f || overweight && curr_f== (f)){
+									if(lastClosedAt == f || (overweight && curr_f== f)){
 										break innerloop;
 									}
 									nextHallCall = Direction.UP;
@@ -736,7 +736,7 @@ public class Dispatcher extends Controller{
 									if (debug) System.out.println("6B");
 									if(nextHallCall == Direction.STOP &&
 											mHallCall[hallIndex].getValue()==true){
-										if(lastClosedAt == f || overweight && curr_f== (f)){
+										if(lastClosedAt == f || (overweight && curr_f== f)){
 											break innerloop;
 										}
 									}
@@ -761,7 +761,7 @@ public class Dispatcher extends Controller{
 								//Make sure target hasn't already been set!
 								if(!targetFound && (speed == 0.0 || commitPoint(f, current_d, car_position, speed))){
 									if (debug) System.out.println("7A");
-									if(lastClosedAt == f || mHallCall[hallIndex].getValue() && overweight && curr_f== (f)){
+									if(lastClosedAt == f || (mHallCall[hallIndex].getValue() && overweight && curr_f== f)){
 										break innerloop;
 									}
 									target = f;
@@ -778,7 +778,7 @@ public class Dispatcher extends Controller{
 									if (debug) System.out.println("7B");
 									if(nextHallCall == Direction.STOP &&
 											mHallCall[hallIndex].getValue()==true){
-										if(lastClosedAt == f || overweight && curr_f== (f)){
+										if(lastClosedAt == f || (overweight && curr_f== f)){
 											break innerloop;
 										}
 									nextTargetFound = true;
@@ -802,7 +802,7 @@ public class Dispatcher extends Controller{
 							if(mHallCall[hallIndex].getValue()){
 								//Make sure target hasn't already been set!
 								if(!targetFound && (speed == 0.0 || commitPoint(f, current_d, car_position, speed))){
-									if(lastClosedAt == f || overweight && curr_f== (f)){
+									if(lastClosedAt == f || (overweight && curr_f== f)){
 										break innerloop;
 									}
 									if (debug) System.out.println("8A");
