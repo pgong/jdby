@@ -386,7 +386,12 @@ public class DoorControl extends Controller {
 	}
 	
 	private void set_open_flag() {
-		if(mDesiredFloor.getHallway() == Hallway.BOTH){
+		if (p_dir == mDesiredFloor.getDirection() 
+				&& p_floor == mDesiredFloor.getFloor()
+				&& p_hall == mDesiredFloor.getHallway()) {
+			this.open_flag = false;
+		}
+		else if(mDesiredFloor.getHallway() == Hallway.BOTH){
 			//If we were overweight, dont open the door again for a hall call
 			if(overweight &&
 			!mCarCall[ReplicationComputer.computeReplicationId(this.currentFloor, Hallway.FRONT)].getValue() &&
@@ -399,12 +404,6 @@ public class DoorControl extends Controller {
 				mHallCall[ReplicationComputer.computeReplicationId(this.currentFloor, Hallway.BACK, mDesiredFloor.getDirection())].getValue())) {
 				//System.out.println("wut1");
 				this.open_flag = true;
-			}
-			else if (p_dir == mDesiredFloor.getDirection() 
-					&& p_floor == mDesiredFloor.getFloor()
-					&& p_hall == mDesiredFloor.getHallway()) {
-				//System.out.println("false" + this.h + " dir " + p_dir + " floor " + p_floor + " hall " + p_hall);
-				this.open_flag = false;
 			}
 			else{
 				//System.out.println("last1");
@@ -427,11 +426,6 @@ public class DoorControl extends Controller {
 					mHallCall[ReplicationComputer.computeReplicationId(this.currentFloor, this.h, mDesiredFloor.getDirection())].getValue()) {
 				//System.out.println("wut3");
 				this.open_flag = true;
-			}
-			else if (p_dir == mDesiredFloor.getDirection() 
-					&& p_floor == mDesiredFloor.getFloor()
-					&& p_hall == mDesiredFloor.getHallway()) {
-				this.open_flag = false;
 			}
 			else {
 				//System.out.println("no match?" + mDesiredFloor.getDirection() + mDesiredFloor.getFloor() + mDesiredFloor.getHallway());

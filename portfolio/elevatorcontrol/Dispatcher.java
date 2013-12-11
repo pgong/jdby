@@ -81,6 +81,7 @@ public class Dispatcher extends Controller{
 	//private Direction promised_d;
 	private Direction nextHallCall;
 
+	private int lastClosedAt;
 	private boolean overweight;
 	//This variable is set for when there is a hall call, we wait
 	//for the passenger to submit a call (about 2 seconds after doors
@@ -109,6 +110,7 @@ public class Dispatcher extends Controller{
 
 		this.period = period;
 		this.numFloors = numFloors;
+		lastClosedAt = 0;
 		overweight = false;
 		curr_f = 1;
 		lastFloor = 1;
@@ -225,6 +227,7 @@ public class Dispatcher extends Controller{
 			lastFloor = curr_f;
 			//System.out.println("resetting overweight");
 			overweight = false;
+			lastClosedAt = 0;
 		}
 		//System.out.println("curr_pos is " + curr_pos + " and curr_f is " + curr_f);
 		if(Elevator.hasLanding(curr_f, Hallway.FRONT)){
@@ -277,8 +280,11 @@ public class Dispatcher extends Controller{
 				}
 				//#transition 11.T.3 when doors closed.
 				else if((mDoorClosed[ReplicationComputer.computeReplicationId(Hallway.FRONT, Side.LEFT)].getValue() &&
-						mDoorClosed[ReplicationComputer.computeReplicationId(Hallway.BACK, Side.LEFT)].getValue()))
+						mDoorClosed[ReplicationComputer.computeReplicationId(Hallway.BACK, Side.LEFT)].getValue())){
+					lastClosedAt = curr_f;
+					//System.out.println(lastClosedAt + " " + curr_f);
 					newState = State.STATE_DOORSCLOSED;
+				}
 			}
 			//if it is not at ANY floor and ANY doors are open, jump to emergency state
 			//#transition 11.T.4
@@ -290,8 +296,11 @@ public class Dispatcher extends Controller{
 			//if no issues, move to the next state when doors closed
 			//#transition 11.T.3
 			else if((mDoorClosed[ReplicationComputer.computeReplicationId(Hallway.FRONT, Side.LEFT)].getValue() &&
-					mDoorClosed[ReplicationComputer.computeReplicationId(Hallway.BACK, Side.LEFT)].getValue()))
+					mDoorClosed[ReplicationComputer.computeReplicationId(Hallway.BACK, Side.LEFT)].getValue())){
+				lastClosedAt = curr_f;
+				//System.out.println(lastClosedAt + " " + curr_f);
 				newState = State.STATE_DOORSCLOSED;
+			}
 			else
 				newState = state;
 			break;
@@ -414,8 +423,8 @@ public class Dispatcher extends Controller{
 			//State actions for 'EMERGENCY'
 			//#state State 3: Emergency
 		case STATE_EMERGENCY:
-			//System.out.println("emergency at supposedly" + curr_f + " but at postion " + mCarLevelPosition.getPosition() +
-			//		" with desiredfloor " + mDesiredFloor.getFloor()+mDesiredFloor.getHallway()+mDesiredFloor.getDirection());
+			System.out.println("emergency at supposedly" + curr_f + " but at postion " + mCarLevelPosition.getPosition() +
+					" with desiredfloor " + mDesiredFloor.getFloor()+mDesiredFloor.getHallway()+mDesiredFloor.getDirection());
 			floor = 1;
 			hallway = Hallway.BOTH;
 			direction = Direction.STOP;
@@ -489,6 +498,8 @@ public class Dispatcher extends Controller{
 		boolean targetFound = false;
 		boolean nextTargetFound = false;
 		nextHallCall = Direction.STOP;
+		boolean debug = false;
+		boolean debug2 = false;
 		/*	if(curr_f == 1)
 			current_f = 2;
 		else
@@ -506,8 +517,11 @@ public class Dispatcher extends Controller{
 							if(mCarCall[index].getValue() || mHallCall[hallIndex].getValue()){
 								//Make sure target hasn't already been set!
 								if(!targetFound && (commitPoint(f, current_d, car_position, speed))){
-									//System.out.println("1A");
-									if(mHallCall[hallIndex].getValue() && overweight && curr_f== (f)){
+									if (debug) System.out.println("1A " + lastClosedAt);
+									if((lastClosedAt == f) || (mHallCall[hallIndex].getValue() && overweight && curr_f== f)){
+									//if((lastClosedAt == f && nextHallCall != Direction.STOP) || (mHallCall[hallIndex].getValue() && overweight)){
+
+										if (debug) System.out.println("1Aa!");
 										break innerloop;
 									}
 									target = f;
@@ -523,10 +537,10 @@ public class Dispatcher extends Controller{
 								}
 								//If the next target has been set as well, break out of both loops.
 								else if (!nextTargetFound){
-									//System.out.println("1B" + commitPoint(f,current_d,car_position,speed));
+									if (debug) System.out.println("1B" + commitPoint(f,current_d,car_position,speed));
 									if(nextHallCall == Direction.STOP &&
 											mHallCall[hallIndex].getValue()){
-										if(overweight && curr_f== (f)){
+										if(lastClosedAt == f || overweight && curr_f== (f)){
 											break innerloop;
 										}
 									}
@@ -548,10 +562,10 @@ public class Dispatcher extends Controller{
 							if(mHallCall[hallIndex].getValue()){
 								//Make sure target hasn't already been set!
 								if(!targetFound && (commitPoint(f, current_d, car_position, speed))){
-									if(overweight && curr_f== (f)){
+									if(lastClosedAt == f || (overweight && curr_f== f)){
 										break innerloop;
 									}
-									//System.out.println("2A");
+									if (debug) System.out.println("2A");
 									nextHallCall = Direction.DOWN;
 									target = f;
 									targetFound = true;
@@ -560,10 +574,10 @@ public class Dispatcher extends Controller{
 								}
 								//If the next target has been set as well, break out of both loops.
 								else if (!nextTargetFound){
-									//System.out.println("2B");
+									if (debug) System.out.println("2B");
 									if(nextHallCall == Direction.STOP &&
 											mHallCall[hallIndex].getValue()==true){
-										if(overweight && curr_f== (f)){
+										if(lastClosedAt == f || (overweight && curr_f== f)){
 											break innerloop;
 										}
 									}
@@ -587,8 +601,8 @@ public class Dispatcher extends Controller{
 							if(mCarCall[index].getValue() || mHallCall[hallIndex].getValue()){
 								//Make sure target hasn't already been set!
 								if(!targetFound && (speed==0.0 || commitPoint(f, current_d, car_position, speed))){
-									//System.out.println("3A");
-									if(mHallCall[hallIndex].getValue() && overweight && curr_f== (f)){
+									if (debug) System.out.println("3A");
+									if(lastClosedAt == f || (mHallCall[hallIndex].getValue() && overweight && curr_f== f)){
 										break innerloop;
 									}
 									target = f;
@@ -602,10 +616,10 @@ public class Dispatcher extends Controller{
 								}
 								//If the next target has been set as well, break out of both loops.
 								else if (!nextTargetFound){
-									//System.out.println("3B");
+									if (debug) System.out.println("3B");
 									if(nextHallCall == Direction.STOP &&
 											mHallCall[hallIndex].getValue()==true){
-										if(overweight && curr_f== (f)){
+										if(lastClosedAt == f || (overweight && curr_f== f)){
 											break innerloop;
 										}
 									}
@@ -628,11 +642,12 @@ public class Dispatcher extends Controller{
 							//If there is a car call or hall call at the given floor, try and set as target.
 							if(mHallCall[hallIndex].getValue()){
 								//Make sure target hasn't already been set!
+								if (debug) System.out.println("4");
 								if(!targetFound && (speed == 0.0 || commitPoint(f, current_d, car_position, speed))){
-									if(overweight && curr_f== (f)){
+									if(lastClosedAt == f || (overweight && curr_f== f)){
 										break innerloop;
 									}
-									//System.out.println("4A");
+									if (debug) System.out.println("4A");
 									nextHallCall = Direction.UP;
 									target = f;
 									targetFound = true;
@@ -641,10 +656,10 @@ public class Dispatcher extends Controller{
 								}
 								//If the next target has been set as well, break out of both loops.
 								else if (!nextTargetFound){
-									//System.out.println("4B");
+									if (debug) System.out.println("4B");
 									if(nextHallCall == Direction.STOP &&
 											mHallCall[hallIndex].getValue()==true){
-										if(overweight && curr_f== (f)){
+										if(lastClosedAt == f || (overweight && curr_f== f)){
 											break innerloop;
 										}
 									}
@@ -670,8 +685,8 @@ public class Dispatcher extends Controller{
 							if(mCarCall[index].getValue()==true || mHallCall[hallIndex].getValue()==true){
 								//Make sure target hasn't already been set!
 								if(!targetFound && (commitPoint(f, current_d, car_position, speed))){
-									//System.out.println("5A");
-									if(mHallCall[hallIndex].getValue() && overweight && curr_f== (f)){
+									if (debug) System.out.println("5A");
+									if((lastClosedAt == f) || (mHallCall[hallIndex].getValue() && overweight && curr_f== f)){
 										break innerloop;
 									}
 									target = f;
@@ -685,10 +700,10 @@ public class Dispatcher extends Controller{
 								}
 								//If the next target has been set as well, break out of both loops.
 								else if (!nextTargetFound){
-									//System.out.println("5B");	
+									if (debug) System.out.println("5B");	
 									if(nextHallCall == Direction.STOP &&
 											mHallCall[hallIndex].getValue()==true){
-										if(overweight && curr_f== (f)){
+										if(lastClosedAt == f || (overweight && curr_f== f)){
 											break innerloop;
 										}
 									}
@@ -710,8 +725,8 @@ public class Dispatcher extends Controller{
 							if(mHallCall[hallIndex].getValue()){
 								//Make sure target hasn't already been set!
 								if(!targetFound && (commitPoint(f, current_d, car_position, speed))){
-									//System.out.println("6A");
-									if(overweight && curr_f== (f)){
+									if (debug) System.out.println("6A");
+									if(lastClosedAt == f || (overweight && curr_f== f)){
 										break innerloop;
 									}
 									nextHallCall = Direction.UP;
@@ -722,10 +737,10 @@ public class Dispatcher extends Controller{
 								}
 								//If the next target has been set as well, break out of both loops.
 								else if (!nextTargetFound){
-									//System.out.println("6B");
+									if (debug) System.out.println("6B");
 									if(nextHallCall == Direction.STOP &&
 											mHallCall[hallIndex].getValue()==true){
-										if(overweight && curr_f== (f)){
+										if(lastClosedAt == f || (overweight && curr_f== f)){
 											break innerloop;
 										}
 									}
@@ -749,8 +764,8 @@ public class Dispatcher extends Controller{
 							if(mCarCall[index].getValue() || mHallCall[hallIndex].getValue()){
 								//Make sure target hasn't already been set!
 								if(!targetFound && (speed == 0.0 || commitPoint(f, current_d, car_position, speed))){
-									//System.out.println("7A");
-									if(mHallCall[hallIndex].getValue() && overweight && curr_f== (f)){
+									if (debug) System.out.println("7A");
+									if(lastClosedAt == f || (mHallCall[hallIndex].getValue() && overweight && curr_f== f)){
 										break innerloop;
 									}
 									target = f;
@@ -764,10 +779,10 @@ public class Dispatcher extends Controller{
 								}
 								//If the next target has been set as well, break out of both loops.
 								else if (!nextTargetFound){
-									//System.out.println("7B");
+									if (debug) System.out.println("7B");
 									if(nextHallCall == Direction.STOP &&
 											mHallCall[hallIndex].getValue()==true){
-										if(overweight && curr_f== (f)){
+										if(lastClosedAt == f || (overweight && curr_f== f)){
 											break innerloop;
 										}
 									nextTargetFound = true;
@@ -791,10 +806,10 @@ public class Dispatcher extends Controller{
 							if(mHallCall[hallIndex].getValue()){
 								//Make sure target hasn't already been set!
 								if(!targetFound && (speed == 0.0 || commitPoint(f, current_d, car_position, speed))){
-									if(overweight && curr_f== (f)){
+									if(lastClosedAt == f || (overweight && curr_f== f)){
 										break innerloop;
 									}
-									//System.out.println("8A");
+									if (debug) System.out.println("8A");
 									nextHallCall = Direction.DOWN;
 									target = f;
 									targetFound = true;
@@ -803,10 +818,10 @@ public class Dispatcher extends Controller{
 								}
 								//If the next target has been set as well, break out of both loops.
 								else if (!nextTargetFound){
-									//System.out.println("8B");
+									if (debug) System.out.println("8B");
 									if(nextHallCall == Direction.STOP &&
 											mHallCall[hallIndex].getValue()==true){
-										if(overweight && curr_f== (f)){
+										if(lastClosedAt == f || overweight && curr_f== (f)){
 											break innerloop;
 										}
 									nextTargetFound = true;
@@ -819,8 +834,23 @@ public class Dispatcher extends Controller{
 				}
 			}
 		}
-
-		//System.out.println("target: " + target + " nextTarget: " + nextTarget + " hall call: " + nextHallCall + "current floor " + curr_f);
+		if(!targetFound && (lastClosedAt > 0)){
+		outerloop:
+		for(Hallway h : Hallway.replicationValues){
+			for(Direction d : Direction.replicationValues){
+				int index = ReplicationComputer.computeReplicationId(lastClosedAt,h);
+				int hallIndex = ReplicationComputer.computeReplicationId(lastClosedAt,h,Direction.UP);
+				//If there is a car call or hall call at the given floor, try and set as target.
+				if(mCarCall[index].getValue() || mHallCall[hallIndex].getValue()){
+					target = lastClosedAt;
+					targetFound = true;
+					break outerloop;
+				}
+			}
+		}
+		}
+		if(debug2)
+			System.out.println("target: " + target + " nextTarget: " + nextTarget + " hall call: " + nextHallCall + "current floor " + curr_f);
 		//If target was found, change desired floor.
 		if(targetFound){
 			floor = target;			
