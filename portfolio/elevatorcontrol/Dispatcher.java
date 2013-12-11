@@ -839,11 +839,16 @@ public class Dispatcher extends Controller{
 		for(Hallway h : Hallway.replicationValues){
 			for(Direction d : Direction.replicationValues){
 				int index = ReplicationComputer.computeReplicationId(lastClosedAt,h);
-				int hallIndex = ReplicationComputer.computeReplicationId(lastClosedAt,h,Direction.UP);
+				int hallIndex = ReplicationComputer.computeReplicationId(lastClosedAt,h,d);
 				//If there is a car call or hall call at the given floor, try and set as target.
 				if(mCarCall[index].getValue() || mHallCall[hallIndex].getValue()){
 					target = lastClosedAt;
 					targetFound = true;
+					if(mHallCall[hallIndex].getValue()){
+						nextHallCall = d;
+						nextTargetFound = true;
+						break outerloop;
+					}
 					break outerloop;
 				}
 			}
