@@ -261,14 +261,14 @@ public class DriveControl extends Controller{
 				//Cable slips require the elevator to come back UP
 				direction = Direction.UP;
 				newState = State.STATE_LEVEL;
-			}
+			}/*
 			else if(!mLevel[ReplicationComputer.computeReplicationId(Direction.DOWN)].getValue()){
 				//Set weight_flag
 				weight_flag = true;
 				//Cable slips require the elevator to come back UP
 				direction = Direction.DOWN;
 				newState = State.STATE_LEVEL;
-			}
+			}*/
 			else if(mEmergencyBrake.getValue()) {
 					newState = state;
 					door_open = false;
